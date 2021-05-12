@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,12 @@
 		86B12B4D264A8584006EE7FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B12B4B264A8584006EE7FE /* Main.storyboard */; };
 		86B12B4F264A8587006EE7FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B12B4E264A8587006EE7FE /* Assets.xcassets */; };
 		86B12B52264A8587006EE7FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B12B50264A8587006EE7FE /* LaunchScreen.storyboard */; };
+		86C3FA62264BE1F200480E4F /* SettingsPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA61264BE1F200480E4F /* SettingsPage.storyboard */; };
+		86C3FA65264BE22900480E4F /* CreateMeetingPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA64264BE22900480E4F /* CreateMeetingPage.storyboard */; };
+		86C3FA68264BE24A00480E4F /* NewsPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA67264BE24A00480E4F /* NewsPage.storyboard */; };
+		86C3FA6B264BE25B00480E4F /* CalendarViewPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA6A264BE25B00480E4F /* CalendarViewPage.storyboard */; };
+		86C3FA6E264BE2A700480E4F /* NotificationPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */; };
+		86C3FA72264BF44000480E4F /* AddTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C3FA71264BF44000480E4F /* AddTabBar.swift */; };
 		A3090504881DDDF486642645 /* Pods_inviti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE1AD6A8960FEB195B049AE /* Pods_inviti.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +31,12 @@
 		86B12B4E264A8587006EE7FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86B12B51264A8587006EE7FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86B12B53264A8587006EE7FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86C3FA61264BE1F200480E4F /* SettingsPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsPage.storyboard; sourceTree = "<group>"; };
+		86C3FA64264BE22900480E4F /* CreateMeetingPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateMeetingPage.storyboard; sourceTree = "<group>"; };
+		86C3FA67264BE24A00480E4F /* NewsPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsPage.storyboard; sourceTree = "<group>"; };
+		86C3FA6A264BE25B00480E4F /* CalendarViewPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarViewPage.storyboard; sourceTree = "<group>"; };
+		86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotificationPage.storyboard; sourceTree = "<group>"; };
+		86C3FA71264BF44000480E4F /* AddTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTabBar.swift; sourceTree = "<group>"; };
 		A41EA7A3E1004FFDF363D424 /* Pods-inviti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inviti.release.xcconfig"; path = "Target Support Files/Pods-inviti/Pods-inviti.release.xcconfig"; sourceTree = "<group>"; };
 		E5BBABC6525C243DBE8B8AC6 /* Pods-inviti.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inviti.debug.xcconfig"; path = "Target Support Files/Pods-inviti/Pods-inviti.debug.xcconfig"; sourceTree = "<group>"; };
 		FDE1AD6A8960FEB195B049AE /* Pods_inviti.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_inviti.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,7 +60,6 @@
 				E5BBABC6525C243DBE8B8AC6 /* Pods-inviti.debug.xcconfig */,
 				A41EA7A3E1004FFDF363D424 /* Pods-inviti.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -73,15 +84,53 @@
 		86B12B44264A8584006EE7FE /* inviti */ = {
 			isa = PBXGroup;
 			children = (
+				86C3FA5F264BDDFD00480E4F /* Model */,
+				86C3FA5E264BDDEC00480E4F /* Controller */,
+				86C3FA5D264BDDE200480E4F /* ViewModel */,
+				86C3FA5C264BD3B800480E4F /* View */,
 				86B12B45264A8584006EE7FE /* AppDelegate.swift */,
 				86B12B47264A8584006EE7FE /* SceneDelegate.swift */,
 				86B12B49264A8584006EE7FE /* ViewController.swift */,
 				86B12B4B264A8584006EE7FE /* Main.storyboard */,
+				86C3FA61264BE1F200480E4F /* SettingsPage.storyboard */,
+				86C3FA64264BE22900480E4F /* CreateMeetingPage.storyboard */,
+				86C3FA67264BE24A00480E4F /* NewsPage.storyboard */,
+				86C3FA6A264BE25B00480E4F /* CalendarViewPage.storyboard */,
+				86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */,
 				86B12B4E264A8587006EE7FE /* Assets.xcassets */,
 				86B12B50264A8587006EE7FE /* LaunchScreen.storyboard */,
 				86B12B53264A8587006EE7FE /* Info.plist */,
 			);
 			path = inviti;
+			sourceTree = "<group>";
+		};
+		86C3FA5C264BD3B800480E4F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				86C3FA71264BF44000480E4F /* AddTabBar.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		86C3FA5D264BDDE200480E4F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		86C3FA5E264BDDEC00480E4F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		86C3FA5F264BDDFD00480E4F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F5362E2D7C7ED93E2FF7A606 /* Frameworks */ = {
@@ -152,8 +201,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86C3FA62264BE1F200480E4F /* SettingsPage.storyboard in Resources */,
+				86C3FA6B264BE25B00480E4F /* CalendarViewPage.storyboard in Resources */,
 				86B12B52264A8587006EE7FE /* LaunchScreen.storyboard in Resources */,
+				86C3FA68264BE24A00480E4F /* NewsPage.storyboard in Resources */,
 				86B12B4F264A8587006EE7FE /* Assets.xcassets in Resources */,
+				86C3FA65264BE22900480E4F /* CreateMeetingPage.storyboard in Resources */,
+				86C3FA6E264BE2A700480E4F /* NotificationPage.storyboard in Resources */,
 				86B12B4D264A8584006EE7FE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,6 +281,7 @@
 				86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */,
 				86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */,
 				86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */,
+				86C3FA72264BF44000480E4F /* AddTabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
