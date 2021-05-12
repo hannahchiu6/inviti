@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+use_frameworks!
+
+target 'inviti' do
+
+  pod 'SwiftHEXColors'
+  pod 'IQKeyboardManagerSwift'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
+
+end
