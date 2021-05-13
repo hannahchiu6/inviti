@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		869F6E7C264CDEF8004681A2 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E7B264CDEF8004681A2 /* NewsViewController.swift */; };
+		869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E7F264CE10A004681A2 /* NavigationController.swift */; };
 		86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B45264A8584006EE7FE /* AppDelegate.swift */; };
 		86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B47264A8584006EE7FE /* SceneDelegate.swift */; };
 		86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B49264A8584006EE7FE /* ViewController.swift */; };
@@ -18,11 +20,13 @@
 		86C3FA68264BE24A00480E4F /* NewsPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA67264BE24A00480E4F /* NewsPage.storyboard */; };
 		86C3FA6B264BE25B00480E4F /* CalendarViewPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA6A264BE25B00480E4F /* CalendarViewPage.storyboard */; };
 		86C3FA6E264BE2A700480E4F /* NotificationPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */; };
-		86C3FA72264BF44000480E4F /* AddTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C3FA71264BF44000480E4F /* AddTabBar.swift */; };
+		86C3FA72264BF44000480E4F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C3FA71264BF44000480E4F /* TabBarController.swift */; };
 		A3090504881DDDF486642645 /* Pods_inviti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE1AD6A8960FEB195B049AE /* Pods_inviti.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		869F6E7B264CDEF8004681A2 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		869F6E7F264CE10A004681A2 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		86B12B42264A8584006EE7FE /* inviti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inviti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B12B45264A8584006EE7FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86B12B47264A8584006EE7FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,7 +40,7 @@
 		86C3FA67264BE24A00480E4F /* NewsPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsPage.storyboard; sourceTree = "<group>"; };
 		86C3FA6A264BE25B00480E4F /* CalendarViewPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarViewPage.storyboard; sourceTree = "<group>"; };
 		86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotificationPage.storyboard; sourceTree = "<group>"; };
-		86C3FA71264BF44000480E4F /* AddTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTabBar.swift; sourceTree = "<group>"; };
+		86C3FA71264BF44000480E4F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A41EA7A3E1004FFDF363D424 /* Pods-inviti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inviti.release.xcconfig"; path = "Target Support Files/Pods-inviti/Pods-inviti.release.xcconfig"; sourceTree = "<group>"; };
 		E5BBABC6525C243DBE8B8AC6 /* Pods-inviti.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inviti.debug.xcconfig"; path = "Target Support Files/Pods-inviti/Pods-inviti.debug.xcconfig"; sourceTree = "<group>"; };
 		FDE1AD6A8960FEB195B049AE /* Pods_inviti.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_inviti.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +94,6 @@
 				86C3FA5C264BD3B800480E4F /* View */,
 				86B12B45264A8584006EE7FE /* AppDelegate.swift */,
 				86B12B47264A8584006EE7FE /* SceneDelegate.swift */,
-				86B12B49264A8584006EE7FE /* ViewController.swift */,
 				86B12B4B264A8584006EE7FE /* Main.storyboard */,
 				86C3FA61264BE1F200480E4F /* SettingsPage.storyboard */,
 				86C3FA64264BE22900480E4F /* CreateMeetingPage.storyboard */,
@@ -107,7 +110,8 @@
 		86C3FA5C264BD3B800480E4F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				86C3FA71264BF44000480E4F /* AddTabBar.swift */,
+				86C3FA71264BF44000480E4F /* TabBarController.swift */,
+				869F6E7F264CE10A004681A2 /* NavigationController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -122,6 +126,8 @@
 		86C3FA5E264BDDEC00480E4F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				86B12B49264A8584006EE7FE /* ViewController.swift */,
+				869F6E7B264CDEF8004681A2 /* NewsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -279,9 +285,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */,
+				869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */,
 				86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */,
 				86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */,
-				86C3FA72264BF44000480E4F /* AddTabBar.swift in Sources */,
+				869F6E7C264CDEF8004681A2 /* NewsViewController.swift in Sources */,
+				86C3FA72264BF44000480E4F /* TabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

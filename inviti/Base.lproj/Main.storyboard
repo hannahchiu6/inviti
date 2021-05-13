@@ -16,25 +16,18 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Uq-fn-Let">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items/>
+                            </tabBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ozv-Al-ZfS">
-                        <barButtonItem key="rightBarButtonItem" image="bell" catalog="system" style="plain" id="zPw-Xe-NOq">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NSr-y7-E7g">
-                                <rect key="frame" x="320" y="10" width="74" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="systemOrangeColor"/>
-                                <state key="normal">
-                                    <imageReference key="image" image="bell" catalog="system" symbolScale="large"/>
-                                </state>
-                                <state key="selected" image="bell.fill" catalog="system"/>
-                            </button>
-                            <connections>
-                                <segue destination="pg4-bY-2as" kind="show" id="QvV-Hc-77c"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="ozv-Al-ZfS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -44,7 +37,7 @@
         <scene sceneID="aQN-JI-wQg">
             <objects>
                 <viewControllerPlaceholder storyboardName="NewsPage" id="sOs-hK-y3X" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="s6u-bo-LaM"/>
+                    <tabBarItem key="tabBarItem" id="s6u-bo-LaM"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6tq-1Z-zz3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -93,15 +86,18 @@
         <!--Tab Bar Controller-->
         <scene sceneID="UMB-vz-YhV">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="oXU-se-lW5" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="oXU-se-lW5" customClass="TabBarController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="spn-a8-MK1" customClass="AddTabBar" customModule="inviti" customModuleProvider="target">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="spn-a8-MK1">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="1" green="0.36470588235294116" blue="0.0" alpha="0.99999989894841679" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
+                        <outlet property="myTabBar" destination="spn-a8-MK1" id="3Fb-ar-QKb"/>
+                        <outlet property="tabBar" destination="spn-a8-MK1" id="36L-jc-f1j"/>
                         <segue destination="yDD-mF-CV3" kind="relationship" relationship="viewControllers" id="4hm-1L-RvR"/>
                         <segue destination="sOs-hK-y3X" kind="relationship" relationship="viewControllers" id="zeP-hY-hT1"/>
                         <segue destination="1Y5-eO-Crf" kind="relationship" relationship="viewControllers" id="fv1-Dz-axk"/>
@@ -116,7 +112,7 @@
         <!--Navigation Controller-->
         <scene sceneID="TLl-iC-URa">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yDD-mF-CV3" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yDD-mF-CV3" customClass="NavigationController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="rectangle.grid.1x2" catalog="system" id="zqJ-GH-5OV">
                         <imageReference key="selectedImage" image="rectangle.grid.1x2.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
@@ -124,7 +120,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1R8-3d-ylT">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.99705451726913452" green="0.89509943450692764" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -136,24 +132,11 @@
             <point key="canvasLocation" x="964" y="72"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="spn-a8-MK1">
-            <size key="intrinsicContentSize" width="-1" height="83"/>
-        </designable>
-    </designables>
     <resources>
-        <image name="bell" catalog="system" width="128" height="124"/>
-        <image name="bell.fill" catalog="system" width="128" height="124"/>
         <image name="rectangle.grid.1x2" catalog="system" width="128" height="101"/>
         <image name="rectangle.grid.1x2.fill" catalog="system" width="128" height="101"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
