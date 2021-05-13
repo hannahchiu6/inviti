@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		861F65DC264D13E000A54C00 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F65DB264D13E000A54C00 /* CalendarViewController.swift */; };
+		861F65E2264D1F8700A54C00 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F65E0264D1F8700A54C00 /* EventTableViewCell.swift */; };
+		861F65E3264D1F8700A54C00 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861F65E1264D1F8700A54C00 /* EventTableViewCell.xib */; };
+		861F6619264D38AB00A54C00 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F6618264D38AB00A54C00 /* SettingsViewController.swift */; };
+		861F661D264D38EA00A54C00 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F661C264D38EA00A54C00 /* SettingsTableViewCell.swift */; };
 		869F6E7C264CDEF8004681A2 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E7B264CDEF8004681A2 /* NewsViewController.swift */; };
 		869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E7F264CE10A004681A2 /* NavigationController.swift */; };
 		869F6E90264CFE4A004681A2 /* MeetingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E8E264CFE4A004681A2 /* MeetingCollectionViewCell.swift */; };
@@ -29,6 +33,10 @@
 
 /* Begin PBXFileReference section */
 		861F65DB264D13E000A54C00 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		861F65E0264D1F8700A54C00 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		861F65E1264D1F8700A54C00 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
+		861F6618264D38AB00A54C00 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		861F661C264D38EA00A54C00 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		869F6E7B264CDEF8004681A2 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		869F6E7F264CE10A004681A2 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		869F6E8E264CFE4A004681A2 /* MeetingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -73,6 +81,27 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		861F65DE264D1F6400A54C00 /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				86C3FA6A264BE25B00480E4F /* CalendarViewPage.storyboard */,
+				861F65DB264D13E000A54C00 /* CalendarViewController.swift */,
+				861F65E0264D1F8700A54C00 /* EventTableViewCell.swift */,
+				861F65E1264D1F8700A54C00 /* EventTableViewCell.xib */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		861F6617264D389000A54C00 /* SettingsPage */ = {
+			isa = PBXGroup;
+			children = (
+				86C3FA61264BE1F200480E4F /* SettingsPage.storyboard */,
+				861F6618264D38AB00A54C00 /* SettingsViewController.swift */,
+				861F661C264D38EA00A54C00 /* SettingsTableViewCell.swift */,
+			);
+			path = SettingsPage;
+			sourceTree = "<group>";
+		};
 		86B12B39264A8584006EE7FE = {
 			isa = PBXGroup;
 			children = (
@@ -101,10 +130,8 @@
 				86B12B45264A8584006EE7FE /* AppDelegate.swift */,
 				86B12B47264A8584006EE7FE /* SceneDelegate.swift */,
 				86B12B4B264A8584006EE7FE /* Main.storyboard */,
-				86C3FA61264BE1F200480E4F /* SettingsPage.storyboard */,
 				86C3FA64264BE22900480E4F /* CreateMeetingPage.storyboard */,
 				86C3FA67264BE24A00480E4F /* NewsPage.storyboard */,
-				86C3FA6A264BE25B00480E4F /* CalendarViewPage.storyboard */,
 				86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */,
 				86B12B4E264A8587006EE7FE /* Assets.xcassets */,
 				86B12B50264A8587006EE7FE /* LaunchScreen.storyboard */,
@@ -116,11 +143,12 @@
 		86C3FA5C264BD3B800480E4F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				861F6617264D389000A54C00 /* SettingsPage */,
+				861F65DE264D1F6400A54C00 /* CalendarView */,
 				86C3FA71264BF44000480E4F /* TabBarController.swift */,
 				869F6E7F264CE10A004681A2 /* NavigationController.swift */,
 				869F6E8E264CFE4A004681A2 /* MeetingCollectionViewCell.swift */,
 				869F6E8F264CFE4A004681A2 /* MeetingCollectionViewCell.xib */,
-				861F65DB264D13E000A54C00 /* CalendarViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -216,6 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				861F65E3264D1F8700A54C00 /* EventTableViewCell.xib in Resources */,
 				86C3FA62264BE1F200480E4F /* SettingsPage.storyboard in Resources */,
 				86C3FA6B264BE25B00480E4F /* CalendarViewPage.storyboard in Resources */,
 				86B12B52264A8587006EE7FE /* LaunchScreen.storyboard in Resources */,
@@ -294,10 +323,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				861F65E2264D1F8700A54C00 /* EventTableViewCell.swift in Sources */,
 				861F65DC264D13E000A54C00 /* CalendarViewController.swift in Sources */,
 				86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */,
+				861F6619264D38AB00A54C00 /* SettingsViewController.swift in Sources */,
 				869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */,
 				869F6E90264CFE4A004681A2 /* MeetingCollectionViewCell.swift in Sources */,
+				861F661D264D38EA00A54C00 /* SettingsTableViewCell.swift in Sources */,
 				86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */,
 				86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */,
 				869F6E7C264CDEF8004681A2 /* NewsViewController.swift in Sources */,
