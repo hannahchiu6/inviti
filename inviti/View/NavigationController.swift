@@ -20,6 +20,4 @@ class NavigationController: UINavigationController {
         self.navigationItem.rightBarButtonItem = rightButton
     }
 
-
-
 }

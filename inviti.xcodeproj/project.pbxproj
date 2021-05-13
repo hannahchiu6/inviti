@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		869F6E7C264CDEF8004681A2 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E7B264CDEF8004681A2 /* NewsViewController.swift */; };
 		869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E7F264CE10A004681A2 /* NavigationController.swift */; };
+		869F6E90264CFE4A004681A2 /* MeetingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E8E264CFE4A004681A2 /* MeetingCollectionViewCell.swift */; };
+		869F6E91264CFE4A004681A2 /* MeetingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 869F6E8F264CFE4A004681A2 /* MeetingCollectionViewCell.xib */; };
 		86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B45264A8584006EE7FE /* AppDelegate.swift */; };
 		86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B47264A8584006EE7FE /* SceneDelegate.swift */; };
 		86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B49264A8584006EE7FE /* ViewController.swift */; };
@@ -27,6 +29,8 @@
 /* Begin PBXFileReference section */
 		869F6E7B264CDEF8004681A2 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		869F6E7F264CE10A004681A2 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		869F6E8E264CFE4A004681A2 /* MeetingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCollectionViewCell.swift; sourceTree = "<group>"; };
+		869F6E8F264CFE4A004681A2 /* MeetingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeetingCollectionViewCell.xib; sourceTree = "<group>"; };
 		86B12B42264A8584006EE7FE /* inviti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inviti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B12B45264A8584006EE7FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86B12B47264A8584006EE7FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 			children = (
 				86C3FA71264BF44000480E4F /* TabBarController.swift */,
 				869F6E7F264CE10A004681A2 /* NavigationController.swift */,
+				869F6E8E264CFE4A004681A2 /* MeetingCollectionViewCell.swift */,
+				869F6E8F264CFE4A004681A2 /* MeetingCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,6 +221,7 @@
 				86C3FA65264BE22900480E4F /* CreateMeetingPage.storyboard in Resources */,
 				86C3FA6E264BE2A700480E4F /* NotificationPage.storyboard in Resources */,
 				86B12B4D264A8584006EE7FE /* Main.storyboard in Resources */,
+				869F6E91264CFE4A004681A2 /* MeetingCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +293,7 @@
 			files = (
 				86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */,
 				869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */,
+				869F6E90264CFE4A004681A2 /* MeetingCollectionViewCell.swift in Sources */,
 				86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */,
 				86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */,
 				869F6E7C264CDEF8004681A2 /* NewsViewController.swift in Sources */,
