@@ -13,15 +13,22 @@
         <scene sceneID="c8a-jf-MLd">
             <objects>
                 <viewController id="vAO-T4-80e" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ytN-M3-8t5">
+                    <view key="view" contentMode="scaleToFill" id="1kH-sQ-jzP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6At-kZ-p7e"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TZC-9L-QKI">
+                                <rect key="frame" x="0.0" y="813" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items/>
+                            </tabBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HD9-6r-T07"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" id="zjT-88-92K">
-                        <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
-                        <imageReference key="selectedImage" image="gearshape.fill" catalog="system" symbolScale="large"/>
+                    <tabBarItem key="tabBarItem" title="" image="gearshape" catalog="system" id="tSb-u3-moS">
+                        <imageReference key="selectedImage" image="gearshape.fill" catalog="system" symbolScale="default"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
