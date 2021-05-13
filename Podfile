@@ -8,5 +8,6 @@ target 'inviti' do
   pod 'IQKeyboardManagerSwift'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'FSCalendar'
 
 end
