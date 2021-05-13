@@ -246,6 +246,7 @@ PODS:
     - nanopb (~> 1.30906.0)
   - FirebaseFirestoreSwift (0.4.0):
     - FirebaseFirestore (>= 1.6.1, ~> 1.6)
+  - FSCalendar (2.8.2)
   - GoogleDataTransport (7.5.1):
     - nanopb (~> 1.30906.0)
   - GoogleUtilities/Environment (6.7.2):
@@ -289,6 +290,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Firestore
   - FirebaseFirestoreSwift
+  - FSCalendar
   - IQKeyboardManagerSwift
   - SwiftHEXColors
 
@@ -301,6 +303,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
     - FirebaseFirestoreSwift
+    - FSCalendar
     - GoogleDataTransport
     - GoogleUtilities
     - "gRPC-C++"
@@ -319,6 +322,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
   FirebaseFirestore: 9b2f1b9b9a6f2f0b6fb7484b9e32ab7e39243554
   FirebaseFirestoreSwift: 2c46dbc1156db97dc4f6dd798d4f5b57b9c7fab6
+  FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
@@ -329,6 +333,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SwiftHEXColors: 1cb6e5d55c52749aa33db8f088ac55eb71ca4c7f
 
-PODFILE CHECKSUM: 6103b457938225ea99c5034691e4d551e51daa2a
+PODFILE CHECKSUM: 68f06423234aaa35cbd64670819be151053117d3
 
 COCOAPODS: 1.10.1

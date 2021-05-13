@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		861F65DC264D13E000A54C00 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F65DB264D13E000A54C00 /* CalendarViewController.swift */; };
 		869F6E7C264CDEF8004681A2 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E7B264CDEF8004681A2 /* NewsViewController.swift */; };
 		869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E7F264CE10A004681A2 /* NavigationController.swift */; };
 		869F6E90264CFE4A004681A2 /* MeetingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E8E264CFE4A004681A2 /* MeetingCollectionViewCell.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		861F65DB264D13E000A54C00 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		869F6E7B264CDEF8004681A2 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		869F6E7F264CE10A004681A2 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		869F6E8E264CFE4A004681A2 /* MeetingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				869F6E7F264CE10A004681A2 /* NavigationController.swift */,
 				869F6E8E264CFE4A004681A2 /* MeetingCollectionViewCell.swift */,
 				869F6E8F264CFE4A004681A2 /* MeetingCollectionViewCell.xib */,
+				861F65DB264D13E000A54C00 /* CalendarViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				861F65DC264D13E000A54C00 /* CalendarViewController.swift in Sources */,
 				86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */,
 				869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */,
 				869F6E90264CFE4A004681A2 /* MeetingCollectionViewCell.swift in Sources */,
