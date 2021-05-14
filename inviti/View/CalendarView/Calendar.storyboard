@@ -60,14 +60,6 @@
                                     <outlet property="delegate" destination="Y2n-yx-ZWj" id="2jm-K8-dfR"/>
                                 </connections>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aT8-41-kLY">
-                                <rect key="frame" x="0.0" y="486" width="414" height="327"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Y2n-yx-ZWj" id="QNI-Om-OHF"/>
-                                    <outlet property="delegate" destination="Y2n-yx-ZWj" id="lZ0-nz-fpC"/>
-                                </connections>
-                            </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ri-sm-XU3">
                                 <rect key="frame" x="0.0" y="72" width="414" height="44"/>
                                 <color key="backgroundColor" red="0.9951923077" green="0.9903846154" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -81,6 +73,14 @@
                                 </constraints>
                                 <items/>
                             </tabBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aT8-41-kLY">
+                                <rect key="frame" x="0.0" y="486" width="414" height="327"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y2n-yx-ZWj" id="QNI-Om-OHF"/>
+                                    <outlet property="delegate" destination="Y2n-yx-ZWj" id="lZ0-nz-fpC"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="p2C-sS-3N4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -104,7 +104,7 @@
                     <navigationItem key="navigationItem" id="wBw-U5-8of">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="k2u-mn-zOU">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xIF-qu-R1b">
-                                <rect key="frame" x="316" y="10" width="78" height="24"/>
+                                <rect key="frame" x="316" y="4" width="78" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="1" green="0.36470588240000001" blue="0.0" alpha="0.99999989889999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <state key="normal" image="NotificationBell"/>

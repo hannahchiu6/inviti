@@ -12,7 +12,7 @@
         <!--Settings View Controller-->
         <scene sceneID="c8a-jf-MLd">
             <objects>
-                <viewController id="vAO-T4-80e" customClass="SettingsViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsVC" id="vAO-T4-80e" customClass="SettingsViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1kH-sQ-jzP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
