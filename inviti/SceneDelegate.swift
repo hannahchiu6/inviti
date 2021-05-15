@@ -4,7 +4,7 @@
 //
 //  Created by Hannah.C on 11.05.21.
 //
-//  swiftlint:disable indentation_width unused_optional_binding  vertical_whitespace_opening_braces indentation_width
+//  swiftlint:disable indentation_width unused_optional_binding  vertical_whitespace_opening_braces indentation_width 
 
 
 import UIKit

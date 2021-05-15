@@ -10,16 +10,14 @@ import UIKit
 class CreateViewController: UIViewController {
 
 
-    @IBAction func dismiss(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     @IBOutlet weak var collectionView: UICollectionView!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
 
         setupCollectionView()
 
@@ -45,6 +43,7 @@ extension CreateViewController: UICollectionViewDataSource {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: OptionCollectionViewCell.self), for: indexPath) as! OptionCollectionViewCell
 
+
         cell.monthLabel.text = months[indexPath.row]
         cell.dayLabel.text = days[indexPath.row]
         cell.weekLabel.text = week[indexPath.row]
@@ -53,9 +52,8 @@ extension CreateViewController: UICollectionViewDataSource {
 
     }
     private func setupCollectionView() {
-        collectionView.backgroundColor = UIColor.white
 
-        collectionView.do_registerCellWithNib(
+        collectionView?.do_registerCellWithNib(
             identifier: String(describing: OptionCollectionViewCell.self),
             bundle: nil
         )
@@ -69,25 +67,22 @@ extension CreateViewController: UICollectionViewDataSource {
 
         flowLayout.scrollDirection = .horizontal
 
-        let viewWidth = view.bounds.width
+        flowLayout.itemSize = CGSize(width: Int(collectionView.frame.width / 2.7),
+                                     height: Int(collectionView.frame.height))
 
-        let size = CGSize( width: Int(146.0 / 375.0 * viewWidth),
-                           height: Int(164.0 / 375.0 * viewWidth * 308.0 / 164.0))
-        print(size)
+        flowLayout.estimatedItemSize = .zero
 
-        flowLayout.itemSize = size
-
-        flowLayout.sectionInset = UIEdgeInsets(top: 10.0, left: 5.0, bottom: 10.0, right: 5.0)
+        flowLayout.sectionInset = UIEdgeInsets(top: 0.0, left: 5.0, bottom: 0.0, right: 5.0)
 
         flowLayout.minimumInteritemSpacing = 0
 
-        flowLayout.minimumLineSpacing = 10.0
+        flowLayout.minimumLineSpacing = 5.0
 
         collectionView.collectionViewLayout = flowLayout
     }
+
 }
 
 extension CreateViewController: UICollectionViewDelegate {
 
 }
-

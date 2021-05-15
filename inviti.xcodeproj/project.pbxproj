@@ -8,13 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885ED264E31FD0048D9AA /* UITableView+Extension.swift */; };
+		861885F6264E5FD60048D9AA /* OptionEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */; };
+		861885F7264E5FD60048D9AA /* OptionEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861885F5264E5FD60048D9AA /* OptionEventTableViewCell.xib */; };
+		861885FB264E759B0048D9AA /* ExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885FA264E759B0048D9AA /* ExampleViewModel.swift */; };
+		861885FF264E75E50048D9AA /* DynamicHeightCalculable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885FE264E75E50048D9AA /* DynamicHeightCalculable.swift */; };
+		86188602264E76170048D9AA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86188601264E76170048D9AA /* Constants.swift */; };
+		86188605264E76E10048D9AA /* ExampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86188604264E76E10048D9AA /* ExampleModel.swift */; };
+		86188608264E77720048D9AA /* ExampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86188607264E77710048D9AA /* ExampleData.swift */; };
+		8618860C264E78160048D9AA /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8618860B264E78160048D9AA /* CreateViewController.swift */; };
+		86188610264E78730048D9AA /* OptionCollectionViewCell copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */; };
+		86188617264F70330048D9AA /* MeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86188616264F70330048D9AA /* MeetingViewController.swift */; };
 		861F65DC264D13E000A54C00 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F65DB264D13E000A54C00 /* CalendarViewController.swift */; };
 		861F65E2264D1F8700A54C00 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F65E0264D1F8700A54C00 /* EventTableViewCell.swift */; };
 		861F65E3264D1F8700A54C00 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861F65E1264D1F8700A54C00 /* EventTableViewCell.xib */; };
 		861F6619264D38AB00A54C00 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F6618264D38AB00A54C00 /* SettingsViewController.swift */; };
 		861F661D264D38EA00A54C00 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F661C264D38EA00A54C00 /* SettingsTableViewCell.swift */; };
-		861F6622264D5C7E00A54C00 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F6621264D5C7E00A54C00 /* CreateViewController.swift */; };
-		861F6627264D5D9800A54C00 /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F6625264D5D9800A54C00 /* OptionCollectionViewCell.swift */; };
 		861F6628264D5D9800A54C00 /* OptionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861F6626264D5D9800A54C00 /* OptionCollectionViewCell.xib */; };
 		86406555264D98D6003C756D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86406554264D98D6003C756D /* TabBarController.swift */; };
 		8640655B264D9910003C756D /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640655A264D9910003C756D /* UIStoryboard+Extension.swift */; };
@@ -41,13 +49,21 @@
 
 /* Begin PBXFileReference section */
 		861885ED264E31FD0048D9AA /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Extension.swift"; path = "inviti/Extension/UITableView+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionEventTableViewCell.swift; sourceTree = "<group>"; };
+		861885F5264E5FD60048D9AA /* OptionEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionEventTableViewCell.xib; sourceTree = "<group>"; };
+		861885FA264E759B0048D9AA /* ExampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewModel.swift; sourceTree = "<group>"; };
+		861885FE264E75E50048D9AA /* DynamicHeightCalculable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCalculable.swift; sourceTree = "<group>"; };
+		86188601264E76170048D9AA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		86188604264E76E10048D9AA /* ExampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleModel.swift; sourceTree = "<group>"; };
+		86188607264E77710048D9AA /* ExampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleData.swift; sourceTree = "<group>"; };
+		8618860B264E78160048D9AA /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionCollectionViewCell copy.swift"; sourceTree = "<group>"; };
+		86188616264F70330048D9AA /* MeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewController.swift; sourceTree = "<group>"; };
 		861F65DB264D13E000A54C00 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		861F65E0264D1F8700A54C00 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		861F65E1264D1F8700A54C00 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		861F6618264D38AB00A54C00 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		861F661C264D38EA00A54C00 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		861F6621264D5C7E00A54C00 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
-		861F6625264D5D9800A54C00 /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		861F6626264D5D9800A54C00 /* OptionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionCollectionViewCell.xib; sourceTree = "<group>"; };
 		86406554264D98D6003C756D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8640655A264D9910003C756D /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
@@ -122,9 +138,11 @@
 			isa = PBXGroup;
 			children = (
 				86C3FA64264BE22900480E4F /* Create.storyboard */,
-				861F6621264D5C7E00A54C00 /* CreateViewController.swift */,
-				861F6625264D5D9800A54C00 /* OptionCollectionViewCell.swift */,
+				8618860B264E78160048D9AA /* CreateViewController.swift */,
+				8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */,
 				861F6626264D5D9800A54C00 /* OptionCollectionViewCell.xib */,
+				861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */,
+				861885F5264E5FD60048D9AA /* OptionEventTableViewCell.xib */,
 			);
 			path = CreateMainPage;
 			sourceTree = "<group>";
@@ -133,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				86C3FA71264BF44000480E4F /* TabBarController-copy.swift */,
-				861885ED264E31FD0048D9AA /* UITableView+Extension.swift */,
+				86188607264E77710048D9AA /* ExampleData.swift */,
 			);
 			path = Backups;
 			sourceTree = "<group>";
@@ -149,6 +167,7 @@
 		86406559264D9901003C756D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				861885ED264E31FD0048D9AA /* UITableView+Extension.swift */,
 				8640655A264D9910003C756D /* UIStoryboard+Extension.swift */,
 			);
 			path = Extension;
@@ -184,7 +203,6 @@
 				86B12B45264A8584006EE7FE /* AppDelegate.swift */,
 				86B12B47264A8584006EE7FE /* SceneDelegate.swift */,
 				86B12B4B264A8584006EE7FE /* Main.storyboard */,
-				86F203D9264D9E3100A9763A /* Meeting.storyboard */,
 				86C3FA67264BE24A00480E4F /* News.storyboard */,
 				86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */,
 				86B12B4E264A8587006EE7FE /* Assets.xcassets */,
@@ -197,6 +215,8 @@
 		86B8ED8C264E27B700F2508A /* MeetingPage */ = {
 			isa = PBXGroup;
 			children = (
+				86188616264F70330048D9AA /* MeetingViewController.swift */,
+				86F203D9264D9E3100A9763A /* Meeting.storyboard */,
 				869F6E8E264CFE4A004681A2 /* MeetingCollectionViewCell.swift */,
 				869F6E8F264CFE4A004681A2 /* MeetingCollectionViewCell.xib */,
 			);
@@ -219,6 +239,8 @@
 		86C3FA5D264BDDE200480E4F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				861885FA264E759B0048D9AA /* ExampleViewModel.swift */,
+				861885FE264E75E50048D9AA /* DynamicHeightCalculable.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -236,6 +258,8 @@
 		86C3FA5F264BDDFD00480E4F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				86188601264E76170048D9AA /* Constants.swift */,
+				86188604264E76E10048D9AA /* ExampleModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -314,6 +338,7 @@
 				86B12B52264A8587006EE7FE /* LaunchScreen.storyboard in Resources */,
 				86C3FA68264BE24A00480E4F /* News.storyboard in Resources */,
 				86B12B4F264A8587006EE7FE /* Assets.xcassets in Resources */,
+				861885F7264E5FD60048D9AA /* OptionEventTableViewCell.xib in Resources */,
 				86C3FA65264BE22900480E4F /* Create.storyboard in Resources */,
 				86C3FA6E264BE2A700480E4F /* NotificationPage.storyboard in Resources */,
 				86B12B4D264A8584006EE7FE /* Main.storyboard in Resources */,
@@ -389,22 +414,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8618860C264E78160048D9AA /* CreateViewController.swift in Sources */,
 				861F65E2264D1F8700A54C00 /* EventTableViewCell.swift in Sources */,
-				861F6627264D5D9800A54C00 /* OptionCollectionViewCell.swift in Sources */,
 				861F65DC264D13E000A54C00 /* CalendarViewController.swift in Sources */,
+				86188608264E77720048D9AA /* ExampleData.swift in Sources */,
 				86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */,
+				86188610264E78730048D9AA /* OptionCollectionViewCell copy.swift in Sources */,
+				86188617264F70330048D9AA /* MeetingViewController.swift in Sources */,
 				861F6619264D38AB00A54C00 /* SettingsViewController.swift in Sources */,
 				869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */,
 				861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */,
 				869F6E90264CFE4A004681A2 /* MeetingCollectionViewCell.swift in Sources */,
 				861F661D264D38EA00A54C00 /* SettingsTableViewCell.swift in Sources */,
 				86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */,
-				861F6622264D5C7E00A54C00 /* CreateViewController.swift in Sources */,
+				86188605264E76E10048D9AA /* ExampleModel.swift in Sources */,
+				861885FF264E75E50048D9AA /* DynamicHeightCalculable.swift in Sources */,
+				86188602264E76170048D9AA /* Constants.swift in Sources */,
 				8640655B264D9910003C756D /* UIStoryboard+Extension.swift in Sources */,
 				86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */,
 				86406555264D98D6003C756D /* TabBarController.swift in Sources */,
 				869F6E7C264CDEF8004681A2 /* NewsViewController.swift in Sources */,
+				861885F6264E5FD60048D9AA /* OptionEventTableViewCell.swift in Sources */,
 				86F203DD264E05EC00A9763A /* MeetingViewController.swift in Sources */,
+				861885FB264E759B0048D9AA /* ExampleViewModel.swift in Sources */,
 				86C3FA72264BF44000480E4F /* TabBarController-copy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

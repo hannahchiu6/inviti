@@ -18,9 +18,9 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="T4Q-a0-eS8">
                                 <rect key="frame" x="0.0" y="350" width="414" height="512"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="512" id="MSz-ZA-pyz"/>
+                                    <constraint firstAttribute="width" secondItem="T4Q-a0-eS8" secondAttribute="height" multiplier="207:256" id="UCr-29-Gzu"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Oiz-oy-3qr">
                                     <size key="itemSize" width="128" height="128"/>
@@ -70,21 +70,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ge4-gi-eVc">
-                                <rect key="frame" x="16" y="42" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="dismiss:" destination="WzA-Ov-9si" eventType="touchUpInside" id="FgY-bW-JJz"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BmM-rL-fzx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="BmM-rL-fzx" firstAttribute="trailing" secondItem="T4Q-a0-eS8" secondAttribute="trailing" id="AIN-KQ-1Sb"/>
-                            <constraint firstItem="ge4-gi-eVc" firstAttribute="top" secondItem="wkG-rS-b8E" secondAttribute="top" constant="42" id="Aas-ma-fdU"/>
                             <constraint firstItem="qsk-Tf-Vy9" firstAttribute="trailing" secondItem="BmM-rL-fzx" secondAttribute="trailing" id="Cqy-3D-62O"/>
-                            <constraint firstItem="ge4-gi-eVc" firstAttribute="leading" secondItem="wkG-rS-b8E" secondAttribute="leading" constant="16" id="On2-lv-a6X"/>
                             <constraint firstItem="BmM-rL-fzx" firstAttribute="bottom" secondItem="T4Q-a0-eS8" secondAttribute="bottom" id="RaU-Gz-okz"/>
                             <constraint firstItem="T4Q-a0-eS8" firstAttribute="leading" secondItem="BmM-rL-fzx" secondAttribute="leading" id="ZfJ-tX-cvE"/>
                             <constraint firstItem="qsk-Tf-Vy9" firstAttribute="leading" secondItem="BmM-rL-fzx" secondAttribute="leading" id="esy-fN-74T"/>
