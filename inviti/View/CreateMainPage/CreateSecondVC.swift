@@ -1,5 +1,5 @@
 //
-//  CreateViewController.swift
+//  CreateSecondVC.swift
 //  inviti
 //
 //  Created by Hannah.C on 13.05.21.
@@ -7,10 +7,13 @@
 
 import UIKit
 
-class CreateViewController: UIViewController {
-
+class CreateSecondVC: UIViewController {
+    @IBAction func backBtn(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var calendarView: UIView!
 
 
     override func viewDidLoad() {
@@ -20,8 +23,6 @@ class CreateViewController: UIViewController {
         collectionView?.dataSource = self
 
         setupCollectionView()
-
-
     }
 
     private var months = ["January", "March", "March", "May", "October"]
@@ -34,13 +35,12 @@ class CreateViewController: UIViewController {
     }
 }
 
-extension CreateViewController: UICollectionViewDataSource {
+extension CreateSecondVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return months.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: OptionCollectionViewCell.self), for: indexPath) as! OptionCollectionViewCell
 
 
@@ -49,10 +49,8 @@ extension CreateViewController: UICollectionViewDataSource {
         cell.weekLabel.text = week[indexPath.row]
 
         return cell
-
     }
     private func setupCollectionView() {
-
         collectionView?.do_registerCellWithNib(
             identifier: String(describing: OptionCollectionViewCell.self),
             bundle: nil
@@ -62,7 +60,6 @@ extension CreateViewController: UICollectionViewDataSource {
     }
 
     private func setupCollectionViewLayout() {
-
         let flowLayout = UICollectionViewFlowLayout()
 
         flowLayout.scrollDirection = .horizontal
@@ -80,9 +77,7 @@ extension CreateViewController: UICollectionViewDataSource {
 
         collectionView.collectionViewLayout = flowLayout
     }
-
 }
 
-extension CreateViewController: UICollectionViewDelegate {
-
+extension CreateSecondVC: UICollectionViewDelegate {
 }

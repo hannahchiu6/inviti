@@ -82,7 +82,6 @@ private enum Tab {
 }
 
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
-
     private let tabs: [Tab] = [.main, .news, .create, .calendar, .settings]
 
     var trolleyTabBarItem: UITabBarItem!
@@ -95,8 +94,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         delegate = self
 
         settingButton()
-
-
 
     }
 
@@ -133,7 +130,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         centerButton.layer.borderColor = UIColor.black.cgColor
         centerButton.layer.borderWidth = 3
         let storyBoard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
-        storyBoard.instantiateViewController(withIdentifier: "createVC") as! CreateViewController
+        storyBoard.instantiateViewController(withIdentifier: "CreateFirstPageVC") as! CreateFirstPageVC
 //        vc.modalPresentationStyle = .fullScreen
 //        self.present(vc, animated: true, completion: nil
     }
@@ -148,12 +145,10 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         _ tabBarController: UITabBarController,
         shouldSelect viewController: UIViewController
     ) -> Bool {
-
         guard let navVC = viewController as? UINavigationController,
               navVC.viewControllers.first is ViewController
         else { return true }
         resetCenterBtn()
-//        guard KeyChainManager.shared.token != nil else {
 
             if let authVC = UIStoryboard.create.instantiateInitialViewController() {
                 authVC.modalPresentationStyle = .overCurrentContext
