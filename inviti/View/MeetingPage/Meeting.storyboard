@@ -112,6 +112,9 @@
                                         </state>
                                         <connections>
                                             <action selector="notificationBtn:" destination="2TF-7B-EX5" eventType="touchUpInside" id="dNZ-sO-wvv"/>
+                                            <segue destination="oJl-72-P1W" kind="popoverPresentation" identifier="notiSegue" popoverAnchorView="c2A-95-Cao" id="hXK-og-iYp">
+                                                <popoverArrowDirection key="popoverArrowDirection" down="YES" right="YES"/>
+                                            </segue>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -143,9 +146,127 @@
             </objects>
             <point key="canvasLocation" x="992.75362318840587" y="128.57142857142856"/>
         </scene>
+        <!--Noti View Controller-->
+        <scene sceneID="wlr-Nn-jOR">
+            <objects>
+                <viewController storyboardIdentifier="NotiViewController" modalPresentationStyle="fullScreen" id="oJl-72-P1W" customClass="NotiViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jUs-ar-Yvb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5M-Oe-62m">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="450"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aXd-dw-jWB">
+                                        <rect key="frame" x="0.0" y="104.5" width="414" height="345.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotiTableViewCell" rowHeight="75" id="9X3-Zw-Qmy" customClass="NotiTableViewCell" customModule="inviti" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="414" height="75"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9X3-Zw-Qmy" id="pz0-dg-9jW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Raine 想邀請你參加 「父親節聚餐」投票" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIo-35-BGl">
+                                                            <rect key="frame" x="51" y="8" width="243" height="59"/>
+                                                            <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
+                                                            <color key="textColor" red="0.27475792470604488" green="0.18393827472684746" blue="0.11683085611314871" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="QoI-0h-Jm8">
+                                                            <rect key="frame" x="8" y="20.5" width="35" height="34"/>
+                                                            <color key="tintColor" red="0.63914316892623901" green="0.41819052118882377" blue="0.025881827693406936" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="35" id="3T6-wE-z3A"/>
+                                                                <constraint firstAttribute="height" constant="35" id="m5S-9s-cOz"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" ambiguous="YES" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="SO8-6G-ccw">
+                                                            <rect key="frame" x="310" y="22.5" width="46.5" height="30"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WY-Fy-lw5">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="0.5" height="30"/>
+                                                                    <state key="normal" title="參加"/>
+                                                                    <connections>
+                                                                        <action selector="accept:" destination="9X3-Zw-Qmy" eventType="touchUpInside" id="7iX-g1-fST"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Pj-sz-mc9">
+                                                                    <rect key="frame" x="15.5" y="0.0" width="31" height="30"/>
+                                                                    <state key="normal" title="忽略"/>
+                                                                    <connections>
+                                                                        <action selector="ignore:" destination="9X3-Zw-Qmy" eventType="touchUpInside" id="lZU-eh-CnH"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="SO8-6G-ccw" secondAttribute="trailing" constant="8" id="0UK-sS-CcQ"/>
+                                                        <constraint firstItem="QoI-0h-Jm8" firstAttribute="leading" secondItem="pz0-dg-9jW" secondAttribute="leading" constant="8" id="7rz-cM-dAV"/>
+                                                        <constraint firstAttribute="bottom" secondItem="nIo-35-BGl" secondAttribute="bottom" constant="8" id="9qd-Ac-OCC"/>
+                                                        <constraint firstItem="nIo-35-BGl" firstAttribute="top" secondItem="pz0-dg-9jW" secondAttribute="top" constant="8" id="CY5-eV-o50"/>
+                                                        <constraint firstItem="SO8-6G-ccw" firstAttribute="centerY" secondItem="pz0-dg-9jW" secondAttribute="centerY" id="R5c-ep-BTx"/>
+                                                        <constraint firstItem="SO8-6G-ccw" firstAttribute="leading" secondItem="nIo-35-BGl" secondAttribute="trailing" constant="16" id="ZA2-rf-OAl"/>
+                                                        <constraint firstItem="QoI-0h-Jm8" firstAttribute="centerY" secondItem="pz0-dg-9jW" secondAttribute="centerY" id="n5l-T5-XUg"/>
+                                                        <constraint firstItem="nIo-35-BGl" firstAttribute="leading" secondItem="QoI-0h-Jm8" secondAttribute="trailing" constant="8" id="shL-YV-CjU"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="personImg" destination="QoI-0h-Jm8" id="PoD-Pf-bTW"/>
+                                                    <outlet property="subjectLabel" destination="nIo-35-BGl" id="aeG-Cg-8Xj"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通知小鈴鐺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQW-Ez-tkP">
+                                        <rect key="frame" x="162" y="55" width="90" height="25.5"/>
+                                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="aXd-dw-jWB" firstAttribute="top" secondItem="IQW-Ez-tkP" secondAttribute="bottom" constant="24" id="46V-LL-kYF"/>
+                                    <constraint firstItem="IQW-Ez-tkP" firstAttribute="centerX" secondItem="m5M-Oe-62m" secondAttribute="centerX" id="QvZ-eG-j3a"/>
+                                    <constraint firstItem="aXd-dw-jWB" firstAttribute="leading" secondItem="m5M-Oe-62m" secondAttribute="leading" id="TMX-yB-xkx"/>
+                                    <constraint firstAttribute="bottom" secondItem="aXd-dw-jWB" secondAttribute="bottom" id="eOD-WW-Dz0"/>
+                                    <constraint firstItem="IQW-Ez-tkP" firstAttribute="top" secondItem="m5M-Oe-62m" secondAttribute="top" constant="55" id="h8a-th-ZaI"/>
+                                    <constraint firstAttribute="height" constant="450" id="lau-Rq-dTd"/>
+                                    <constraint firstAttribute="trailing" secondItem="aXd-dw-jWB" secondAttribute="trailing" id="syD-Jz-76S"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tGL-vQ-mwi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tGL-vQ-mwi" firstAttribute="trailing" secondItem="m5M-Oe-62m" secondAttribute="trailing" id="1gi-KU-gzu"/>
+                            <constraint firstItem="m5M-Oe-62m" firstAttribute="leading" secondItem="tGL-vQ-mwi" secondAttribute="leading" id="bKK-6J-ULz"/>
+                            <constraint firstItem="m5M-Oe-62m" firstAttribute="top" secondItem="jUs-ar-Yvb" secondAttribute="top" id="ye9-BU-zJe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="aXd-dw-jWB" id="Oti-fI-ldL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bgB-PL-fQH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1813.0434782608697" y="145.98214285714286"/>
+        </scene>
     </scenes>
+    <designables>
+        <designable name="ayh-kF-MHr">
+            <size key="intrinsicContentSize" width="34" height="36"/>
+        </designable>
+        <designable name="kV6-l5-EOg">
+            <size key="intrinsicContentSize" width="34" height="36"/>
+        </designable>
+    </designables>
     <resources>
-        <image name="bell" catalog="system" width="128" height="124"/>
+        <image name="bell" catalog="system" width="32" height="32"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
