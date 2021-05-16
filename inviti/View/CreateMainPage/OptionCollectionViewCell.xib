@@ -11,16 +11,16 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OptionCollectionViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="gTV-IL-0wX" customClass="OptionCollectionViewCell" customModule="inviti" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="158" height="527"/>
+            <rect key="frame" x="0.0" y="0.0" width="158" height="599"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="158" height="527"/>
+                <rect key="frame" x="0.0" y="0.0" width="158" height="599"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UTM-Lk-6c7">
-                        <rect key="frame" x="0.0" y="0.0" width="158" height="527"/>
+                        <rect key="frame" x="0.0" y="0.0" width="158" height="599"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AWO-eJ-mXc">
-                                <rect key="frame" x="10" y="10" width="138" height="507"/>
+                                <rect key="frame" x="10" y="10" width="138" height="579"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNc-jr-SM0">
                                         <rect key="frame" x="0.0" y="0.0" width="138" height="90"/>
@@ -61,7 +61,7 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="atQ-8G-cHK" firstAttribute="top" secondItem="BNc-jr-SM0" secondAttribute="top" constant="10" id="3Ku-B0-4yh"/>
                                             <constraint firstItem="NZG-Gg-4hU" firstAttribute="leading" secondItem="BNc-jr-SM0" secondAttribute="leading" constant="10" id="6eo-0K-Pom"/>
@@ -73,7 +73,7 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fdL-bE-9IG">
-                                        <rect key="frame" x="0.0" y="90" width="138" height="417"/>
+                                        <rect key="frame" x="0.0" y="90" width="138" height="489"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
@@ -106,7 +106,7 @@
                 <constraint firstItem="UTM-Lk-6c7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="AhW-wy-VMU"/>
                 <constraint firstItem="UTM-Lk-6c7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="oMc-E7-qpg"/>
             </constraints>
-            <size key="customSize" width="168" height="518"/>
+            <size key="customSize" width="168" height="590"/>
             <connections>
                 <outlet property="bgView" destination="UTM-Lk-6c7" id="ZvD-mv-O2y"/>
                 <outlet property="bottomView" destination="AWO-eJ-mXc" id="82o-kI-KGv"/>
@@ -116,15 +116,12 @@
                 <outlet property="topView" destination="BNc-jr-SM0" id="nN2-Ga-CHD"/>
                 <outlet property="weekLabel" destination="XG7-Zm-9pH" id="5Dx-kb-L6R"/>
             </connections>
-            <point key="canvasLocation" x="220.28985507246378" y="219.97767857142856"/>
+            <point key="canvasLocation" x="220.28985507246378" y="244.08482142857142"/>
         </collectionViewCell>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

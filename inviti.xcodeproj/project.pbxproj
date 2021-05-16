@@ -15,7 +15,7 @@
 		86188602264E76170048D9AA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86188601264E76170048D9AA /* Constants.swift */; };
 		86188605264E76E10048D9AA /* ExampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86188604264E76E10048D9AA /* ExampleModel.swift */; };
 		86188608264E77720048D9AA /* ExampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86188607264E77710048D9AA /* ExampleData.swift */; };
-		8618860C264E78160048D9AA /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8618860B264E78160048D9AA /* CreateViewController.swift */; };
+		8618860C264E78160048D9AA /* CreateSecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8618860B264E78160048D9AA /* CreateSecondVC.swift */; };
 		86188610264E78730048D9AA /* OptionCollectionViewCell copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */; };
 		861F65DC264D13E000A54C00 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F65DB264D13E000A54C00 /* CalendarViewController.swift */; };
 		861F65E2264D1F8700A54C00 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F65E0264D1F8700A54C00 /* EventTableViewCell.swift */; };
@@ -45,6 +45,7 @@
 		86C3FA6B264BE25B00480E4F /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA6A264BE25B00480E4F /* Calendar.storyboard */; };
 		86C3FA6E264BE2A700480E4F /* NotificationPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */; };
 		86C3FA72264BF44000480E4F /* TabBarController-copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C3FA71264BF44000480E4F /* TabBarController-copy.swift */; };
+		86EE497A265102BD003B0C25 /* CreateFirstPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE4979265102BD003B0C25 /* CreateFirstPageVC.swift */; };
 		86F203DA264D9E3100A9763A /* Meeting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F203D9264D9E3100A9763A /* Meeting.storyboard */; };
 		86F203DD264E05EC00A9763A /* MeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F203DC264E05EC00A9763A /* MeetingViewController.swift */; };
 		A3090504881DDDF486642645 /* Pods_inviti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE1AD6A8960FEB195B049AE /* Pods_inviti.framework */; };
@@ -59,7 +60,7 @@
 		86188601264E76170048D9AA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		86188604264E76E10048D9AA /* ExampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleModel.swift; sourceTree = "<group>"; };
 		86188607264E77710048D9AA /* ExampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleData.swift; sourceTree = "<group>"; };
-		8618860B264E78160048D9AA /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		8618860B264E78160048D9AA /* CreateSecondVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSecondVC.swift; sourceTree = "<group>"; };
 		8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionCollectionViewCell copy.swift"; sourceTree = "<group>"; };
 		861F65DB264D13E000A54C00 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		861F65E0264D1F8700A54C00 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 		86C3FA6A264BE25B00480E4F /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotificationPage.storyboard; sourceTree = "<group>"; };
 		86C3FA71264BF44000480E4F /* TabBarController-copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBarController-copy.swift"; sourceTree = "<group>"; };
+		86EE4979265102BD003B0C25 /* CreateFirstPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstPageVC.swift; sourceTree = "<group>"; };
 		86F203D9264D9E3100A9763A /* Meeting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Meeting.storyboard; sourceTree = "<group>"; };
 		86F203DC264E05EC00A9763A /* MeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewController.swift; sourceTree = "<group>"; };
 		A41EA7A3E1004FFDF363D424 /* Pods-inviti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inviti.release.xcconfig"; path = "Target Support Files/Pods-inviti/Pods-inviti.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,8 +145,9 @@
 		861F6620264D5C5E00A54C00 /* CreateMainPage */ = {
 			isa = PBXGroup;
 			children = (
+				86EE4979265102BD003B0C25 /* CreateFirstPageVC.swift */,
 				86C3FA64264BE22900480E4F /* Create.storyboard */,
-				8618860B264E78160048D9AA /* CreateViewController.swift */,
+				8618860B264E78160048D9AA /* CreateSecondVC.swift */,
 				8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */,
 				861F6626264D5D9800A54C00 /* OptionCollectionViewCell.xib */,
 				861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */,
@@ -431,10 +434,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8618860C264E78160048D9AA /* CreateViewController.swift in Sources */,
+				8618860C264E78160048D9AA /* CreateSecondVC.swift in Sources */,
 				86392C59264FA46C003F7EBC /* MeetingTableViewCell.swift in Sources */,
 				861F65E2264D1F8700A54C00 /* EventTableViewCell.swift in Sources */,
 				861F65DC264D13E000A54C00 /* CalendarViewController.swift in Sources */,
+				86EE497A265102BD003B0C25 /* CreateFirstPageVC.swift in Sources */,
 				86504B902650095800E42C51 /* UIView + Extension.swift in Sources */,
 				86188608264E77720048D9AA /* ExampleData.swift in Sources */,
 				86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */,
