@@ -10,14 +10,12 @@ import UIKit
 extension UITableView {
 
     func do_registerCellWithNib(identifier: String, bundle: Bundle?) {
-
         let nib = UINib(nibName: identifier, bundle: bundle)
 
         register(nib, forCellReuseIdentifier: identifier)
     }
 
     func do_registerHeaderWithNib(identifier: String, bundle: Bundle?) {
-
         let nib = UINib(nibName: identifier, bundle: bundle)
 
         register(nib, forHeaderFooterViewReuseIdentifier: identifier)
@@ -25,17 +23,13 @@ extension UITableView {
 }
 
 extension UITableViewCell {
-    
     static var identifier: String {
-        
         return String(describing: self)
     }
 }
 
 extension UITableViewHeaderFooterView {
-    
     static var identifier: String {
-        
         return String(describing: self)
     }
 }
@@ -44,12 +38,9 @@ extension UITableViewHeaderFooterView {
 // UICollectionView regist
 
 extension UICollectionView {
-
     func do_registerCellWithNib(identifier: String, bundle: Bundle?) {
-
         let nib = UINib(nibName: identifier, bundle: bundle)
 
         register(nib, forCellWithReuseIdentifier: identifier)
     }
 }
-
