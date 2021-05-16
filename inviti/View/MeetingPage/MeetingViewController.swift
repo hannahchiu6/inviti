@@ -26,7 +26,17 @@ class MeetingViewController: UIViewController {
     var selectedIndex: Int?
 
     @IBAction func notificationBtn(_ sender: Any) {
-    }
+        showOptions(sender: sender as! UIButton)
+//        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//           segue.destination.preferredContentSize = CGSize(width: 150, height: 200)
+//           segue.destination.popoverPresentationController?.delegate = self
+//
+
+        }
+
+
+
+
 
     @IBOutlet weak var notificationIcon: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -43,6 +53,7 @@ class MeetingViewController: UIViewController {
             identifier: String(describing: MeetingTableViewCell.self),
             bundle: nil)
         setupView()
+        
     }
 
 
@@ -66,6 +77,16 @@ class MeetingViewController: UIViewController {
 
         searchBar.backgroundImage = UIImage()
     }
+
+    func showOptions(sender: UIButton) {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "NotiViewController") {
+          controller.modalPresentationStyle = .popover
+          controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+          present(controller, animated: true, completion: nil)
+        }
+    }
+
+}
 
 //    private func setupIndicatorsViews() {
 //
@@ -97,11 +118,8 @@ class MeetingViewController: UIViewController {
 //
 //    }
 
-}
 
-extension MeetingViewController: UITableViewDelegate {
-}
-extension MeetingViewController: UITableViewDataSource {
+extension MeetingViewController: UITableViewDataSource, UITableViewDelegate  {
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 3
         }
@@ -112,3 +130,5 @@ extension MeetingViewController: UITableViewDataSource {
             return cell
         }
 }
+
+
