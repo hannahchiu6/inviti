@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="r53-FA-4JH">
-                                <rect key="frame" x="0.0" y="270" width="414" height="634"/>
+                                <rect key="frame" x="0.0" y="341" width="414" height="563"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsTableViewCell" rowHeight="103" id="hnI-dm-9JH" customClass="SettingsTableViewCell" customModule="inviti" customModuleProvider="target">
@@ -92,17 +92,17 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PY3-qg-0VQ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="341"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_photo" translatesAutoresizingMaskIntoConstraints="NO" id="Mb8-Zf-1oD">
-                                        <rect key="frame" x="157" y="100" width="100" height="100"/>
+                                        <rect key="frame" x="157" y="120" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="DcL-kf-Hw4"/>
                                             <constraint firstAttribute="width" constant="100" id="sW3-y1-ddq"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moon Chiu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJ4-4H-MUC">
-                                        <rect key="frame" x="163" y="210" width="88.5" height="24"/>
+                                        <rect key="frame" x="163" y="230" width="88.5" height="24"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.69803921570000005" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -115,12 +115,20 @@
                                             <color key="titleColor" red="0.2510193288" green="0.2353136539" blue="0.23526367549999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您已創建 666 個 invitis!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sql-gU-Swk">
+                                        <rect key="frame" x="127" y="264" width="160" height="21"/>
+                                        <fontDescription key="fontDescription" name="PingFangTC-Thin" family="PingFang TC" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.69803921570000005" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstItem="Mb8-Zf-1oD" firstAttribute="centerX" secondItem="PY3-qg-0VQ" secondAttribute="centerX" id="EgG-sz-Z5V"/>
+                                    <constraint firstItem="sql-gU-Swk" firstAttribute="top" secondItem="bJ4-4H-MUC" secondAttribute="bottom" constant="10" id="MDG-oL-lwc"/>
                                     <constraint firstItem="bJ4-4H-MUC" firstAttribute="top" secondItem="Mb8-Zf-1oD" secondAttribute="bottom" constant="10" id="NVc-Rs-sfK"/>
-                                    <constraint firstItem="Mb8-Zf-1oD" firstAttribute="top" secondItem="PY3-qg-0VQ" secondAttribute="top" constant="100" id="yAf-ow-48p"/>
+                                    <constraint firstItem="sql-gU-Swk" firstAttribute="centerX" secondItem="bJ4-4H-MUC" secondAttribute="centerX" id="YDA-Vh-1nS"/>
+                                    <constraint firstItem="Mb8-Zf-1oD" firstAttribute="top" secondItem="PY3-qg-0VQ" secondAttribute="top" constant="120" id="yAf-ow-48p"/>
                                     <constraint firstItem="bJ4-4H-MUC" firstAttribute="centerX" secondItem="PY3-qg-0VQ" secondAttribute="centerX" id="zaT-xz-NUB"/>
                                 </constraints>
                             </view>
@@ -142,7 +150,7 @@
                             <constraint firstItem="PY3-qg-0VQ" firstAttribute="leading" secondItem="HD9-6r-T07" secondAttribute="leading" id="FrP-ty-H7g"/>
                             <constraint firstItem="TZC-9L-QKI" firstAttribute="trailing" secondItem="HD9-6r-T07" secondAttribute="trailing" id="GNP-hP-0z9"/>
                             <constraint firstItem="HD9-6r-T07" firstAttribute="trailing" secondItem="PY3-qg-0VQ" secondAttribute="trailing" id="K87-Ub-gge"/>
-                            <constraint firstAttribute="bottom" secondItem="PY3-qg-0VQ" secondAttribute="bottom" constant="626" id="NOI-2y-A7j"/>
+                            <constraint firstAttribute="bottom" secondItem="PY3-qg-0VQ" secondAttribute="bottom" constant="555" id="NOI-2y-A7j"/>
                             <constraint firstItem="TZC-9L-QKI" firstAttribute="leading" secondItem="r53-FA-4JH" secondAttribute="leading" id="W50-hk-l2D"/>
                             <constraint firstItem="r53-FA-4JH" firstAttribute="leading" secondItem="HD9-6r-T07" secondAttribute="leading" id="WNW-9m-QBP"/>
                             <constraint firstAttribute="bottom" secondItem="TZC-9L-QKI" secondAttribute="bottom" id="gTk-59-IBh"/>

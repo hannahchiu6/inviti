@@ -43,17 +43,14 @@ class OptionCollectionViewCell: UICollectionViewCell {
         tableView.dataSource = self
     }
     func setupTableView() {
-
         tableView.do_registerCellWithNib(
             identifier: String(describing: OptionEventTableViewCell.self),
             bundle: nil
         )
-
     }
 
 
     func setupCollectionView() {
-
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
         layer.shadowRadius = 5.0
@@ -69,7 +66,6 @@ class OptionCollectionViewCell: UICollectionViewCell {
 }
 
 extension OptionCollectionViewCell: UITableViewDelegate{
-
 }
 
 extension OptionCollectionViewCell: UITableViewDataSource{
