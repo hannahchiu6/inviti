@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		860B5C8E2652281C00171ED3 /* copy- CreateFirstPageVC copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860B5C8D2652281C00171ED3 /* copy- CreateFirstPageVC copy.swift */; };
+		860B5C922652297200171ED3 /* CreateFirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860B5C912652297200171ED3 /* CreateFirstTableViewCell.swift */; };
 		861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885ED264E31FD0048D9AA /* UITableView+Extension.swift */; };
 		861885F6264E5FD60048D9AA /* OptionEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */; };
 		861885F7264E5FD60048D9AA /* OptionEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861885F5264E5FD60048D9AA /* OptionEventTableViewCell.xib */; };
@@ -32,6 +34,8 @@
 		86504B962650207D00E42C51 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86504B952650207D00E42C51 /* NewsViewController.swift */; };
 		8653117F264FC39700CFB4F7 /* UIButtonActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8653117E264FC39700CFB4F7 /* UIButtonActivity.swift */; };
 		86531184264FC84000CFB4F7 /* TopNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86531183264FC84000CFB4F7 /* TopNewsTableViewCell.swift */; };
+		867950C32651741C0041847C /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867950C22651741C0041847C /* String + Extension.swift */; };
+		867950C7265215230041847C /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867950C6265215230041847C /* UIScrollView+Extension.swift */; };
 		869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E7F264CE10A004681A2 /* NavigationController.swift */; };
 		86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B45264A8584006EE7FE /* AppDelegate.swift */; };
 		86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B47264A8584006EE7FE /* SceneDelegate.swift */; };
@@ -48,12 +52,15 @@
 		86EE497A265102BD003B0C25 /* CreateFirstPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE4979265102BD003B0C25 /* CreateFirstPageVC.swift */; };
 		86EE498026511C9B003B0C25 /* NotiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE497F26511C9B003B0C25 /* NotiViewController.swift */; };
 		86EE498326511D33003B0C25 /* NotiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE498226511D32003B0C25 /* NotiTableViewCell.swift */; };
+		86EE499F26514C97003B0C25 /* CreateThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE499E26514C97003B0C25 /* CreateThirdViewController.swift */; };
 		86F203DA264D9E3100A9763A /* Meeting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F203D9264D9E3100A9763A /* Meeting.storyboard */; };
 		86F203DD264E05EC00A9763A /* MeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F203DC264E05EC00A9763A /* MeetingViewController.swift */; };
 		A3090504881DDDF486642645 /* Pods_inviti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE1AD6A8960FEB195B049AE /* Pods_inviti.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		860B5C8D2652281C00171ED3 /* copy- CreateFirstPageVC copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "copy- CreateFirstPageVC copy.swift"; sourceTree = "<group>"; };
+		860B5C912652297200171ED3 /* CreateFirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstTableViewCell.swift; sourceTree = "<group>"; };
 		861885ED264E31FD0048D9AA /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Extension.swift"; path = "inviti/Extension/UITableView+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionEventTableViewCell.swift; sourceTree = "<group>"; };
 		861885F5264E5FD60048D9AA /* OptionEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionEventTableViewCell.xib; sourceTree = "<group>"; };
@@ -79,6 +86,8 @@
 		86504B952650207D00E42C51 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		8653117E264FC39700CFB4F7 /* UIButtonActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonActivity.swift; sourceTree = "<group>"; };
 		86531183264FC84000CFB4F7 /* TopNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNewsTableViewCell.swift; sourceTree = "<group>"; };
+		867950C22651741C0041847C /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		867950C6265215230041847C /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		869F6E7F264CE10A004681A2 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		86B12B42264A8584006EE7FE /* inviti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inviti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B12B45264A8584006EE7FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +106,7 @@
 		86EE4979265102BD003B0C25 /* CreateFirstPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstPageVC.swift; sourceTree = "<group>"; };
 		86EE497F26511C9B003B0C25 /* NotiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiViewController.swift; sourceTree = "<group>"; };
 		86EE498226511D32003B0C25 /* NotiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiTableViewCell.swift; sourceTree = "<group>"; };
+		86EE499E26514C97003B0C25 /* CreateThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThirdViewController.swift; sourceTree = "<group>"; };
 		86F203D9264D9E3100A9763A /* Meeting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Meeting.storyboard; sourceTree = "<group>"; };
 		86F203DC264E05EC00A9763A /* MeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewController.swift; sourceTree = "<group>"; };
 		A41EA7A3E1004FFDF363D424 /* Pods-inviti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inviti.release.xcconfig"; path = "Target Support Files/Pods-inviti/Pods-inviti.release.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				86EE4979265102BD003B0C25 /* CreateFirstPageVC.swift */,
+				860B5C912652297200171ED3 /* CreateFirstTableViewCell.swift */,
 				86C3FA64264BE22900480E4F /* Create.storyboard */,
 				8618860B264E78160048D9AA /* CreateSecondVC.swift */,
 				8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */,
@@ -163,6 +174,7 @@
 		86406557264D98DE003C756D /* Backups */ = {
 			isa = PBXGroup;
 			children = (
+				860B5C8D2652281C00171ED3 /* copy- CreateFirstPageVC copy.swift */,
 				86C3FA71264BF44000480E4F /* TabBarController-copy.swift */,
 				86188607264E77710048D9AA /* ExampleData.swift */,
 			);
@@ -183,6 +195,8 @@
 				861885ED264E31FD0048D9AA /* UITableView+Extension.swift */,
 				8640655A264D9910003C756D /* UIStoryboard+Extension.swift */,
 				86504B8F2650095800E42C51 /* UIView + Extension.swift */,
+				867950C22651741C0041847C /* String + Extension.swift */,
+				867950C6265215230041847C /* UIScrollView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -227,6 +241,7 @@
 				86C3FA5C264BD3B800480E4F /* View */,
 				86B12B45264A8584006EE7FE /* AppDelegate.swift */,
 				86B12B47264A8584006EE7FE /* SceneDelegate.swift */,
+				86EE499E26514C97003B0C25 /* CreateThirdViewController.swift */,
 				86B12B4B264A8584006EE7FE /* Main.storyboard */,
 				86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */,
 				86B12B4E264A8587006EE7FE /* Assets.xcassets */,
@@ -445,12 +460,14 @@
 				86392C59264FA46C003F7EBC /* MeetingTableViewCell.swift in Sources */,
 				861F65E2264D1F8700A54C00 /* EventTableViewCell.swift in Sources */,
 				861F65DC264D13E000A54C00 /* CalendarViewController.swift in Sources */,
+				867950C32651741C0041847C /* String + Extension.swift in Sources */,
 				86EE497A265102BD003B0C25 /* CreateFirstPageVC.swift in Sources */,
 				86504B902650095800E42C51 /* UIView + Extension.swift in Sources */,
 				86188608264E77720048D9AA /* ExampleData.swift in Sources */,
 				86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */,
 				86188610264E78730048D9AA /* OptionCollectionViewCell copy.swift in Sources */,
 				861F6619264D38AB00A54C00 /* SettingsViewController.swift in Sources */,
+				86EE499F26514C97003B0C25 /* CreateThirdViewController.swift in Sources */,
 				869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */,
 				861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */,
 				861F661D264D38EA00A54C00 /* SettingsTableViewCell.swift in Sources */,
@@ -461,14 +478,17 @@
 				8640655B264D9910003C756D /* UIStoryboard+Extension.swift in Sources */,
 				86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */,
 				86406555264D98D6003C756D /* TabBarController.swift in Sources */,
+				860B5C922652297200171ED3 /* CreateFirstTableViewCell.swift in Sources */,
 				8653117F264FC39700CFB4F7 /* UIButtonActivity.swift in Sources */,
 				861885F6264E5FD60048D9AA /* OptionEventTableViewCell.swift in Sources */,
 				86504B8C2650088800E42C51 /* NewsEventTableViewCell.swift in Sources */,
+				860B5C8E2652281C00171ED3 /* copy- CreateFirstPageVC copy.swift in Sources */,
 				86EE498026511C9B003B0C25 /* NotiViewController.swift in Sources */,
 				86F203DD264E05EC00A9763A /* MeetingViewController.swift in Sources */,
 				86531184264FC84000CFB4F7 /* TopNewsTableViewCell.swift in Sources */,
 				861885FB264E759B0048D9AA /* ExampleViewModel.swift in Sources */,
 				86504B962650207D00E42C51 /* NewsViewController.swift in Sources */,
+				867950C7265215230041847C /* UIScrollView+Extension.swift in Sources */,
 				86C3FA72264BF44000480E4F /* TabBarController-copy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

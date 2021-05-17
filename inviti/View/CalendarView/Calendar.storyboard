@@ -110,12 +110,7 @@
                                     <outlet property="delegate" destination="Y2n-yx-ZWj" id="2jm-K8-dfR"/>
                                 </connections>
                             </view>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ri-sm-XU3">
-                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
-                                <color key="backgroundColor" red="0.9951923077" green="0.9903846154" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </navigationBar>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bje-vp-lUt">
+                            <tabBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bje-vp-lUt">
                                 <rect key="frame" x="0.0" y="813" width="414" height="83"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -143,13 +138,8 @@
                             <constraint firstItem="p2C-sS-3N4" firstAttribute="trailing" secondItem="aT8-41-kLY" secondAttribute="trailing" id="9U8-GQ-05j"/>
                             <constraint firstItem="E4U-lJ-WND" firstAttribute="leading" secondItem="p2C-sS-3N4" secondAttribute="leading" id="Gc4-eO-MWP"/>
                             <constraint firstItem="aT8-41-kLY" firstAttribute="leading" secondItem="p2C-sS-3N4" secondAttribute="leading" id="QwE-Jn-mmS"/>
-                            <constraint firstItem="7ri-sm-XU3" firstAttribute="leading" secondItem="E4U-lJ-WND" secondAttribute="leading" id="Whp-O7-MfD"/>
-                            <constraint firstItem="7ri-sm-XU3" firstAttribute="top" secondItem="JQx-uC-9zO" secondAttribute="topMargin" id="iqV-4d-SyS"/>
-                            <constraint firstItem="7ri-sm-XU3" firstAttribute="trailing" secondItem="E4U-lJ-WND" secondAttribute="trailing" id="mgA-Ll-YUy"/>
                             <constraint firstItem="bje-vp-lUt" firstAttribute="top" secondItem="aT8-41-kLY" secondAttribute="bottom" id="o7s-o8-fe3"/>
                             <constraint firstItem="E4U-lJ-WND" firstAttribute="top" secondItem="p2C-sS-3N4" secondAttribute="top" id="ovt-zU-2y9"/>
-                            <constraint firstItem="7ri-sm-XU3" firstAttribute="trailing" secondItem="bje-vp-lUt" secondAttribute="trailing" id="rYC-up-415"/>
-                            <constraint firstItem="7ri-sm-XU3" firstAttribute="leading" secondItem="bje-vp-lUt" secondAttribute="leading" id="vwO-ds-vwa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wBw-U5-8of">

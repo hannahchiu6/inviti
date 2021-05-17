@@ -9,30 +9,24 @@ import UIKit
 
 class CreateFirstPageVC: UIViewController {
 
-    @IBOutlet weak var subjectTextField: UITextField!
-    @IBOutlet weak var locationTextField: UITextField!
-
-    @IBAction func selectTimeIcon(_ sender: Any) {
-    }
+    @IBOutlet weak var tableview: UITableView!
     @IBAction func nextPage(_ sender: Any) {
         performSegue(withIdentifier: "createSecondSegue", sender: sender)
     }
-
-    @IBAction func selectTime(_ sender: Any) {
-    }
-    @IBOutlet weak var timePicker: UIButton!
-    @IBOutlet weak var textView: UITextView!
-    @IBAction func singleToggle(_ sender: Any) {
-    }
-    @IBAction func hiddenToggle(_ sender: Any) {
-    }
-    @IBAction func deadlineToggle(_ sender: Any) {
-    }
-    @IBOutlet weak var deadlineView: UIView!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableview.delegate = self
+        tableview.dataSource = self
+    }
+}
+extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFirstTableViewCell", for: indexPath) as! CreateFirstTableViewCell
+
+        return cell
+    }
 }
