@@ -37,7 +37,7 @@
                                             <stackView opaque="NO" contentMode="scaleAspectFit" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NZG-Gg-4hU">
                                                 <rect key="frame" x="10" y="50" width="118" height="30"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" verticalHuggingPriority="251" ambiguous="YES" text="22" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQD-iJ-vQg">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="22" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQD-iJ-vQg">
                                                         <rect key="frame" x="0.0" y="0.0" width="17.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="hcV-5M-fkP"/>
@@ -46,7 +46,7 @@
                                                         <color key="textColor" red="1" green="0.36470588240000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Wednesday" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XG7-Zm-9pH">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XG7-Zm-9pH">
                                                         <rect key="frame" x="25.5" y="0.0" width="92.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="dmp-jC-4UF"/>
@@ -87,6 +87,11 @@
                                     <constraint firstItem="fdL-bE-9IG" firstAttribute="leading" secondItem="AWO-eJ-mXc" secondAttribute="leading" id="ZaT-Z4-uho"/>
                                     <constraint firstAttribute="trailing" secondItem="fdL-bE-9IG" secondAttribute="trailing" id="hKY-j5-CR7"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lkCornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

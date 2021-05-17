@@ -10,6 +10,6 @@ target 'inviti' do
   pod 'FirebaseFirestoreSwift'
   pod 'FSCalendar'
   pod 'SwiftyMenu', '~> 0.6.5'
-
+  pod "WRCalendarView"
 
 end

@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="370"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="E4U-lJ-WND" secondAttribute="height" multiplier="207:185" id="oFz-IG-DeE"/>
+                                    <constraint firstAttribute="height" constant="370" id="Cae-gf-cCP"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelection" value="YES"/>
@@ -118,12 +118,9 @@
                                 </constraints>
                                 <items/>
                             </tabBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aT8-41-kLY">
-                                <rect key="frame" x="0.0" y="455" width="414" height="358"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aT8-41-kLY">
+                                <rect key="frame" x="0.0" y="458" width="414" height="355"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="aT8-41-kLY" secondAttribute="height" multiplier="207:179" id="2yC-y4-SNN"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="Y2n-yx-ZWj" id="QNI-Om-OHF"/>
                                     <outlet property="delegate" destination="Y2n-yx-ZWj" id="lZ0-nz-fpC"/>
@@ -138,6 +135,7 @@
                             <constraint firstItem="p2C-sS-3N4" firstAttribute="trailing" secondItem="aT8-41-kLY" secondAttribute="trailing" id="9U8-GQ-05j"/>
                             <constraint firstItem="E4U-lJ-WND" firstAttribute="leading" secondItem="p2C-sS-3N4" secondAttribute="leading" id="Gc4-eO-MWP"/>
                             <constraint firstItem="aT8-41-kLY" firstAttribute="leading" secondItem="p2C-sS-3N4" secondAttribute="leading" id="QwE-Jn-mmS"/>
+                            <constraint firstItem="aT8-41-kLY" firstAttribute="top" secondItem="E4U-lJ-WND" secondAttribute="bottom" id="d1f-75-71j"/>
                             <constraint firstItem="bje-vp-lUt" firstAttribute="top" secondItem="aT8-41-kLY" secondAttribute="bottom" id="o7s-o8-fe3"/>
                             <constraint firstItem="E4U-lJ-WND" firstAttribute="top" secondItem="p2C-sS-3N4" secondAttribute="top" id="ovt-zU-2y9"/>
                         </constraints>
@@ -155,6 +153,8 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="calendar" destination="E4U-lJ-WND" id="MNk-1o-Y6v"/>
+                        <outlet property="calendarHeightConstraint" destination="Cae-gf-cCP" id="kJn-m5-Mef"/>
                         <outlet property="eventTableView" destination="aT8-41-kLY" id="WNO-ny-jnq"/>
                     </connections>
                 </viewController>
