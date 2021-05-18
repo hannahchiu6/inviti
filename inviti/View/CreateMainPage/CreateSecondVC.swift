@@ -9,12 +9,21 @@ import UIKit
 
 class CreateSecondVC: UIViewController {
     @IBAction func backBtn(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+
+        if let firstVC = navigationController?.viewControllers[0] {
+                    navigationController?.popToViewController(firstVC, animated: true)
+        }
     }
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var calendarView: UIView!
 
+    @IBAction func nextPage(_ sender: Any) {
+        let thirdVC = UIStoryboard.create.instantiateViewController(identifier: "ThirdVC")
+           guard let third = thirdVC as? CreateThirdViewController else { return }
+
+           navigationController?.pushViewController(third, animated: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
