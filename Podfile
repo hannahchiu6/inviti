@@ -8,5 +8,10 @@ target 'inviti' do
   pod 'IQKeyboardManagerSwift'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'FSCalendar'
+  pod 'SwiftyMenu', '~> 0.6.5'
+  pod "CalendarLib"
+  pod 'JZCalendarWeekView', '~> 0.3'
+
 
 end
