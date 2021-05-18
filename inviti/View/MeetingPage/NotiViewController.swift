@@ -14,7 +14,7 @@ class NotiViewController: UIViewController, UIPopoverPresentationControllerDeleg
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-       
+        view.shadowView(view)
     }
 
       func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
@@ -30,7 +30,7 @@ extension NotiViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotiTableViewCell", for: indexPath) as! NotiTableViewCell
-
+        
         return cell
     }
 

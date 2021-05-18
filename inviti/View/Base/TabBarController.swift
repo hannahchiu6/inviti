@@ -84,7 +84,23 @@ private enum Tab {
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private let tabs: [Tab] = [.main, .news, .create, .calendar, .settings]
 
+    let centerButton = UIButton()
+
     var trolleyTabBarItem: UITabBarItem!
+
+    var willBorder: Bool = false {
+         didSet {
+             if (willBorder) {
+                 UIView.animate(withDuration: 1) { [weak self] () in
+                    self?.centerButton.layer.borderColor = UIColor.black.cgColor
+                    self?.centerButton.layer.borderWidth = 3
+                 }
+             } else {
+                 centerButton.layer.borderColor = UIColor.clear.cgColor
+                 centerButton.layer.borderWidth = 0
+                 }
+             }
+     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,18 +108,29 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         viewControllers = tabs.map({ $0.controller() })
         settingButton()
 
+
     }
 
-    func resetCenterBtn() {
+//    func layoutSubviews() {
+//
+//        let topBorder = UIView()
+//
+//        let borderHeight: CGFloat = 2
+
+//        topBorder.lkBorderWidth = borderHeight
+//        topBorder.lkBorderColor = .green
+//        topBorder.frame = CGRect(x: 0, y: -1, width: view.frame.width, height: borderHeight)
+//
+//        self.tabBar.addSubview(topBorder)
+//    }
+
+    public func resetCenterBtn() {
+
         if self.selectedIndex == 2 {
-            centerButton.layer.borderColor = UIColor.black.cgColor
-            centerButton.layer.borderWidth = 3
-        } else {
-            centerButton.layer.borderColor = UIColor.clear.cgColor
+         willBorder = !willBorder
         }
-    }
 
-    let centerButton = UIButton()
+    }
 
     func settingButton() {
         let image = UIImage(named: "UIButtonBarNew.png")?.withTintColor(.white)
@@ -123,17 +150,16 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     @objc func showViewController() {
         centerButton.backgroundColor = UIColor(red: 1, green: 0.3647, blue: 0, alpha: 1.0) /* #ff5d00 */
         self.selectedIndex = 2
-        print("Tapppppped 22222!!!")
         centerButton.layer.borderColor = UIColor.black.cgColor
         centerButton.layer.borderWidth = 3
         let storyBoard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
         storyBoard.instantiateViewController(withIdentifier: "CreateFirstPageVC") as! CreateFirstPageVC
-//        vc.modalPresentationStyle = .fullScreen
-//        self.present(vc, animated: true, completion: nil
+        resetCenterBtn()
     }
 
     @objc func showH() {
         centerButton.backgroundColor = UIColor.black
+
     }
 
     // MARK: - UITabBarControllerDelegate
@@ -142,20 +168,18 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         _ tabBarController: UITabBarController,
         shouldSelect viewController: UIViewController
     ) -> Bool {
+//        resetCenterBtn()
         guard let navVC = viewController as? UINavigationController,
               navVC.viewControllers.first is ViewController
         else { return true }
-        resetCenterBtn()
+
 
             if let authVC = UIStoryboard.create.instantiateInitialViewController() {
                 authVC.modalPresentationStyle = .overCurrentContext
 
                 present(authVC, animated: false, completion: nil)
-    //            }
-    //            return false
         }
 
         return true
     }
 }
-
