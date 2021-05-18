@@ -43,7 +43,7 @@
                                                             <constraint firstAttribute="height" constant="30" id="hcV-5M-fkP"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="PingFangTC-Thin" family="PingFang TC" pointSize="28"/>
-                                                        <color key="textColor" red="1" green="0.36470588240000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XG7-Zm-9pH">
@@ -52,7 +52,7 @@
                                                             <constraint firstAttribute="height" constant="30" id="dmp-jC-4UF"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="PingFangTC-Thin" family="PingFang TC" pointSize="18"/>
-                                                        <color key="textColor" red="1" green="0.36470588240000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>

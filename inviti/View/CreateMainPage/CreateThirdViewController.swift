@@ -7,14 +7,22 @@
 
 import UIKit
 import SwiftyMenu
+import JZCalendarWeekView
 
 class CreateThirdViewController: UIViewController {
     private let items: [SwiftyMenuDisplayable] = ["30 分鐘", "60 分鐘", "1 小時", "2 小時", "3 小時", "4 小時", "自訂時間"]
 
+    @IBAction func doneBtn(_ sender: Any) {
+        NotificationCenter.default.post(name: Notification.Name("enableConfirmBtn"),
+                                        object: self)
+    }
     private let calendar: [SwiftyMenuDisplayable] = ["Tina Chen", "Lisa Chu", "Mary Huang", "Nina Schwaberg", "Coco Pods"]
-
     @IBAction func backBtn(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+
+        let vc = UIStoryboard(name: "Create", bundle: nil).instantiateViewController(withIdentifier: "CreateFirstPageVC")
+
+        self.navigationController?.pushViewController(vc, animated: true)
+
     }
     @IBOutlet private weak var dropDown: SwiftyMenu!
 
@@ -28,9 +36,7 @@ class CreateThirdViewController: UIViewController {
         calendarDropDown.items = calendar
     }
 }
-
 extension CreateThirdViewController: SwiftyMenuDelegate {
-    // Got selected option from SwiftyMenu
     func swiftyMenu(_ swiftyMenu: SwiftyMenu, didSelectItem item: SwiftyMenuDisplayable, atIndex index: Int) {
         print("Selected item: \(item), at index: \(index)")
     }
