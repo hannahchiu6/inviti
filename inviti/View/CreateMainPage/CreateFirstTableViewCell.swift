@@ -6,18 +6,29 @@
 //
 
 import UIKit
+import SwiftHEXColors
 
-class CreateFirstTableViewCell: UITableViewCell {
+protocol CreateFirstCellDelegate {
+    func goToSecondPage()
+}
+
+class CreateFirstTableViewCell: UITableViewCell, UITextViewDelegate {
+
+   var delegate: CreateFirstCellDelegate?
+
     @IBOutlet weak var subjectTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
 
     @IBAction func selectTimeIcon(_ sender: Any) {
+        print("test Btn selectime icon!")
+        delegate?.goToSecondPage()
     }
-   
-
+    
     @IBOutlet weak var dealineFullView: UIView!
 
     @IBAction func selectTime(_ sender: Any) {
+        delegate?.goToSecondPage()
+        print("test Btn selectime!")
     }
     @IBOutlet weak var timePicker: UIButton!
     @IBOutlet weak var textView: UITextView!
@@ -39,7 +50,10 @@ class CreateFirstTableViewCell: UITableViewCell {
          self.dealineFullView.isHidden = true
         }
     }
+
     var deadlineTag: Int = 0
+
+    var placeholder = UILabel()
 
     @IBAction func stepperAction(_ sender: UIStepper) {
         let count = Int(sender.value)
@@ -52,9 +66,31 @@ class CreateFirstTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.dealineFullView.isHidden = true
+        textView.delegate = self
+        setLayout()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+
+    func textViewDidChange(_ textView: UITextView) {
+
+        if textView.text.isEmpty {
+             placeholder.alpha = 1
+            } else {
+             placeholder.alpha = 0
+             placeholder.text = ""
+            }
+    }
+
+    func setLayout() {
+
+        placeholder.frame = CGRect(x: 6, y: 6, width: 250, height: 36)
+        placeholder.text = "Add note"
+        placeholder.textColor = UIColor.hexStringToUIColor(hex: "B8B8B8")
+        placeholder.backgroundColor?.withAlphaComponent(0)
+        placeholder.font = UIFont(name: "PingFang TC", size: 17)
+        textView.addSubview(placeholder)
     }
 }

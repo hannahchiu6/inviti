@@ -110,7 +110,7 @@
                                     <outlet property="delegate" destination="Y2n-yx-ZWj" id="2jm-K8-dfR"/>
                                 </connections>
                             </view>
-                            <tabBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bje-vp-lUt">
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bje-vp-lUt">
                                 <rect key="frame" x="0.0" y="813" width="414" height="83"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -131,12 +131,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="E4U-lJ-WND" firstAttribute="trailing" secondItem="p2C-sS-3N4" secondAttribute="trailing" id="1Ae-91-SO7"/>
-                            <constraint firstItem="bje-vp-lUt" firstAttribute="top" secondItem="p2C-sS-3N4" secondAttribute="bottom" id="5xD-Jt-Yho"/>
                             <constraint firstItem="p2C-sS-3N4" firstAttribute="trailing" secondItem="aT8-41-kLY" secondAttribute="trailing" id="9U8-GQ-05j"/>
                             <constraint firstItem="E4U-lJ-WND" firstAttribute="leading" secondItem="p2C-sS-3N4" secondAttribute="leading" id="Gc4-eO-MWP"/>
+                            <constraint firstItem="bje-vp-lUt" firstAttribute="leading" secondItem="JQx-uC-9zO" secondAttribute="leading" id="GzN-su-ygq"/>
                             <constraint firstItem="aT8-41-kLY" firstAttribute="leading" secondItem="p2C-sS-3N4" secondAttribute="leading" id="QwE-Jn-mmS"/>
+                            <constraint firstItem="bje-vp-lUt" firstAttribute="top" secondItem="aT8-41-kLY" secondAttribute="bottom" id="ZeV-QM-3Cm"/>
                             <constraint firstItem="aT8-41-kLY" firstAttribute="top" secondItem="E4U-lJ-WND" secondAttribute="bottom" id="d1f-75-71j"/>
-                            <constraint firstItem="bje-vp-lUt" firstAttribute="top" secondItem="aT8-41-kLY" secondAttribute="bottom" id="o7s-o8-fe3"/>
+                            <constraint firstAttribute="trailing" secondItem="bje-vp-lUt" secondAttribute="trailing" id="gUP-B2-IjG"/>
+                            <constraint firstAttribute="bottom" secondItem="bje-vp-lUt" secondAttribute="bottom" id="nZk-eB-dP5"/>
                             <constraint firstItem="E4U-lJ-WND" firstAttribute="top" secondItem="p2C-sS-3N4" secondAttribute="top" id="ovt-zU-2y9"/>
                         </constraints>
                     </view>

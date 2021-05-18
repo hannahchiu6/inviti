@@ -8,36 +8,20 @@
 import UIKit
 
 class MeetingViewController: UIViewController {
-
-    @IBAction func pastBtn(_ sender: Any) {
-
-//            self.bottomLine.center.x = sender.center.x
-
+    @IBAction func pastBtn(_ sender: UIButton) {
+            sender.isSelected = true
+            moveIndicatorView(reference: sender)
     }
 
-    @IBAction func futureBtn(_ sender: Any) {
-        UIView.animate(withDuration: 0.3) {
-            self.bottomLine.center.x = (sender as AnyObject).center.x
-        }
+    @IBAction func futureBtn(_ sender: UIButton) {
+            sender.isSelected = true
+            moveIndicatorView(reference: sender)
     }
-
-    let indicator = UIView()
-    var indicatorCenterXContraint: NSLayoutConstraint?
-    var selectedIndex: Int?
-
     @IBAction func notificationBtn(_ sender: Any) {
         showOptions(sender: sender as! UIButton)
-//        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//           segue.destination.preferredContentSize = CGSize(width: 150, height: 200)
-//           segue.destination.popoverPresentationController?.delegate = self
-//
-
         }
 
-
-
-
-
+    @IBOutlet weak var indicatorCenterXConstraint: NSLayoutConstraint!
     @IBOutlet weak var notificationIcon: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var bottomLine: UIView!
@@ -53,9 +37,20 @@ class MeetingViewController: UIViewController {
             identifier: String(describing: MeetingTableViewCell.self),
             bundle: nil)
         setupView()
-        
     }
 
+
+    private func moveIndicatorView(reference: UIView) {
+        indicatorCenterXConstraint.isActive = false
+
+        indicatorCenterXConstraint = bottomLine.centerXAnchor.constraint(equalTo: reference.centerXAnchor)
+
+        indicatorCenterXConstraint.isActive = true
+
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+        })
+    }
 
 //    @objc func userDidTouchButton(sender: UIButton) {
 //
@@ -70,11 +65,7 @@ class MeetingViewController: UIViewController {
 //        selectedIndex = sender.tag
 //
 //    }
-
-
     func setupView() {
-    
-
         searchBar.backgroundImage = UIImage()
     }
 
@@ -85,7 +76,6 @@ class MeetingViewController: UIViewController {
           present(controller, animated: true, completion: nil)
         }
     }
-
 }
 
 //    private func setupIndicatorsViews() {
@@ -118,7 +108,6 @@ class MeetingViewController: UIViewController {
 //
 //    }
 
-
 extension MeetingViewController: UITableViewDataSource, UITableViewDelegate  {
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 3
@@ -130,5 +119,4 @@ extension MeetingViewController: UITableViewDataSource, UITableViewDelegate  {
             return cell
         }
 }
-
 

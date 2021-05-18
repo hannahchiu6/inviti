@@ -9,6 +9,21 @@
 /* Begin PBXBuildFile section */
 		860B5C8E2652281C00171ED3 /* copy- CreateFirstPageVC copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860B5C8D2652281C00171ED3 /* copy- CreateFirstPageVC copy.swift */; };
 		860B5C922652297200171ED3 /* CreateFirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860B5C912652297200171ED3 /* CreateFirstTableViewCell.swift */; };
+		8614DE4E265291DF00DC0A9D /* DefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE4D265291DF00DC0A9D /* DefaultViewController.swift */; };
+		8614DE532652922200DC0A9D /* DefaultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE522652922200DC0A9D /* DefaultViewModel.swift */; };
+		8614DE562652924600DC0A9D /* DefaultEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE552652924600DC0A9D /* DefaultEvent.swift */; };
+		8614DE5D2652924C00DC0A9D /* ExampleOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE5C2652924B00DC0A9D /* ExampleOptionsViewController.swift */; };
+		8614DE632652924F00DC0A9D /* OptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE622652924F00DC0A9D /* OptionsViewModel.swift */; };
+		8614DE662652925300DC0A9D /* DefaultWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE652652925300DC0A9D /* DefaultWeekView.swift */; };
+		8614DE6E265292B000DC0A9D /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE6C265292B000DC0A9D /* EventCell.swift */; };
+		8614DE7F2652938800DC0A9D /* OptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE7D2652938800DC0A9D /* OptionsTableViewCell.swift */; };
+		8614DE802652938800DC0A9D /* OptionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8614DE7E2652938800DC0A9D /* OptionsTableViewCell.xib */; };
+		8614DE852652943F00DC0A9D /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE832652943F00DC0A9D /* ExpandableHeaderView.swift */; };
+		8614DE862652943F00DC0A9D /* ExpandableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8614DE842652943F00DC0A9D /* ExpandableHeaderView.xib */; };
+		8614DE8A265294CD00DC0A9D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE89265294CD00DC0A9D /* UIColor+Extension.swift */; };
+		8614DE902652950E00DC0A9D /* ToastUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE8F2652950E00DC0A9D /* ToastUtil.swift */; };
+		8614DE972652988F00DC0A9D /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8614DE962652988F00DC0A9D /* EventCell.xib */; };
+		8614DE9C2652A56200DC0A9D /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE9B2652A56100DC0A9D /* UIButton+Extension.swift */; };
 		861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885ED264E31FD0048D9AA /* UITableView+Extension.swift */; };
 		861885F6264E5FD60048D9AA /* OptionEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */; };
 		861885F7264E5FD60048D9AA /* OptionEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861885F5264E5FD60048D9AA /* OptionEventTableViewCell.xib */; };
@@ -30,12 +45,12 @@
 		86406555264D98D6003C756D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86406554264D98D6003C756D /* TabBarController.swift */; };
 		8640655B264D9910003C756D /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640655A264D9910003C756D /* UIStoryboard+Extension.swift */; };
 		86504B8C2650088800E42C51 /* NewsEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86504B8B2650088800E42C51 /* NewsEventTableViewCell.swift */; };
-		86504B902650095800E42C51 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86504B8F2650095800E42C51 /* UIView + Extension.swift */; };
+		86504B902650095800E42C51 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86504B8F2650095800E42C51 /* UIView+Extension.swift */; };
 		86504B962650207D00E42C51 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86504B952650207D00E42C51 /* NewsViewController.swift */; };
 		8653117F264FC39700CFB4F7 /* UIButtonActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8653117E264FC39700CFB4F7 /* UIButtonActivity.swift */; };
 		86531184264FC84000CFB4F7 /* TopNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86531183264FC84000CFB4F7 /* TopNewsTableViewCell.swift */; };
 		8667673D26525190009D9979 /* copy - CalendarViewController copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8667673C26525190009D9979 /* copy - CalendarViewController copy.swift */; };
-		867950C32651741C0041847C /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867950C22651741C0041847C /* String + Extension.swift */; };
+		867950C32651741C0041847C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867950C22651741C0041847C /* String+Extension.swift */; };
 		867950C7265215230041847C /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867950C6265215230041847C /* UIScrollView+Extension.swift */; };
 		869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E7F264CE10A004681A2 /* NavigationController.swift */; };
 		86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B45264A8584006EE7FE /* AppDelegate.swift */; };
@@ -62,6 +77,21 @@
 /* Begin PBXFileReference section */
 		860B5C8D2652281C00171ED3 /* copy- CreateFirstPageVC copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "copy- CreateFirstPageVC copy.swift"; sourceTree = "<group>"; };
 		860B5C912652297200171ED3 /* CreateFirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstTableViewCell.swift; sourceTree = "<group>"; };
+		8614DE4D265291DF00DC0A9D /* DefaultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViewController.swift; sourceTree = "<group>"; };
+		8614DE522652922200DC0A9D /* DefaultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViewModel.swift; sourceTree = "<group>"; };
+		8614DE552652924600DC0A9D /* DefaultEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEvent.swift; sourceTree = "<group>"; };
+		8614DE5C2652924B00DC0A9D /* ExampleOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleOptionsViewController.swift; sourceTree = "<group>"; };
+		8614DE622652924F00DC0A9D /* OptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewModel.swift; sourceTree = "<group>"; };
+		8614DE652652925300DC0A9D /* DefaultWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWeekView.swift; sourceTree = "<group>"; };
+		8614DE6C265292B000DC0A9D /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		8614DE7D2652938800DC0A9D /* OptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTableViewCell.swift; sourceTree = "<group>"; };
+		8614DE7E2652938800DC0A9D /* OptionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsTableViewCell.xib; sourceTree = "<group>"; };
+		8614DE832652943F00DC0A9D /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
+		8614DE842652943F00DC0A9D /* ExpandableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandableHeaderView.xib; sourceTree = "<group>"; };
+		8614DE89265294CD00DC0A9D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		8614DE8F2652950E00DC0A9D /* ToastUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastUtil.swift; sourceTree = "<group>"; };
+		8614DE962652988F00DC0A9D /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
+		8614DE9B2652A56100DC0A9D /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		861885ED264E31FD0048D9AA /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Extension.swift"; path = "inviti/Extension/UITableView+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionEventTableViewCell.swift; sourceTree = "<group>"; };
 		861885F5264E5FD60048D9AA /* OptionEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionEventTableViewCell.xib; sourceTree = "<group>"; };
@@ -83,12 +113,12 @@
 		86406554264D98D6003C756D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8640655A264D9910003C756D /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		86504B8B2650088800E42C51 /* NewsEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEventTableViewCell.swift; sourceTree = "<group>"; };
-		86504B8F2650095800E42C51 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
+		86504B8F2650095800E42C51 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		86504B952650207D00E42C51 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		8653117E264FC39700CFB4F7 /* UIButtonActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonActivity.swift; sourceTree = "<group>"; };
 		86531183264FC84000CFB4F7 /* TopNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNewsTableViewCell.swift; sourceTree = "<group>"; };
 		8667673C26525190009D9979 /* copy - CalendarViewController copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "copy - CalendarViewController copy.swift"; sourceTree = "<group>"; };
-		867950C22651741C0041847C /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		867950C22651741C0041847C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		867950C6265215230041847C /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		869F6E7F264CE10A004681A2 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		86B12B42264A8584006EE7FE /* inviti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inviti.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +167,25 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8614DE50265291E400DC0A9D /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				8614DE4D265291DF00DC0A9D /* DefaultViewController.swift */,
+				8614DE522652922200DC0A9D /* DefaultViewModel.swift */,
+				8614DE622652924F00DC0A9D /* OptionsViewModel.swift */,
+				8614DE5C2652924B00DC0A9D /* ExampleOptionsViewController.swift */,
+				8614DE652652925300DC0A9D /* DefaultWeekView.swift */,
+				8614DE552652924600DC0A9D /* DefaultEvent.swift */,
+				8614DE6C265292B000DC0A9D /* EventCell.swift */,
+				8614DE962652988F00DC0A9D /* EventCell.xib */,
+				8614DE7D2652938800DC0A9D /* OptionsTableViewCell.swift */,
+				8614DE7E2652938800DC0A9D /* OptionsTableViewCell.xib */,
+				8614DE832652943F00DC0A9D /* ExpandableHeaderView.swift */,
+				8614DE842652943F00DC0A9D /* ExpandableHeaderView.xib */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
 		861F65DE264D1F6400A54C00 /* CalendarView */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +210,7 @@
 		861F6620264D5C5E00A54C00 /* CreateMainPage */ = {
 			isa = PBXGroup;
 			children = (
+				8614DE50265291E400DC0A9D /* Example */,
 				86EE499E26514C97003B0C25 /* CreateThirdViewController.swift */,
 				86EE4979265102BD003B0C25 /* CreateFirstPageVC.swift */,
 				860B5C912652297200171ED3 /* CreateFirstTableViewCell.swift */,
@@ -199,9 +249,12 @@
 			children = (
 				861885ED264E31FD0048D9AA /* UITableView+Extension.swift */,
 				8640655A264D9910003C756D /* UIStoryboard+Extension.swift */,
-				86504B8F2650095800E42C51 /* UIView + Extension.swift */,
-				867950C22651741C0041847C /* String + Extension.swift */,
+				86504B8F2650095800E42C51 /* UIView+Extension.swift */,
+				867950C22651741C0041847C /* String+Extension.swift */,
 				867950C6265215230041847C /* UIScrollView+Extension.swift */,
+				8614DE89265294CD00DC0A9D /* UIColor+Extension.swift */,
+				8614DE8F2652950E00DC0A9D /* ToastUtil.swift */,
+				8614DE9B2652A56100DC0A9D /* UIButton+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -376,7 +429,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8614DE972652988F00DC0A9D /* EventCell.xib in Resources */,
 				861F65E3264D1F8700A54C00 /* EventTableViewCell.xib in Resources */,
+				8614DE862652943F00DC0A9D /* ExpandableHeaderView.xib in Resources */,
+				8614DE802652938800DC0A9D /* OptionsTableViewCell.xib in Resources */,
 				86C3FA62264BE1F200480E4F /* Settings.storyboard in Resources */,
 				86C3FA6B264BE25B00480E4F /* Calendar.storyboard in Resources */,
 				86B12B52264A8587006EE7FE /* LaunchScreen.storyboard in Resources */,
@@ -459,29 +515,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				8618860C264E78160048D9AA /* CreateSecondVC.swift in Sources */,
+				8614DE532652922200DC0A9D /* DefaultViewModel.swift in Sources */,
 				86EE498326511D33003B0C25 /* NotiTableViewCell.swift in Sources */,
+				8614DE632652924F00DC0A9D /* OptionsViewModel.swift in Sources */,
 				86392C59264FA46C003F7EBC /* MeetingTableViewCell.swift in Sources */,
+				8614DE9C2652A56200DC0A9D /* UIButton+Extension.swift in Sources */,
 				861F65E2264D1F8700A54C00 /* EventTableViewCell.swift in Sources */,
 				861F65DC264D13E000A54C00 /* CalendarViewController.swift in Sources */,
-				867950C32651741C0041847C /* String + Extension.swift in Sources */,
+				8614DE5D2652924C00DC0A9D /* ExampleOptionsViewController.swift in Sources */,
+				867950C32651741C0041847C /* String+Extension.swift in Sources */,
 				86EE497A265102BD003B0C25 /* CreateFirstPageVC.swift in Sources */,
-				86504B902650095800E42C51 /* UIView + Extension.swift in Sources */,
+				86504B902650095800E42C51 /* UIView+Extension.swift in Sources */,
 				86188608264E77720048D9AA /* ExampleData.swift in Sources */,
 				86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */,
 				86188610264E78730048D9AA /* OptionCollectionViewCell copy.swift in Sources */,
+				8614DE4E265291DF00DC0A9D /* DefaultViewController.swift in Sources */,
 				861F6619264D38AB00A54C00 /* SettingsViewController.swift in Sources */,
 				86EE499F26514C97003B0C25 /* CreateThirdViewController.swift in Sources */,
 				869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */,
 				861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */,
 				861F661D264D38EA00A54C00 /* SettingsTableViewCell.swift in Sources */,
+				8614DE6E265292B000DC0A9D /* EventCell.swift in Sources */,
+				8614DE852652943F00DC0A9D /* ExpandableHeaderView.swift in Sources */,
 				86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */,
 				86188605264E76E10048D9AA /* ExampleModel.swift in Sources */,
 				861885FF264E75E50048D9AA /* DynamicHeightCalculable.swift in Sources */,
+				8614DE8A265294CD00DC0A9D /* UIColor+Extension.swift in Sources */,
 				86188602264E76170048D9AA /* Constants.swift in Sources */,
+				8614DE902652950E00DC0A9D /* ToastUtil.swift in Sources */,
 				8640655B264D9910003C756D /* UIStoryboard+Extension.swift in Sources */,
 				86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */,
 				86406555264D98D6003C756D /* TabBarController.swift in Sources */,
 				860B5C922652297200171ED3 /* CreateFirstTableViewCell.swift in Sources */,
+				8614DE562652924600DC0A9D /* DefaultEvent.swift in Sources */,
+				8614DE662652925300DC0A9D /* DefaultWeekView.swift in Sources */,
+				8614DE7F2652938800DC0A9D /* OptionsTableViewCell.swift in Sources */,
 				8667673D26525190009D9979 /* copy - CalendarViewController copy.swift in Sources */,
 				8653117F264FC39700CFB4F7 /* UIButtonActivity.swift in Sources */,
 				861885F6264E5FD60048D9AA /* OptionEventTableViewCell.swift in Sources */,
