@@ -12,6 +12,11 @@ class NotiTableViewCell: UITableViewCell {
     @IBAction func ignore(_ sender: Any) {
     }
     @IBAction func accept(_ sender: Any) {
+        let notiVC = NotiViewController()
+        let votingVC = UIStoryboard.voting.instantiateViewController(identifier: "VotingVC")
+           guard let voting = votingVC as? VotingViewController else { return }
+
+        notiVC.navigationController?.pushViewController(voting, animated: true)
     }
     @IBOutlet weak var subjectLabel: UILabel!
     @IBOutlet weak var personImg: UIImageView!

@@ -12,7 +12,7 @@
         <!--Voting View Controller-->
         <scene sceneID="mzy-Zi-9dc">
             <objects>
-                <viewController id="HOU-nL-Bbx" customClass="VotingViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VotingVC" id="HOU-nL-Bbx" customClass="VotingViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tby-QS-ESQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

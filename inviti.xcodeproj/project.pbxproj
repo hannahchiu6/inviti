@@ -52,6 +52,8 @@
 		865A00E0265394820061A0E4 /* Voting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865A00DF265394820061A0E4 /* Voting.storyboard */; };
 		865A00E42653A9AA0061A0E4 /* VotingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A00E22653A9AA0061A0E4 /* VotingViewController.swift */; };
 		865A00E52653A9AA0061A0E4 /* VotingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A00E32653A9AA0061A0E4 /* VotingTableViewCell.swift */; };
+		865A00EE265428FF0061A0E4 /* FurtureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A00ED265428FF0061A0E4 /* FurtureTableViewController.swift */; };
+		865A00F22654297A0061A0E4 /* PastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A00F12654297A0061A0E4 /* PastTableViewController.swift */; };
 		8667673D26525190009D9979 /* copy - CalendarViewController copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8667673C26525190009D9979 /* copy - CalendarViewController copy.swift */; };
 		867950C32651741C0041847C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867950C22651741C0041847C /* String+Extension.swift */; };
 		867950C7265215230041847C /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867950C6265215230041847C /* UIScrollView+Extension.swift */; };
@@ -123,6 +125,8 @@
 		865A00DF265394820061A0E4 /* Voting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Voting.storyboard; sourceTree = "<group>"; };
 		865A00E22653A9AA0061A0E4 /* VotingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingViewController.swift; sourceTree = "<group>"; };
 		865A00E32653A9AA0061A0E4 /* VotingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTableViewCell.swift; sourceTree = "<group>"; };
+		865A00ED265428FF0061A0E4 /* FurtureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurtureTableViewController.swift; sourceTree = "<group>"; };
+		865A00F12654297A0061A0E4 /* PastTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastTableViewController.swift; sourceTree = "<group>"; };
 		8667673C26525190009D9979 /* copy - CalendarViewController copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "copy - CalendarViewController copy.swift"; sourceTree = "<group>"; };
 		867950C22651741C0041847C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		867950C6265215230041847C /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
@@ -327,6 +331,8 @@
 		86B8ED8C264E27B700F2508A /* MeetingPage */ = {
 			isa = PBXGroup;
 			children = (
+				865A00ED265428FF0061A0E4 /* FurtureTableViewController.swift */,
+				865A00F12654297A0061A0E4 /* PastTableViewController.swift */,
 				86F203DC264E05EC00A9763A /* MeetingViewController.swift */,
 				86F203D9264D9E3100A9763A /* Meeting.storyboard */,
 				86392C57264FA46C003F7EBC /* MeetingTableViewCell.swift */,
@@ -551,6 +557,7 @@
 				861F6619264D38AB00A54C00 /* SettingsViewController.swift in Sources */,
 				86EE499F26514C97003B0C25 /* CreateThirdViewController.swift in Sources */,
 				869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */,
+				865A00F22654297A0061A0E4 /* PastTableViewController.swift in Sources */,
 				861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */,
 				861F661D264D38EA00A54C00 /* SettingsTableViewCell.swift in Sources */,
 				8614DE6E265292B000DC0A9D /* EventCell.swift in Sources */,
@@ -566,6 +573,7 @@
 				86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */,
 				86406555264D98D6003C756D /* TabBarController.swift in Sources */,
 				860B5C922652297200171ED3 /* CreateFirstTableViewCell.swift in Sources */,
+				865A00EE265428FF0061A0E4 /* FurtureTableViewController.swift in Sources */,
 				8614DE562652924600DC0A9D /* DefaultEvent.swift in Sources */,
 				8614DE662652925300DC0A9D /* DefaultWeekView.swift in Sources */,
 				8614DE7F2652938800DC0A9D /* OptionsTableViewCell.swift in Sources */,
