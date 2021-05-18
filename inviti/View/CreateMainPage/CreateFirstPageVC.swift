@@ -15,9 +15,12 @@ class CreateFirstPageVC: UIViewController {
     @IBAction func confirm(_ sender: Any) {
        performSegue(withIdentifier: "meetingSegue", sender: sender)
     }
+
     @IBOutlet weak var tableview: UITableView!
+
     @IBAction func nextPage(_ sender: Any) {
-        performSegue(withIdentifier: "createSecondSegue", sender: sender)
+        nextPage() 
+
     }
 
     override func viewDidLoad() {
@@ -38,6 +41,13 @@ class CreateFirstPageVC: UIViewController {
         confirmBtnView.backgroundColor = .blue
         confirmBtnView.isHidden = true
     }
+
+    func nextPage() {
+        let secondVC = storyboard?.instantiateViewController(identifier: "SecondVC")
+           guard let second = secondVC as? CreateSecondVC else { return }
+
+           navigationController?.pushViewController(second, animated: true)
+    }
 }
 extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,6 +63,6 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 
 extension CreateFirstPageVC: CreateFirstCellDelegate {
     func goToSecondPage() {
-         performSegue(withIdentifier: "createSecondSegue", sender: CreateFirstPageVC())
+        nextPage()
     }
 }
