@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol MeetingTableCellDelegate {
+    func editButtonPressed()
+    func goButtonPressed()
+}
+
 class MeetingTableViewCell: UITableViewCell {
+
+    var delegate: MeetingTableCellDelegate?
 
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var hostImage: UIImageView!
@@ -21,6 +28,7 @@ class MeetingTableViewCell: UITableViewCell {
     @IBOutlet weak var editIcon: UIButton!
 
     @IBAction func edit(_ sender: Any) {
+        delegate?.editButtonPressed()
     }
 
     override func awakeFromNib() {
@@ -29,12 +37,12 @@ class MeetingTableViewCell: UITableViewCell {
         setUpView()
     }
 
+    @IBAction func participate(_ sender: Any) {
+        delegate?.goButtonPressed()
+    }
+
     func setUpView() {
 
-
-       
-//        bgView.layer.borderWidth = 1
-//        bgView.layer.borderColor = UIColor(red: 0.0471, green: 0.0431, blue: 0.0431, alpha: 0.2).cgColor
         bgView.layer.shadowOpacity = 0.6
         bgView.layer.shadowOffset = CGSize(width: 0, height: 0)
         bgView.layer.shadowRadius = 3
