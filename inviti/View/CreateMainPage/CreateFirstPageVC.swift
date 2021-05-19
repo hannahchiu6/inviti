@@ -12,9 +12,15 @@ class CreateFirstPageVC: UIViewController {
     weak var delegate: CreateFirstTableViewCell?
     
     @IBOutlet weak var confirmBtnView: UIButton!
+    
     @IBAction func confirm(_ sender: Any) {
-       performSegue(withIdentifier: "meetingSegue", sender: sender)
+//       performSegue(withIdentifier: "meetingSegue", sender: sender)
+        UIView.animate(withDuration: 5.0, animations: { () -> Void in
+            self.popupView.isHidden = false
+            })
     }
+
+    @IBOutlet weak var popupView: UIView!
 
     @IBOutlet weak var tableview: UITableView!
 
@@ -28,6 +34,8 @@ class CreateFirstPageVC: UIViewController {
         tableview.delegate = self
         tableview.dataSource = self
 //        confirmBtnView.isEnabled = false
+
+        self.popupView.isHidden = true
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(enableConfirmBtn),

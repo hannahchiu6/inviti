@@ -8,11 +8,10 @@
 import UIKit
 
 class PopEditSuccessVC: UIViewController {
-
+    
     @IBAction func returnMain(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

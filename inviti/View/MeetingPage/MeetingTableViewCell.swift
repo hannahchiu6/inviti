@@ -10,6 +10,7 @@ import UIKit
 protocol MeetingTableCellDelegate {
     func editButtonPressed()
     func goButtonPressed()
+    func deleteBtnPressed()
 }
 
 class MeetingTableViewCell: UITableViewCell {
@@ -39,6 +40,10 @@ class MeetingTableViewCell: UITableViewCell {
 
     @IBAction func participate(_ sender: Any) {
         delegate?.goButtonPressed()
+    }
+
+    @IBAction func deleteBtn(_ sender: Any) {
+        delegate?.deleteBtnPressed()
     }
 
     func setUpView() {
