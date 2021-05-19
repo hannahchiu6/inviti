@@ -198,13 +198,24 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
+                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X8d-U3-Zj9">
+                                        <rect key="frame" x="0.0" y="813" width="414" height="83"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="83" id="Uvg-k5-KiZ"/>
+                                        </constraints>
+                                        <items/>
+                                    </tabBar>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="vWN-Wk-9ka" firstAttribute="leading" secondItem="XW5-mh-f48" secondAttribute="leading" constant="16" id="39k-fZ-qWN"/>
                                     <constraint firstAttribute="right" secondItem="vWN-Wk-9ka" secondAttribute="right" constant="16" id="Lby-w3-ger"/>
+                                    <constraint firstAttribute="bottom" secondItem="X8d-U3-Zj9" secondAttribute="bottom" id="boX-pR-FOn"/>
+                                    <constraint firstAttribute="trailing" secondItem="X8d-U3-Zj9" secondAttribute="trailing" id="dcm-Qb-1TI"/>
                                     <constraint firstItem="vWN-Wk-9ka" firstAttribute="top" secondItem="XW5-mh-f48" secondAttribute="top" constant="60" id="gUk-Tu-UOf"/>
                                     <constraint firstAttribute="bottom" secondItem="vWN-Wk-9ka" secondAttribute="bottom" id="jEu-v0-Ctv"/>
+                                    <constraint firstItem="X8d-U3-Zj9" firstAttribute="leading" secondItem="XW5-mh-f48" secondAttribute="leading" id="na9-9U-S4o"/>
                                 </constraints>
                             </view>
                         </subviews>

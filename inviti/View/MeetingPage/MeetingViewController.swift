@@ -9,63 +9,99 @@ import UIKit
 
 class MeetingViewController: UIViewController {
 
-    @IBAction func pastBtn(_ sender: Any) {
-
-//            self.bottomLine.center.x = sender.center.x
-
-    }
-
-    @IBAction func futureBtn(_ sender: Any) {
-        UIView.animate(withDuration: 0.3) {
-            self.bottomLine.center.x = (sender as AnyObject).center.x
+    private var willDrop: Bool = false {
+        didSet {
+            if (willDrop) {
+                UIView.animate(withDuration: 1) { [weak self] () in
+//                    let transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi))
+                    self?.notiPopView.isHidden = false
+//                    self?.notiPopView.transform = transform
+                }
+            } else {
+                UIView.animate(withDuration: 1) { [weak self] () in
+//                    let transform = CGAffineTransform.init(rotationAngle: CGFloat(0))
+                    self?.notiPopView.isHidden = true
+//                    self?.notiPopView.transform = transform
+                }
+            }
         }
     }
 
-    let indicator = UIView()
-    var indicatorCenterXContraint: NSLayoutConstraint?
-    var selectedIndex: Int?
 
-    @IBAction func notificationBtn(_ sender: Any) {
+    var count: Int = 0
+
+    @IBAction func pastBtn(_ sender: UIButton) {
+        sender.isSelected = true
+        moveIndicatorView(reference: sender)
+        futureView.isHidden = true
+        pastView.isHidden = false
     }
 
+    @IBAction func futureBtn(_ sender: UIButton) {
+        sender.isSelected = true
+        moveIndicatorView(reference: sender)
+        futureView.isHidden = false
+        pastView.isHidden = true
+    }
+
+    @IBAction func notificationBtn(_ sender: Any) {
+        willDrop = !willDrop
+    }
+
+
+    @IBOutlet weak var futureView: UIView!
+    @IBOutlet weak var pastView: UIView!
+    @IBOutlet weak var notiPopView: UIView!
+
+    @IBOutlet weak var indicatorCenterXConstraint: NSLayoutConstraint!
     @IBOutlet weak var notificationIcon: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var bottomLine: UIView!
     @IBOutlet weak var pastLabel: UIButton!
     @IBOutlet weak var futureLabel: UIButton!
-    @IBOutlet weak var tableView: UITableView!
+
+    @IBOutlet weak var notiView: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.do_registerCellWithNib(
-            identifier: String(describing: MeetingTableViewCell.self),
-            bundle: nil)
+
+        notiPopView.isHidden = true
         setupView()
+
+        navigationController?.navigationBar.backgroundColor = UIColor.clear
+
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(false)
+    }
 
-//    @objc func userDidTouchButton(sender: UIButton) {
-//
-//        print("clicked!!!!!")
-//        guard delegate?.shouldSelectedButton?(self, at: sender.tag) == true else { return }
-//
-//        UIView.animate(withDuration: 0.3) {
-//            self.indicator.center.x = sender.center.x
-//        }
-//        delegate?.didSelectedButton?(self, at: sender.tag)
-//
-//        selectedIndex = sender.tag
-//
-//    }
+    private func moveIndicatorView(reference: UIView) {
+        indicatorCenterXConstraint.isActive = false
+
+        indicatorCenterXConstraint = bottomLine.centerXAnchor.constraint(equalTo: reference.centerXAnchor)
+
+        indicatorCenterXConstraint.isActive = true
+
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+        })
+    }
 
 
     func setupView() {
-    
-
         searchBar.backgroundImage = UIImage()
     }
+
+//    func showOptions(sender: UIButton) {
+//        if let controller = storyboard?.instantiateViewController(withIdentifier: "NotiViewController") {
+//          controller.modalPresentationStyle = .popover
+//          controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+//          present(controller, animated: true, completion: nil)
+//        }
+//    }
+}
 
 //    private func setupIndicatorsViews() {
 //
@@ -97,18 +133,4 @@ class MeetingViewController: UIViewController {
 //
 //    }
 
-}
 
-extension MeetingViewController: UITableViewDelegate {
-}
-extension MeetingViewController: UITableViewDataSource {
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 3
-        }
-
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MeetingTableViewCell.self), for: indexPath) as! MeetingTableViewCell
-
-            return cell
-        }
-}

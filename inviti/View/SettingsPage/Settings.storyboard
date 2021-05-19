@@ -28,11 +28,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J10-Ny-dJU">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J10-Ny-dJU" customClass="SettingsTableViewCell" customModule="inviti" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9K-V5-jnw">
-                                                            <rect key="frame" x="24" y="28" width="44" height="47"/>
+                                                            <rect key="frame" x="24" y="16" width="44" height="71"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="WG7-aI-G8a"/>
                                                             </constraints>
@@ -49,10 +49,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYo-RQ-8eP">
-                                                            <rect key="frame" x="76" y="28" width="43" height="47"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="30" id="QQY-xy-65c"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="76" y="16" width="43" height="71"/>
                                                             <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="17"/>
                                                             <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -61,15 +58,23 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="c9K-V5-jnw" secondAttribute="bottom" constant="28" id="4mh-UE-bav"/>
+                                                        <constraint firstAttribute="bottom" secondItem="c9K-V5-jnw" secondAttribute="bottom" constant="16" id="4mh-UE-bav"/>
                                                         <constraint firstItem="c9K-V5-jnw" firstAttribute="leading" secondItem="J10-Ny-dJU" secondAttribute="leading" constant="24" id="6v9-T3-M8L"/>
                                                         <constraint firstAttribute="trailing" secondItem="0yo-kP-jIM" secondAttribute="trailing" constant="24" id="7Gz-Zv-OpI"/>
-                                                        <constraint firstAttribute="bottom" secondItem="DYo-RQ-8eP" secondAttribute="bottom" constant="28" id="Swo-E9-FaX"/>
-                                                        <constraint firstItem="DYo-RQ-8eP" firstAttribute="top" secondItem="J10-Ny-dJU" secondAttribute="top" constant="28" id="aNT-CS-93b"/>
-                                                        <constraint firstItem="c9K-V5-jnw" firstAttribute="top" secondItem="J10-Ny-dJU" secondAttribute="top" constant="28" id="kGv-eH-bkC"/>
+                                                        <constraint firstAttribute="bottom" secondItem="DYo-RQ-8eP" secondAttribute="bottom" constant="16" id="Swo-E9-FaX"/>
+                                                        <constraint firstItem="DYo-RQ-8eP" firstAttribute="top" secondItem="J10-Ny-dJU" secondAttribute="top" constant="16" id="aNT-CS-93b"/>
+                                                        <constraint firstItem="c9K-V5-jnw" firstAttribute="top" secondItem="J10-Ny-dJU" secondAttribute="top" constant="16" id="kGv-eH-bkC"/>
                                                         <constraint firstItem="DYo-RQ-8eP" firstAttribute="leading" secondItem="c9K-V5-jnw" secondAttribute="trailing" constant="8" id="qFv-cu-1qu"/>
                                                         <constraint firstItem="0yo-kP-jIM" firstAttribute="centerY" secondItem="DYo-RQ-8eP" secondAttribute="centerY" id="z0w-tL-qLs"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="lkBorderWidth">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="lkBorderColor">
+                                                            <color key="value" systemColor="systemGray6Color"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -107,14 +112,6 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.69803921570000005" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9lk-iJ-72A">
-                                        <rect key="frame" x="352" y="21" width="40" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="17"/>
-                                        <state key="normal" title="Save">
-                                            <color key="titleColor" red="0.2510193288" green="0.2353136539" blue="0.23526367549999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您已創建 666 個 invitis!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sql-gU-Swk">
                                         <rect key="frame" x="127" y="264" width="160" height="21"/>
                                         <fontDescription key="fontDescription" name="PingFangTC-Thin" family="PingFang TC" pointSize="15"/>

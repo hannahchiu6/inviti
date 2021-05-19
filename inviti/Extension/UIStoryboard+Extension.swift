@@ -23,6 +23,12 @@ private struct StoryboardCategory {
     static let noti = "Notification"
 
     static let meeting = "Meeting"
+
+    static let second = "Second"
+
+    static let third = "Third"
+
+    static let voting = "Voting"
 }
 
 extension UIStoryboard {
@@ -40,6 +46,12 @@ extension UIStoryboard {
     static var settings: UIStoryboard { return stStoryboard(name: StoryboardCategory.settings) }
 
     static var noti: UIStoryboard { return stStoryboard(name: StoryboardCategory.noti) }
+
+    static var second: UIStoryboard { return stStoryboard(name: StoryboardCategory.second) }
+
+    static var third: UIStoryboard { return stStoryboard(name: StoryboardCategory.third) }
+
+    static var voting: UIStoryboard { return stStoryboard(name: StoryboardCategory.voting) }
 
     private static func stStoryboard(name: String) -> UIStoryboard {
         return UIStoryboard(name: name, bundle: nil)
