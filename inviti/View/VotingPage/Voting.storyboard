@@ -329,10 +329,10 @@
             </objects>
             <point key="canvasLocation" x="778" y="108"/>
         </scene>
-        <!--Edit View Controller-->
+        <!--View Controller-->
         <scene sceneID="BzZ-Og-rlW">
             <objects>
-                <viewController storyboardIdentifier="EditVC" hidesBottomBarWhenPushed="YES" id="DOg-Ls-HBO" customClass="EditViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="DOg-Ls-HBO" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fYp-iv-0xZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -566,10 +566,10 @@
             </objects>
             <point key="canvasLocation" x="-246" y="831"/>
         </scene>
-        <!--Pop Edit SuccessVC-->
+        <!--View Controller-->
         <scene sceneID="jaI-5V-vg9">
             <objects>
-                <viewController storyboardIdentifier="PopEditVC" modalTransitionStyle="crossDissolve" id="yMq-QP-TUu" customClass="PopEditSuccessVC" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="yMq-QP-TUu" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9xT-CJ-hYT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

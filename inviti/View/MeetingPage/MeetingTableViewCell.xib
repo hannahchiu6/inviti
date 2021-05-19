@@ -25,14 +25,14 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Wry-RL-Cfj">
-                        <rect key="frame" x="369" y="34.5" width="25" height="70"/>
+                        <rect key="frame" x="374" y="19.5" width="20" height="100"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VI3-y0-bGO" userLabel="Edit Button">
-                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="VI3-y0-bGO" secondAttribute="height" multiplier="1:1" id="2fY-ZT-PUr"/>
-                                    <constraint firstAttribute="width" constant="25" id="WXS-Ic-btC"/>
+                                    <constraint firstAttribute="width" constant="20" id="WXS-Ic-btC"/>
                                 </constraints>
                                 <color key="tintColor" red="1" green="0.36470588240000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <state key="normal">
@@ -42,24 +42,40 @@
                                     <action selector="edit:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qQb-HK-4RK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JiU-8r-iTZ" userLabel="Edit Button">
-                                <rect key="frame" x="0.0" y="45" width="25" height="25"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAA-GT-dJ8" userLabel="Vote Button">
+                                <rect key="frame" x="0.0" y="40" width="20" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="fBb-Vt-grt"/>
-                                    <constraint firstAttribute="width" secondItem="JiU-8r-iTZ" secondAttribute="height" multiplier="1:1" id="pd8-3N-7vg"/>
+                                    <constraint firstAttribute="width" constant="20" id="TzV-uO-Uae"/>
+                                    <constraint firstAttribute="width" secondItem="nAA-GT-dJ8" secondAttribute="height" multiplier="1:1" id="cvl-o2-maD"/>
                                 </constraints>
                                 <color key="tintColor" red="1" green="0.36470588240000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <imageReference key="image" image="chevron.right.square.fill" catalog="system" symbolScale="large"/>
                                 </state>
                                 <connections>
-                                    <action selector="participate:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5Ot-ZD-Mat"/>
+                                    <action selector="participate:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5Sg-hk-RSr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JiU-8r-iTZ" userLabel="Delete Button">
+                                <rect key="frame" x="0.0" y="80" width="20" height="20"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="fBb-Vt-grt"/>
+                                    <constraint firstAttribute="width" secondItem="JiU-8r-iTZ" secondAttribute="height" multiplier="1:1" id="pd8-3N-7vg"/>
+                                </constraints>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="trash" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Xax-BK-0nA"/>
                                 </connections>
                             </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="VI3-y0-bGO" firstAttribute="width" secondItem="VI3-y0-bGO" secondAttribute="height" multiplier="1:1" id="L6D-aH-U47"/>
+                            <constraint firstItem="nAA-GT-dJ8" firstAttribute="width" secondItem="nAA-GT-dJ8" secondAttribute="height" multiplier="1:1" id="XBY-LA-Qtv"/>
                         </constraints>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="wYo-fO-tra">
@@ -175,6 +191,7 @@
         <image name="person.2.circle.fill" catalog="system" width="128" height="121"/>
         <image name="profile_photo" width="200" height="133"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <image name="tray.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>

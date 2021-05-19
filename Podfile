@@ -12,6 +12,7 @@ target 'inviti' do
   pod 'SwiftyMenu', '~> 0.6.5'
   pod "CalendarLib"
   pod 'JZCalendarWeekView', '~> 0.3'
-
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
 
 end

@@ -27,10 +27,15 @@ class PastTableViewController: UITableViewController {
     }
 }
 extension PastTableViewController: MeetingTableCellDelegate {
+    func deleteBtnPressed() {
+
+        
+    }
+
     func editButtonPressed() {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
-        let editVC = storyboard.instantiateViewController(identifier: "VotingVC")
-           guard let edit = editVC as? VotingViewController else { return }
+        let storyboard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
+        let editVC = storyboard.instantiateViewController(identifier: "CreateFirstPageVC")
+           guard let edit = editVC as? CreateFirstPageVC else { return }
         navigationController?.pushViewController(edit, animated: true)
     }
 
