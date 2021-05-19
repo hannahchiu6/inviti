@@ -21,11 +21,7 @@ class EditViewController: UIViewController {
     @IBOutlet weak var popupView: UIView!
 
     @IBAction func sendMeeting(_ sender: Any) {
-//        UIView.animate(withDuration: 2) {
-//            self.popupView.isHidden = false
-//            self.popupView.transform = .identity
-//        print("55555555!!!")
-//        }
+
         UIView.animate(withDuration: 5.0, animations: { () -> Void in
             self.popupView.isHidden = false
             })
