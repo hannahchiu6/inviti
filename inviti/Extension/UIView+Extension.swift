@@ -9,13 +9,10 @@ import UIKit
 
 @IBDesignable
 extension UIView {
-
     //Border Color
     @IBInspectable var lkBorderColor: UIColor? {
         get {
-
             guard let borderColor = layer.borderColor else {
-
                 return nil
             }
 

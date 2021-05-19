@@ -17,9 +17,9 @@ class OptionCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
-    private var events = ["讀書會", "牙醫洗牙", "行銷會議面談"]
-    private var startTime = ["09:30", "13:00", "15:00"]
-    private var endTime = ["11:00", "13:40","16:30"]
+    private var events = ["讀書會", "牙醫洗牙", "行銷會議面談", "打疫苗去", "我是歌手", "選秀比賽"]
+    private var startTime = ["09:30", "13:00", "15:00", "17:00", "19:00", "22:00"]
+    private var endTime = ["11:00", "13:40","16:30", "17:30", "20:40","22:30"]
 
     func roundCorners(cornerRadius: Double) {
         let path = UIBezierPath(roundedRect: bottomView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
