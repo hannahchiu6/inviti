@@ -127,8 +127,8 @@
                                     <segue destination="lVk-cS-May" kind="embed" id="BTv-9K-LdX"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RhY-4W-1et">
-                                <rect key="frame" x="165" y="96" width="249" height="400"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RhY-4W-1et">
+                                <rect key="frame" x="165" y="88" width="249" height="400"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="400" id="gFz-go-4oN"/>
                                 </constraints>
@@ -172,6 +172,7 @@
                             <constraint firstItem="SZu-Ru-Hka" firstAttribute="leading" secondItem="NNP-1V-qgP" secondAttribute="leading" id="LIe-fP-kMl"/>
                             <constraint firstItem="SZu-Ru-Hka" firstAttribute="trailing" secondItem="8Fl-Xt-PWz" secondAttribute="trailing" id="NfB-40-Tbe"/>
                             <constraint firstItem="OxM-A5-4Oh" firstAttribute="trailing" secondItem="NNP-1V-qgP" secondAttribute="trailing" id="Nup-HY-vh3"/>
+                            <constraint firstItem="RhY-4W-1et" firstAttribute="top" secondItem="NNP-1V-qgP" secondAttribute="top" id="SNB-wp-xc1"/>
                             <constraint firstItem="SZu-Ru-Hka" firstAttribute="top" secondItem="O0f-aY-6OM" secondAttribute="bottom" constant="24" id="Yd9-cB-MXC"/>
                             <constraint firstItem="RhY-4W-1et" firstAttribute="leading" secondItem="NNP-1V-qgP" secondAttribute="leading" constant="165" id="ZhX-1K-x3v"/>
                             <constraint firstItem="SZu-Ru-Hka" firstAttribute="top" secondItem="8Fl-Xt-PWz" secondAttribute="top" id="bix-um-qYf"/>
@@ -184,7 +185,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hHT-6d-sGc">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="gCC-YG-Han">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="c2A-95-Cao">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="c2A-95-Cao">
                                 <rect key="frame" x="349" y="0.0" width="45" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
