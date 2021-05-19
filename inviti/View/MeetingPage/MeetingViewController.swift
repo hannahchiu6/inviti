@@ -59,7 +59,6 @@ class MeetingViewController: UIViewController {
     @IBOutlet weak var bottomLine: UIView!
     @IBOutlet weak var pastLabel: UIButton!
     @IBOutlet weak var futureLabel: UIButton!
-    @IBOutlet weak var tableView: UITableView!
 
     @IBOutlet weak var notiView: UIButton!
 
@@ -68,6 +67,9 @@ class MeetingViewController: UIViewController {
 
         notiPopView.isHidden = true
         setupView()
+
+        navigationController?.navigationBar.backgroundColor = UIColor.clear
+
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

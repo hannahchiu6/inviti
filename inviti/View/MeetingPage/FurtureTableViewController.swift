@@ -21,7 +21,25 @@ class FurtureTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MeetingTableViewCell.self), for: indexPath) as! MeetingTableViewCell
+        cell.delegate = self
 
         return cell
+    }
+}
+
+extension FurtureTableViewController: MeetingTableCellDelegate {
+    func editButtonPressed() {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
+        let editVC = storyboard.instantiateViewController(identifier: "VotingVC")
+           guard let edit = editVC as? VotingViewController else { return }
+        navigationController?.pushViewController(edit, animated: true)
+    }
+
+    func goButtonPressed() {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
+        let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
+           guard let voting = votingVC as? VotingViewController else { return }
+        navigationController?.pushViewController(voting, animated: true)
+
     }
 }

@@ -1,5 +1,5 @@
 //
-//  VotingViewController.swift
+//  EditViewController.swift
 //  inviti
 //
 //  Created by Hannah.C on 13.05.21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class VotingViewController: UIViewController {
+class EditViewController: UIViewController {
 
     let titles: [String] = ["August 8, Friday", "August 8, Friday", "August 8, Friday", "August 9, Saturday", "August 9, Saturday"]
     let start: [String] = ["11:00 - 13:00", "14:00 - 16:00", "17:00 - 19:00", "11:00 - 13:00", "17:00 - 19:00"]
@@ -21,11 +21,14 @@ class VotingViewController: UIViewController {
     @IBOutlet weak var popupView: UIView!
 
     @IBAction func sendMeeting(_ sender: Any) {
-        UIView.animate(withDuration: 1) {
+//        UIView.animate(withDuration: 2) {
+//            self.popupView.isHidden = false
+//            self.popupView.transform = .identity
+//        print("55555555!!!")
+//        }
+        UIView.animate(withDuration: 5.0, animations: { () -> Void in
             self.popupView.isHidden = false
-            self.popupView.transform = .identity
-        print("55555555!!!")
-        }
+            })
     }
 
     override func viewDidLoad() {
@@ -54,15 +57,13 @@ class VotingViewController: UIViewController {
        self.navigationController?.navigationBar.shadowImage = UIImage()
        self.navigationController?.navigationBar.isTranslucent = false
    }
+}
 
+extension EditViewController: UITableViewDelegate {
 
 }
 
-extension VotingViewController: UITableViewDelegate {
-
-}
-
-extension VotingViewController: UITableViewDataSource {
+extension EditViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titles.count
     }
