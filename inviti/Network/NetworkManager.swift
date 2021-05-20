@@ -23,9 +23,45 @@ class NetworkManager {
 
     lazy var db = Firestore.firestore()
 
-    func fetchMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
+    func fetchNewMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
 
-        db.collection("meetings").order(by: "createdTime", descending: true).getDocuments() { (querySnapshot, error) in
+        db.collection("meetings")
+            .order(by: "createdTime", descending: true)
+            .whereField("createdTime", isGreaterThan: Date().millisecondsSince1970)
+            .getDocuments() { (querySnapshot, error) in
+
+                if let error = error {
+
+                    completion(.failure(error))
+                } else {
+
+                    var meetings = [Meeting]()
+
+                    for document in querySnapshot!.documents {
+
+                        do {
+                            if let meeting = try document.data(as: Meeting.self, decoder: Firestore.Decoder()) {
+                                meetings.append(meeting)
+                            }
+
+                        } catch {
+
+                            completion(.failure(error))
+//                            completion(.failure(FirebaseError.documentError))
+                        }
+                    }
+
+                    completion(.success(meetings))
+                }
+        }
+    }
+
+    func fetchOldMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
+
+        db.collection("meetings")
+            .order(by: "createdTime", descending: true)
+            .whereField("createdTime", isLessThan: Date().millisecondsSince1970)
+            .getDocuments() { (querySnapshot, error) in
 
                 if let error = error {
 
@@ -57,7 +93,7 @@ class NetworkManager {
 
         let document = db.collection("meetings").document()
         meeting.id = document.documentID
-        meeting.createdTime = Int64(Date().timeIntervalSince1970)
+        meeting.createdTime = Int64(Date().millisecondsSince1970)
         document.setData(meeting.toDict) { error in
 
             if let error = error {
@@ -72,26 +108,27 @@ class NetworkManager {
 
     func deleteMeeting(meeting: Meeting, completion: @escaping (Result<String, Error>) -> Void) {
 
-        if !UserManager.shared.isLogin() {
-            print("who r u?")
-            return
-        }
+//        if !UserManager.shared.isLogin() {
+//            print("who r u?")
+//            return
+//        }
 
-        if let user = meeting.owner {
-            if user.id == "moon2021"
+//        if let user = meeting.owner {
+//            if user.id == "5gWVjg7xTHElu9p6Jkl1"
 //                && meeting.category.lowercased() != "test"
 //                && !meeting.category.trimmingCharacters(in: .whitespaces).isEmpty
-        {
-                completion(.failure(MasterError.youKnowNothingError("You know nothing!! \(user.id)")))
-                return
-            }
-        }
+//        {
+//                completion(.failure(MasterError.youKnowNothingError("You know nothing!! \(user.id)")))
+//                return
+//            }
+//        }
 
         db.collection("meetings").document(meeting.id).delete() { error in
 
             if let error = error {
 
                 completion(.failure(error))
+                
             } else {
 
                 completion(.success(meeting.id))

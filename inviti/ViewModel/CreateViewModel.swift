@@ -6,21 +6,23 @@
 //
 
 import Foundation
+import Firebase
 
 class CreateViewModel {
 
     var meeting: Meeting = Meeting(
         id: "",
-        owner: UserManager.shared.user,
-        createdTime: -1,
-        subject: "",
-        location: "",
-        notes: "",
+        owner: UserManager.shared.user!.id,
+        createdTime: 1,
+        subject: "活動範例",
+        location: "參考地點",
+        notes: "活動內文",
+        image: "",
 //        options: Option,
         singleMeeting: false,
         hiddenMeeting: false,
 //        askInfo: AskInfo,
-        participants: [""],
+        participants: ["aaa"],
         numOfParticipants: 1
     )
 
@@ -84,7 +86,7 @@ class CreateViewModel {
     func create(with user: User? = nil) {
 
         if let user = user {
-            meeting.owner? = user
+            meeting.owner = user.id
         }
 
         create(with: &meeting) // MARK: check which function this call is

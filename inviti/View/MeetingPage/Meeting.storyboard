@@ -13,7 +13,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FurtureTVC" id="lVk-cS-May" customClass="FurtureTableViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HuS-tT-jJU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="683"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="637"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -113,18 +113,18 @@
                                     <constraint firstItem="5fm-kN-DRv" firstAttribute="centerX" secondItem="kV6-l5-EOg" secondAttribute="centerX" id="mTx-g1-BiX"/>
                                 </constraints>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZu-Ru-Hka" userLabel="Past Container View">
-                                <rect key="frame" x="0.0" y="179" width="414" height="683"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <segue destination="tb9-i9-YGq" kind="embed" id="Vfj-sq-Ccc"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Fl-Xt-PWz" userLabel="Future Container View">
-                                <rect key="frame" x="0.0" y="179" width="414" height="683"/>
+                                <rect key="frame" x="0.0" y="179" width="414" height="637"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="lVk-cS-May" kind="embed" id="BTv-9K-LdX"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZu-Ru-Hka" userLabel="Past Container View">
+                                <rect key="frame" x="0.0" y="179" width="414" height="637"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="tb9-i9-YGq" kind="embed" id="Vfj-sq-Ccc"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RhY-4W-1et">
@@ -136,7 +136,7 @@
                                     <segue destination="FZx-5c-viO" kind="embed" id="jXu-Ju-9le"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OxM-A5-4Oh">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OxM-A5-4Oh" userLabel="NaviView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="VaP-QM-8dl">
@@ -160,13 +160,30 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUL-Eh-BlP">
+                                <rect key="frame" x="0.0" y="812" width="414" height="84"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="gV8-7R-0ej"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lkBorderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="lkBorderColor">
+                                        <color key="value" systemColor="systemGray5Color"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NNP-1V-qgP"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="oUL-Eh-BlP" firstAttribute="leading" secondItem="NNP-1V-qgP" secondAttribute="leading" id="2Yg-9b-b4X"/>
+                            <constraint firstAttribute="bottom" secondItem="oUL-Eh-BlP" secondAttribute="bottom" id="7Gu-1D-hOR"/>
                             <constraint firstItem="O0f-aY-6OM" firstAttribute="top" secondItem="WYB-WR-ney" secondAttribute="top" constant="100" id="8gt-On-zfg"/>
                             <constraint firstItem="OxM-A5-4Oh" firstAttribute="top" secondItem="WYB-WR-ney" secondAttribute="top" id="96e-cv-TrT"/>
-                            <constraint firstItem="NNP-1V-qgP" firstAttribute="bottom" secondItem="SZu-Ru-Hka" secondAttribute="bottom" id="C2e-H0-eUB"/>
+                            <constraint firstAttribute="bottom" secondItem="SZu-Ru-Hka" secondAttribute="bottom" constant="80" id="C2e-H0-eUB"/>
                             <constraint firstItem="O0f-aY-6OM" firstAttribute="trailing" secondItem="NNP-1V-qgP" secondAttribute="trailing" id="Crg-t0-G6w"/>
                             <constraint firstItem="NNP-1V-qgP" firstAttribute="trailing" secondItem="RhY-4W-1et" secondAttribute="trailing" id="L7s-ep-rDW"/>
                             <constraint firstItem="SZu-Ru-Hka" firstAttribute="leading" secondItem="NNP-1V-qgP" secondAttribute="leading" id="LIe-fP-kMl"/>
@@ -178,6 +195,7 @@
                             <constraint firstItem="SZu-Ru-Hka" firstAttribute="top" secondItem="8Fl-Xt-PWz" secondAttribute="top" id="bix-um-qYf"/>
                             <constraint firstItem="OxM-A5-4Oh" firstAttribute="leading" secondItem="NNP-1V-qgP" secondAttribute="leading" id="dqn-Dz-hKG"/>
                             <constraint firstItem="O0f-aY-6OM" firstAttribute="leading" secondItem="NNP-1V-qgP" secondAttribute="leading" id="fGD-zb-L9g"/>
+                            <constraint firstItem="NNP-1V-qgP" firstAttribute="trailing" secondItem="oUL-Eh-BlP" secondAttribute="trailing" id="lPV-87-q3E"/>
                             <constraint firstItem="SZu-Ru-Hka" firstAttribute="bottom" secondItem="8Fl-Xt-PWz" secondAttribute="bottom" id="mJV-bt-Ccf"/>
                             <constraint firstItem="SZu-Ru-Hka" firstAttribute="leading" secondItem="8Fl-Xt-PWz" secondAttribute="leading" id="mzY-zC-1hp"/>
                             <constraint firstItem="SZu-Ru-Hka" firstAttribute="trailing" secondItem="NNP-1V-qgP" secondAttribute="trailing" id="p1o-wf-q7a"/>
@@ -460,7 +478,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="PastTVC" id="tb9-i9-YGq" customClass="PastTableViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WVX-TR-Qi9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="683"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="637"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

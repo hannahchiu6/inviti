@@ -35,20 +35,19 @@ class MeetingViewModel {
         }
     }
 
-    var userImage: String? {
+    var image: String? {
         get {
-            return meeting.owner?.image
+            return meeting.image
         }
     }
 
-    var createdTime: TimeInterval {
+    var createdTime: String {
         get {
-            return NSDate().timeIntervalSince1970
-//                Date.dateFormatter.string(from: Date.init(milliseconds: meeting.createdTime))
+            return Date.dateFormatter.string(from: Date.init(millis: meeting.createdTime))
         }
     }
 
-    var participants: [String?] {
+    var participants: [String] {
         get {
             return meeting.participants
         }
@@ -71,7 +70,7 @@ class MeetingViewModel {
 //        }
 //    }
 
-    var owner: User? {
+    var owner: String? {
         get {
             return meeting.owner
         }

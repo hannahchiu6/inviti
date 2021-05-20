@@ -59,6 +59,9 @@
 		865A00EE265428FF0061A0E4 /* FurtureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A00ED265428FF0061A0E4 /* FurtureTableViewController.swift */; };
 		865A00F22654297A0061A0E4 /* PastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A00F12654297A0061A0E4 /* PastTableViewController.swift */; };
 		8667673D26525190009D9979 /* copy - CalendarViewController copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8667673C26525190009D9979 /* copy - CalendarViewController copy.swift */; };
+		866C974626563BF000687386 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C974526563BF000687386 /* DateHelper.swift */; };
+		866C974D26563CD900687386 /* UIColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C974B26563CD900687386 /* UIColorHelper.swift */; };
+		866C975026563E9400687386 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C974F26563E9400687386 /* ImageHelper.swift */; };
 		867950C32651741C0041847C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867950C22651741C0041847C /* String+Extension.swift */; };
 		867950C7265215230041847C /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867950C6265215230041847C /* UIScrollView+Extension.swift */; };
 		869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E7F264CE10A004681A2 /* NavigationController.swift */; };
@@ -73,14 +76,15 @@
 		869F842226555CE900DA1D53 /* AddMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F842126555CE900DA1D53 /* AddMockData.swift */; };
 		869F842626560C6900DA1D53 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F842526560C6900DA1D53 /* UserManager.swift */; };
 		869F842A26560C8400DA1D53 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F842926560C8400DA1D53 /* NetworkManager.swift */; };
-		869F842F265613B000DA1D53 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F842E265613B000DA1D53 /* HomeViewModel.swift */; };
+		869F842F265613B000DA1D53 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F842E265613B000DA1D53 /* MainViewModel.swift */; };
 		869F8434265613DD00DA1D53 /* MeetingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F8433265613DD00DA1D53 /* MeetingViewModel.swift */; };
 		869F844626561D6200DA1D53 /* PaddingableUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F844426561D6200DA1D53 /* PaddingableUILabel.swift */; };
 		869F844726561D6200DA1D53 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F844526561D6200DA1D53 /* Box.swift */; };
 		869F844A26561F7000DA1D53 /* CreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F844926561F6F00DA1D53 /* CreateViewModel.swift */; };
+		869F8497265634DE00DA1D53 /* PublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F8496265634DE00DA1D53 /* PublishViewController.swift */; };
 		86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B45264A8584006EE7FE /* AppDelegate.swift */; };
 		86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B47264A8584006EE7FE /* SceneDelegate.swift */; };
-		86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B49264A8584006EE7FE /* ViewController.swift */; };
+		86B12B4A264A8584006EE7FE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B49264A8584006EE7FE /* HomeViewController.swift */; };
 		86B12B4D264A8584006EE7FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B12B4B264A8584006EE7FE /* Main.storyboard */; };
 		86B12B4F264A8587006EE7FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B12B4E264A8587006EE7FE /* Assets.xcassets */; };
 		86B12B52264A8587006EE7FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B12B50264A8587006EE7FE /* LaunchScreen.storyboard */; };
@@ -152,6 +156,9 @@
 		865A00ED265428FF0061A0E4 /* FurtureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurtureTableViewController.swift; sourceTree = "<group>"; };
 		865A00F12654297A0061A0E4 /* PastTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastTableViewController.swift; sourceTree = "<group>"; };
 		8667673C26525190009D9979 /* copy - CalendarViewController copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "copy - CalendarViewController copy.swift"; sourceTree = "<group>"; };
+		866C974526563BF000687386 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		866C974B26563CD900687386 /* UIColorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHelper.swift; sourceTree = "<group>"; };
+		866C974F26563E9400687386 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		867950C22651741C0041847C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		867950C6265215230041847C /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		869F6E7F264CE10A004681A2 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -166,15 +173,16 @@
 		869F842126555CE900DA1D53 /* AddMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMockData.swift; sourceTree = "<group>"; };
 		869F842526560C6900DA1D53 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		869F842926560C8400DA1D53 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		869F842E265613B000DA1D53 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		869F842E265613B000DA1D53 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		869F8433265613DD00DA1D53 /* MeetingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewModel.swift; sourceTree = "<group>"; };
 		869F844426561D6200DA1D53 /* PaddingableUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingableUILabel.swift; sourceTree = "<group>"; };
 		869F844526561D6200DA1D53 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		869F844926561F6F00DA1D53 /* CreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewModel.swift; sourceTree = "<group>"; };
+		869F8496265634DE00DA1D53 /* PublishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishViewController.swift; sourceTree = "<group>"; };
 		86B12B42264A8584006EE7FE /* inviti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inviti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B12B45264A8584006EE7FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86B12B47264A8584006EE7FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		86B12B49264A8584006EE7FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		86B12B49264A8584006EE7FE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		86B12B4C264A8584006EE7FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		86B12B4E264A8587006EE7FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86B12B51264A8587006EE7FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -262,7 +270,6 @@
 			children = (
 				8614DE50265291E400DC0A9D /* Example */,
 				86EE499E26514C97003B0C25 /* CreateThirdViewController.swift */,
-				86EE4979265102BD003B0C25 /* CreateFirstPageVC.swift */,
 				860B5C912652297200171ED3 /* CreateFirstTableViewCell.swift */,
 				86C3FA64264BE22900480E4F /* Create.storyboard */,
 				8618860B264E78160048D9AA /* CreateSecondVC.swift */,
@@ -334,6 +341,16 @@
 			path = VotingPage;
 			sourceTree = "<group>";
 		};
+		866C974426563BE600687386 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				866C974526563BF000687386 /* DateHelper.swift */,
+				866C974B26563CD900687386 /* UIColorHelper.swift */,
+				866C974F26563E9400687386 /* ImageHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		869F842426560C4D00DA1D53 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +390,7 @@
 		86B12B44264A8584006EE7FE /* inviti */ = {
 			isa = PBXGroup;
 			children = (
+				866C974426563BE600687386 /* Helper */,
 				869F842D2656139800DA1D53 /* Util */,
 				869F842426560C4D00DA1D53 /* Network */,
 				86406559264D9901003C756D /* Extension */,
@@ -396,9 +414,6 @@
 		86B8ED8C264E27B700F2508A /* MeetingPage */ = {
 			isa = PBXGroup;
 			children = (
-				865A00ED265428FF0061A0E4 /* FurtureTableViewController.swift */,
-				865A00F12654297A0061A0E4 /* PastTableViewController.swift */,
-				86F203DC264E05EC00A9763A /* MeetingViewController.swift */,
 				86F203D9264D9E3100A9763A /* Meeting.storyboard */,
 				86392C57264FA46C003F7EBC /* MeetingTableViewCell.swift */,
 				86392C58264FA46C003F7EBC /* MeetingTableViewCell.xib */,
@@ -431,7 +446,7 @@
 				869F842126555CE900DA1D53 /* AddMockData.swift */,
 				869F8433265613DD00DA1D53 /* MeetingViewModel.swift */,
 				869F844926561F6F00DA1D53 /* CreateViewModel.swift */,
-				869F842E265613B000DA1D53 /* HomeViewModel.swift */,
+				869F842E265613B000DA1D53 /* MainViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -439,7 +454,12 @@
 		86C3FA5E264BDDEC00480E4F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				86B12B49264A8584006EE7FE /* ViewController.swift */,
+				865A00ED265428FF0061A0E4 /* FurtureTableViewController.swift */,
+				865A00F12654297A0061A0E4 /* PastTableViewController.swift */,
+				86EE4979265102BD003B0C25 /* CreateFirstPageVC.swift */,
+				86F203DC264E05EC00A9763A /* MeetingViewController.swift */,
+				86B12B49264A8584006EE7FE /* HomeViewController.swift */,
+				869F8496265634DE00DA1D53 /* PublishViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -622,17 +642,20 @@
 				86EE498326511D33003B0C25 /* NotiTableViewCell.swift in Sources */,
 				8614DE632652924F00DC0A9D /* OptionsViewModel.swift in Sources */,
 				86392C59264FA46C003F7EBC /* MeetingTableViewCell.swift in Sources */,
+				866C975026563E9400687386 /* ImageHelper.swift in Sources */,
 				8614DE9C2652A56200DC0A9D /* UIButton+Extension.swift in Sources */,
 				861F65E2264D1F8700A54C00 /* EventTableViewCell.swift in Sources */,
+				866C974626563BF000687386 /* DateHelper.swift in Sources */,
 				861F65DC264D13E000A54C00 /* CalendarViewController.swift in Sources */,
 				8614DE5D2652924C00DC0A9D /* ExampleOptionsViewController.swift in Sources */,
+				866C974D26563CD900687386 /* UIColorHelper.swift in Sources */,
 				869F842626560C6900DA1D53 /* UserManager.swift in Sources */,
 				867950C32651741C0041847C /* String+Extension.swift in Sources */,
 				86EE497A265102BD003B0C25 /* CreateFirstPageVC.swift in Sources */,
 				869F844A26561F7000DA1D53 /* CreateViewModel.swift in Sources */,
 				86504B902650095800E42C51 /* UIView+Extension.swift in Sources */,
 				86188608264E77720048D9AA /* ExampleData.swift in Sources */,
-				86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */,
+				86B12B4A264A8584006EE7FE /* HomeViewController.swift in Sources */,
 				86188610264E78730048D9AA /* OptionCollectionViewCell copy.swift in Sources */,
 				8614DE4E265291DF00DC0A9D /* DefaultViewController.swift in Sources */,
 				869F840A2655357A00DA1D53 /* Meeting.swift in Sources */,
@@ -649,7 +672,7 @@
 				86188605264E76E10048D9AA /* ExampleModel.swift in Sources */,
 				8637064F2654EDC100D0A0AB /* EditViewController.swift in Sources */,
 				869F842A26560C8400DA1D53 /* NetworkManager.swift in Sources */,
-				869F842F265613B000DA1D53 /* HomeViewModel.swift in Sources */,
+				869F842F265613B000DA1D53 /* MainViewModel.swift in Sources */,
 				861885FF264E75E50048D9AA /* DynamicHeightCalculable.swift in Sources */,
 				8614DE8A265294CD00DC0A9D /* UIColor+Extension.swift in Sources */,
 				863706512654EDC100D0A0AB /* PopSuccessVC.swift in Sources */,
@@ -676,6 +699,7 @@
 				869F83F82655304A00DA1D53 /* AskInfo.swift in Sources */,
 				861885F6264E5FD60048D9AA /* OptionEventTableViewCell.swift in Sources */,
 				86504B8C2650088800E42C51 /* NewsEventTableViewCell.swift in Sources */,
+				869F8497265634DE00DA1D53 /* PublishViewController.swift in Sources */,
 				860B5C8E2652281C00171ED3 /* copy- CreateFirstPageVC copy.swift in Sources */,
 				86EE498026511C9B003B0C25 /* NotiViewController.swift in Sources */,
 				86F203DD264E05EC00A9763A /* MeetingViewController.swift in Sources */,

@@ -283,6 +283,7 @@ PODS:
   - gRPC-Core/Interface (1.28.2)
   - IQKeyboardManagerSwift (6.5.6)
   - JZCalendarWeekView (0.7.1)
+  - Kingfisher (6.3.0)
   - leveldb-library (1.22.1)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
@@ -305,6 +306,7 @@ DEPENDENCIES:
   - FSCalendar
   - IQKeyboardManagerSwift
   - JZCalendarWeekView (~> 0.3)
+  - Kingfisher
   - SwiftHEXColors
   - SwiftyMenu (~> 0.6.5)
 
@@ -326,6 +328,7 @@ SPEC REPOS:
     - gRPC-Core
     - IQKeyboardManagerSwift
     - JZCalendarWeekView
+    - Kingfisher
     - leveldb-library
     - nanopb
     - OrderedDictionary
@@ -352,6 +355,7 @@ SPEC CHECKSUMS:
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   JZCalendarWeekView: 586a429ab3fbeef4f98d648ea6b801f57c5495cc
+  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
@@ -361,6 +365,6 @@ SPEC CHECKSUMS:
   SwiftHEXColors: 1cb6e5d55c52749aa33db8f088ac55eb71ca4c7f
   SwiftyMenu: 9f38e9a22fb9c01b889d33cc362ffc12de042dd2
 
-PODFILE CHECKSUM: db871e92a5ffa65fae3df5505331d0e77e743224
+PODFILE CHECKSUM: 99453d305081c48e62fdc8eaf6d74c9e1951a3d2
 
 COCOAPODS: 1.10.1
