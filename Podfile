@@ -14,5 +14,6 @@ target 'inviti' do
   pod 'JZCalendarWeekView', '~> 0.3'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'EasyRefresher'
 
 end

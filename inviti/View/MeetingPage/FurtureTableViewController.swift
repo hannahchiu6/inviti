@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestoreSwift
 
 class FurtureTableViewController: UITableViewController {
 
@@ -29,7 +31,7 @@ class FurtureTableViewController: UITableViewController {
 
 extension FurtureTableViewController: MeetingTableCellDelegate {
     func deleteBtnPressed() {
-        
+
     }
 
     func editButtonPressed() {
