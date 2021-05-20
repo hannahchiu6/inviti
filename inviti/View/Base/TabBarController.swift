@@ -170,7 +170,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     ) -> Bool {
 //        resetCenterBtn()
         guard let navVC = viewController as? UINavigationController,
-              navVC.viewControllers.first is ViewController
+              navVC.viewControllers.first is MeetingViewController
         else { return true }
 
 

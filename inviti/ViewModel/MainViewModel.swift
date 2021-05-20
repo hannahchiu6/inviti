@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  MainViewModel.swift
 //  inviti
 //
 //  Created by Hannah.C on 20.05.21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HomeViewModel {
+class MainViewModel {
 
     let meetingViewModels = Box([MeetingViewModel]())
 
@@ -15,9 +15,26 @@ class HomeViewModel {
 
     var scrollToTop: (() -> Void)?
 
-    func fetchData() {
+    func fetchNewData() {
 
-        NetworkManager.shared.fetchMeetings { [weak self] result in
+        NetworkManager.shared.fetchNewMeetings { [weak self] result in
+
+            switch result {
+
+            case .success(let meetings):
+
+                self?.setMeetings(meetings)
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
+    func fetchOldData() {
+
+        NetworkManager.shared.fetchOldMeetings { [weak self] result in
 
             switch result {
 

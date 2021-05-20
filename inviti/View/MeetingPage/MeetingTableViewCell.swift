@@ -6,16 +6,15 @@
 //
 
 import UIKit
+import Kingfisher
 
-protocol MeetingTableCellDelegate {
+protocol MeetingTableCellDelegate: AnyObject {
     func editButtonPressed()
     func goButtonPressed()
     func deleteBtnPressed()
 }
 
 class MeetingTableViewCell: UITableViewCell {
-
-    var delegate: MeetingTableCellDelegate?
 
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var hostImage: UIImageView!
@@ -24,18 +23,12 @@ class MeetingTableViewCell: UITableViewCell {
     @IBOutlet weak var secondParticipantView: UIImageView!
     @IBOutlet weak var thirdParticipantView: UIImageView!
     @IBOutlet weak var participanCountLabel: UILabel!
-    @IBOutlet weak var pollTimeLabe: UILabel!
-    @IBOutlet weak var pollSubject: UILabel!
+    @IBOutlet weak var meetingTimeLabel: UILabel!
+    @IBOutlet weak var meetingSubject: UILabel!
     @IBOutlet weak var editIcon: UIButton!
 
     @IBAction func edit(_ sender: Any) {
         delegate?.editButtonPressed()
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        setUpView()
     }
 
     @IBAction func participate(_ sender: Any) {
@@ -44,6 +37,32 @@ class MeetingTableViewCell: UITableViewCell {
 
     @IBAction func deleteBtn(_ sender: Any) {
         delegate?.deleteBtnPressed()
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        setUpView()
+    }
+
+    weak var delegate: MeetingTableCellDelegate?
+
+    var viewModel: MeetingViewModel?
+
+    func setup(viewModel: MeetingViewModel) {
+        self.viewModel = viewModel
+        layoutCell()
+    }
+
+    func layoutCell() {
+        meetingSubject.text = viewModel?.subject
+        meetingTimeLabel.text = "投票建立時間：\(String(describing: viewModel!.createdTime))"
+        participanCountLabel.text = "和其他 \(String(describing: viewModel!.numOfParticipants)) 位參與者"
+
+        guard let url = viewModel?.image else { return }
+        let imageUrl = URL(string: String(url))
+        hostImage.kf.setImage(with: imageUrl)
+
     }
 
     func setUpView() {
