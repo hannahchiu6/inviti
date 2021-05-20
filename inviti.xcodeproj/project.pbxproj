@@ -70,6 +70,14 @@
 		869F840A2655357A00DA1D53 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F84092655357A00DA1D53 /* Meeting.swift */; };
 		869F840E2655363B00DA1D53 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F840D2655363B00DA1D53 /* Option.swift */; };
 		869F841D265547DF00DA1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869F841C265547DF00DA1D53 /* GoogleService-Info.plist */; };
+		869F842226555CE900DA1D53 /* AddMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F842126555CE900DA1D53 /* AddMockData.swift */; };
+		869F842626560C6900DA1D53 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F842526560C6900DA1D53 /* UserManager.swift */; };
+		869F842A26560C8400DA1D53 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F842926560C8400DA1D53 /* NetworkManager.swift */; };
+		869F842F265613B000DA1D53 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F842E265613B000DA1D53 /* HomeViewModel.swift */; };
+		869F8434265613DD00DA1D53 /* MeetingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F8433265613DD00DA1D53 /* MeetingViewModel.swift */; };
+		869F844626561D6200DA1D53 /* PaddingableUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F844426561D6200DA1D53 /* PaddingableUILabel.swift */; };
+		869F844726561D6200DA1D53 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F844526561D6200DA1D53 /* Box.swift */; };
+		869F844A26561F7000DA1D53 /* CreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F844926561F6F00DA1D53 /* CreateViewModel.swift */; };
 		86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B45264A8584006EE7FE /* AppDelegate.swift */; };
 		86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B47264A8584006EE7FE /* SceneDelegate.swift */; };
 		86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B12B49264A8584006EE7FE /* ViewController.swift */; };
@@ -155,6 +163,14 @@
 		869F84092655357A00DA1D53 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 		869F840D2655363B00DA1D53 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		869F841C265547DF00DA1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		869F842126555CE900DA1D53 /* AddMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMockData.swift; sourceTree = "<group>"; };
+		869F842526560C6900DA1D53 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		869F842926560C8400DA1D53 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		869F842E265613B000DA1D53 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		869F8433265613DD00DA1D53 /* MeetingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewModel.swift; sourceTree = "<group>"; };
+		869F844426561D6200DA1D53 /* PaddingableUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingableUILabel.swift; sourceTree = "<group>"; };
+		869F844526561D6200DA1D53 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		869F844926561F6F00DA1D53 /* CreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewModel.swift; sourceTree = "<group>"; };
 		86B12B42264A8584006EE7FE /* inviti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inviti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B12B45264A8584006EE7FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86B12B47264A8584006EE7FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -318,6 +334,24 @@
 			path = VotingPage;
 			sourceTree = "<group>";
 		};
+		869F842426560C4D00DA1D53 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				869F842926560C8400DA1D53 /* NetworkManager.swift */,
+				869F842526560C6900DA1D53 /* UserManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		869F842D2656139800DA1D53 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				869F844526561D6200DA1D53 /* Box.swift */,
+				869F844426561D6200DA1D53 /* PaddingableUILabel.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		86B12B39264A8584006EE7FE = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +373,8 @@
 		86B12B44264A8584006EE7FE /* inviti */ = {
 			isa = PBXGroup;
 			children = (
+				869F842D2656139800DA1D53 /* Util */,
+				869F842426560C4D00DA1D53 /* Network */,
 				86406559264D9901003C756D /* Extension */,
 				86406557264D98DE003C756D /* Backups */,
 				86C3FA5F264BDDFD00480E4F /* Model */,
@@ -392,6 +428,10 @@
 			children = (
 				861885FA264E759B0048D9AA /* ExampleViewModel.swift */,
 				861885FE264E75E50048D9AA /* DynamicHeightCalculable.swift */,
+				869F842126555CE900DA1D53 /* AddMockData.swift */,
+				869F8433265613DD00DA1D53 /* MeetingViewModel.swift */,
+				869F844926561F6F00DA1D53 /* CreateViewModel.swift */,
+				869F842E265613B000DA1D53 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -578,6 +618,7 @@
 				8637064A2654E88F00D0A0AB /* PopEditSuccessVC.swift in Sources */,
 				8618860C264E78160048D9AA /* CreateSecondVC.swift in Sources */,
 				8614DE532652922200DC0A9D /* DefaultViewModel.swift in Sources */,
+				869F8434265613DD00DA1D53 /* MeetingViewModel.swift in Sources */,
 				86EE498326511D33003B0C25 /* NotiTableViewCell.swift in Sources */,
 				8614DE632652924F00DC0A9D /* OptionsViewModel.swift in Sources */,
 				86392C59264FA46C003F7EBC /* MeetingTableViewCell.swift in Sources */,
@@ -585,8 +626,10 @@
 				861F65E2264D1F8700A54C00 /* EventTableViewCell.swift in Sources */,
 				861F65DC264D13E000A54C00 /* CalendarViewController.swift in Sources */,
 				8614DE5D2652924C00DC0A9D /* ExampleOptionsViewController.swift in Sources */,
+				869F842626560C6900DA1D53 /* UserManager.swift in Sources */,
 				867950C32651741C0041847C /* String+Extension.swift in Sources */,
 				86EE497A265102BD003B0C25 /* CreateFirstPageVC.swift in Sources */,
+				869F844A26561F7000DA1D53 /* CreateViewModel.swift in Sources */,
 				86504B902650095800E42C51 /* UIView+Extension.swift in Sources */,
 				86188608264E77720048D9AA /* ExampleData.swift in Sources */,
 				86B12B4A264A8584006EE7FE /* ViewController.swift in Sources */,
@@ -602,8 +645,11 @@
 				8614DE6E265292B000DC0A9D /* EventCell.swift in Sources */,
 				8614DE852652943F00DC0A9D /* ExpandableHeaderView.swift in Sources */,
 				86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */,
+				869F844726561D6200DA1D53 /* Box.swift in Sources */,
 				86188605264E76E10048D9AA /* ExampleModel.swift in Sources */,
 				8637064F2654EDC100D0A0AB /* EditViewController.swift in Sources */,
+				869F842A26560C8400DA1D53 /* NetworkManager.swift in Sources */,
+				869F842F265613B000DA1D53 /* HomeViewModel.swift in Sources */,
 				861885FF264E75E50048D9AA /* DynamicHeightCalculable.swift in Sources */,
 				8614DE8A265294CD00DC0A9D /* UIColor+Extension.swift in Sources */,
 				863706512654EDC100D0A0AB /* PopSuccessVC.swift in Sources */,
@@ -623,6 +669,7 @@
 				8614DE7F2652938800DC0A9D /* OptionsTableViewCell.swift in Sources */,
 				8667673D26525190009D9979 /* copy - CalendarViewController copy.swift in Sources */,
 				869F83FD265531EC00DA1D53 /* Event.swift in Sources */,
+				869F844626561D6200DA1D53 /* PaddingableUILabel.swift in Sources */,
 				869F8401265532CA00DA1D53 /* Invite.swift in Sources */,
 				865A00E52653A9AA0061A0E4 /* EditTableViewCell.swift in Sources */,
 				8653117F264FC39700CFB4F7 /* UIButtonActivity.swift in Sources */,
@@ -632,6 +679,7 @@
 				860B5C8E2652281C00171ED3 /* copy- CreateFirstPageVC copy.swift in Sources */,
 				86EE498026511C9B003B0C25 /* NotiViewController.swift in Sources */,
 				86F203DD264E05EC00A9763A /* MeetingViewController.swift in Sources */,
+				869F842226555CE900DA1D53 /* AddMockData.swift in Sources */,
 				86531184264FC84000CFB4F7 /* TopNewsTableViewCell.swift in Sources */,
 				861885FB264E759B0048D9AA /* ExampleViewModel.swift in Sources */,
 				86504B962650207D00E42C51 /* NewsViewController.swift in Sources */,

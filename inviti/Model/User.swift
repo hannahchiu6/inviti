@@ -8,17 +8,17 @@
 import UIKit
 
 struct User: Codable {
-    let id: String
+    var id: String
     let email: String
     let firstName: String
     let lastName: String
     let appleID: String
-    let image: String
-    let phone: String
-    let address: String
+    let image: String?
+    let phone: String?
+    let address: String?
     let isCalendarSynced: Bool
-    let calendarType: String
-    let numOfMeetings: Int
+    let calendarType: String?
+    let numOfMeetings: Int?
 
     enum CodingKeys: String, CodingKey {
         case id, email, firstName, lastName, appleID

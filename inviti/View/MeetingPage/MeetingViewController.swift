@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MeetingViewController: UIViewController {
 
@@ -27,6 +28,7 @@ class MeetingViewController: UIViewController {
         }
     }
 
+    let users: [User] = []
 
     var count: Int = 0
 
@@ -72,6 +74,9 @@ class MeetingViewController: UIViewController {
 
     }
 
+   
+
+    //End of AddMockData
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(false)

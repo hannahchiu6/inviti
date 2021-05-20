@@ -221,6 +221,7 @@ PODS:
   - CalendarLib (2.0):
     - OrderedDictionary (~> 1.2)
     - OSCache (~> 1.2)
+  - EasyRefresher (1.3.1)
   - Firebase/CoreOnly (6.34.0):
     - FirebaseCore (= 6.10.4)
   - Firebase/Firestore (6.34.0):
@@ -298,6 +299,7 @@ PODS:
 
 DEPENDENCIES:
   - CalendarLib
+  - EasyRefresher
   - Firebase/Firestore
   - FirebaseFirestoreSwift
   - FSCalendar
@@ -311,6 +313,7 @@ SPEC REPOS:
     - abseil
     - BoringSSL-GRPC
     - CalendarLib
+    - EasyRefresher
     - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
@@ -336,6 +339,7 @@ SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   CalendarLib: 040a8a655376581d8dc7c3c63196ddcf5223f471
+  EasyRefresher: 169daf095d7b032b0b9b505a0ed776d560fd1662
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseCore: d3a978a3cfa3240bf7e4ba7d137fdf5b22b628ec
   FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
@@ -357,6 +361,6 @@ SPEC CHECKSUMS:
   SwiftHEXColors: 1cb6e5d55c52749aa33db8f088ac55eb71ca4c7f
   SwiftyMenu: 9f38e9a22fb9c01b889d33cc362ffc12de042dd2
 
-PODFILE CHECKSUM: 63b60ac46fba37cdfcdc0e6222d869dade2052f6
+PODFILE CHECKSUM: db871e92a5ffa65fae3df5505331d0e77e743224
 
 COCOAPODS: 1.10.1

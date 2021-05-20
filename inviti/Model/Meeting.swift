@@ -8,28 +8,28 @@
 import UIKit
 
 struct Meeting: Codable {
-    let id: String
-    let owner: String
-    let createdTime: Int64
-//    let startTime: Int64
-//    let endTime: Int64
-    let subject: String
-    let location: String
-    let notes: String
-//    let duration: Int64
-    let options: Option
+    var id: String
+    var owner: User?
+    var createdTime: Int64
+    var subject: String
+    var location: String?
+    var notes: String?
+//    let options: Option
     let singleMeeting: Bool
     let hiddenMeeting: Bool
-    let askInfo: AskInfo
-    let participants: String
+//    let askInfo: AskInfo
+    let participants: [String?]
     let numOfParticipants: Int
+    //    let startTime: Int64
+    //    let endTime: Int64
+    //    let duration: Int64
 
 
     enum CodingKeys: String, CodingKey {
         case id, owner, subject, notes, createdTime
-//        case startTime, endTime, duration
-        case participants, location, numOfParticipants, askInfo
-        case hiddenMeeting, singleMeeting, options
+//        case startTime, endTime, duration, askInfo, options
+        case participants, location, numOfParticipants
+        case hiddenMeeting, singleMeeting
     }
 
     var toDict: [String: Any] {
@@ -44,11 +44,11 @@ struct Meeting: Codable {
             "participants": participants as Any,
             "location": location as Any,
 //            "duration": duration as Any,
-            "options": options as Any,
+//            "options": options as Any,
             "singleMeeting": singleMeeting as Any,
             "hiddenMeeting": hiddenMeeting as Any,
             "numOfParticipants": numOfParticipants as Any,
-            "askInfo": askInfo as Any
+//            "askInfo": askInfo as Any
 
         ]
     }
