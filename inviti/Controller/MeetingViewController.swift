@@ -10,7 +10,6 @@ import Firebase
 import FirebaseFirestoreSwift
 import EasyRefresher
 
-
 class MeetingViewController: UIViewController {
 
     @IBAction func pastBtn(_ sender: UIButton) {
@@ -90,7 +89,6 @@ class MeetingViewController: UIViewController {
             self?.view.layoutIfNeeded()
         })
     }
-
 
     func setupView() {
         searchBar.backgroundImage = UIImage()

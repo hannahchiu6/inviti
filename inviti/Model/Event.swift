@@ -17,7 +17,6 @@ struct Event: Codable {
     let participants: String
     let location: String
 
-
     enum CodingKeys: String, CodingKey {
         case id, owner, startTime, endTime
         case subject, notes, participants, location

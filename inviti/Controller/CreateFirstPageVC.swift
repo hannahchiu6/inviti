@@ -9,7 +9,7 @@ import UIKit
 
 class CreateFirstPageVC: UIViewController {
 
-    weak var delegate: CreateFirstTableViewCell?
+    weak var delegate: CreateFirstCell?
     
     @IBOutlet weak var confirmBtnView: UIButton!
     
@@ -59,14 +59,42 @@ class CreateFirstPageVC: UIViewController {
 }
 extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch section  {
+        case 0:
+            return 1
+
+        case 2:
+          return 1
+
+        default:
+            return 1
+        }
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFirstTableViewCell", for: indexPath) as! CreateFirstTableViewCell
-        cell.delegate = self
-        return cell
+
+        switch indexPath.section  {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFirstTableViewCell", for: indexPath) as! CreateFirstCell
+            cell.delegate = self
+            return cell
+
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "OptionalSettingsCell", for: indexPath) as! OptionalSettingsCell
+
+            return cell
+
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "OptionsCell", for: indexPath) as! OptionsCell
+
+            return cell
+        }
     }
+
 }
 
 extension CreateFirstPageVC: CreateFirstCellDelegate {

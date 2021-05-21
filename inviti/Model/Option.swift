@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import FirebaseFirestoreSwift
 
 struct Option: Codable {
     let id: String
+//    @DocumentID var id: String?
     let meetingID: String
     let startTime: Int64
     let endTime: Int64

@@ -1,5 +1,5 @@
 //
-//  CreateFirstTableViewCell.swift
+//  OptionalSettingsCell.swift.swift
 //  inviti
 //
 //  Created by Hannah.C on 17.05.21.
@@ -8,35 +8,23 @@
 import UIKit
 import SwiftHEXColors
 
-protocol CreateFirstCellDelegate {
-    func goToSecondPage()
-}
+//protocol CreateFirstCellDelegate {
+//    func goToSecondPage()
+//}
 
-class CreateFirstTableViewCell: UITableViewCell, UITextViewDelegate {
+class OptionalSettingsCell: UITableViewCell, UITextViewDelegate {
 
-   var delegate: CreateFirstCellDelegate?
+//   var delegate: CreateFirstCellDelegate?
 
     @IBOutlet weak var subjectTextField: UITextField!
-    @IBOutlet weak var locationTextField: UITextField!
-
-    @IBAction func selectTimeIcon(_ sender: Any) {
-        print("test Btn selectime icon!")
-        delegate?.goToSecondPage()
-    }
     
     @IBOutlet weak var dealineFullView: UIView!
 
-    @IBAction func selectTime(_ sender: Any) {
-        delegate?.goToSecondPage()
-        print("test Btn selectime!")
-    }
-    @IBOutlet weak var timePicker: UIButton!
-    @IBOutlet weak var textView: UITextView!
     @IBAction func singleToggle(_ sender: Any) {
     }
     @IBAction func hiddenToggle(_ sender: Any) {
     }
-
+    @IBOutlet weak var textView: UITextView!
 
     @IBOutlet weak var deadlineLabel: UILabel!
     @IBOutlet weak var addSubtract: UIStepper!

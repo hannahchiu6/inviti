@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestoreSwift
 
 struct Meeting: Codable {
     var id: String
@@ -16,7 +17,7 @@ struct Meeting: Codable {
     var location: String?
     var notes: String?
     var image: String?
-//    let options: Option
+//    let options: [Option]
     let singleMeeting: Bool
     let hiddenMeeting: Bool
 //    let askInfo: AskInfo
@@ -25,11 +26,12 @@ struct Meeting: Codable {
     //    let startTime: Int64
     //    let endTime: Int64
     //    let duration: Int64
-
+//    @Document var id: String?
 
     enum CodingKeys: String, CodingKey {
         case id, owner, subject, notes, createdTime
-//        case startTime, endTime, duration, askInfo, options
+//        case startTime, endTime, duration
+//        case askInfo, options
         case participants, location, numOfParticipants
         case hiddenMeeting, singleMeeting, image
     }
@@ -47,11 +49,11 @@ struct Meeting: Codable {
             "participants": participants as Any,
             "location": location as Any,
 //            "duration": duration as Any,
-//            "options": options as Any,
+//            "options": [options.toDict] as Any,
             "singleMeeting": singleMeeting as Any,
             "hiddenMeeting": hiddenMeeting as Any,
             "numOfParticipants": numOfParticipants as Any,
-//            "askInfo": askInfo as Any
+//            "askInfo": askInfo.toDict as Any
 
         ]
     }

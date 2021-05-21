@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import FirebaseFirestoreSwift
 
 struct OptionSelected: Codable {
-    let id: String
+    let  id: String
+//    @Document var id: String?
     let selectedOption: String
     let selectedUser: String
 
