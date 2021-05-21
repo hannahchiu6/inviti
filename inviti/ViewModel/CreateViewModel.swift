@@ -14,16 +14,18 @@ class CreateViewModel {
         id: "",
         owner: (UserManager.shared.user?.id)!,
         createdTime: 1,
-        subject: "活動範例",
-        location: "參考地點",
-        notes: "活動內文",
+        subject: "",
+        location: "",
+        notes: "",
         image: "",
 //        options: Option,
         singleMeeting: false,
         hiddenMeeting: false,
+        deadlineMeeting: false,
 //        askInfo: AskInfo,
         participants: ["aaa"],
-        numOfParticipants: 1
+        numOfParticipants: 1,
+        deadlineTag: 0
     )
 
     func onSubjectChanged(text subject: String) {

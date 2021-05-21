@@ -6,26 +6,48 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+
 
 class CreateFirstPageVC: UIViewController {
 
     weak var delegate: CreateFirstCell?
-    
+
+    weak var popDelegate: PopSaveSuccessVC?
+
+    var meetingInfo: Meeting!
+
+    var isDataEmpty: Bool = true
+
+    var meetingDataHandler: ( (Meeting) -> Void)?
+
+    var isSwitchOn: Bool = false
+
+    let viewModel = MainViewModel()
+
     @IBOutlet weak var confirmBtnView: UIButton!
-    
+
     @IBAction func confirm(_ sender: Any) {
-//       performSegue(withIdentifier: "meetingSegue", sender: sender)
-        UIView.animate(withDuration: 5.0, animations: { () -> Void in
+        if isDataEmpty {
+            self.popViewForSave.isHidden = false
+        } else {
+            UIView.animate(withDuration: 5.0, animations: { () -> Void in
             self.popupView.isHidden = false
             })
+        meetingDataHandler?(meetingInfo)
+        }
     }
 
     @IBOutlet weak var popupView: UIView!
 
-    @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var popViewForSave: UIView!
 
+
+    @IBOutlet weak var tableview: UITableView!
     @IBAction func nextPage(_ sender: Any) {
-        nextPage() 
+        nextPage()
+//        viewModel.onTapCreate()
 
     }
 
@@ -34,14 +56,46 @@ class CreateFirstPageVC: UIViewController {
         tableview.delegate = self
         tableview.dataSource = self
 //        confirmBtnView.isEnabled = false
-
+        self.popViewForSave.isHidden = true
         self.popupView.isHidden = true
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(enableConfirmBtn),
-                                               name: Notification.Name("enableConfirmBtn"),
-                                               object: nil)
+
+//        NotificationCenter.default.addObserver(self,
+//                                                selector: #selector(enableConfirmBtn), name:
+//                                                Notification.Name("reloadCollection"),
+//                                                object: nil)
+
+        if meetingInfo != nil {
+            confirmBtnView.setTitle("更新活動內容", for: .normal)
+            self.navigationController?.isNavigationBarHidden = true
+
+            isDataEmpty = !isDataEmpty
+
+        } else {
+
+            meetingInfo = Meeting(id: UUID().uuidString, owner: "",
+                                  createdTime: -1, subject: "", location: "",
+                                  notes: "", image: "", singleMeeting: false,
+                                  hiddenMeeting: false,
+                                  deadlineMeeting: false,
+                                  participants: [],
+                                  numOfParticipants:0,
+                                  deadlineTag: 0)
+
+
+//            addParticipants()
+        }
     }
+
+//    func addParticipants() {
+//
+//        guard let currentUserID = UserDefaults.standard.value(forKey: "userID") as? String else { return }
+//        guard let currentUserName = UserDefaults.standard.value(forKey: "userName") as? String else { return }
+//        guard let currentUserImage = UserDefaults.standard.value(forKey: "userPhoto") as? String else { return }
+//
+//        self.meetingInfo.participantID.append(participantID)
+//        self.meetingInfo.participantName.append(participantName)
+//        self.meetingInfo.participantImage.append(participantImage)
+//    }
 
 
     @objc func enableConfirmBtn(noti: Notification) {
@@ -56,7 +110,20 @@ class CreateFirstPageVC: UIViewController {
 
            navigationController?.pushViewController(second, animated: true)
     }
+
+//    func checkUpdateStatus() {
+//
+//        if isSwitchOn {
+//            confirmBtnView.isEnabled = false
+//            confirmBtnView.setTitleColor(UIColor.B5, for: .normal)
+//        } else {
+//            confirmBtnView.isEnabled = false
+//            confirmBtnView.setTitleColor(UIColor.B5, for: .normal)
+//        }
+//        confirmBtnView.setTitleColor(UIColor.lightGray, for: .disabled)
+//    }
 }
+
 extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section  {
@@ -77,15 +144,37 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        switch indexPath.section  {
+        switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFirstTableViewCell", for: indexPath) as! CreateFirstCell
-            cell.delegate = self
+
+                cell.delegate = self
+
+                cell.subjectTextField.text = meetingInfo.subject
+                cell.locationTextField.text = meetingInfo.location
+
             return cell
 
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionalSettingsCell", for: indexPath) as! OptionalSettingsCell
 
+//            cell.singleView.addTarget(self, action: #selector(updateSwitcher), for: .valueChanged)
+//            cell.hiddenView.addTarget(self, action: #selector(updateSwitcher), for: .valueChanged)
+//            cell.deadlineView.addTarget(self, action: #selector(updateSwitcher), for: .valueChanged)
+            cell.setCell(model: meetingInfo)
+
+            cell.addSubtract.value = Double(meetingInfo.deadlineTag)
+
+                cell.observation = cell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { (stepper, change) in
+                    if change.newValue! == 0.0 {
+                        if change.newValue! > change.oldValue! {
+                            cell.addSubtract.value = 1
+                        } else {
+                            cell.addSubtract.value = -1
+                        }
+                    }
+                    self.meetingInfo.deadlineTag = Int(cell.addSubtract.value)
+                })
             return cell
 
         default:
@@ -95,10 +184,32 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
+//    @objc func updateSwitcher() {
+//        confirmBtnView.isEnabled = false
+//        isSwitchOn = !isSwitchOn
+//        tableview.reloadData()
+//    }
 }
 
 extension CreateFirstPageVC: CreateFirstCellDelegate {
+    func getSubjectData(_ subject: String) {
+      
+//        viewModel.onSubjectChanged(text: subject)
+    }
+
+    func getLocationData(_ location: String) {
+//        viewModel.onLocationChanged(text: location)
+    }
+
     func goToSecondPage() {
         nextPage()
+    }
+
+}
+
+extension CreateFirstPageVC: PopSaveSuccessDelegate {
+    func didTap() {
+        self.dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
 }
