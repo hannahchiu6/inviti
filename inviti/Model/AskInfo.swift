@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import FirebaseFirestoreSwift
 
 class AskInfo: Codable {
-
     let id: String
+//    @DocumentID var id: String?
     let phone: String
     let address: String
     let email: String

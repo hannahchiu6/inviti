@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import FirebaseFirestoreSwift
 
-struct Invite: Codable {
-    let id: String
+struct Invite: Identifiable, Codable {
+    @DocumentID var id: String?
     let sender: String
     let receiver: String
     let createdTime: Int64

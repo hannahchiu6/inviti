@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		860B5C8E2652281C00171ED3 /* copy- CreateFirstPageVC copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860B5C8D2652281C00171ED3 /* copy- CreateFirstPageVC copy.swift */; };
-		860B5C922652297200171ED3 /* CreateFirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860B5C912652297200171ED3 /* CreateFirstTableViewCell.swift */; };
+		860B5C922652297200171ED3 /* CreateFirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860B5C912652297200171ED3 /* CreateFirstCell.swift */; };
 		8614DE4E265291DF00DC0A9D /* DefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE4D265291DF00DC0A9D /* DefaultViewController.swift */; };
 		8614DE532652922200DC0A9D /* DefaultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE522652922200DC0A9D /* DefaultViewModel.swift */; };
 		8614DE562652924600DC0A9D /* DefaultEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE552652924600DC0A9D /* DefaultEvent.swift */; };
@@ -34,6 +34,8 @@
 		86188608264E77720048D9AA /* ExampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86188607264E77710048D9AA /* ExampleData.swift */; };
 		8618860C264E78160048D9AA /* CreateSecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8618860B264E78160048D9AA /* CreateSecondVC.swift */; };
 		86188610264E78730048D9AA /* OptionCollectionViewCell copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */; };
+		861B402226577AF9004D1763 /* OptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861B402126577AF8004D1763 /* OptionsCell.swift */; };
+		861B402526577B66004D1763 /* OptionalSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861B402426577B66004D1763 /* OptionalSettingsCell.swift */; };
 		861F65DC264D13E000A54C00 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F65DB264D13E000A54C00 /* CalendarViewController.swift */; };
 		861F65E2264D1F8700A54C00 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F65E0264D1F8700A54C00 /* EventTableViewCell.swift */; };
 		861F65E3264D1F8700A54C00 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861F65E1264D1F8700A54C00 /* EventTableViewCell.xib */; };
@@ -105,7 +107,7 @@
 
 /* Begin PBXFileReference section */
 		860B5C8D2652281C00171ED3 /* copy- CreateFirstPageVC copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "copy- CreateFirstPageVC copy.swift"; sourceTree = "<group>"; };
-		860B5C912652297200171ED3 /* CreateFirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstTableViewCell.swift; sourceTree = "<group>"; };
+		860B5C912652297200171ED3 /* CreateFirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstCell.swift; sourceTree = "<group>"; };
 		8614DE4D265291DF00DC0A9D /* DefaultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViewController.swift; sourceTree = "<group>"; };
 		8614DE522652922200DC0A9D /* DefaultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViewModel.swift; sourceTree = "<group>"; };
 		8614DE552652924600DC0A9D /* DefaultEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEvent.swift; sourceTree = "<group>"; };
@@ -131,6 +133,8 @@
 		86188607264E77710048D9AA /* ExampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleData.swift; sourceTree = "<group>"; };
 		8618860B264E78160048D9AA /* CreateSecondVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSecondVC.swift; sourceTree = "<group>"; };
 		8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionCollectionViewCell copy.swift"; sourceTree = "<group>"; };
+		861B402126577AF8004D1763 /* OptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCell.swift; sourceTree = "<group>"; };
+		861B402426577B66004D1763 /* OptionalSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalSettingsCell.swift; sourceTree = "<group>"; };
 		861F65DB264D13E000A54C00 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		861F65E0264D1F8700A54C00 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		861F65E1264D1F8700A54C00 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
@@ -270,7 +274,9 @@
 			children = (
 				8614DE50265291E400DC0A9D /* Example */,
 				86EE499E26514C97003B0C25 /* CreateThirdViewController.swift */,
-				860B5C912652297200171ED3 /* CreateFirstTableViewCell.swift */,
+				860B5C912652297200171ED3 /* CreateFirstCell.swift */,
+				861B402426577B66004D1763 /* OptionalSettingsCell.swift */,
+				861B402126577AF8004D1763 /* OptionsCell.swift */,
 				86C3FA64264BE22900480E4F /* Create.storyboard */,
 				8618860B264E78160048D9AA /* CreateSecondVC.swift */,
 				8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */,
@@ -682,11 +688,13 @@
 				8640655B264D9910003C756D /* UIStoryboard+Extension.swift in Sources */,
 				865A00E42653A9AA0061A0E4 /* VotingViewController.swift in Sources */,
 				869F840E2655363B00DA1D53 /* Option.swift in Sources */,
+				861B402526577B66004D1763 /* OptionalSettingsCell.swift in Sources */,
 				86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */,
 				86406555264D98D6003C756D /* TabBarController.swift in Sources */,
-				860B5C922652297200171ED3 /* CreateFirstTableViewCell.swift in Sources */,
+				860B5C922652297200171ED3 /* CreateFirstCell.swift in Sources */,
 				869F8405265534A800DA1D53 /* OptionSelected.swift in Sources */,
 				865A00EE265428FF0061A0E4 /* FurtureTableViewController.swift in Sources */,
+				861B402226577AF9004D1763 /* OptionsCell.swift in Sources */,
 				8614DE562652924600DC0A9D /* DefaultEvent.swift in Sources */,
 				8614DE662652925300DC0A9D /* DefaultWeekView.swift in Sources */,
 				8614DE7F2652938800DC0A9D /* OptionsTableViewCell.swift in Sources */,

@@ -12,7 +12,7 @@ class CreateViewModel {
 
     var meeting: Meeting = Meeting(
         id: "",
-        owner: UserManager.shared.user!.id,
+        owner: (UserManager.shared.user?.id)!,
         createdTime: 1,
         subject: "活動範例",
         location: "參考地點",
@@ -86,7 +86,7 @@ class CreateViewModel {
     func create(with user: User? = nil) {
 
         if let user = user {
-            meeting.owner = user.id
+            meeting.owner = user.id!
         }
 
         create(with: &meeting) // MARK: check which function this call is
