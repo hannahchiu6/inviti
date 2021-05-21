@@ -42,12 +42,13 @@
 		861F6619264D38AB00A54C00 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F6618264D38AB00A54C00 /* SettingsViewController.swift */; };
 		861F661D264D38EA00A54C00 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F661C264D38EA00A54C00 /* SettingsTableViewCell.swift */; };
 		861F6628264D5D9800A54C00 /* OptionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861F6626264D5D9800A54C00 /* OptionCollectionViewCell.xib */; };
-		8637064A2654E88F00D0A0AB /* PopEditSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863706492654E88F00D0A0AB /* PopEditSuccessVC.swift */; };
+		8637064A2654E88F00D0A0AB /* PopSaveSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863706492654E88F00D0A0AB /* PopSaveSuccessVC.swift */; };
 		8637064F2654EDC100D0A0AB /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8637064C2654EDC100D0A0AB /* EditViewController.swift */; };
 		863706502654EDC100D0A0AB /* VotingTableViewCell copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8637064E2654EDC100D0A0AB /* VotingTableViewCell copy.swift */; };
 		863706512654EDC100D0A0AB /* PopSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8637064D2654EDC100D0A0AB /* PopSuccessVC.swift */; };
 		86392C59264FA46C003F7EBC /* MeetingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86392C57264FA46C003F7EBC /* MeetingTableViewCell.swift */; };
 		86392C5A264FA46C003F7EBC /* MeetingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86392C58264FA46C003F7EBC /* MeetingTableViewCell.xib */; };
+		863B083226581C2D007CFBF3 /* PopEditSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863B083126581C2D007CFBF3 /* PopEditSuccessVC.swift */; };
 		86406555264D98D6003C756D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86406554264D98D6003C756D /* TabBarController.swift */; };
 		8640655B264D9910003C756D /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8640655A264D9910003C756D /* UIStoryboard+Extension.swift */; };
 		86504B8C2650088800E42C51 /* NewsEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86504B8B2650088800E42C51 /* NewsEventTableViewCell.swift */; };
@@ -64,6 +65,7 @@
 		866C974626563BF000687386 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C974526563BF000687386 /* DateHelper.swift */; };
 		866C974D26563CD900687386 /* UIColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C974B26563CD900687386 /* UIColorHelper.swift */; };
 		866C975026563E9400687386 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C974F26563E9400687386 /* ImageHelper.swift */; };
+		8676434F2658170A00185385 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676434E2658170A00185385 /* File.swift */; };
 		867950C32651741C0041847C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867950C22651741C0041847C /* String+Extension.swift */; };
 		867950C7265215230041847C /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867950C6265215230041847C /* UIScrollView+Extension.swift */; };
 		869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E7F264CE10A004681A2 /* NavigationController.swift */; };
@@ -90,12 +92,14 @@
 		86B12B4D264A8584006EE7FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B12B4B264A8584006EE7FE /* Main.storyboard */; };
 		86B12B4F264A8587006EE7FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B12B4E264A8587006EE7FE /* Assets.xcassets */; };
 		86B12B52264A8587006EE7FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B12B50264A8587006EE7FE /* LaunchScreen.storyboard */; };
+		86B4740A2657E93B00384C21 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B474092657E93B00384C21 /* Switcher.swift */; };
 		86C3FA62264BE1F200480E4F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA61264BE1F200480E4F /* Settings.storyboard */; };
 		86C3FA65264BE22900480E4F /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA64264BE22900480E4F /* Create.storyboard */; };
 		86C3FA68264BE24A00480E4F /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA67264BE24A00480E4F /* News.storyboard */; };
 		86C3FA6B264BE25B00480E4F /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA6A264BE25B00480E4F /* Calendar.storyboard */; };
 		86C3FA6E264BE2A700480E4F /* NotificationPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */; };
 		86C3FA72264BF44000480E4F /* TabBarController-copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C3FA71264BF44000480E4F /* TabBarController-copy.swift */; };
+		86D4F68426582D6E00C00062 /* PaddingableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D4F68326582D6E00C00062 /* PaddingableHelper.swift */; };
 		86EE497A265102BD003B0C25 /* CreateFirstPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE4979265102BD003B0C25 /* CreateFirstPageVC.swift */; };
 		86EE498026511C9B003B0C25 /* NotiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE497F26511C9B003B0C25 /* NotiViewController.swift */; };
 		86EE498326511D33003B0C25 /* NotiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE498226511D32003B0C25 /* NotiTableViewCell.swift */; };
@@ -141,12 +145,13 @@
 		861F6618264D38AB00A54C00 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		861F661C264D38EA00A54C00 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		861F6626264D5D9800A54C00 /* OptionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionCollectionViewCell.xib; sourceTree = "<group>"; };
-		863706492654E88F00D0A0AB /* PopEditSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopEditSuccessVC.swift; sourceTree = "<group>"; };
+		863706492654E88F00D0A0AB /* PopSaveSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopSaveSuccessVC.swift; sourceTree = "<group>"; };
 		8637064C2654EDC100D0A0AB /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		8637064D2654EDC100D0A0AB /* PopSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopSuccessVC.swift; sourceTree = "<group>"; };
 		8637064E2654EDC100D0A0AB /* VotingTableViewCell copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VotingTableViewCell copy.swift"; sourceTree = "<group>"; };
 		86392C57264FA46C003F7EBC /* MeetingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTableViewCell.swift; sourceTree = "<group>"; };
 		86392C58264FA46C003F7EBC /* MeetingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeetingTableViewCell.xib; sourceTree = "<group>"; };
+		863B083126581C2D007CFBF3 /* PopEditSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopEditSuccessVC.swift; sourceTree = "<group>"; };
 		86406554264D98D6003C756D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8640655A264D9910003C756D /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		86504B8B2650088800E42C51 /* NewsEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEventTableViewCell.swift; sourceTree = "<group>"; };
@@ -163,6 +168,7 @@
 		866C974526563BF000687386 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		866C974B26563CD900687386 /* UIColorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHelper.swift; sourceTree = "<group>"; };
 		866C974F26563E9400687386 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		8676434E2658170A00185385 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		867950C22651741C0041847C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		867950C6265215230041847C /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		869F6E7F264CE10A004681A2 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -191,12 +197,14 @@
 		86B12B4E264A8587006EE7FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86B12B51264A8587006EE7FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86B12B53264A8587006EE7FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86B474092657E93B00384C21 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		86C3FA61264BE1F200480E4F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		86C3FA64264BE22900480E4F /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		86C3FA67264BE24A00480E4F /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		86C3FA6A264BE25B00480E4F /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotificationPage.storyboard; sourceTree = "<group>"; };
 		86C3FA71264BF44000480E4F /* TabBarController-copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBarController-copy.swift"; sourceTree = "<group>"; };
+		86D4F68326582D6E00C00062 /* PaddingableHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingableHelper.swift; sourceTree = "<group>"; };
 		86EE4979265102BD003B0C25 /* CreateFirstPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstPageVC.swift; sourceTree = "<group>"; };
 		86EE497F26511C9B003B0C25 /* NotiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiViewController.swift; sourceTree = "<group>"; };
 		86EE498226511D32003B0C25 /* NotiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiTableViewCell.swift; sourceTree = "<group>"; };
@@ -272,11 +280,11 @@
 		861F6620264D5C5E00A54C00 /* CreateMainPage */ = {
 			isa = PBXGroup;
 			children = (
+				86B4740C2657E94100384C21 /* FirstStep */,
+				8648A7562657EA390091DFFA /* SecondStep */,
+				8648A7572657EA430091DFFA /* ThirdStep */,
 				8614DE50265291E400DC0A9D /* Example */,
 				86EE499E26514C97003B0C25 /* CreateThirdViewController.swift */,
-				860B5C912652297200171ED3 /* CreateFirstCell.swift */,
-				861B402426577B66004D1763 /* OptionalSettingsCell.swift */,
-				861B402126577AF8004D1763 /* OptionsCell.swift */,
 				86C3FA64264BE22900480E4F /* Create.storyboard */,
 				8618860B264E78160048D9AA /* CreateSecondVC.swift */,
 				8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */,
@@ -322,6 +330,22 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		8648A7562657EA390091DFFA /* SecondStep */ = {
+			isa = PBXGroup;
+			children = (
+				861B402126577AF8004D1763 /* OptionsCell.swift */,
+			);
+			path = SecondStep;
+			sourceTree = "<group>";
+		};
+		8648A7572657EA430091DFFA /* ThirdStep */ = {
+			isa = PBXGroup;
+			children = (
+				861B402426577B66004D1763 /* OptionalSettingsCell.swift */,
+			);
+			path = ThirdStep;
+			sourceTree = "<group>";
+		};
 		86531182264FC82100CFB4F7 /* NewsPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,7 +366,8 @@
 				8637064D2654EDC100D0A0AB /* PopSuccessVC.swift */,
 				8637064C2654EDC100D0A0AB /* EditViewController.swift */,
 				865A00E32653A9AA0061A0E4 /* EditTableViewCell.swift */,
-				863706492654E88F00D0A0AB /* PopEditSuccessVC.swift */,
+				863B083126581C2D007CFBF3 /* PopEditSuccessVC.swift */,
+				863706492654E88F00D0A0AB /* PopSaveSuccessVC.swift */,
 			);
 			path = VotingPage;
 			sourceTree = "<group>";
@@ -353,6 +378,7 @@
 				866C974526563BF000687386 /* DateHelper.swift */,
 				866C974B26563CD900687386 /* UIColorHelper.swift */,
 				866C974F26563E9400687386 /* ImageHelper.swift */,
+				86D4F68326582D6E00C00062 /* PaddingableHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -417,6 +443,15 @@
 			path = inviti;
 			sourceTree = "<group>";
 		};
+		86B4740C2657E94100384C21 /* FirstStep */ = {
+			isa = PBXGroup;
+			children = (
+				860B5C912652297200171ED3 /* CreateFirstCell.swift */,
+				86B474092657E93B00384C21 /* Switcher.swift */,
+			);
+			path = FirstStep;
+			sourceTree = "<group>";
+		};
 		86B8ED8C264E27B700F2508A /* MeetingPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -453,6 +488,7 @@
 				869F8433265613DD00DA1D53 /* MeetingViewModel.swift */,
 				869F844926561F6F00DA1D53 /* CreateViewModel.swift */,
 				869F842E265613B000DA1D53 /* MainViewModel.swift */,
+				8676434E2658170A00185385 /* File.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -641,7 +677,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8637064A2654E88F00D0A0AB /* PopEditSuccessVC.swift in Sources */,
+				8637064A2654E88F00D0A0AB /* PopSaveSuccessVC.swift in Sources */,
 				8618860C264E78160048D9AA /* CreateSecondVC.swift in Sources */,
 				8614DE532652922200DC0A9D /* DefaultViewModel.swift in Sources */,
 				869F8434265613DD00DA1D53 /* MeetingViewModel.swift in Sources */,
@@ -678,11 +714,13 @@
 				86188605264E76E10048D9AA /* ExampleModel.swift in Sources */,
 				8637064F2654EDC100D0A0AB /* EditViewController.swift in Sources */,
 				869F842A26560C8400DA1D53 /* NetworkManager.swift in Sources */,
+				8676434F2658170A00185385 /* File.swift in Sources */,
 				869F842F265613B000DA1D53 /* MainViewModel.swift in Sources */,
 				861885FF264E75E50048D9AA /* DynamicHeightCalculable.swift in Sources */,
 				8614DE8A265294CD00DC0A9D /* UIColor+Extension.swift in Sources */,
 				863706512654EDC100D0A0AB /* PopSuccessVC.swift in Sources */,
 				86188602264E76170048D9AA /* Constants.swift in Sources */,
+				86D4F68426582D6E00C00062 /* PaddingableHelper.swift in Sources */,
 				863706502654EDC100D0A0AB /* VotingTableViewCell copy.swift in Sources */,
 				8614DE902652950E00DC0A9D /* ToastUtil.swift in Sources */,
 				8640655B264D9910003C756D /* UIStoryboard+Extension.swift in Sources */,
@@ -696,6 +734,7 @@
 				865A00EE265428FF0061A0E4 /* FurtureTableViewController.swift in Sources */,
 				861B402226577AF9004D1763 /* OptionsCell.swift in Sources */,
 				8614DE562652924600DC0A9D /* DefaultEvent.swift in Sources */,
+				863B083226581C2D007CFBF3 /* PopEditSuccessVC.swift in Sources */,
 				8614DE662652925300DC0A9D /* DefaultWeekView.swift in Sources */,
 				8614DE7F2652938800DC0A9D /* OptionsTableViewCell.swift in Sources */,
 				8667673D26525190009D9979 /* copy - CalendarViewController copy.swift in Sources */,
@@ -715,6 +754,7 @@
 				86531184264FC84000CFB4F7 /* TopNewsTableViewCell.swift in Sources */,
 				861885FB264E759B0048D9AA /* ExampleViewModel.swift in Sources */,
 				86504B962650207D00E42C51 /* NewsViewController.swift in Sources */,
+				86B4740A2657E93B00384C21 /* Switcher.swift in Sources */,
 				867950C7265215230041847C /* UIScrollView+Extension.swift in Sources */,
 				869F83F426551ACC00DA1D53 /* User.swift in Sources */,
 				86C3FA72264BF44000480E4F /* TabBarController-copy.swift in Sources */,

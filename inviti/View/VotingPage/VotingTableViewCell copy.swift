@@ -26,4 +26,9 @@ class VotingTableViewCell: UITableViewCell {
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var cellBackgroundView: UIView!
 
+    func setCell(model: Meeting) {
+        titleLabel.text = model.subject
+        valueLabel.text = model.location
+    }
 }
+

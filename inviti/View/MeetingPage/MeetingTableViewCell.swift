@@ -9,9 +9,9 @@ import UIKit
 import Kingfisher
 
 protocol MeetingTableCellDelegate: AnyObject {
-    func editButtonPressed()
-    func goButtonPressed()
-    func deleteBtnPressed()
+    func editButtonPressed(_ sender: MeetingTableViewCell)
+    func goButtonPressed(_ sender: MeetingTableViewCell)
+    func deleteBtnPressed(_ sender: MeetingTableViewCell)
 }
 
 class MeetingTableViewCell: UITableViewCell {
@@ -28,15 +28,19 @@ class MeetingTableViewCell: UITableViewCell {
     @IBOutlet weak var editIcon: UIButton!
 
     @IBAction func edit(_ sender: Any) {
-        delegate?.editButtonPressed()
+        delegate?.editButtonPressed(self)
+
+        if let index = index {
+            completionHandler?(index)
+        }
     }
 
     @IBAction func participate(_ sender: Any) {
-        delegate?.goButtonPressed()
+        delegate?.goButtonPressed(self)
     }
 
     @IBAction func deleteBtn(_ sender: Any) {
-        delegate?.deleteBtnPressed()
+        delegate?.deleteBtnPressed(self)
     }
 
     override func awakeFromNib() {
@@ -49,19 +53,27 @@ class MeetingTableViewCell: UITableViewCell {
 
     var viewModel: MeetingViewModel?
 
+    var index: Int?
+
+    var meetings: Meeting?
+
+    var completionHandler: ((Int) -> Void)?
+
     func setup(viewModel: MeetingViewModel) {
         self.viewModel = viewModel
         layoutCell()
     }
 
     func layoutCell() {
+        
+        meetings = viewModel?.meeting
         meetingSubject.text = viewModel?.subject
         meetingTimeLabel.text = "投票建立時間：\(String(describing: viewModel!.createdTime))"
         participanCountLabel.text = "和其他 \(String(describing: viewModel!.numOfParticipants)) 位參與者"
 
         guard let url = viewModel?.image else { return }
-        let imageUrl = URL(string: String(url))
-        hostImage.kf.setImage(with: imageUrl)
+            let imageUrl = URL(string: String(url))
+            hostImage.kf.setImage(with: imageUrl)
 
     }
 

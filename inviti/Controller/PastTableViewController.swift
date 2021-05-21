@@ -40,6 +40,10 @@ class PastTableViewController: UITableViewController {
 
     let viewModel = MainViewModel()
 
+    var selectedIndex: Int?
+
+    var meetingData: Meeting?
+
     func setupRefresher() {
         self.tableView.refresh.header = RefreshHeader(delegate: self)
 
@@ -55,7 +59,14 @@ class PastTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MeetingTableViewCell.self), for: indexPath) as! MeetingTableViewCell
+
         cell.delegate = self
+
+        cell.index = indexPath.row
+
+        cell.completionHandler = {(index) in
+            self.selectedIndex = index
+        }
 
         guard let meetingViewCell = cell as? MeetingTableViewCell else {
             return cell
@@ -72,20 +83,26 @@ class PastTableViewController: UITableViewController {
     }
 
 }
+
 extension PastTableViewController: MeetingTableCellDelegate {
-    func deleteBtnPressed() {
+    func deleteBtnPressed(_ sender: MeetingTableViewCell) {
 
         
     }
 
-    func editButtonPressed() {
+    func editButtonPressed(_ sender: MeetingTableViewCell) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
         let editVC = storyboard.instantiateViewController(identifier: "CreateFirstPageVC")
            guard let edit = editVC as? CreateFirstPageVC else { return }
+
+        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
+
+        edit.meetingInfo = sender.meetings
+
         navigationController?.pushViewController(edit, animated: true)
     }
 
-    func goButtonPressed() {
+    func goButtonPressed(_ sender: MeetingTableViewCell) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
         let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
            guard let voting = votingVC as? VotingViewController else { return }

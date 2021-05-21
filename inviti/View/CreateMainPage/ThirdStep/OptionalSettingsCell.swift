@@ -8,25 +8,33 @@
 import UIKit
 import SwiftHEXColors
 
-//protocol CreateFirstCellDelegate {
-//    func goToSecondPage()
-//}
 
 class OptionalSettingsCell: UITableViewCell, UITextViewDelegate {
 
-//   var delegate: CreateFirstCellDelegate?
+    var deadlineTag: Int = 0
 
-    @IBOutlet weak var subjectTextField: UITextField!
+    var placeholder = UILabel()
+
+    var observation : NSKeyValueObservation?
     
+    @IBOutlet weak var singleView: UISwitch!
+
+    @IBOutlet weak var hiddenView: UISwitch!
+
+    @IBOutlet weak var deadlineView: UISwitch!
+
     @IBOutlet weak var dealineFullView: UIView!
 
     @IBAction func singleToggle(_ sender: Any) {
     }
+
     @IBAction func hiddenToggle(_ sender: Any) {
     }
+
     @IBOutlet weak var textView: UITextView!
 
     @IBOutlet weak var deadlineLabel: UILabel!
+
     @IBOutlet weak var addSubtract: UIStepper!
 
     @IBAction func deadlineToggle(_ sender: UISwitch) {
@@ -39,23 +47,27 @@ class OptionalSettingsCell: UITableViewCell, UITextViewDelegate {
         }
     }
 
-    var deadlineTag: Int = 0
-
-    var placeholder = UILabel()
-
     @IBAction func stepperAction(_ sender: UIStepper) {
+
         let count = Int(sender.value)
-        deadlineTag = count
         self.deadlineLabel.text = "投票的天數為 \(count) 天"
     }
-
-    @IBOutlet weak var deadlineView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.dealineFullView.isHidden = true
         textView.delegate = self
         setLayout()
+
+        observation = addSubtract.observe(\.value, options: [.old, .new], changeHandler: { (stepper, change) in
+                if change.newValue! == 0.0 {
+                    if change.newValue! > change.oldValue! {
+                        stepper.value = 1
+                    } else {
+                        stepper.value = -1
+                    }
+                }
+            })
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -72,6 +84,25 @@ class OptionalSettingsCell: UITableViewCell, UITextViewDelegate {
             }
     }
 
+    func setCell(model: Meeting) {
+        textView.text = model.notes
+        singleView.isOn = model.singleMeeting
+        hiddenView.isOn = model.hiddenMeeting
+        deadlineView.isOn = model.deadlineMeeting
+        deadlineTag = model.deadlineTag
+        placeholder.alpha = 0
+        placeholder.text = ""
+        
+        if deadlineTag != 0 {
+            dealineFullView.isHidden = false
+
+            self.deadlineLabel.text = "投票的天數為 \(deadlineTag) 天"
+        } else {
+            dealineFullView.isHidden = true
+        }
+
+    }
+
     func setLayout() {
 
         placeholder.frame = CGRect(x: 6, y: 6, width: 250, height: 36)
@@ -81,4 +112,5 @@ class OptionalSettingsCell: UITableViewCell, UITextViewDelegate {
         placeholder.font = UIFont(name: "PingFang TC", size: 17)
         textView.addSubview(placeholder)
     }
+
 }

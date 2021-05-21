@@ -20,9 +20,11 @@ struct Meeting: Codable {
 //    let options: [Option]
     let singleMeeting: Bool
     let hiddenMeeting: Bool
+    let deadlineMeeting: Bool
 //    let askInfo: AskInfo
     let participants: [String]
     let numOfParticipants: Int
+    var deadlineTag: Int
     //    let startTime: Int64
     //    let endTime: Int64
     //    let duration: Int64
@@ -34,6 +36,7 @@ struct Meeting: Codable {
 //        case askInfo, options
         case participants, location, numOfParticipants
         case hiddenMeeting, singleMeeting, image
+        case deadlineTag, deadlineMeeting
     }
 
     var toDict: [String: Any] {
@@ -51,8 +54,10 @@ struct Meeting: Codable {
 //            "duration": duration as Any,
 //            "options": [options.toDict] as Any,
             "singleMeeting": singleMeeting as Any,
+            "deadlineMeeting": deadlineMeeting as Any,
             "hiddenMeeting": hiddenMeeting as Any,
             "numOfParticipants": numOfParticipants as Any,
+            "deadlineTag": deadlineTag as Any,
 //            "askInfo": askInfo.toDict as Any
 
         ]
