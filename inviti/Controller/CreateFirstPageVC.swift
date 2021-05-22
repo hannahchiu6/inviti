@@ -14,6 +14,8 @@ class CreateFirstPageVC: UIViewController {
 
     weak var delegate: CreateFirstCell?
 
+    weak var secondDelegate: OptionsCell?
+
     weak var popDelegate: PopSaveSuccessVC?
 
     var meetingInfo: Meeting!
@@ -30,12 +32,18 @@ class CreateFirstPageVC: UIViewController {
 
     @IBAction func confirm(_ sender: Any) {
         if isDataEmpty {
+
             self.popViewForSave.isHidden = false
+
         } else {
+
             UIView.animate(withDuration: 5.0, animations: { () -> Void in
             self.popupView.isHidden = false
+
             })
+
         meetingDataHandler?(meetingInfo)
+
         }
     }
 
@@ -59,6 +67,9 @@ class CreateFirstPageVC: UIViewController {
         self.popViewForSave.isHidden = true
         self.popupView.isHidden = true
 
+        tableview.tableHeaderView = nil
+        tableview.tableFooterView = nil
+
 //        NotificationCenter.default.addObserver(self,
 //                                                selector: #selector(enableConfirmBtn), name:
 //                                                Notification.Name("reloadCollection"),
@@ -81,9 +92,9 @@ class CreateFirstPageVC: UIViewController {
                                   numOfParticipants:0,
                                   deadlineTag: 0)
 
-
 //            addParticipants()
         }
+
     }
 
 //    func addParticipants() {
@@ -134,7 +145,11 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
           return 1
 
         default:
-            return 1
+            if isDataEmpty {
+                return 1
+            } else {
+                return 3
+            }
         }
     }
 
@@ -142,6 +157,15 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
         3
     }
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+
+        return 0
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+
+        return 0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         switch indexPath.section {
@@ -180,6 +204,22 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionsCell", for: indexPath) as! OptionsCell
 
+            cell.delegate = self
+
+            if isDataEmpty {
+
+                cell.optionsStackView.isHidden = false
+
+            } else {
+
+                cell.optionsStackView.isHidden = true
+                    if indexPath.row == 0 {
+                        cell.bottomAlarmIcon.isHidden = false
+                    } else {
+                        cell.bottomAlarmIcon.isHidden = true
+                    }
+            }
+
             return cell
         }
     }
@@ -200,11 +240,6 @@ extension CreateFirstPageVC: CreateFirstCellDelegate {
     func getLocationData(_ location: String) {
 //        viewModel.onLocationChanged(text: location)
     }
-
-    func goToSecondPage() {
-        nextPage()
-    }
-
 }
 
 extension CreateFirstPageVC: PopSaveSuccessDelegate {
@@ -212,4 +247,12 @@ extension CreateFirstPageVC: PopSaveSuccessDelegate {
         self.dismiss(animated: true, completion: nil)
         navigationController?.popToRootViewController(animated: true)
     }
+}
+
+extension CreateFirstPageVC: SecondCellDelegate{
+
+    func goToSecondPage() {
+        nextPage()
+    }
+
 }

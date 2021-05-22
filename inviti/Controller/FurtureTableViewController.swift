@@ -69,7 +69,6 @@ class FurtureTableViewController: UITableViewController {
 
         cell.completionHandler = {(index) in
             self.selectedIndex = index
-
         }
 
 //        cell.firstParticipantView.loadImage("\(String(describing: meetingVM?.participants[indexPath.section].image))")

@@ -9,7 +9,6 @@ import UIKit
 import SwiftHEXColors
 
 protocol CreateFirstCellDelegate {
-    func goToSecondPage()
     func getSubjectData(_ subject: String)
     func getLocationData(_ location: String)
 }
@@ -34,18 +33,6 @@ class CreateFirstCell: UITableViewCell {
         }
         delegate?.getLocationData(location)
     }
-
-    @IBAction func selectTimeIcon(_ sender: Any) {
-        print("test Btn selectime icon!")
-        delegate?.goToSecondPage()
-    }
-
-    @IBAction func selectTime(_ sender: Any) {
-        delegate?.goToSecondPage()
-        print("test Btn selectime!")
-    }
-    
-    @IBOutlet weak var timePicker: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -8,13 +8,31 @@
 import UIKit
 import SwiftHEXColors
 
-//protocol CreateFirstCellDelegate {
-//    func goToSecondPage()
-//}
+protocol SecondCellDelegate {
+    func goToSecondPage()
+}
 
 class OptionsCell: UITableViewCell {
 
-//   var delegate: CreateFirstCellDelegate?
+    @IBOutlet weak var optionsStackView: UIStackView!
+
+    @IBOutlet weak var goSecondPage: UIButton!
+
+    @IBOutlet weak var goSecondPageIcon: UIButton!
+
+    @IBOutlet weak var bottomAlarmIcon: UIImageView!
+    
+    @IBAction func goNextPage(_ sender: Any) {
+        delegate?.goToSecondPage()
+    }
+
+
+    @IBAction func goNextPageIcon(_ sender: Any) {
+        delegate?.goToSecondPage()
+    }
+
+    var delegate: SecondCellDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
