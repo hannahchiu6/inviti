@@ -106,6 +106,11 @@ extension PastTableViewController: MeetingTableCellDelegate {
         let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
         let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
            guard let voting = votingVC as? VotingViewController else { return }
+
+        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
+
+        voting.meetingInfo = sender.meetings
+        
         navigationController?.pushViewController(voting, animated: true)
     }
 }

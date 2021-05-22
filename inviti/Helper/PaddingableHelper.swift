@@ -5,48 +5,48 @@
 //  Created by Hannah.C on 22.05.21.
 //
 
+import Foundation
 import UIKit
 
+@IBDesignable
 class PaddingableHelper: UILabel {
 
-    private var padding = UIEdgeInsets.zero
+    var textEdgeInsets = UIEdgeInsets.zero {
+        didSet { invalidateIntrinsicContentSize() }
+    }
+
+    open override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
+        let insetRect = bounds.inset(by: textEdgeInsets)
+        let textRect = super.textRect(forBounds: insetRect, limitedToNumberOfLines: numberOfLines)
+        let invertedInsets = UIEdgeInsets(top: -textEdgeInsets.top, left: -textEdgeInsets.left, bottom: -textEdgeInsets.bottom, right: -textEdgeInsets.right)
+        return textRect.inset(by: invertedInsets)
+    }
+
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: rect.inset(by: textEdgeInsets))
+    }
 
     @IBInspectable
     var paddingLeft: CGFloat {
-        get { return padding.left }
-        set { padding.left = newValue }
+        set { textEdgeInsets.left = newValue }
+        get { return textEdgeInsets.left }
     }
 
     @IBInspectable
     var paddingRight: CGFloat {
-        get { return padding.right }
-        set { padding.right = newValue }
+        set { textEdgeInsets.right = newValue }
+        get { return textEdgeInsets.right }
     }
 
     @IBInspectable
     var paddingTop: CGFloat {
-        get { return padding.top }
-        set { padding.top = newValue }
+        set { textEdgeInsets.top = newValue }
+        get { return textEdgeInsets.top }
     }
 
     @IBInspectable
     var paddingBottom: CGFloat {
-        get { return padding.bottom }
-        set { padding.bottom = newValue }
+        set { textEdgeInsets.bottom = newValue }
+        get { return textEdgeInsets.bottom }
     }
-
-    override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: padding))
-    }
-
-    override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
-        let insets = self.padding
-        var rect = super.textRect(forBounds: bounds.inset(by: insets), limitedToNumberOfLines: numberOfLines)
-        rect.origin.x    -= insets.left
-        rect.origin.y    -= insets.top
-        rect.size.width  += (insets.left + insets.right)
-        rect.size.height += (insets.top + insets.bottom)
-        return rect
-    }
-
 }
