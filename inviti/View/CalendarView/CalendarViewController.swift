@@ -2,134 +2,351 @@
 //  CalendarViewController.swift
 //  inviti
 //
-//  Created by Hannah.C on 13.05.21.
+//  Created by Hannah.C on 22.05.21.
 //
 
 import UIKit
-import FSCalendar
+import JKCalendar
 
 class CalendarViewController: UIViewController {
 
-    let eventSubjects = ["停電大作戰", "防疫你我一起來", "在家乖乖寫扣吧"]
-    let eventNotes = ["趕緊充手機充好充滿", "口罩戴好戴滿", "記得要洗手一分鐘"]
-    @IBOutlet weak var eventTableView: UITableView!
-    @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var calendar: FSCalendar!
+    private enum ButtonText {
 
-    fileprivate lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
-        return formatter
-    }()
-    fileprivate lazy var scopeGesture: UIPanGestureRecognizer = {
-        [unowned self] in
-        let panGesture = UIPanGestureRecognizer(target: self.calendar, action: #selector(self.calendar.handleScopeGesture(_:)))
-        panGesture.delegate = self
-        panGesture.minimumNumberOfTouches = 1
-        panGesture.maximumNumberOfTouches = 2
-        return panGesture
-    }()
+        case buttonIsEnabled(Int)
+        case buttonIsNotEnabled
 
+        func returnString() -> String {
+
+            switch self {
+//            case .buttonIsEnabled(let count):
+            case .buttonIsEnabled:
+                return "Busy hours"
+//                return "現有預定 \(count) 小時"
+            case .buttonIsNotEnabled:
+
+                return "尚未預訂"
+            }
+        }
+    }
+
+//    @IBOutlet weak var textField: UITextField!
+//    @IBOutlet weak var button: UIButton! {
+//
+//        didSet {
+//
+//            buttonLogic()
+//        }
+//    }
+    var markColor: UIColor {
+
+        guard let color = UIColor.myColorEnd else {
+
+            return UIColor.lightGray
+        }
+
+        return color
+    }
+    var selectDay: JKDay = JKDay(date: Date())
+
+    var bookingTimeDatas: [BookingTimeAndRoom] = [] {
+        didSet {
+
+            self.bookingTimeDatas.sort(by: <)
+//            buttonLogic()
+            calendarTableView.reloadData()
+        }
+    }
+
+    private var room = String() {
+        didSet {
+
+            calendarTableView.reloadData()
+        }
+    }
+
+    private var price = String()
+    private var firebaseBookingData: [UserEventData] = [] {
+
+        didSet {
+
+            calendarTableView.reloadData()
+        }
+    }
+
+    @IBOutlet weak var calendarTableView: JKCalendarTableView!
+
+
+    @IBAction func backButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    var storeData: StoreData?
+
+    let storeManager: StoreManager = StoreManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
 
-        eventTableView.delegate = self
-        eventTableView.dataSource = self
+        calendarTableView.calendar.delegate = self
+        calendarTableView.calendar.dataSource = self
+        calendarTableView.calendar.focusWeek = selectDay.weekOfMonth - 1
 
-        let nib = UINib(nibName: "EventTableViewCell", bundle: nil)
+//        getFirebaseBookingData()
+        calendarTableView.rowHeight = 60
+//        button.setupButtonModelPlayBand()
+        calendarTableView.isHidden = true
+        setupPickerView()
+    }
 
-        eventTableView.register(nib, forCellReuseIdentifier: "eventTableViewCell")
+//    private func getFirebaseBookingData() {
+//
+//        guard let data = storeData else { return }
+//
+//        PBProgressHUD.addLoadingView(animated: true)
+//
+//        storeManager.getStoreBookingDatas(storeName: data.name) { [weak self] (result) in
+//
+//            PBProgressHUD.dismissLoadingView(animated: true)
+//
+//            switch result {
+//
+//            case .success(let data):
+//                self?.calendarTableView.isHidden = false
+//                self?.firebaseBookingData = data
+//
+//            case .failure(let error):
+//                self?.addErrorTypeAlertMessage(error: error)
+//            }
+//        }
+//    }
 
-        if UIDevice.current.model.hasPrefix("iPad") {
-            self.calendarHeightConstraint.constant = 400
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//        guard let nextVC = segue.destination as? ConfirmViewController else {return}
+//        nextVC.loadViewIfNeeded()
+//
+//        nextVC.bookingTimeDatas = self.bookingTimeDatas
+//        nextVC.storeData = self.storeData
+//        nextVC.bookingDatasChange = { [weak self] changeDatas in
+//            self?.bookingTimeDatas = changeDatas
+//        }
+//    }
+//    private func buttonLogic() {
+//
+//        switch bookingTimeDatas.count {
+//        case 0:
+//            button.alpha = 0.7
+//            button.isEnabled = false
+//            button.setTitle(ButtonText.buttonIsNotEnabled.returnString(), for: .normal)
+//        default:
+//            button.alpha = 1
+//            button.isEnabled = true
+//            var hourCount = 0
+//            for hours in bookingTimeDatas {
+//
+//                hourCount += hours.hour.count
+//            }
+//            button.setTitle(ButtonText.buttonIsEnabled(hourCount).returnString(), for: .normal)
+//        }
+//    }
+
+    private func setupPickerView() {
+
+        let picker = UIPickerView()
+        picker.dataSource = self
+        picker.delegate = self
+//        textField.inputView = picker
+        guard let room = storeData?.rooms[0] else {
+            return
         }
-
-        self.calendar.select(Date())
-        if UIDevice.current.model.hasPrefix("iPad") {
-            self.calendarHeightConstraint.constant = 400
-        }
-
-        self.calendar.select(Date())
-
-        self.view.addGestureRecognizer(self.scopeGesture)
-        self.eventTableView.panGestureRecognizer.require(toFail: self.scopeGesture)
-        self.calendar.scope = .month
-
-        // For UITest
-        self.calendar.accessibilityIdentifier = "calendar"
-
-        self.view.addGestureRecognizer(self.scopeGesture)
-        self.calendar.scope = .month
-
-        // For UITest
-        self.calendar.accessibilityIdentifier = "calendar"
-
-    }
-
-    func setupNavigationBar() {
-        self.navigationController?.navigationBar.topItem?.title = ""
-        let rightButton = UIBarButtonItem(image: UIImage(named: "NotificationBell.png"), style: .plain, target: nil, action: nil)
-        rightButton.tintColor = UIColor(red: 1, green: 0.3647, blue: 0, alpha: 1.0)
-        self.navigationItem.rightBarButtonItem = rightButton
-    }
-
-    // MARK:- UIGestureRecognizerDelegate
-
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        let shouldBegin = self.eventTableView.contentOffset.y <= -self.eventTableView.contentInset.top
-        if shouldBegin {
-            let velocity = self.scopeGesture.velocity(in: self.view)
-            switch self.calendar.scope {
-            case .month:
-                return velocity.y < 0
-            case .week:
-                return velocity.y > 0
-            }
-        }
-        return shouldBegin
-    }
-
-    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
-        self.calendarHeightConstraint.constant = bounds.height
-        self.view.layoutIfNeeded()
-    }
-
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print("did select date \(self.dateFormatter.string(from: date))")
-        let selectedDates = calendar.selectedDates.map({self.dateFormatter.string(from: $0)})
-        print("selected dates is \(selectedDates)")
-        if monthPosition == .next || monthPosition == .previous {
-            calendar.setCurrentPage(date, animated: true)
-        }
-    }
-
-    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        print("\(self.dateFormatter.string(from: calendar.currentPage))")
+        setupItemTitle(name: room.name)
+//        textField.text = room.name
+        self.room = room.name
+        self.price = room.price
     }
 }
 
-extension CalendarViewController: UITableViewDelegate {
+extension CalendarViewController: JKCalendarDelegate {
+
+    func calendar(_ calendar: JKCalendar, didTouch day: JKDay) {
+        selectDay = day
+        calendar.focusWeek = day < calendar.month
+            ? 0
+            : day > calendar.month ? calendar.month.weeksCount - 1: day.weekOfMonth - 1
+        calendar.reloadData()
+        calendarTableView.reloadData()
+    }
+
+    func heightOfFooterView(in claendar: JKCalendar) -> CGFloat {
+        return 10
+    }
+
+    func viewOfFooter(in calendar: JKCalendar) -> UIView? {
+        let view = UIView()
+        let line = UIView(frame: CGRect(x: 8, y: 9, width: calendar.frame.width - 16, height: 1))
+        line.backgroundColor = UIColor.lightGray
+        view.addSubview(line)
+        return view
+    }
 }
 
-extension CalendarViewController: UITableViewDataSource {
+extension CalendarViewController: JKCalendarDataSource {
+
+    func calendar(_ calendar: JKCalendar, marksWith month: JKMonth) -> [JKCalendarMark]? {
+
+        let firstMarkDay: JKDay = JKDay(year: 2018, month: 1, day: 9)!
+        let secondMarkDay: JKDay = JKDay(year: 2018, month: 1, day: 20)!
+
+        var marks: [JKCalendarMark] = []
+        if selectDay == month {
+            marks.append(JKCalendarMark(type: .circle,
+                                        day: selectDay,
+                                        color: markColor))
+        }
+        if firstMarkDay == month {
+            marks.append(JKCalendarMark(type: .underline,
+                                        day: firstMarkDay,
+                                        color: markColor))
+        }
+        if secondMarkDay == month {
+            marks.append(JKCalendarMark(type: .hollowCircle,
+                                        day: secondMarkDay,
+                                        color: markColor))
+        }
+        return marks
+    }
+
+    func calendar(_ calendar: JKCalendar, continuousMarksWith month: JKMonth) -> [JKCalendarContinuousMark]? {
+        let startDay: JKDay = JKDay(year: 2018, month: 1, day: 17)!
+        let endDay: JKDay = JKDay(year: 2018, month: 1, day: 18)!
+
+        return [JKCalendarContinuousMark(type: .dot,
+                                         start: startDay,
+                                         end: endDay,
+                                         color: markColor)]
+    }
+
+}
+
+extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+
+        return 1
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventNotes.count
+
+//        return storeData?.getStoreOpenHours() ?? 0
+        return 3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = eventTableView.dequeueReusableCell(withIdentifier: "eventTableViewCell", for: indexPath) as! EventTableViewCell
 
-//        cell.eventSubject = cellData[indexPath.row].0
-//            cell.bgImageView.image = cellData[indexPath.row].1
-        cell.eventSubject.text = eventSubjects[indexPath.row]
-        cell.eventNotes.text = eventNotes[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: String(describing: "CalendarTableViewCell"),
+            for: indexPath) as? CalendarTableViewCell else { return UITableViewCell() }
 
+        if selectDay.date < Date() {
+            cell.bookingButton.isHidden = true
+        }
+
+        let hour = indexPath.row + (Int(storeData?.openTime ?? "0") ?? 0)
+        let time = BookingDate(year: selectDay.year, month: selectDay.month, day: selectDay.day)
+
+        let bookingData = firebaseBookingData
+                            .filter({$0.bookingTime.date == time})
+                            .filter({$0.bookingTime.hour.contains(hour)})
+                            .filter({$0.bookingTime.room == self.room})
+
+//        if bookingData.isEmpty {
+//
+//            cell.fireBaseBookingSetup(hour: hour)
+//
+//            } else {
+//
+//                if FirebaseManager.shared.storeName.contains(storeData?.name ?? "") {
+//
+//                    cell.fireBaseBookingSetup(text: "\(bookingData[0].userInfo.name)預定此時間", hour: hour)
+//            }
+//
+//            return cell
+//        }
+        cell.bookingButton.addTarget(self, action: #selector(addBooking(sender:)), for: .touchUpInside)
+
+        if bookingTimeDatas.filter({$0.date == time}).filter({$0.hour.contains(hour)}).filter({$0.room == self.room}).isEmpty == false {
+
+            cell.userBookingSetup(hour: hour)
+            return cell
+        }
+
+        cell.setupCell(hour: hour)
         return cell
+    }
+
+    private func setupItemTitle(name: String) {
+
+        self.navigationItem.title = name + "時間"
     }
 }
 
-extension CalendarViewController: FSCalendarDataSource, FSCalendarDelegate, UIGestureRecognizerDelegate {
+extension CalendarViewController {
+
+    @objc func addBooking(sender: UIButton) {
+
+        let bookingDate = BookingDate(
+            year: selectDay.year,
+            month: selectDay.month,
+            day: selectDay.day)
+        let hour = sender.tag
+
+        guard let sameDateIndex = bookingTimeDatas.firstIndex(
+            where: {$0.date == bookingDate && $0.room == self.room}) else {
+                bookingTimeDatas.append(BookingTimeAndRoom(date: bookingDate, hour: [hour], room: room, price: price))
+            return
+        }
+
+        guard let hourIndex = bookingTimeDatas[sameDateIndex].hour.firstIndex(where: {$0 == hour}) else {
+
+            bookingTimeDatas[sameDateIndex].hour.append(hour)
+            return
+        }
+
+        if bookingTimeDatas[sameDateIndex].hour.count == 1 {
+
+            bookingTimeDatas.remove(at: sameDateIndex)
+        } else {
+
+            bookingTimeDatas[sameDateIndex].hour.remove(at: hourIndex)
+        }
+    }
 }
 
+extension CalendarViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+
+        guard let rooms = storeData?.rooms else {return 0}
+
+        return rooms.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+
+        guard let name = storeData?.rooms[row].name else {return String()}
+        return name
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+
+        guard let room = storeData?.rooms[row] else {return}
+//        textField.text = room.name
+        setupItemTitle(name: room.name)
+        self.room = room.name
+        self.price = room.price
+    }
+}

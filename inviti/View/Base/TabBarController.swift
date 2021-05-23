@@ -106,6 +106,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
 
         viewControllers = tabs.map({ $0.controller() })
+
         settingButton()
 
 

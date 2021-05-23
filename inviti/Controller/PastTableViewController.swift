@@ -86,7 +86,8 @@ class PastTableViewController: UITableViewController {
 
 extension PastTableViewController: MeetingTableCellDelegate {
     func deleteBtnPressed(_ sender: MeetingTableViewCell) {
-
+        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
+        viewModel.onTap(withIndex: indexPath.row)
         
     }
 

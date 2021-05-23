@@ -12,8 +12,7 @@ struct User: Identifiable, Codable {
 //    let id: String
     @DocumentID var id: String?
     let email: String
-    let firstName: String
-    let lastName: String
+    let name: String
     let appleID: String
     let image: String?
     let phone: String?
@@ -23,7 +22,7 @@ struct User: Identifiable, Codable {
     let numOfMeetings: Int?
 
     enum CodingKeys: String, CodingKey {
-        case id, email, firstName, lastName, appleID
+        case id, email, name, appleID
         case image, phone, address, numOfMeetings
         case isCalendarSynced, calendarType
 
@@ -33,8 +32,7 @@ struct User: Identifiable, Codable {
         return [
             "id": id as Any,
             "email": email as Any,
-            "lastName": lastName as Any,
-            "firstName": firstName as Any,
+            "lastName": name as Any,
             "appleID": appleID as Any,
             "image": image as Any,
             "numOfMeetings": numOfMeetings as Any,

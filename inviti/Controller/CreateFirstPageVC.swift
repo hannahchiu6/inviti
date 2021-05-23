@@ -12,12 +12,6 @@ import FirebaseFirestoreSwift
 
 class CreateFirstPageVC: UIViewController {
 
-    weak var delegate: CreateFirstCell?
-
-    weak var secondDelegate: OptionsCell?
-
-    weak var popDelegate: PopSaveSuccessVC?
-
     var meetingInfo: Meeting!
 
     var isDataEmpty: Bool = true
@@ -26,36 +20,48 @@ class CreateFirstPageVC: UIViewController {
 
     var isSwitchOn: Bool = false
 
-    let viewModel = MainViewModel()
+    let viewModel = CreateViewModel()
 
     @IBOutlet weak var confirmBtnView: UIButton!
 
     @IBAction func confirm(_ sender: Any) {
         if isDataEmpty {
 
-            self.popViewForSave.isHidden = false
+            let popOver = storyboard?.instantiateViewController(withIdentifier: "savePopVC") as! PopSaveSuccessVC
+            popOver.modalPresentationStyle = .overCurrentContext
+            self.present(popOver, animated: true)
+
+//            self.popViewForSave.isHidden = false
+//            performSegue(withIdentifier: "successSaveSegue", sender: self)
+//            let successVC = storyboard?.instantiateViewController(identifier: "PopSaveVC")
+//               guard let success = successVC as? PopSaveSuccessVC else { return }
+//
+//            navigationController?.pushViewController(success, animated: false)
+
+
+               
 
         } else {
 
             UIView.animate(withDuration: 5.0, animations: { () -> Void in
             self.popupView.isHidden = false
-
             })
 
         meetingDataHandler?(meetingInfo)
 
         }
+
+        viewModel.create(with: &viewModel.meeting)
     }
 
     @IBOutlet weak var popupView: UIView!
 
     @IBOutlet weak var popViewForSave: UIView!
 
-
     @IBOutlet weak var tableview: UITableView!
+
     @IBAction func nextPage(_ sender: Any) {
         nextPage()
-//        viewModel.onTapCreate()
 
     }
 
@@ -64,11 +70,13 @@ class CreateFirstPageVC: UIViewController {
         tableview.delegate = self
         tableview.dataSource = self
 //        confirmBtnView.isEnabled = false
-        self.popViewForSave.isHidden = true
+//        self.popViewForSave.isHidden = true
         self.popupView.isHidden = true
 
         tableview.tableHeaderView = nil
         tableview.tableFooterView = nil
+
+       
 
 //        NotificationCenter.default.addObserver(self,
 //                                                selector: #selector(enableConfirmBtn), name:
@@ -83,15 +91,23 @@ class CreateFirstPageVC: UIViewController {
 
         } else {
 
-            meetingInfo = Meeting(id: UUID().uuidString, owner: "",
-                                  createdTime: -1, subject: "", location: "",
-                                  notes: "", image: "", singleMeeting: false,
-                                  hiddenMeeting: false,
-                                  deadlineMeeting: false,
-                                  participants: [],
-                                  numOfParticipants:0,
-                                  deadlineTag: 0)
+            meetingInfo = Meeting(
+//                id: UUID().uuidString,
+                id: "",
+                owner: SimpleUser(id: "", email: "", image: ""),
+                createdTime: -1,
+                subject: "",
+                location: "",
+                notes: "",
+                image: "",
+                singleMeeting: false,
+                hiddenMeeting: false,
+                deadlineMeeting: false,
+                participants: [],
+                numOfParticipants:0,
+                deadlineTag: 0)
 
+//            isDataEmpty = !isDataEmpty
 //            addParticipants()
         }
 
@@ -116,11 +132,24 @@ class CreateFirstPageVC: UIViewController {
     }
 
     func nextPage() {
-        let secondVC = storyboard?.instantiateViewController(identifier: "SecondVC")
-           guard let second = secondVC as? CreateSecondVC else { return }
+//        let secondVC = storyboard?.instantiateViewController(identifier: "SecondVC")
+//           guard let second = secondVC as? Calend else { return }
+        let secondVC = storyboard?.instantiateViewController(identifier: "SecondMeetingVC")
+           guard let second = secondVC as? CalendarViewController else { return }
 
            navigationController?.pushViewController(second, animated: true)
     }
+
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//        if segue.identifier == "saveSuccessSegue" {
+//            if let presentVC = segue.destination as? PopSaveSuccessVC {
+//                presentVC.delegate = self
+//
+//            }
+//
+//        }
+//    }
 
 //    func checkUpdateStatus() {
 //
@@ -187,6 +216,8 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 //            cell.deadlineView.addTarget(self, action: #selector(updateSwitcher), for: .valueChanged)
             cell.setCell(model: meetingInfo)
 
+            cell.viewModel = self.viewModel
+
             cell.addSubtract.value = Double(meetingInfo.deadlineTag)
 
                 cell.observation = cell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { (stepper, change) in
@@ -205,6 +236,7 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionsCell", for: indexPath) as! OptionsCell
 
             cell.delegate = self
+
 
             if isDataEmpty {
 
@@ -233,21 +265,29 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 
 extension CreateFirstPageVC: CreateFirstCellDelegate {
     func getSubjectData(_ subject: String) {
-      
-//        viewModel.onSubjectChanged(text: subject)
+        viewModel.onSubjectChanged(text: subject)
     }
 
     func getLocationData(_ location: String) {
-//        viewModel.onLocationChanged(text: location)
+        viewModel.onLocationChanged(text: location)
     }
 }
 
-extension CreateFirstPageVC: PopSaveSuccessDelegate {
-    func didTap() {
-        self.dismiss(animated: true, completion: nil)
-        navigationController?.popToRootViewController(animated: true)
-    }
-}
+//extension CreateFirstPageVC: PopSaveSuccessDelegate {
+//
+//    func didTap() {
+//        popViewForSave.isHidden = true
+//
+////        if let backVC = UIStoryboard.meeting.instantiateInitialViewController() {
+////            backVC.modalPresentationStyle = .overCurrentContext
+////
+////            present(backVC, animated: false, completion: nil)
+////
+////        }
+//        self.pop(numberOfTimes: 1)
+////        self.navigationController?.popViewController(animated: true)
+//    }
+//}
 
 extension CreateFirstPageVC: SecondCellDelegate{
 
@@ -256,3 +296,30 @@ extension CreateFirstPageVC: SecondCellDelegate{
     }
 
 }
+
+//extension CreateFirstPageVC: ThirdCellDelegate {
+//    func getSingleData(_ boolean: Bool) {
+//        viewModel.meetingSingleChanged(boolean)
+//    }
+//
+//    func getHiddenData(_ boolean: Bool) {
+//
+//        viewModel.meetingHiddenChanged(boolean)
+//    }
+//
+//    func getDeadlineData(_ boolean: Bool) {
+//
+//        viewModel.meetingDeadlineChanged(boolean)
+//    }
+//
+//    func getDeadlineDayData(_ day: Int) {
+//
+//        viewModel.onDeadlineTagChanged(day)
+//
+//    }
+//
+//    func getNotesData(_ notes: String) {
+//
+//        viewModel.onNotesChanged(text: notes)
+//    }
+//}

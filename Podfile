@@ -16,5 +16,6 @@ target 'inviti' do
   pod 'FirebaseFirestoreSwift'
   pod 'EasyRefresher'
   pod 'Kingfisher'
+  pod 'JKCalendar'
 
 end

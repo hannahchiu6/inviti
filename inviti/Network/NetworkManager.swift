@@ -14,7 +14,7 @@ enum FirebaseError: Error {
 }
 
 enum MasterError: Error {
-    case youKnowNothingError(String)
+    case getError(String)
 }
 
 class NetworkManager {
@@ -27,12 +27,13 @@ class NetworkManager {
 
         db.collection("meetings")
             .order(by: "createdTime", descending: true)
-            .whereField("createdTime", isGreaterThan: Date().millisecondsSince1970)
+            .whereField("createdTime", isGreaterThanOrEqualTo: Date().millisecondsSince1970)
             .getDocuments() { (querySnapshot, error) in
 
                 if let error = error {
 
                     completion(.failure(error))
+
                 } else {
 
                     var meetings = [Meeting]()
@@ -66,6 +67,7 @@ class NetworkManager {
                 if let error = error {
 
                     completion(.failure(error))
+                    
                 } else {
 
                     var meetings = [Meeting]()
