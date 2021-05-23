@@ -46,10 +46,21 @@ class MeetingViewController: UIViewController {
 
         notiPopView.isHidden = true
         setupView()
-
+//        self.tabBarController?.tabBar.isHidden = false
         navigationController?.navigationBar.backgroundColor = UIColor.clear
-
+        let vc = self.storyboard?.instantiateViewController(identifier: "MeetingVC") as? MeetingViewController
+              self.view.window?.rootViewController = vc
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+             super.viewWillAppear(animated)
+             // Hide the navigation bar on the this view controller
+//             self.navigationController?.setNavigationBarHidden(false, animated: true)
+//             self.tabBarController?.tabBar.isHidden = false
+
+
+         }
+
 
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -66,6 +77,7 @@ class MeetingViewController: UIViewController {
                     self?.notiPopView.isHidden = false
                 }
             } else {
+                
                 UIView.animate(withDuration: 1) { [weak self] () in
                     self?.notiPopView.isHidden = true
 

@@ -70,7 +70,7 @@ class MeetingViewModel {
 //        }
 //    }
 
-    var owner: String? {
+    var owner: SimpleUser {
         get {
             return meeting.owner
         }

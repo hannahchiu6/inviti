@@ -21,3 +21,12 @@ class NavigationController: UINavigationController {
     }
 
 }
+extension UINavigationController {
+    func popBackTo(viewcontroller: UIViewController.Type, animated: Bool) {
+        for vc in self.viewControllers {
+            if vc.isKind(of: viewcontroller) {
+                self.popToViewController(vc, animated: animated)
+            }
+        }
+    }
+}

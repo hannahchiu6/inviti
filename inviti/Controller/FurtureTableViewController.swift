@@ -140,7 +140,14 @@ class FurtureTableViewController: UITableViewController {
 
 extension FurtureTableViewController: MeetingTableCellDelegate {
     func deleteBtnPressed(_ sender: MeetingTableViewCell) {
-       
+
+        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
+        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+            sender.alpha = 1
+            sender.alpha = 1
+        }, completion: {_ in
+            self.viewModel.onTap(withIndex: indexPath.row)
+        })
     }
 
     func editButtonPressed(_ sender: MeetingTableViewCell) {

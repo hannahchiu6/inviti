@@ -11,19 +11,20 @@ import FirebaseFirestoreSwift
 
 struct Meeting: Codable {
     var id: String
-    var owner: String
+//    var owner: String
+    var owner: SimpleUser
     var createdTime: Int64
     var subject: String
     var location: String?
     var notes: String?
     var image: String?
 //    let options: [Option]
-    let singleMeeting: Bool
-    let hiddenMeeting: Bool
-    let deadlineMeeting: Bool
+    var singleMeeting: Bool
+    var hiddenMeeting: Bool
+    var deadlineMeeting: Bool
 //    let askInfo: AskInfo
-    let participants: [String]
-    let numOfParticipants: Int
+    var participants: [String]
+    var numOfParticipants: Int
     var deadlineTag: Int
     //    let startTime: Int64
     //    let endTime: Int64
@@ -42,7 +43,7 @@ struct Meeting: Codable {
     var toDict: [String: Any] {
         return [
             "id": id as Any,
-            "owner": owner as Any,
+            "owner": owner.toDict,
             "createdTime": createdTime as Any,
 //            "startTime": startTime as Any,
 //            "endTime": endTime as Any,

@@ -10,6 +10,7 @@ import SwiftHEXColors
 
 protocol SecondCellDelegate {
     func goToSecondPage()
+
 }
 
 class OptionsCell: UITableViewCell {

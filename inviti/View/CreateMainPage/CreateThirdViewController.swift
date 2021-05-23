@@ -22,10 +22,14 @@ class CreateThirdViewController: UIViewController {
 
 
     @IBAction func backBtn(_ sender: Any) {
-
+//
+//        if let secondVC = self.navigationController?.viewControllers[1] {
+//                    self.navigationController?.popToViewController(secondVC, animated: true)
+//        }
         if let secondVC = self.navigationController?.viewControllers[1] {
                     self.navigationController?.popToViewController(secondVC, animated: true)
         }
+
     }
 
 
