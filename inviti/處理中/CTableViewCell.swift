@@ -1,18 +1,19 @@
 //
-//  CalendarTableViewCell .swift
+//  CTableViewCell.swift
 //  inviti
 //
 //  Created by Hannah.C on 24.05.21.
 //
 
-
 import UIKit
 
-class CalendarTableViewCell: UITableViewCell {
+class CTableViewCell: UITableViewCell {
 
     var viewModel: EventViewModel?
 
     var event: Event?
+
+    var completionHandler: ((Int) -> Void)?
 
     private enum TitleText: String {
         case user = "您預定的時間"
@@ -20,11 +21,9 @@ class CalendarTableViewCell: UITableViewCell {
     }
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var bookingView: UIView! {
-        didSet {
-            bookingView.layer.cornerRadius = 16
-        }
-    }
+    
+    @IBOutlet weak var bookingView: UIView!
+
     @IBOutlet weak var timeLabel: UILabel!
 
     @IBAction func bookingAction() {
@@ -35,13 +34,15 @@ class CalendarTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        print("--------- CalendarVCell ---------)")
+        print("\(viewModel?.event.returnTimeToDateType(time: (viewModel?.event.startTime)!))")
+       
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
 
     override func prepareForReuse() {
@@ -49,13 +50,13 @@ class CalendarTableViewCell: UITableViewCell {
         bookingButton.isHidden = false
     }
 
-    func setupCell(hour: Int) {
-
-        setupText(hour: hour)
-        bookingView.isHidden = true
-        bookingView.backgroundColor = UIColor.white
-        bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
-    }
+//    func setupCell(hour: Int) {
+//
+//        setupText(hour: hour)
+//        bookingView.isHidden = true
+//        bookingView.backgroundColor = UIColor.white
+//        bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
+//    }
 
     func setup(viewModel: EventViewModel) {
         self.viewModel = viewModel
@@ -63,9 +64,12 @@ class CalendarTableViewCell: UITableViewCell {
     }
 
     func layoutCell() {
-
         event = viewModel?.event
         titleLabel.text = viewModel?.subject
+        print("-------- Cell viewModel?.startTime ------")
+        print("\(String(describing: viewModel?.startTime))")
+
+//        titleLabel.text = viewModel?.subject
 
     }
 
@@ -78,15 +82,16 @@ class CalendarTableViewCell: UITableViewCell {
         titleLabel.text = TitleText.user.rawValue
     }
 
-    func fireBaseBookingSetup(text: String = TitleText.firebase.rawValue, hour: Int) {
+    func fireBaseBookingSetup(text: String, hour: Int) {
 
         setupText(hour: hour)
         bookingButton.isHidden = true
         bookingView.isHidden = false
         bookingView.backgroundColor = UIColor.myColorPinkRed
-        titleLabel.text = text
+        titleLabel.text = viewModel?.subject
+        titleLabel.text = "忙碌的時間"
     }
-    
+
     private func setupText(hour: Int) {
 
         self.timeLabel.setupTextInPB(text: String(hour) + ":00")

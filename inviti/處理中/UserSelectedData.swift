@@ -12,10 +12,10 @@ struct UserSelectedData {
     let selectedOption: OptionsData
     let status: String
 //    let pathID: String
-    let userInfo: User
+    let userInfo: SimpleUser
     let userUID: String
     let meetingID: String
-    let title: String
+//    let title: String
 
     var toDict: [String: Any] {
         return [
@@ -25,7 +25,7 @@ struct UserSelectedData {
             "userUID": userUID as Any,
             "meetingID": meetingID as Any,
             "userInfo": userInfo.toDict as Any,
-            "title": title as Any
+//            "title": title as Any
         ]
     }
 

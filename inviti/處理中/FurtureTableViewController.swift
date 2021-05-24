@@ -11,6 +11,15 @@ import EasyRefresher
 
 class FurtureTableViewController: UITableViewController {
 
+    let viewModel = MainViewModel()
+
+    var selectedIndex: Int?
+
+    var meetingData: Meeting?
+
+//    var refreshControl: UIRefreshControl!
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.do_registerCellWithNib(
@@ -37,16 +46,6 @@ class FurtureTableViewController: UITableViewController {
         setupRefresher()
 
     }
-
-    let viewModel = MainViewModel()
-
-    var selectedIndex: Int?
-
-    var meetingData: Meeting?
-
-//    var refreshControl: UIRefreshControl!
-
-//    var meetingVM: MeetingViewModel?
 
     func setupRefresher() {
         self.tableView.refresh.header = RefreshHeader(delegate: self)
@@ -143,8 +142,7 @@ extension FurtureTableViewController: MeetingTableCellDelegate {
     func deleteBtnPressed(_ sender: MeetingTableViewCell) {
 
         guard let indexPath = self.tableView.indexPath(for: sender) else { return }
-        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
-            sender.alpha = 1
+        UIView.animate(withDuration: 1, delay: 1, options: .curveEaseInOut, animations: {
             sender.alpha = 1
         }, completion: {_ in
             self.viewModel.onTap(withIndex: indexPath.row)
