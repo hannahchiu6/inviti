@@ -137,8 +137,8 @@ class CreateFirstPageVC: BaseViewController {
     func nextPage() {
 //        let secondVC = storyboard?.instantiateViewController(identifier: "SecondVC")
 //           guard let second = secondVC as? Calend else { return }
-        let secondVC = storyboard?.instantiateViewController(identifier: "SecondMeetingVC")
-           guard let second = secondVC as? CalendarViewController else { return }
+        let secondVC = storyboard?.instantiateViewController(identifier: "TestMeetingVC")
+           guard let second = secondVC as? CTableViewController else { return }
 
            navigationController?.pushViewController(second, animated: true)
     }

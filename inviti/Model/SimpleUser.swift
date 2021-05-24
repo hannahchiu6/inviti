@@ -11,9 +11,9 @@ import FirebaseFirestoreSwift
 struct SimpleUser: Identifiable, Codable {
     let id: String
 //    @DocumentID var id: String?
-    let email: String
+    var email: String
 //    let name: String
-    let image: String?
+    var image: String?
 
     enum CodingKeys: String, CodingKey {
         case email, image, id

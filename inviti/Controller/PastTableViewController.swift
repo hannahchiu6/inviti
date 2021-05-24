@@ -64,7 +64,7 @@ class PastTableViewController: UITableViewController {
 
         cell.index = indexPath.row
 
-        cell.completionHandler = {(index) in
+        cell.completionHandler = {index in
             self.selectedIndex = index
         }
 

@@ -17,13 +17,21 @@ class CalendarViewModel {
 
     func fetchData() {
 
-        EventManager.shared.fetchEvent { [weak self] result in
+        EventManager.shared.fetchEvents { [weak self] result in
 
             switch result {
 
             case .success(let events):
 
                 self?.setEvents(events)
+                print("--------- CalendarViewModel-----------")
+                print("\(events[0].startTime)")
+                print("--------- CalendarViewModel & returnTimeToDateTyp & year -----------")
+                print("\(Date.yearFormatter.string(from: Date.init(millis: events[0].startTime)))")
+                print("--------- CalendarViewModel & Function & monthFormatter : StartTime -----------")
+                print("\(Date.monthFormatter.string(from: Date.init(millis: events[0].startTime))))")
+                print("--------- CalendarViewModel & Function & dayFormatter : StartTime -----------")
+                print("\(Date.dayFormatter.string(from: Date.init(millis: events[0].startTime))))")
 
             case .failure(let error):
 

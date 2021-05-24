@@ -38,7 +38,7 @@ class ProgressHUD {
 
     static func addLoadingView(animated: Bool = true) {
 
-        ProgressHUD.shared.loadingView.show(in: PBProgressHUD.shared.view, animated: animated)
+        ProgressHUD.shared.loadingView.show(in: ProgressHUD.shared.view, animated: animated)
     }
 
     static func dismissLoadingView(animated: Bool = true) {

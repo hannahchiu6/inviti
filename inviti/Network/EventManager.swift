@@ -16,11 +16,11 @@ class EventManager {
 
     lazy var db = Firestore.firestore()
 
-    func fetchEvent(completion: @escaping (Result<[Event], Error>) -> Void) {
+    func fetchEvents(completion: @escaping (Result<[Event], Error>) -> Void) {
 
         db.collection("events")
             .order(by: "startTime", descending: true)
-            .getDocuments() { (querySnapshot, error) in
+            .getDocuments() { querySnapshot, error in
 
                 if let error = error {
 
@@ -35,6 +35,9 @@ class EventManager {
                         do {
                             if let event = try document.data(as: Event.self, decoder: Firestore.Decoder()) {
                                 events.append(event)
+                                print("--------- EventManager ---------")
+                                print("\(event.startTime)")
+
                             }
 
                         } catch {
