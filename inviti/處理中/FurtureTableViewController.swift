@@ -56,6 +56,7 @@ class FurtureTableViewController: UITableViewController {
             self?.tableView.refresh.header.endRefreshing()
         }
     }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.viewModel.meetingViewModels.value.count
     }
@@ -67,7 +68,7 @@ class FurtureTableViewController: UITableViewController {
 
         cell.index = indexPath.row
 
-        cell.completionHandler = {(index) in
+        cell.completionHandler = { index in
             self.selectedIndex = index
         }
 
@@ -155,7 +156,7 @@ extension FurtureTableViewController: MeetingTableCellDelegate {
         let editVC = storyboard.instantiateViewController(identifier: "CreateFirstPageVC")
            guard let edit = editVC as? CreateFirstPageVC else { return }
 
-        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
+        guard self.tableView.indexPath(for: sender) != nil else { return }
 
         edit.meetingInfo = sender.meetings
 
@@ -167,7 +168,7 @@ extension FurtureTableViewController: MeetingTableCellDelegate {
         let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
            guard let voting = votingVC as? VotingViewController else { return }
 
-        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
+        guard self.tableView.indexPath(for: sender) != nil else { return }
 
         voting.meetingInfo = sender.meetings
 

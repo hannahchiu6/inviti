@@ -10,7 +10,12 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 
-class CreateFirstPageVC: UIViewController {
+class CreateFirstPageVC: BaseViewController {
+
+    private struct Segue {
+
+        static let success = "SegueSuccess"
+    }
 
     var meetingInfo: Meeting!
 
@@ -21,12 +26,13 @@ class CreateFirstPageVC: UIViewController {
     var isSwitchOn: Bool = false
 
     let viewModel = CreateViewModel()
+    
 
     @IBOutlet weak var confirmBtnView: UIButton!
 
     @IBAction func confirm(_ sender: Any) {
         if isDataEmpty {
-
+//            performSegue(withIdentifier: Segue.success, sender: nil)
             let popOver = storyboard?.instantiateViewController(withIdentifier: "savePopVC") as! PopSaveSuccessVC
             popOver.modalPresentationStyle = .overCurrentContext
             self.present(popOver, animated: true)
@@ -39,7 +45,6 @@ class CreateFirstPageVC: UIViewController {
 //            navigationController?.pushViewController(success, animated: false)
 
 
-               
 
         } else {
 
@@ -75,8 +80,6 @@ class CreateFirstPageVC: UIViewController {
 
         tableview.tableHeaderView = nil
         tableview.tableFooterView = nil
-
-       
 
 //        NotificationCenter.default.addObserver(self,
 //                                                selector: #selector(enableConfirmBtn), name:

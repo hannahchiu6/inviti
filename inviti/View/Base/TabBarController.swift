@@ -102,6 +102,8 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
              }
      }
 
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -110,6 +112,11 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         settingButton()
 
 
+    }
+
+    private func relationshipSetup() {
+        view.layoutIfNeeded()
+        
     }
 
 //    func layoutSubviews() {

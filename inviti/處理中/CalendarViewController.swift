@@ -7,6 +7,10 @@
 
 import UIKit
 import JKCalendar
+import Firebase
+import FirebaseFirestoreSwift
+import EasyRefresher
+import JGProgressHUD
 
 class CalendarViewController: UIViewController {
 
@@ -37,6 +41,7 @@ class CalendarViewController: UIViewController {
 //            buttonLogic()
 //        }
 //    }
+
     var markColor: UIColor {
 
         guard let color = UIColor.myColorEnd else {
@@ -48,10 +53,14 @@ class CalendarViewController: UIViewController {
     }
     var selectDay: JKDay = JKDay(date: Date())
 
-    var bookingTimeDatas: [BookingTimeAndRoom] = [] {
+    let viewModel = CalendarViewModel()
+
+    var eventData: Event?
+
+    var options: [OptionsData] = [] {
         didSet {
 
-            self.bookingTimeDatas.sort(by: <)
+            self.options.sort(by: <)
 //            buttonLogic()
             calendarTableView.reloadData()
         }
@@ -65,7 +74,8 @@ class CalendarViewController: UIViewController {
     }
 
     private var price = String()
-    private var firebaseBookingData: [UserEventData] = [] {
+
+    private var firebaseBookingData: [UserSelectedData] = [] {
 
         didSet {
 
@@ -80,10 +90,6 @@ class CalendarViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
-    var storeData: StoreData?
-
-    let storeManager: StoreManager = StoreManager()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -91,13 +97,43 @@ class CalendarViewController: UIViewController {
         calendarTableView.calendar.dataSource = self
         calendarTableView.calendar.focusWeek = selectDay.weekOfMonth - 1
 
-//        getFirebaseBookingData()
         calendarTableView.rowHeight = 60
 //        button.setupButtonModelPlayBand()
         calendarTableView.isHidden = true
         setupPickerView()
+        viewModelInit()
     }
 
+    func viewModelInit() {
+        viewModel.refreshView = { [weak self] () in
+            DispatchQueue.main.async {
+                self?.calendarTableView.reloadData()
+            }
+        }
+
+        viewModel.eventViewModels.bind { [weak self] events in
+//            self?.tableView.reloadData()
+            self?.viewModel.onRefresh()
+        }
+
+        viewModel.scrollToTop = { [weak self] () in
+
+            self?.calendarTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
+
+        viewModel.fetchData()
+
+        setupRefresher()
+    }
+
+    func setupRefresher() {
+        self.calendarTableView.refresh.header = RefreshHeader(delegate: self)
+
+        calendarTableView.refresh.header.addRefreshClosure { [weak self] in
+            self?.viewModel.fetchData()
+            self?.calendarTableView.refresh.header.endRefreshing()
+        }
+    }
 //    private func getFirebaseBookingData() {
 //
 //        guard let data = storeData else { return }
@@ -125,15 +161,15 @@ class CalendarViewController: UIViewController {
 //        guard let nextVC = segue.destination as? ConfirmViewController else {return}
 //        nextVC.loadViewIfNeeded()
 //
-//        nextVC.bookingTimeDatas = self.bookingTimeDatas
+//        nextVC.options = self.options
 //        nextVC.storeData = self.storeData
 //        nextVC.bookingDatasChange = { [weak self] changeDatas in
-//            self?.bookingTimeDatas = changeDatas
+//            self?.options = changeDatas
 //        }
 //    }
 //    private func buttonLogic() {
 //
-//        switch bookingTimeDatas.count {
+//        switch options.count {
 //        case 0:
 //            button.alpha = 0.7
 //            button.isEnabled = false
@@ -142,7 +178,7 @@ class CalendarViewController: UIViewController {
 //            button.alpha = 1
 //            button.isEnabled = true
 //            var hourCount = 0
-//            for hours in bookingTimeDatas {
+//            for hours in options {
 //
 //                hourCount += hours.hour.count
 //            }
@@ -168,13 +204,19 @@ class CalendarViewController: UIViewController {
 
 extension CalendarViewController: JKCalendarDelegate {
 
-    func calendar(_ calendar: JKCalendar, didTouch day: JKDay) {
+//    func calendar(_ calendar: JKCalendar, didTouch day: JKDay) {
+//        selectDay = day
+//        calendar.focusWeek = day < calendar.month
+//            ? 0
+//            : day > calendar.month ? calendar.month.weeksCount - 1: day.weekOfMonth - 1
+//        calendar.reloadData()
+//        calendarTableView.reloadData()
+//    }
+
+    func calendar(_ calendar: JKCalendar, didTouch day: JKDay){
         selectDay = day
-        calendar.focusWeek = day < calendar.month
-            ? 0
-            : day > calendar.month ? calendar.month.weeksCount - 1: day.weekOfMonth - 1
+        calendar.focusWeek = day < calendar.month ? 0: day > calendar.month ? calendar.month.weeksCount - 1: day.weekOfMonth - 1
         calendar.reloadData()
-        calendarTableView.reloadData()
     }
 
     func heightOfFooterView(in claendar: JKCalendar) -> CGFloat {
@@ -238,7 +280,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
 //        return storeData?.getStoreOpenHours() ?? 0
-        return 3
+        return self.viewModel.eventViewModels.value.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -252,12 +294,12 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         let hour = indexPath.row + (Int(storeData?.openTime ?? "0") ?? 0)
-        let time = BookingDate(year: selectDay.year, month: selectDay.month, day: selectDay.day)
+        let time = OptionTime(year: selectDay.year, month: selectDay.month, day: selectDay.day)
 
         let bookingData = firebaseBookingData
-                            .filter({$0.bookingTime.date == time})
-                            .filter({$0.bookingTime.hour.contains(hour)})
-                            .filter({$0.bookingTime.room == self.room})
+                            .filter({$0.selectedOption.date == time})
+                            .filter({$0.selectedOption.hour.contains(hour)})
+                            .filter({$0.selectedOption.subject == self.room})
 
 //        if bookingData.isEmpty {
 //
@@ -274,7 +316,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
 //        }
         cell.bookingButton.addTarget(self, action: #selector(addBooking(sender:)), for: .touchUpInside)
 
-        if bookingTimeDatas.filter({$0.date == time}).filter({$0.hour.contains(hour)}).filter({$0.room == self.room}).isEmpty == false {
+        if options.filter({$0.date == time}).filter({$0.hour.contains(hour)}).filter({$0.subject == self.room}).isEmpty == false {
 
             cell.userBookingSetup(hour: hour)
             return cell
@@ -294,30 +336,30 @@ extension CalendarViewController {
 
     @objc func addBooking(sender: UIButton) {
 
-        let bookingDate = BookingDate(
+        let bookingDate = OptionTime(
             year: selectDay.year,
             month: selectDay.month,
             day: selectDay.day)
         let hour = sender.tag
 
-        guard let sameDateIndex = bookingTimeDatas.firstIndex(
-            where: {$0.date == bookingDate && $0.room == self.room}) else {
-                bookingTimeDatas.append(BookingTimeAndRoom(date: bookingDate, hour: [hour], room: room, price: price))
+        guard let sameDateIndex = options.firstIndex(
+            where: {$0.date == bookingDate && $0.subject == self.room}) else {
+            options.append(OptionsData(date: bookingDate, hour: [hour], subject: room, location: price))
             return
         }
 
-        guard let hourIndex = bookingTimeDatas[sameDateIndex].hour.firstIndex(where: {$0 == hour}) else {
+        guard let hourIndex = options[sameDateIndex].hour.firstIndex(where: {$0 == hour}) else {
 
-            bookingTimeDatas[sameDateIndex].hour.append(hour)
+            options[sameDateIndex].hour.append(hour)
             return
         }
 
-        if bookingTimeDatas[sameDateIndex].hour.count == 1 {
+        if options[sameDateIndex].hour.count == 1 {
 
-            bookingTimeDatas.remove(at: sameDateIndex)
+            options.remove(at: sameDateIndex)
         } else {
 
-            bookingTimeDatas[sameDateIndex].hour.remove(at: hourIndex)
+            options[sameDateIndex].hour.remove(at: hourIndex)
         }
     }
 }
@@ -348,5 +390,11 @@ extension CalendarViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         setupItemTitle(name: room.name)
         self.room = room.name
         self.price = room.price
+    }
+}
+
+extension CalendarViewController: RefreshDelegate {
+    func refresherDidRefresh(_ refresher: Refresher) {
+        print("refresherDidRefresh")
     }
 }

@@ -282,6 +282,7 @@ PODS:
     - gRPC-Core/Interface (= 1.28.2)
   - gRPC-Core/Interface (1.28.2)
   - IQKeyboardManagerSwift (6.5.6)
+  - JGProgressHUD (2.2)
   - JKCalendar (1.1.4):
     - JKInfinitePageView (~> 1.1.0)
   - JKInfinitePageView (1.1.0)
@@ -308,6 +309,7 @@ DEPENDENCIES:
   - FirebaseFirestoreSwift
   - FSCalendar
   - IQKeyboardManagerSwift
+  - JGProgressHUD
   - JKCalendar
   - JZCalendarWeekView (~> 0.3)
   - Kingfisher
@@ -331,6 +333,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - IQKeyboardManagerSwift
+    - JGProgressHUD
     - JKCalendar
     - JKInfinitePageView
     - JZCalendarWeekView
@@ -360,6 +363,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   JKCalendar: b0b6cc011a33e07011a2d7eb842784092d82cca6
   JKInfinitePageView: 30c9e47e0e75067f9be046e5874edc7f4e7d4dc0
   JZCalendarWeekView: 586a429ab3fbeef4f98d648ea6b801f57c5495cc
@@ -373,6 +377,6 @@ SPEC CHECKSUMS:
   SwiftHEXColors: 1cb6e5d55c52749aa33db8f088ac55eb71ca4c7f
   SwiftyMenu: 9f38e9a22fb9c01b889d33cc362ffc12de042dd2
 
-PODFILE CHECKSUM: f09dfe3185a0abd2aa2772d9000f036cd7a566ec
+PODFILE CHECKSUM: 930c8e6f6213173679e00787f0adf7cbdfec1be2
 
 COCOAPODS: 1.10.1
