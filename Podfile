@@ -17,5 +17,6 @@ target 'inviti' do
   pod 'EasyRefresher'
   pod 'Kingfisher'
   pod 'JKCalendar'
+  pod 'JGProgressHUD'
 
 end

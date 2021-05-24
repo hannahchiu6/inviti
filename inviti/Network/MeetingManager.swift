@@ -61,7 +61,7 @@ class NetworkManager {
 
         db.collection("meetings")
             .order(by: "createdTime", descending: true)
-            .whereField("createdTime", isLessThan: Date().millisecondsSince1970)
+            .whereField("createdTime", isLessThanOrEqualTo: Date().millisecondsSince1970)
             .getDocuments() { (querySnapshot, error) in
 
                 if let error = error {

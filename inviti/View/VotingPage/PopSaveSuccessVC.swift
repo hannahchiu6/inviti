@@ -7,45 +7,9 @@
 
 import UIKit
 
-//protocol PopSaveSuccessDelegate {
-//    func didTap()
-//}
-
-class PopSaveSuccessVC: UIViewController {
-
-//    var delegate: PopSaveSuccessDelegate?
-
-    @IBAction func returnMain(_ sender: Any) {
 
 
-//        performSegue(withIdentifier: "backToMainSegue", sender: self)
-        dismiss(animated: true, completion: nil)
-
-//        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
-
-    }
-
-//        let storyboard: UIStoryboard = UIStoryboard.meeting
-//        let vc = (storyboard.instantiateViewController(identifier: "MeetingVC") as? MeetingViewController)!
-//        if let firstVC = navigationController?.viewControllers[0] {
-//                    navigationController?.popToViewController(firstVC, animated: true)
-//        }
-//        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-//        pop(numberOfTimes: 1)
-//        dismiss(animated: true, completion: nil)
-//        self.navigationController?.popToRootViewController(animated: true)
-
-//        let storyboard: UIStoryboard = UIStoryboard.meeting
-//        let editVC = storyboard.instantiateViewController(identifier: "MeetingVC")
-//           guard let edit = editVC as? MeetingViewController else { return }
-
-//        navigationController?.pushViewController(vc, animated: true)
-//        navigationController?.popToViewController(vc, animated: true)
-      
-//        pushViewController(edit, animated: true)
-
-    @IBOutlet weak var successView: UIView!
-    
+class PopSaveSuccessVC: BaseViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -60,13 +24,18 @@ class PopSaveSuccessVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        let blurEffect = UIBlurEffect(style: .regular)
-//           let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//           blurEffectView.frame = view.bounds
-//           blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//           self.view.addSubview(blurEffectView)
-//        self.view.bringSubviewToFront(self.successView)
-//
+    }
+
+    override func backToRoot(_ sender: Any) {
+
+        backToRoot(completion: {
+
+            let appdelegate = UIApplication.shared.delegate as? AppDelegate
+
+            let root = appdelegate?.window?.rootViewController as? TabBarViewController
+
+            root?.selectedIndex = 0
+        })
     }
 
 }

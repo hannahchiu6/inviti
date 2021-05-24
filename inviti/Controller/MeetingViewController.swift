@@ -10,7 +10,7 @@ import Firebase
 import FirebaseFirestoreSwift
 import EasyRefresher
 
-class MeetingViewController: UIViewController {
+class MeetingViewController: BaseViewController {
 
     @IBAction func pastBtn(_ sender: UIButton) {
         sender.isSelected = true

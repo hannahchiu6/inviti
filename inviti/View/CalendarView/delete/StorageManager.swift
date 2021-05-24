@@ -6,14 +6,6 @@
 //
 
 import Foundation
-//
-//  StoreProvider.swift
-//  PlayBand
-//
-//  Created by 姜旦旦 on 2019/5/7.
-//  Copyright © 2019 姜旦旦. All rights reserved.
-//
-
 
 
 class StoreManager {

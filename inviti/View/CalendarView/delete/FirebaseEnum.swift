@@ -64,7 +64,7 @@ enum BookingStatus: String {
     }
 }
 
-enum FirebaseBookingKey: String {
+enum FBBookingKey: String {
 
     case day
     case year
@@ -75,8 +75,8 @@ enum FirebaseBookingKey: String {
     case status
     case store
     case storeMessage
-    case room
-    case price
+    case subject
+    case location
 
     var description: String {
         return "沒有回覆"
