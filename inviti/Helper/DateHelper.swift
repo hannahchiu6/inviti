@@ -17,6 +17,10 @@ extension Date {
            self = Date(timeIntervalSince1970: TimeInterval(millis) / 1000)
        }
 
+    func toMillis(date: Date) -> Int64 {
+           return Int64(self.timeIntervalSince1970 * 1000)
+       }
+
     static var yearFormatter: DateFormatter {
 
         let formatter = DateFormatter()
@@ -36,6 +40,7 @@ extension Date {
         return formatter
 
     }
+
     static var dayFormatter: DateFormatter {
 
         let formatter = DateFormatter()
@@ -45,11 +50,21 @@ extension Date {
         return formatter
 
     }
+    
     static var hourFormatter: DateFormatter {
 
         let formatter = DateFormatter()
 
         formatter.dateFormat = "hh"
+
+        return formatter
+
+    }
+    static var timeFormatter: DateFormatter {
+
+        let formatter = DateFormatter()
+
+        formatter.dateFormat = "HH:mm"
 
         return formatter
 
@@ -68,6 +83,16 @@ extension Date {
         let formatter = DateFormatter()
 
         formatter.dateFormat = "yyyy/MM/dd HH:mm"
+
+        return formatter
+
+    }
+
+    static var intDateFormatter: DateFormatter {
+
+        let formatter = DateFormatter()
+
+        formatter.dateFormat = "yyyyMMdd"
 
         return formatter
 

@@ -11,12 +11,14 @@ class CalendarViewModel {
 
     let eventViewModels = Box([EventViewModel]())
 
+//    let selectedViewModels = Box([EventViewModel]())
+
     var refreshView: (() -> Void)?
 
     var scrollToTop: (() -> Void)?
 
     func fetchData() {
-
+        
         EventManager.shared.fetchEvents { [weak self] result in
 
             switch result {
@@ -24,14 +26,6 @@ class CalendarViewModel {
             case .success(let events):
 
                 self?.setEvents(events)
-                print("--------- CalendarViewModel-----------")
-                print("\(events[0].startTime)")
-                print("--------- CalendarViewModel & returnTimeToDateTyp & year -----------")
-                print("\(Date.yearFormatter.string(from: Date.init(millis: events[0].startTime)))")
-                print("--------- CalendarViewModel & Function & monthFormatter : StartTime -----------")
-                print("\(Date.monthFormatter.string(from: Date.init(millis: events[0].startTime))))")
-                print("--------- CalendarViewModel & Function & dayFormatter : StartTime -----------")
-                print("\(Date.dayFormatter.string(from: Date.init(millis: events[0].startTime))))")
 
             case .failure(let error):
 
@@ -39,6 +33,7 @@ class CalendarViewModel {
             }
         }
     }
+
 
     func onRefresh() {
         // maybe do something
@@ -48,6 +43,13 @@ class CalendarViewModel {
     func onScrollToTop() {
 
         self.scrollToTop?()
+    }
+
+    func createSelectedData(in viewModel: [EventViewModel], selectedDate: String) -> [EventViewModel] {
+        let oldviewModel = eventViewModels.value
+        var newViewModels = [EventViewModel]()
+        newViewModels = oldviewModel.filter({$0.event.date == Int(selectedDate)})
+        return newViewModels
     }
 
     func onTap(withIndex index: Int) {

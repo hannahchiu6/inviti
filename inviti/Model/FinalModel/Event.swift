@@ -11,7 +11,7 @@ import Foundation
 
 struct Event: Equatable, Codable {
     static func == (lhs: Event, rhs: Event) -> Bool {
-        return lhs.startTime == lhs.startTime && lhs.endTime  == lhs.endTime
+        return lhs.startTime == rhs.startTime && lhs.endTime  == rhs.endTime
     }
 
 //    static func < (lhs: Event, rhs: Event) -> Bool {
@@ -25,13 +25,15 @@ struct Event: Equatable, Codable {
     var owner: SimpleUser
     var startTime: Int64
     var endTime: Int64
+    var date: Int
     var subject: String
+    var location: String
 //    let notes: String
 //    let participants: String
 //    let location: String
 
     enum CodingKeys: String, CodingKey {
-        case id, owner, startTime, endTime, subject
+        case id, owner, startTime, endTime, subject, date, location
 //        case notes, participants, location
     }
 
@@ -49,9 +51,10 @@ struct Event: Equatable, Codable {
             "startTime": startTime as Any,
             "endTime": endTime as Any,
             "subject": subject as Any,
+            "date": date as Any,
 //            "notes": notes as Any,
 //            "participants": participants as Any,
-//            "location": location as Any
+            "location": location as Any
         ]
     }
 

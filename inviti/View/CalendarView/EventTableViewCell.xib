@@ -35,7 +35,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="如果下雨就取消" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGp-C2-qfo">
                                 <rect key="frame" x="0.0" y="34" width="102" height="12"/>
                                 <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -73,9 +73,9 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="endTime" destination="u4U-L9-aAZ" id="BFt-0r-clc"/>
-                <outlet property="eventNotes" destination="xGp-C2-qfo" id="dgD-0r-Sl4"/>
+                <outlet property="eventLocation" destination="xGp-C2-qfo" id="woh-Bu-L7t"/>
                 <outlet property="eventSubject" destination="3Ky-xV-eN4" id="0H4-hU-9sd"/>
-                <outlet property="leftBar" destination="L9q-yb-KY9" id="um2-4r-iGK"/>
+                <outlet property="mainView" destination="H2p-sc-9uM" id="Tgu-2j-K5u"/>
                 <outlet property="startTime" destination="V1Z-Dd-Yeq" id="oGd-dp-2zD"/>
             </connections>
             <point key="canvasLocation" x="9.4202898550724647" y="75"/>

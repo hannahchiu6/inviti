@@ -44,6 +44,11 @@ class MeetingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(MeetingViewController.init())
+        print(TabCalendarViewController.init())
+        print(CTableViewController.init())
+        print(CalendarTableViewCell.init())
+
         notiPopView.isHidden = true
         setupView()
 //        self.tabBarController?.tabBar.isHidden = false
