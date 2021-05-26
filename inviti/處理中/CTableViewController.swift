@@ -34,13 +34,18 @@ class CTableViewController: UIViewController {
         }
     }
 
+    var eventDatas: [Event] = []
+
     let markColor = UIColor(red: 1, green: 0.3647, blue: 0, alpha: 1.0)
 
     var selectDay: JKDay = JKDay(date: Date())
 
     let viewModel = CalendarViewModel()
+//    let viewModel = EventViewModel()
 
-//    var eventData: Event?
+    var endTime = [String]()
+
+    var startTime: [Date] = []
 
     var options: [OptionsData] = [] {
         didSet {
@@ -58,27 +63,7 @@ class CTableViewController: UIViewController {
         }
     }
 
-    private var location = String()
-
-    // 原本就有的 calendar event?????
-//    private var firebaseBookingData: [UserSelectedData] = [
-//        UserSelectedData(id: "003", selectedOption: OptionsData(date: OptionTime(year: 2021, month: 05, day: 28), hour: [14, 15, 16], subject: "看電視", location: "溫暖的家"), status: "status不知填什麼", userInfo: SimpleUser(id: "5gWVjg7xTHElu9p6Jkl1", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"), userUID: "0981234", meetingID: "e1B7EjfC1v9vfzcVyPf5"),
-//        UserSelectedData(id: "005", selectedOption: OptionsData(date: OptionTime(year: 2021, month: 05, day: 27), hour: [08, 12, 16], subject: "畫畫", location: "你家就是我家"), status: "status不知填什麼", userInfo: SimpleUser(id: "5gWVjg7xTHElu9p6Jkl1", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"), userUID: "0981234", meetingID: "e1B7EjfC1v9vfzcVyPf5"),
-//    ] {
-//
-//        didSet {
-//
-//            calendarTableView.reloadData()
-//        }
-//    }
-
-    private var eventData: [Event?] = [Event(id: "007", owner: SimpleUser(id: "5gWVjg7xTHElu9p6Jkl1", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"), startTime: 1621834831, endTime: 1621837831, subject: "吃壽司"), Event(id: "008", owner: SimpleUser(id: "5gWVjg7xTHElu9p6Jkl1", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"), startTime: 1621839831, endTime: 1621841831, subject: "期末考")]{
-            didSet {
-
-                calendarTableView.reloadData()
-            }
-        }
-
+    private var location = String() 
 
     @IBOutlet weak var calendarTableView: JKCalendarTableView!
 
@@ -102,21 +87,21 @@ class CTableViewController: UIViewController {
         }
 
         viewModel.eventViewModels.bind { [weak self] events in
-//            self?.tableView.reloadData()
+            self?.calendarTableView.reloadData()
             self?.viewModel.onRefresh()
         }
-
-        viewModel.scrollToTop = { [weak self] () in
-
-            self?.calendarTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        }
-
+//
+//        viewModel.scrollToTop = { [weak self] () in
+//
+//            self?.calendarTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+//        }
+//
         viewModel.fetchData()
 
 
         setupRefresher()
-    }
 
+    }
 
 
     func setupRefresher() {
@@ -207,87 +192,93 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 24
+        return viewModel.eventViewModels.value.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CTableViewCell", for: indexPath) as! CTableViewCell
 
-        if indexPath.row != 0 && indexPath.row != 24 {
-            let hour = indexPath.row
-            cell.timeLabel.text = (hour < 10 ? "0": "") + String(hour) + ":00"
-        } else {
-            cell.timeLabel.text = ""
-        }
+        if viewModel.eventViewModels.value.isEmpty {
 
-        if selectDay.date < Date() {
-            cell.bookingButton.isHidden = true
         }
+//        if indexPath.row != 0 && indexPath.row != 24 {
+//            let hour = indexPath.row
+//            cell.timeLabel.text = (hour < 10 ? "0": "") + String(hour) + ":00"
+//        } else {
+//            cell.timeLabel.text = ""
+//        }
+//
+//        if selectDay.date < Date() {
+//            cell.bookingButton.isHidden = true
+//        }
+//        if indexPath.row.count > viewModel.eventViewModels.value.count -> nil
+//        button. hidden
+//        mapping
+//
+//        判斷空值的預設
+//
+//        func 判斷事件順序過去
 
+        let newViewModel = viewModel.eventViewModels.value[indexPath.row]
+
+        let endDates = getEventTime(newViewModel.event.endTime)
+
+        let startDates = getEventTime(newViewModel.event.startTime)
+
+//
+//        let eventViewModel = viewModel.eventViewModels.value[indexPath.row]
+//
+//        let bookingData = firebaseBookingData
+//                            .filter({$0.bookingTime.room == self.room})
+//                            .filter({$0.bookingTime.date == time})
+//                            .filter({$0.bookingTime.hour.contains(hour)})
+//
+//
+//        var endDate = Date(timeIntervalSince1970: TimeInterval(eventViewModel.event.endTime))
+//
+//        let A = viewModel.eventViewModels.value({
+//
+//            $0 >= selectDay.date  &&
+//            $0 <= selectDay.date
+//
+//        })
+
+
+//
+//        if let cell = cell as? CTableViewCell {
+//            cell.setup(viewModel: eventViewModel)
+//        }
+
+        cell.layoutIfNeeded()
+
+//        guard let eventCell = cell as? CTableViewCell else {
+//            return cell
+//        }
+//
+//        let cellViewModel = viewModel.eventViewModels.value
+//        let event = cellViewModel[0].event
+//
+//        eventCell.layoutCell(with: event)
+//
 
         let hour = indexPath.row
 
         let time = OptionTime(year: selectDay.year, month: selectDay.month, day: selectDay.day)
 
-//        let eventData = firebaseBookingData
-//            .filter({$0.selectedOption.date == time})
-//            .filter({$0.selectedOption.hour.contains(hour)})
-//            .filter({$0.selectedOption.subject == self.subject})
-//
-//        let eventYear = eventData.first(where: {time .dateString()
-//
-//        }
-//            .
-//                        selectedOption.date == time})
-//            .filter({$0.selectedOption.hour.contains(hour)})
-//            .filter({$0.selectedOption.subject == self.subject})
 
-//        if eventData.isEmpty {
 //
-//            cell.fireBaseBookingSetup(text: "喝杯咖啡", hour: hour)
+//        cell.bookingButton.addTarget(self, action: #selector(addBooking(sender:)), for: .touchUpInside)
 //
-//            } else {
+//        if options.filter({$0.date == time}).filter({$0.hour.contains(hour)}).filter({$0.subject == self.subject}).isEmpty == false {
 //
-//                if ((cell.viewModel?.subject.contains(subject)) != nil) {
-//
-////                        FirebaseManager.shared.storeName.contains(storeData?.name ?? "") {
-//
-////                    cell.fireBaseBookingSetup(text: "\(eventData[0].userInfo.id)預定此時間", hour: hour)
-//            }
-//
+//            cell.userBookingSetup(hour: hour)
 //            return cell
 //        }
 
-        cell.bookingButton.addTarget(self, action: #selector(addBooking(sender:)), for: .touchUpInside)
-
-        if options.filter({$0.date == time}).filter({$0.hour.contains(hour)}).filter({$0.subject == self.subject}).isEmpty == false {
-
-            cell.userBookingSetup(hour: hour)
-            return cell
-        }
-//        cell.setup(viewModel: viewModel.eventViewModels.value[0])
-
-//        cell.setupCell(hour: hour)
-        // add new
-//        guard let eventViewCell = cell as? CTableViewCell else {
-//            return cell
-//        }
-//
-//        let eventCount = self.viewModel.eventViewModels.value.count
-//
-//        let cellViewModel = self.viewModel.eventViewModels.value[eventCount]
-//
-//        cellViewModel.onDead = { [weak self] () in
-//            print("onDead")
-//
-//            self?.viewModel.fetchData()
-//        }
-//
-//        eventViewCell.setup(viewModel: cellViewModel)
-//
         return cell
 
     }
+
 
 
     private func setupItemTitle(name: String) {
@@ -297,6 +288,20 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
+    }
+
+
+
+
+    func getEventTime(_ time: Int64) -> [Event] {
+
+        let date = Date.init(millis: time)
+
+        _ = viewModel.eventViewModels.value.filter({_ in
+            date >= selectDay.date &&
+                date <= selectDay.date
+        })
+        return []
     }
 
 }

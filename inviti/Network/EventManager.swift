@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import JKCalendar
 
 
 class EventManager {
@@ -19,7 +20,8 @@ class EventManager {
     func fetchEvents(completion: @escaping (Result<[Event], Error>) -> Void) {
 
         db.collection("events")
-            .order(by: "startTime", descending: true)
+//            .whereField("date", isEqualTo: theDay)
+            .order(by: "date", descending: false)
             .getDocuments() { querySnapshot, error in
 
                 if let error = error {
@@ -35,8 +37,6 @@ class EventManager {
                         do {
                             if let event = try document.data(as: Event.self, decoder: Firestore.Decoder()) {
                                 events.append(event)
-                                print("--------- EventManager ---------")
-                                print("\(event.startTime)")
 
                             }
 
@@ -50,6 +50,8 @@ class EventManager {
                 }
         }
     }
+
+
 
 
     func createEvent(event: inout Event, completion: @escaping (Result<String, Error>) -> Void) {
