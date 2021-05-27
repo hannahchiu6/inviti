@@ -7,12 +7,17 @@
 import Foundation
 import UIKit
 
+protocol CTableViewCellDelegate: AnyObject {
+    func tapped(_ sender: CTableViewCell, index: Int)
+}
 
 class CTableViewCell: UITableViewCell {
 
-    var viewModel: CalendarViewModel?
+    weak var delegate: CTableViewCellDelegate?
 
-    var event: Event?
+    var viewModel: CalendarVMController?
+
+    var options: [Option] = []
 
     var completionHandler: ((Int) -> Void)?
 
@@ -27,9 +32,35 @@ class CTableViewCell: UITableViewCell {
 
     @IBOutlet weak var timeLabel: UILabel!
 
-    @IBAction func bookingAction() {
+    @IBAction func bookingAction(_ sender: UIButton) {
+
+        let cell = CTableViewCell()
+
+        delegate?.tapped(cell, index: sender.tag)
+
+        bookingButton.showAnimation {
+
+            if self.bookingButton.isSelected {
+
+                self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
+                self.bookingView.isHidden = false
+                self.bookingView.backgroundColor = UIColor.orange
+                self.titleLabel.text = "Book the Time!"
+
+            } else {
+
+                self.bookingButton.showAnimation {
+                self.bookingButton.setImage(UIImage(systemName: "minus"), for: .normal)
+                self.bookingView.isHidden = true
+                self.titleLabel.isHidden = true
+
+                }
+            }
+
+        }
 
     }
+
     @IBOutlet weak var bookingButton: UIButton!
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,58 +68,37 @@ class CTableViewCell: UITableViewCell {
 
     }
 
+    func setup(index: Int) {
 
+        bookingButton.tag = index
+        if index < 10 {
+            timeLabel.text = "0" + "\(index)" + ":00"
+        } else {
+            timeLabel.text = "\(index)" + ":00"
+        }
 
-    func setup(viewModel: EventViewModel) {
-//        self.viewModel = viewModel
-        titleLabel.text = viewModel.subject
-//        layoutCell(with: event!)
+    }
+
+    func setupEmptyStatus() {
+
+        bookingView.isHidden = true
+        bookingButton.isHidden = false
+
+    }
+
+    func hasEventStatus() {
+
+        bookingView.isHidden = false
+        bookingButton.isHidden = true
+
     }
 
     override func prepareForReuse() {
+
         super.prepareForReuse()
         bookingButton.isHidden = false
     }
 
-//    func setupCell(hour: Int) {
-//
-//        setupText(hour: hour)
-//        bookingView.isHidden = true
-//        bookingView.backgroundColor = UIColor.white
-//        bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
-//    }
-
-//    func setup(viewModel: CalendarViewModel) {
-//        self.viewModel = viewModel
-//        layoutCell(with: event!)
-//    }
-//
-//    func layoutCell(with: Event) {
-//
-//        titleLabel.text = event?.subject
-//        print("-------- Cell viewModel?.startTime ------")
-//        print("\(String(describing: event?.startTime))")
-//
-//    }
-
-    func userBookingSetup(hour: Int) {
-
-        setupText(hour: hour)
-        bookingView.isHidden = false
-        bookingButton.setImage(UIImage(systemName: "minus"), for: .normal)
-        bookingView.backgroundColor = UIColor.myColorEnd
-        titleLabel.text = TitleText.user.rawValue
-    }
-
-    func fireBaseBookingSetup(text: String, hour: Int) {
-
-        setupText(hour: hour)
-        bookingButton.isHidden = true
-        bookingView.isHidden = false
-        bookingView.backgroundColor = UIColor.myColorPinkRed
-        titleLabel.text = event?.subject
-        titleLabel.text = "忙碌的時間"
-    }
 
     private func setupText(hour: Int) {
 

@@ -20,7 +20,6 @@ class EventManager {
     func fetchEvents(completion: @escaping (Result<[Event], Error>) -> Void) {
 
         db.collection("events")
-//            .whereField("date", isEqualTo: theDay)
             .order(by: "date", descending: false)
             .getDocuments() { querySnapshot, error in
 
@@ -50,9 +49,6 @@ class EventManager {
                 }
         }
     }
-
-
-
 
     func createEvent(event: inout Event, completion: @escaping (Result<String, Error>) -> Void) {
 

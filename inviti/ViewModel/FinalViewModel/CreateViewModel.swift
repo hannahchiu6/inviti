@@ -19,7 +19,6 @@ class CreateViewModel {
         location: "",
         notes: "",
         image: "https://500px.com/static/media/editors8@1x.126c6fb9.png",
-//        options: Option,
         singleMeeting: false,
         hiddenMeeting: false,
         deadlineMeeting: false,
@@ -28,6 +27,7 @@ class CreateViewModel {
         numOfParticipants: 0,
         deadlineTag: 0
     )
+
 
     func onSubjectChanged(text subject: String) {
         self.meeting.subject = subject

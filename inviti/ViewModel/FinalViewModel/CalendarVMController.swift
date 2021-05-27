@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import JKCalendar
 
-class CalendarViewModel {
+class CalendarVMController {
 
     let eventViewModels = Box([EventViewModel]())
 
@@ -45,11 +46,34 @@ class CalendarViewModel {
         self.scrollToTop?()
     }
 
-    func createSelectedData(in viewModel: [EventViewModel], selectedDate: String) -> [EventViewModel] {
-        let oldviewModel = eventViewModels.value
+    func createSelectedData(in viewModels: [EventViewModel], selectedDate: String) -> [EventViewModel] {
+        let oldViewModel = eventViewModels.value
         var newViewModels = [EventViewModel]()
-        newViewModels = oldviewModel.filter({$0.event.date == Int(selectedDate)})
+        newViewModels = oldViewModel.filter({$0.event.date == Int(selectedDate)})
         return newViewModels
+    }
+
+    func createMarksData() -> [JKDay] {
+        let viewModel = eventViewModels.value
+        let marksDates = viewModel.map({
+            Date.init(millis: $0.event.startTime)
+        })
+
+        let JDay = marksDates.map({
+            JKDay(date: $0)
+        })
+        return JDay
+    }
+
+    func createTimeData(in viewModels: [EventViewModel]) -> [JKDay] {
+        let eventDates = viewModels.map({
+            Date.init(millis: $0.event.startTime)
+        })
+
+        let JDays = eventDates.map({
+            JKDay(date: $0)
+        })
+        return JDays
     }
 
     func onTap(withIndex index: Int) {

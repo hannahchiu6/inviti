@@ -7,6 +7,8 @@
 
 import UIKit
 import Kingfisher
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class VotingViewController: UIViewController {
 
@@ -17,11 +19,13 @@ class VotingViewController: UIViewController {
 
     var meetingInfo: Meeting!
 
-    var meetingModel = MainViewModel()
+    var meetingModel = MainVMController()
+
+    let optionViewModels = SelectVMController()
 
     var meetingDataHandler: ( (Meeting) -> Void)?
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableview: UITableView!
 
     @IBOutlet weak var meetingSubject: UILabel!
 
@@ -40,14 +44,19 @@ class VotingViewController: UIViewController {
             self.popupView.isHidden = false
             self.popupView.transform = .identity
             self.meetingDataHandler?(self.meetingInfo)
-        print("55555555!!!")
+
         }
     }
 
+//    @IBAction func backButton(_ sender: Any) {
+//        dismiss(animated: true, completion: nil)
+//    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableview.delegate = self
+        tableview.dataSource = self
 
         popupView.isHidden = true
 
@@ -55,6 +64,16 @@ class VotingViewController: UIViewController {
 
         self.navigationController?.navigationBar.tintColor = UIColor.gray
         self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+
+        optionViewModels.fetchData(meeting: meetingInfo)
+
+
+        optionViewModels.optionViewModels.bind { [weak self] options in
+
+            self?.optionViewModels.onRefresh()
+            self?.tableview.reloadData()
+
+        }
     }
 
     func setUpView() {
@@ -86,16 +105,20 @@ class VotingViewController: UIViewController {
 
 extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        return optionViewModels.optionViewModels.value.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "votingTableViewCell", for: indexPath) as! VotingTableViewCell
-        cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        cell.titleLabel.text = titles[indexPath.row]
-        cell.valueLabel.text = start[indexPath.row]
-        cell.checkBoxView.tag = indexPath.row
-        cell.setCell(model: meetingInfo)
+
+        let index = indexPath.row
+
+        cell.optionViewModels = self.optionViewModels
+
+        cell.setupCell(model: optionViewModels.optionViewModels.value[index], index: index)
+
+        cell.meeting = self.meetingInfo
+
 
         return cell
     }

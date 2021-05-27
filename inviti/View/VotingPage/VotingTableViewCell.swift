@@ -9,6 +9,10 @@ import UIKit
 
 class VotingTableViewCell: UITableViewCell {
 
+    var optionViewModels = SelectVMController()
+
+    var meeting: Meeting?
+
     override func awakeFromNib() {
         super.awakeFromNib()
        
@@ -26,9 +30,22 @@ class VotingTableViewCell: UITableViewCell {
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var cellBackgroundView: UIView!
 
-    func setCell(model: Meeting) {
-        titleLabel.text = model.subject
-        valueLabel.text = model.location
+
+    func setupCell(model: OptionViewModel, index: Int) {
+
+        let startTime = model.option.startTimeToTime()
+        let endTime = model.option.endTimeToTime()
+        let date = Date.dateFormatter.string(from: model.option.startTimeToDate())
+
+        titleLabel.text = date
+        
+        valueLabel.text = "\(startTime) - \(endTime)"
+
+        selectionStyle = UITableViewCell.SelectionStyle.none
+
+        checkBoxView.tag = index
+
+
     }
 }
 

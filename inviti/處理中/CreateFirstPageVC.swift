@@ -19,6 +19,8 @@ class CreateFirstPageVC: BaseViewController {
 
     var meetingInfo: Meeting!
 
+//    var options: [Option]? = []
+
     var isDataEmpty: Bool = true
 
     var meetingDataHandler: ( (Meeting) -> Void)?
@@ -26,11 +28,14 @@ class CreateFirstPageVC: BaseViewController {
     var isSwitchOn: Bool = false
 
     let viewModel = CreateViewModel()
+
+    let optionViewModel = SelectVMController()
     
 
     @IBOutlet weak var confirmBtnView: UIButton!
 
     @IBAction func confirm(_ sender: Any) {
+
         if isDataEmpty {
 //            performSegue(withIdentifier: Segue.success, sender: nil)
             let popOver = storyboard?.instantiateViewController(withIdentifier: "savePopVC") as! PopSaveSuccessVC
@@ -45,14 +50,13 @@ class CreateFirstPageVC: BaseViewController {
 //            navigationController?.pushViewController(success, animated: false)
 
 
-
         } else {
 
             UIView.animate(withDuration: 5.0, animations: { () -> Void in
-            self.popupView.isHidden = false
+                self.popupView.isHidden = false
             })
 
-        meetingDataHandler?(meetingInfo)
+            meetingDataHandler?(meetingInfo)
 
         }
 
@@ -86,11 +90,20 @@ class CreateFirstPageVC: BaseViewController {
 //                                                Notification.Name("reloadCollection"),
 //                                                object: nil)
 
+        optionViewModel.optionViewModels.bind { [weak self] options in
+
+            self?.optionViewModel.onRefresh()
+            self?.tableview.reloadData()
+
+        }
+
         if meetingInfo != nil {
             confirmBtnView.setTitle("更新活動內容", for: .normal)
             self.navigationController?.isNavigationBarHidden = true
 
             isDataEmpty = !isDataEmpty
+            
+            optionViewModel.fetchData(meeting: meetingInfo)
 
         } else {
 
@@ -103,6 +116,7 @@ class CreateFirstPageVC: BaseViewController {
                 location: "",
                 notes: "",
                 image: "",
+//                options: [],
                 singleMeeting: false,
                 hiddenMeeting: false,
                 deadlineMeeting: false,
@@ -180,7 +194,7 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
             if isDataEmpty {
                 return 1
             } else {
-                return 3
+                return optionViewModel.optionViewModels.value.count
             }
         }
     }
@@ -238,21 +252,34 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionsCell", for: indexPath) as! OptionsCell
 
+            cell.deleteXview.tag = indexPath.row
+
             cell.delegate = self
 
+            cell.optionViewModels = self.optionViewModel
+
+            cell.meetingInfo = self.meetingInfo
 
             if isDataEmpty {
 
-                cell.optionsStackView.isHidden = false
+                cell.setupEmptyDataCell()
 
             } else {
 
-                cell.optionsStackView.isHidden = true
-                    if indexPath.row == 0 {
-                        cell.bottomAlarmIcon.isHidden = false
-                    } else {
-                        cell.bottomAlarmIcon.isHidden = true
-                    }
+                cell.setupCell(model: optionViewModel.optionViewModels.value[indexPath.row], index: indexPath.row)
+
+            }
+
+            if isDataEmpty {
+                return cell
+            } else {
+
+                let cellViewModel = self.optionViewModel.optionViewModels.value[indexPath.row]
+
+                cellViewModel.onDead = { [weak self] () in
+                    print("onDead")
+                    self?.optionViewModel.fetchData(meeting: (self?.meetingInfo)!)
+                }
             }
 
             return cell
@@ -299,30 +326,3 @@ extension CreateFirstPageVC: SecondCellDelegate{
     }
 
 }
-
-//extension CreateFirstPageVC: ThirdCellDelegate {
-//    func getSingleData(_ boolean: Bool) {
-//        viewModel.meetingSingleChanged(boolean)
-//    }
-//
-//    func getHiddenData(_ boolean: Bool) {
-//
-//        viewModel.meetingHiddenChanged(boolean)
-//    }
-//
-//    func getDeadlineData(_ boolean: Bool) {
-//
-//        viewModel.meetingDeadlineChanged(boolean)
-//    }
-//
-//    func getDeadlineDayData(_ day: Int) {
-//
-//        viewModel.onDeadlineTagChanged(day)
-//
-//    }
-//
-//    func getNotesData(_ notes: String) {
-//
-//        viewModel.onNotesChanged(text: notes)
-//    }
-//}
