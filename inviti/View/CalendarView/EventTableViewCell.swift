@@ -10,7 +10,7 @@ import Foundation
 
 class EventTableViewCell: UITableViewCell {
 
-    var viewModel: CalendarViewModel?
+    var viewModel: CalendarVMController?
 
     @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var startTime: UILabel!
@@ -38,11 +38,11 @@ class EventTableViewCell: UITableViewCell {
 
     func setup(vm: EventViewModel) {
 
-        startTime.text =  Date.timeFormatter.string(from: Date.init(millis: vm.event.startTime))
+        startTime.text = vm.event.startTimeToTime()
 
         eventSubject.text = vm.event.subject
 
-        endTime.text =  Date.timeFormatter.string(from: Date.init(millis: vm.event.endTime))
+        endTime.text =  vm.event.endTimeToTime()
 
         eventLocation.text = vm.event.location
     }

@@ -137,4 +137,20 @@ class NetworkManager {
             }
         }
     }
+
+    func updateMeeting(meeting: Meeting, completion: @escaping (Result<Meeting, Error>) -> Void) {
+
+
+        _ = try? db.collection("meetings") .document(meeting.id)
+                .setData(from: meeting) { err in
+
+                if let err = err {
+                    completion(.failure(err))
+
+                } else {
+                    completion(.success(meeting))
+                }
+
+         }
+    }
 }

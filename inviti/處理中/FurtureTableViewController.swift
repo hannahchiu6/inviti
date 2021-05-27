@@ -11,7 +11,7 @@ import EasyRefresher
 
 class FurtureTableViewController: UITableViewController {
 
-    let viewModel = MainViewModel()
+    let viewModel = MainVMController()
 
     var selectedIndex: Int?
 
@@ -79,8 +79,10 @@ class FurtureTableViewController: UITableViewController {
         guard let meetingViewCell = cell as? MeetingTableViewCell else {
             return cell
         }
-
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        
         let cellViewModel = self.viewModel.meetingViewModels.value[indexPath.row]
+
         cellViewModel.onDead = { [weak self] () in
             print("onDead")
             self?.viewModel.fetchNewData()
@@ -142,7 +144,7 @@ extension FurtureTableViewController: MeetingTableCellDelegate {
     func deleteBtnPressed(_ sender: MeetingTableViewCell) {
 
         guard let indexPath = self.tableView.indexPath(for: sender) else { return }
-        UIView.animate(withDuration: 1, delay: 1, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 3, delay: 1, options: .curveEaseOut, animations: {
             sender.alpha = 1
         }, completion: {_ in
             self.viewModel.onTap(withIndex: indexPath.row)
@@ -156,7 +158,7 @@ extension FurtureTableViewController: MeetingTableCellDelegate {
 
         guard self.tableView.indexPath(for: sender) != nil else { return }
 
-        edit.meetingInfo = sender.meetings
+        edit.meetingInfo = sender.meeting
 
         navigationController?.pushViewController(edit, animated: true)
     }
@@ -168,7 +170,7 @@ extension FurtureTableViewController: MeetingTableCellDelegate {
 
         guard self.tableView.indexPath(for: sender) != nil else { return }
 
-        voting.meetingInfo = sender.meetings
+        voting.meetingInfo = sender.meeting
 
         navigationController?.pushViewController(voting, animated: true)
 

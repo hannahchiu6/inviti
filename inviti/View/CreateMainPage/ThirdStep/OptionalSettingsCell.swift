@@ -8,21 +8,10 @@
 import UIKit
 import SwiftHEXColors
 
-//protocol ThirdCellDelegate {
-//    func getNotesData(_ notes: String)
-//    func getSingleData(_ boolean: Bool)
-//    func getHiddenData(_ boolean: Bool)
-//    func getDeadlineData(_ boolean: Bool)
-//    func getDeadlineDayData(_ day: Int)
-//
-//}
-
 
 class OptionalSettingsCell: UITableViewCell{
 
     var viewModel = CreateViewModel()
-
-//    var delegate: ThirdCellDelegate?
 
     var deadlineTag: Int = 0
 
@@ -41,7 +30,6 @@ class OptionalSettingsCell: UITableViewCell{
     @IBAction func singleToggle(_ sender: UISwitch) {
         if sender.isOn {
 
-//            delegate?.getSingleData(true)
             viewModel.meetingSingleChanged(true)
         }
     }
@@ -49,7 +37,6 @@ class OptionalSettingsCell: UITableViewCell{
     @IBAction func hiddenToggle(_ sender: UISwitch) {
         if sender.isOn {
 
-//            delegate?.getHiddenData(true)
             viewModel.meetingHiddenChanged(sender.isOn)
         }
     }
@@ -67,33 +54,23 @@ class OptionalSettingsCell: UITableViewCell{
             UIView.animate(withDuration: 0.5) {
 
                 self.dealineFullView.isHidden = false
-//                self.delegate?.getDeadlineData(sender.isOn)
+
                 self.viewModel.meetingDeadlineChanged(sender.isOn)
             }
 
         } else {
 
                 self.dealineFullView.isHidden = true
-//                self.delegate?.getDeadlineData(false)
 
         }
 
-//        deadlineView.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
 
     }
-
-
-
-//    @objc func switchChanged(mySwitch: UISwitch) {
-//        let value = mySwitch.isOn
-//        // Do something
-
 
     @IBAction func stepperAction(_ sender: UIStepper) {
 
         let count = Int(sender.value)
         self.deadlineLabel.text = "投票的天數為 \(count) 天"
-//        delegate?.getDeadlineDayData(count)
         viewModel.onDeadlineTagChanged(count)
     }
 
@@ -140,14 +117,6 @@ class OptionalSettingsCell: UITableViewCell{
     }
 
     func setLayout() {
-//        placeholder.frame = CGRect(x: 8, y: 4, width: 250, height: 36)
-//
-//            placeholder.text = "請描述問題或提交反饋，謝謝。"
-//            placeholder.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-//            placeholder.backgroundColor?.withAlphaComponent(0)
-//            placeholder.font = UIFont.systemFont(ofSize: 17)
-
-//        contentTextView.addSubview(placeholder)
 
         placeholder.frame = CGRect(x: 6, y: 6, width: 250, height: 36)
         placeholder.text = ""
@@ -167,7 +136,6 @@ extension OptionalSettingsCell: UITextViewDelegate {
         guard let notes = textView.text else {
             return
         }
-//        delegate?.getNotesData(notes)
 
         if textView.text.isEmpty {
              placeholder.alpha = 1

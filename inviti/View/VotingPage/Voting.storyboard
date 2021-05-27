@@ -25,8 +25,11 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yrG-fF-dmx">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="345"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="345" id="tyz-yR-ATK"/>
+                                                </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021 Marketing &amp; PM Meeting " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xY-lf-zPr">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="2021 Marketing &amp; PM Meeting " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xY-lf-zPr">
                                                 <rect key="frame" x="55" y="105" width="304" height="62"/>
                                                 <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="22"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.69803921570000005" colorSpace="calibratedRGB"/>
@@ -101,12 +104,15 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Google Meet  " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hv0-lM-hMJ" customClass="PaddingableHelper" customModule="inviti" customModuleProvider="target">
                                                 <rect key="frame" x="164" y="292" width="86" height="17"/>
                                                 <color key="backgroundColor" red="1" green="0.94939685066584545" blue="0.71849421297995975" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="17" id="Yeh-KI-hnO"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="PingFangTC-Thin" family="PingFang TC" pointSize="12"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="lkCornerRadius">
-                                                        <real key="value" value="10"/>
+                                                        <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
                                                         <real key="value" value="3"/>
@@ -306,7 +312,7 @@
                         <outlet property="meetingNotes" destination="Wdw-WR-UAn" id="gni-Xq-TQd"/>
                         <outlet property="meetingSubject" destination="3xY-lf-zPr" id="f05-O6-1AT"/>
                         <outlet property="popupView" destination="ByA-yq-mXR" id="3Kw-sZ-UOv"/>
-                        <outlet property="tableView" destination="Uvw-Fo-qFN" id="Y7v-1P-0T4"/>
+                        <outlet property="tableview" destination="Uvw-Fo-qFN" id="Y7v-1P-0T4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQQ-47-JOA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

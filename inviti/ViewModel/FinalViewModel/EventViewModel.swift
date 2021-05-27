@@ -40,6 +40,22 @@ class EventViewModel {
             return event.location
         }
     }
+    var startTime: Int64 {
+        get {
+            return event.startTime
+        }
+    }
+
+    var endTime: Int64 {
+        get {
+            return event.endTime
+        }
+    }
+    var date: Int {
+        get {
+            return event.date
+        }
+    }
 
 
     func onTap() {

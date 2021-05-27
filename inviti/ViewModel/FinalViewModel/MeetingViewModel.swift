@@ -43,15 +43,7 @@ class MeetingViewModel {
 
     var createdTime: String {
         get {
-            print("----------Meeting View Model: createdTime----------")
-
-            print("\(Date.yearFormatter.string(from: Date.init(millis: meeting.createdTime)))")
-            print("--------------------")
-            print("\(Date.monthFormatter.string(from: Date.init(millis: meeting.createdTime)))")
-            print("--------------------")
-            print("\(Date.dayFormatter.string(from: Date.init(millis: meeting.createdTime)))")
-            print("--------------------")
-            print("\(Date.hourFormatter.string(from: Date.init(millis: meeting.createdTime)))")
+           
             return Date.dateFormatter.string(from: Date.init(millis: meeting.createdTime))
         }
     }

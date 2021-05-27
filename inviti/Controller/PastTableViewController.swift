@@ -38,7 +38,7 @@ class PastTableViewController: UITableViewController {
 
     }
 
-    let viewModel = MainViewModel()
+    let viewModel = MainVMController()
 
     var selectedIndex: Int?
 
@@ -98,7 +98,7 @@ extension PastTableViewController: MeetingTableCellDelegate {
 
         guard let indexPath = self.tableView.indexPath(for: sender) else { return }
 
-        edit.meetingInfo = sender.meetings
+        edit.meetingInfo = sender.meeting
 
         navigationController?.pushViewController(edit, animated: true)
     }
@@ -110,7 +110,7 @@ extension PastTableViewController: MeetingTableCellDelegate {
 
         guard let indexPath = self.tableView.indexPath(for: sender) else { return }
 
-        voting.meetingInfo = sender.meetings
+        voting.meetingInfo = sender.meeting
         
         navigationController?.pushViewController(voting, animated: true)
     }

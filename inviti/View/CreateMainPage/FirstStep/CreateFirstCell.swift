@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftHEXColors
 
 protocol CreateFirstCellDelegate {
     func getSubjectData(_ subject: String)

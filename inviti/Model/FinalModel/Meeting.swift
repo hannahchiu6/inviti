@@ -18,7 +18,7 @@ struct Meeting: Codable {
     var location: String?
     var notes: String?
     var image: String?
-//    let options: [Option]
+//    let options: [Option]?
     var singleMeeting: Bool
     var hiddenMeeting: Bool
     var deadlineMeeting: Bool
@@ -26,15 +26,13 @@ struct Meeting: Codable {
     var participants: [String]
     var numOfParticipants: Int
     var deadlineTag: Int
-    //    let startTime: Int64
-    //    let endTime: Int64
-    //    let duration: Int64
 //    @Document var id: String?
 
     enum CodingKeys: String, CodingKey {
         case id, owner, subject, notes, createdTime
-//        case startTime, endTime, duration
-//        case askInfo, options
+//        case options
+//        case startTime, endTime
+//        case askInfo
         case participants, location, numOfParticipants
         case hiddenMeeting, singleMeeting, image
         case deadlineTag, deadlineMeeting
@@ -44,21 +42,21 @@ struct Meeting: Codable {
         return [
             "id": id as Any,
             "owner": owner.toDict,
-            "createdTime": createdTime as Any,
+            "createdTime": createdTime,
 //            "startTime": startTime as Any,
 //            "endTime": endTime as Any,
-            "subject": subject as Any,
+            "subject": subject,
             "image": image as Any,
             "notes": notes as Any,
             "participants": participants as Any,
             "location": location as Any,
 //            "duration": duration as Any,
-//            "options": [options.toDict] as Any,
+//            "options": options as Any,
             "singleMeeting": singleMeeting as Any,
             "deadlineMeeting": deadlineMeeting as Any,
             "hiddenMeeting": hiddenMeeting as Any,
             "numOfParticipants": numOfParticipants as Any,
-            "deadlineTag": deadlineTag as Any,
+            "deadlineTag": deadlineTag as Any
 //            "askInfo": askInfo.toDict as Any
 
         ]

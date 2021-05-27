@@ -55,7 +55,7 @@ class MeetingTableViewCell: UITableViewCell {
 
     var index: Int?
 
-    var meetings: Meeting?
+    var meeting: Meeting?
 
     var completionHandler: ((Int) -> Void)?
 
@@ -66,7 +66,7 @@ class MeetingTableViewCell: UITableViewCell {
 
     func layoutCell() {
         
-        meetings = viewModel?.meeting
+        meeting = viewModel?.meeting
         meetingSubject.text = viewModel?.subject
         meetingTimeLabel.text = "投票建立時間：\(String(describing: viewModel!.createdTime))"
         participanCountLabel.text = "和其他 \(String(describing: viewModel!.numOfParticipants)) 位參與者"
@@ -97,8 +97,6 @@ class MeetingTableViewCell: UITableViewCell {
         let margins = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
         contentView.frame = contentView.frame.inset(by: margins)
         contentView.layer.cornerRadius = 8
-//        self.bgView.layer.shadowColor = UIColor.black.withAlphaComponent(0.3).cgColor
-//        self.bgView.layer.masksToBounds = true
-//        self.bgView.layer.shouldRasterize = true
+
     }
 }

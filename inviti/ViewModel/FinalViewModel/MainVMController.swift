@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MainViewModel {
+class MainVMController {
 
     let meetingViewModels = Box([MeetingViewModel]())
 

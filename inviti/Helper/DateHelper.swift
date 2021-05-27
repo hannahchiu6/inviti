@@ -60,6 +60,7 @@ extension Date {
         return formatter
 
     }
+
     static var timeFormatter: DateFormatter {
 
         let formatter = DateFormatter()
