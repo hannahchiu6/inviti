@@ -65,7 +65,7 @@ class VotingViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.gray
         self.navigationController?.navigationBar.backgroundColor = UIColor.clear
 
-        optionViewModels.fetchData(meeting: meetingInfo)
+        optionViewModels.fetchData(meetingID: meetingInfo.id)
 
 
         optionViewModels.optionViewModels.bind { [weak self] options in

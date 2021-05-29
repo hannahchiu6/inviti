@@ -11,7 +11,7 @@ import SwiftHEXColors
 
 class OptionalSettingsCell: UITableViewCell{
 
-    var viewModel = CreateViewModel()
+    var viewModel = CreateMeetingViewModel()
 
     var deadlineTag: Int = 0
 
@@ -102,7 +102,7 @@ class OptionalSettingsCell: UITableViewCell{
         singleView.isOn = model.singleMeeting
         hiddenView.isOn = model.hiddenMeeting
         deadlineView.isOn = model.deadlineMeeting
-        deadlineTag = model.deadlineTag
+        deadlineTag = model.deadlineTag ?? 0
 //        placeholder.alpha = 0
 //        placeholder.text = ""
         

@@ -8,8 +8,13 @@ import Foundation
 import UIKit
 
 protocol CTableViewCellDelegate: AnyObject {
-    func tapped(_ sender: CTableViewCell, index: Int)
+    func tapped(_ sender: CTableViewCell, index: Int, vms: SelectVMController)
 }
+
+//struct selectedOption {
+//    var optionID: String = ""
+//    var optionTag: Int = 0
+//}
 
 class CTableViewCell: UITableViewCell {
 
@@ -17,18 +22,47 @@ class CTableViewCell: UITableViewCell {
 
     var viewModel: CalendarVMController?
 
-    var options: [Option] = []
+    var createOptionViewModel = CreateOptionViewModel()
+
+    var selectedOptionViewModel = SelectVMController()
+
+    var optionViewModel: OptionViewModel?
+
+    var option: Option = Option(startTime: 0, endTime: 0, optionTime: OptionTime(year: 2021, month: 5, day: 5), duration: 60)
+
+    var selectedOptions: [String] = []
 
     var completionHandler: ((Int) -> Void)?
 
-    private enum TitleText: String {
-        case user = "您預定的時間"
-        case firebase = "此時間已被預訂囉"
+    var meeting: Meeting?
+
+    var meetingID: String = ""
+
+//    var onRefresh: (() -> Void)
+
+    var selectDay: Date = Date(millis: 1622185470000) {
+        didSet {
+            
+        }
+    }
+
+    override func awakeFromNib() {
+    super.awakeFromNib()
+        bookingMeetingButton.isHidden = true
+        bookingButton.isHidden = true
+        eventView.isHidden = true
+
+        resetCell()
+
+//            UserDefaults.standard.set(myArray, forKey: "yourArray")
+//
+//       let data = UserDefaults.standard.object(forKey: "yourArray")!
+//       print(data)
     }
 
     @IBOutlet weak var titleLabel: UILabel!
-    
-    @IBOutlet weak var bookingView: UIView!
+
+    @IBOutlet weak var eventView: UIView!
 
     @IBOutlet weak var timeLabel: UILabel!
 
@@ -36,41 +70,78 @@ class CTableViewCell: UITableViewCell {
 
         let cell = CTableViewCell()
 
-        delegate?.tapped(cell, index: sender.tag)
+        sender.isSelected = !sender.isSelected
 
-        bookingButton.showAnimation {
+    if bookingButton.isSelected {
 
-            if self.bookingButton.isSelected {
+        print(meetingID)
 
-                self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
-                self.bookingView.isHidden = false
-                self.bookingView.backgroundColor = UIColor.orange
-                self.titleLabel.text = "Book the Time!"
+        createOptionViewModel .onStartTimeChanged(sender.tag, date: selectDay)
 
-            } else {
+        createOptionViewModel.onEndTimeChanged(sender.tag, date: selectDay)
 
-                self.bookingButton.showAnimation {
-                self.bookingButton.setImage(UIImage(systemName: "minus"), for: .normal)
-                self.bookingView.isHidden = true
-                self.titleLabel.isHidden = true
+        createOptionViewModel.onOptionTimeChanged(selectDay)
 
-                }
-            }
+//        meetingTimeSelected()
 
+        createOptionViewModel.onOptionCreated = {
+            self.selectedOptionViewModel.fetchData(meetingID: self.meetingID)
         }
 
+        createOptionViewModel.createWithEmptyData(with: meetingID, option: &createOptionViewModel .option)
+
+//        createOptionViewModel.option = option
+
+
+
+
+//        delegate?.tapped(cell, index: sender.tag, vms: selectedOptionViewModel)
+        
+
+    } else {
+
+//        self.meetingTimeDeselected()
+
+        selectedOptionViewModel.fetchData(meetingID: meetingID)
+
+        let bookingDate = OptionTime(year: selectDay.year, month: selectDay.month, day: selectDay.day)
+
+        let newVM = selectedOptionViewModel.createSelectedOption(in: selectedOptionViewModel.optionViewModels.value, selectedDate: bookingDate)
+
+        let newHour = selectedOptionViewModel.createHourData(in: newVM)
+
+        if selectedOptionViewModel.createTimeData(in: newVM).contains(sender.tag) {
+
+            
+            if newHour.contains(sender.tag) {
+
+            let optionID = selectedOptionViewModel.getOptionID(in: newVM, index: sender.tag)
+
+
+                selectedOptionViewModel.onEmptyTap(optionID, meetingID: meetingID)
+
+                selectedOptionViewModel.fetchData(meetingID: meetingID)
+
+                delegate?.tapped(cell, index: sender.tag, vms: selectedOptionViewModel)
+
+                }
+
+            }
+        }
     }
+
+    @IBOutlet weak var bookingMeetingButton: UIView!
 
     @IBOutlet weak var bookingButton: UIButton!
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
 
     func setup(index: Int) {
-
+//        bookingMeetingButton.isHidden = true
         bookingButton.tag = index
+
         if index < 10 {
             timeLabel.text = "0" + "\(index)" + ":00"
         } else {
@@ -81,15 +152,53 @@ class CTableViewCell: UITableViewCell {
 
     func setupEmptyStatus() {
 
-        bookingView.isHidden = true
+        eventView.isHidden = true
         bookingButton.isHidden = false
+
 
     }
 
     func hasEventStatus() {
 
-        bookingView.isHidden = false
+        eventView.isHidden = false
         bookingButton.isHidden = true
+
+    }
+
+    func meetingTimeSelected() {
+        bookingMeetingButton.isHidden = false
+//        self.eventView.backgroundColor = UIColor.orange
+        self.titleLabel.text = "Book the Time!"
+        self.titleLabel.textColor = UIColor.white
+//        self.eventView.isHidden = false
+//        self.titleLabel.isHidden = false
+        self.bookingButton.setImage(UIImage(systemName: "minus"), for: .selected)
+
+    }
+
+    func meetingTimeDeselected() {
+        bookingMeetingButton.isHidden = true
+        self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
+//        self.titleLabel.isHidden = true
+    }
+
+    func resetCell() {
+//        if selectDay > Date() {
+//            bookingButton.isHidden = false
+//            bookingMeetingButton.isHidden = true
+//            eventView.isHidden = true
+//            self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
+//
+//        } else {
+//            bookingButton.isHidden = true
+//            eventView.isHidden = true
+//            bookingMeetingButton.isHidden = true
+//            bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
+//        }
+        bookingMeetingButton.isHidden = true
+        eventView.isHidden = true
+        self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
+
 
     }
 
@@ -97,8 +206,9 @@ class CTableViewCell: UITableViewCell {
 
         super.prepareForReuse()
         bookingButton.isHidden = false
-    }
+        self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
 
+    }
 
     private func setupText(hour: Int) {
 

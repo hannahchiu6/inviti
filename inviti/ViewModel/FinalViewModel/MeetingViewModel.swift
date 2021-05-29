@@ -25,13 +25,13 @@ class MeetingViewModel {
 
     var subject: String {
         get {
-            return meeting.subject
+            return meeting.subject ?? ""
         }
     }
 
     var numOfParticipants: Int {
         get {
-            return meeting.numOfParticipants
+            return meeting.numOfParticipants ?? 0
         }
     }
 
@@ -50,7 +50,7 @@ class MeetingViewModel {
 
     var participants: [String] {
         get {
-            return meeting.participants
+            return meeting.participants ?? []
         }
     }
 

@@ -15,7 +15,7 @@ class FurtureTableViewController: UITableViewController {
 
     var selectedIndex: Int?
 
-    var meetingData: Meeting?
+//    var meetingData: Meeting?
 
 //    var refreshControl: UIRefreshControl!
 

@@ -180,7 +180,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q2i-up-Xhp">
-                                <rect key="frame" x="0.0" y="88" width="414" height="605"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="649"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateFirstTableViewCell" id="LZ7-VF-Jab" customClass="CreateFirstCell" customModule="inviti" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="162"/>
@@ -1541,12 +1541,12 @@
         <!--Table View Controller-->
         <scene sceneID="EJJ-T4-ndp">
             <objects>
-                <viewController storyboardIdentifier="TestMeetingVC" autoresizesArchivedViewToFullSize="NO" modalPresentationStyle="fullScreen" id="kGj-Y9-NPk" customClass="CTableViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CMeetingVC" autoresizesArchivedViewToFullSize="NO" modalPresentationStyle="fullScreen" id="kGj-Y9-NPk" customClass="CTableViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7JE-r5-dfa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aay-1l-EEp" customClass="JKCalendarTableView" customModule="JKCalendar">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aay-1l-EEp" customClass="JKCalendarTableView" customModule="JKCalendar">
                                 <rect key="frame" x="0.0" y="64" width="414" height="832"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -1581,7 +1581,29 @@
                                                                 <action selector="bookingAction:" destination="uyN-Dd-jW1" eventType="touchUpInside" id="CCK-io-it4"/>
                                                             </connections>
                                                         </button>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfE-by-3E7" userLabel="ButtonView">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PKF-YM-bFY" userLabel="Meeting ButtonView">
+                                                            <rect key="frame" x="24" y="16" width="253.5" height="36.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Busy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsn-1h-hUH">
+                                                                    <rect key="frame" x="107.5" y="6" width="38.5" height="24.5"/>
+                                                                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="17"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.95383256670000005" green="0.41182905440000001" blue="0.093900986019999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="Qsn-1h-hUH" secondAttribute="bottom" constant="6" id="P0w-6g-Hig"/>
+                                                                <constraint firstItem="Qsn-1h-hUH" firstAttribute="centerX" secondItem="PKF-YM-bFY" secondAttribute="centerX" id="ncC-4v-rWN"/>
+                                                                <constraint firstItem="Qsn-1h-hUH" firstAttribute="top" secondItem="PKF-YM-bFY" secondAttribute="top" constant="6" id="un7-td-N3U"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="lkCornerRadius">
+                                                                    <real key="value" value="20"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfE-by-3E7" userLabel="Busy ButtonView">
                                                             <rect key="frame" x="24" y="16" width="253.5" height="36.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Busy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNe-yg-wDb">
@@ -1607,11 +1629,15 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="iux-rl-fhN" secondAttribute="bottom" constant="10" id="BkR-2S-LjN"/>
+                                                        <constraint firstItem="PKF-YM-bFY" firstAttribute="leading" secondItem="ZfE-by-3E7" secondAttribute="leading" id="JOI-5N-ntZ"/>
+                                                        <constraint firstItem="PKF-YM-bFY" firstAttribute="top" secondItem="ZfE-by-3E7" secondAttribute="top" id="Jz1-oR-kDb"/>
                                                         <constraint firstItem="iux-rl-fhN" firstAttribute="top" secondItem="Gct-mw-RXP" secondAttribute="top" constant="10" id="NP7-7l-xvu"/>
                                                         <constraint firstAttribute="trailing" secondItem="iux-rl-fhN" secondAttribute="trailing" constant="10" id="Qlr-Ng-04X"/>
                                                         <constraint firstItem="ZfE-by-3E7" firstAttribute="top" secondItem="Gct-mw-RXP" secondAttribute="top" constant="16" id="VSe-8U-UpM"/>
                                                         <constraint firstAttribute="bottom" secondItem="ZfE-by-3E7" secondAttribute="bottom" constant="16" id="Vo9-V9-yYa"/>
+                                                        <constraint firstItem="PKF-YM-bFY" firstAttribute="trailing" secondItem="ZfE-by-3E7" secondAttribute="trailing" id="cqU-Xv-j6R"/>
                                                         <constraint firstItem="ZfE-by-3E7" firstAttribute="leading" secondItem="Gct-mw-RXP" secondAttribute="leading" constant="24" id="faU-Gp-jiU"/>
+                                                        <constraint firstItem="PKF-YM-bFY" firstAttribute="bottom" secondItem="ZfE-by-3E7" secondAttribute="bottom" id="j8v-of-qo5"/>
                                                         <constraint firstItem="iux-rl-fhN" firstAttribute="leading" secondItem="ZfE-by-3E7" secondAttribute="trailing" constant="24" id="jr3-Rx-8gy"/>
                                                     </constraints>
                                                 </view>
@@ -1627,7 +1653,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="bookingButton" destination="iux-rl-fhN" id="7YT-Cf-zKq"/>
-                                            <outlet property="bookingView" destination="ZfE-by-3E7" id="MsZ-SR-S9h"/>
+                                            <outlet property="bookingMeetingButton" destination="PKF-YM-bFY" id="NKv-Qy-RQd"/>
+                                            <outlet property="eventView" destination="ZfE-by-3E7" id="orp-4m-beZ"/>
                                             <outlet property="timeLabel" destination="2WN-Vn-W0L" id="1Un-4h-PB0"/>
                                             <outlet property="titleLabel" destination="dNe-yg-wDb" id="y7E-Ke-0Yv"/>
                                         </connections>
@@ -1677,6 +1704,7 @@
                         <outlet property="calendarTableView" destination="aay-1l-EEp" id="BvL-cf-959"/>
                         <outlet property="goNextPage" destination="ccV-0k-oJ2" id="43A-tG-Vcf"/>
                         <outlet property="nextBtnView" destination="ccV-0k-oJ2" id="t2S-sf-evU"/>
+                        <segue destination="klU-5H-enz" kind="show" identifier="backToFirstSegue" id="FSA-9g-eBF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bfp-nC-75V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1684,6 +1712,9 @@
             <point key="canvasLocation" x="-346.37681159420293" y="75.669642857142847"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="FSA-9g-eBF"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="UIButtonBarNew" width="17.5" height="17.5"/>
         <image name="alarm.fill" catalog="system" width="124" height="128"/>

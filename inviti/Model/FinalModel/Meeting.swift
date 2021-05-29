@@ -14,7 +14,7 @@ struct Meeting: Codable {
 //    var owner: String
     var owner: SimpleUser
     var createdTime: Int64
-    var subject: String
+    var subject: String?
     var location: String?
     var notes: String?
     var image: String?
@@ -23,9 +23,9 @@ struct Meeting: Codable {
     var hiddenMeeting: Bool
     var deadlineMeeting: Bool
 //    let askInfo: AskInfo
-    var participants: [String]
-    var numOfParticipants: Int
-    var deadlineTag: Int
+    var participants: [String]?
+    var numOfParticipants: Int?
+    var deadlineTag: Int?
 //    @Document var id: String?
 
     enum CodingKeys: String, CodingKey {
@@ -45,7 +45,7 @@ struct Meeting: Codable {
             "createdTime": createdTime,
 //            "startTime": startTime as Any,
 //            "endTime": endTime as Any,
-            "subject": subject,
+            "subject": subject as Any,
             "image": image as Any,
             "notes": notes as Any,
             "participants": participants as Any,

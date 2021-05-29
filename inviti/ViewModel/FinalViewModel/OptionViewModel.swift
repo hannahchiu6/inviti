@@ -17,11 +17,11 @@ class OptionViewModel {
         self.option = option
     }
 
-//    var optionTime: OptionTime {
-//        get {
-//            return option.optionTime ?? OptionTime(year: 2021, month: 10, day: 10)
-//        }
-//    }
+    var optionTime: OptionTime {
+        get {
+            return option.optionTime ?? OptionTime(year: 2021, month: 10, day: 10)
+        }
+    }
 
     var startTime: Int64 {
         get {
@@ -41,16 +41,34 @@ class OptionViewModel {
             return option.endTime
         }
     }
-//
-//    var duration: Int {
-//        get {
-//            return option.duration
-//        }
-//    }
+
+    var duration: Int {
+        get {
+            return option.duration
+        }
+    }
 
     func onTap(meeting: Meeting) {
 
         OptionManager.shared.deleteOption(option: option, meeting: meeting) { [weak self] result in
+
+            switch result {
+
+            case .success(let optionID):
+
+                print(optionID)
+                self?.onDead?()
+
+            case .failure(let error):
+
+                print("optionDeleted.failure: \(error)")
+            }
+        }
+    }
+
+    func onEmptyTapWith(optionID: String, meetingID: String) {
+
+        OptionManager.shared.deleteEmptyOption(optionID: optionID, meetingID: meetingID) { [weak self] result in
 
             switch result {
 

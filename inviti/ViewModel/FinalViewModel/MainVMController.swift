@@ -15,6 +15,25 @@ class MainVMController {
 
     var scrollToTop: (() -> Void)?
 
+    var onMeetingUpdated: (() -> Void)?
+
+    func fetchData() {
+
+        NetworkManager.shared.fetchMeetings { [weak self] result in
+
+            switch result {
+
+            case .success(let meetings):
+
+                self?.setMeetings(meetings)
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
     func fetchNewData() {
 
         NetworkManager.shared.fetchNewMeetings { [weak self] result in
@@ -47,6 +66,25 @@ class MainVMController {
                 print("fetchData.failure: \(error)")
             }
         }
+    }
+
+    func updateMeetingData(with meeting: Meeting) {
+
+        NetworkManager.shared.updateMeeting(meeting: meeting) { result in
+
+            switch result {
+
+            case .success:
+
+                print("onTapCreate meeting, success")
+                self.onMeetingUpdated?()
+
+            case .failure(let error):
+
+                print("createMeeting.failure: \(error)")
+            }
+        }
+
     }
 
     func onRefresh() {

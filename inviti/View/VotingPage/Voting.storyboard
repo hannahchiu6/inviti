@@ -152,7 +152,7 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Uvw-Fo-qFN">
-                                        <rect key="frame" x="0.0" y="345" width="414" height="551"/>
+                                        <rect key="frame" x="0.0" y="345" width="414" height="421"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="votingTableViewCell" id="VPb-q0-vB4" customClass="VotingTableViewCell" customModule="inviti" customModuleProvider="target">
@@ -280,7 +280,7 @@
                                     <constraint firstItem="hbp-RX-Whv" firstAttribute="top" secondItem="mMT-BC-0Dx" secondAttribute="top" id="kD7-Mh-dtK"/>
                                     <constraint firstAttribute="trailing" secondItem="Uvw-Fo-qFN" secondAttribute="trailing" id="kOQ-Z8-0Rb"/>
                                     <constraint firstItem="Uvw-Fo-qFN" firstAttribute="top" secondItem="hbp-RX-Whv" secondAttribute="bottom" id="qP9-HW-7dd"/>
-                                    <constraint firstAttribute="bottom" secondItem="Uvw-Fo-qFN" secondAttribute="bottom" id="rFU-6r-p6C"/>
+                                    <constraint firstItem="LjS-K5-qMX" firstAttribute="top" secondItem="Uvw-Fo-qFN" secondAttribute="bottom" id="rFU-6r-p6C"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ByA-yq-mXR">

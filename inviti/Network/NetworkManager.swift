@@ -23,6 +23,38 @@ class NetworkManager {
 
     lazy var db = Firestore.firestore()
 
+    func fetchMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
+
+        db.collection("meetings")
+            .getDocuments() { (querySnapshot, error) in
+
+                if let error = error {
+
+                    completion(.failure(error))
+
+                } else {
+
+                    var meetings = [Meeting]()
+
+                    for document in querySnapshot!.documents {
+
+                        do {
+                            if let meeting = try document.data(as: Meeting.self, decoder: Firestore.Decoder()) {
+                                meetings.append(meeting)
+                            }
+
+                        } catch {
+
+                            completion(.failure(error))
+//                            completion(.failure(FirebaseError.documentError))
+                        }
+                    }
+
+                    completion(.success(meetings))
+                }
+        }
+    }
+
     func fetchNewMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
 
         db.collection("meetings")
