@@ -9,29 +9,15 @@ import UIKit
 import JKCalendar
 import Firebase
 import FirebaseFirestoreSwift
-import EasyRefresher
+//import EasyRefresher
 
+protocol CTableViewDelegate: AnyObject {
+    func optionDidSelect(getData: Bool)
+}
 
 class CTableViewController: UIViewController {
 
-    private enum ButtonText {
-
-        case buttonIsEnabled(Int)
-        case buttonIsNotEnabled
-
-        func returnString() -> String {
-
-            switch self {
-//            case .buttonIsEnabled(let count):
-            case .buttonIsEnabled:
-                return "Busy hours"
-//                return "現有預定 \(count) 小時"
-            case .buttonIsNotEnabled:
-
-                return "尚未預訂"
-            }
-        }
-    }
+    weak var delegate: CTableViewDelegate?
 
     var selectDay: JKDay = JKDay(date: Date()){
         didSet {
@@ -57,7 +43,11 @@ class CTableViewController: UIViewController {
         }
     }
 
-    var optionViewModel = SelectVMController()
+    var createOptionViewModel = CreateOptionViewModel()
+
+    var selectedOptionViewModel = SelectVMController()
+
+    var optionViewModels: [OptionViewModel]?
 
     var eventViewModels: [EventViewModel]?
 
@@ -67,6 +57,8 @@ class CTableViewController: UIViewController {
         }
     }
 
+    var meetingID: String = ""
+
     var dataIsEmpty: Bool = true
 
     @IBOutlet weak var calendarTableView: JKCalendarTableView!
@@ -75,7 +67,30 @@ class CTableViewController: UIViewController {
 
     @IBOutlet weak var goNextPage: UIButton!
 
+
+    var hasOptionData = true
+
+    var callbackResult: (() -> ())?
+
+    var onUpdate: ((_ meetingID: String)->())?
+
+//       func updatesFinished() {
+//
+//            tableview.reloadData()
+//       }
+
     @IBAction func backButton(_ sender: Any) {
+
+//        let optionData = selectedOptionViewModel.optionViewModels.value
+//        if optionData.isEmpty {
+//
+//        } else {
+//            delegate?.optionDidSelect(getData: true)
+//        }
+//        onUpdate?(meetingID)
+//        onUpdate?(meetingID)
+
+//        callbackResult?()
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -92,19 +107,20 @@ class CTableViewController: UIViewController {
 
             self?.viewModel.onRefresh()
             self?.calendarTableView.reloadData()
+            self!.calendarTableView.calendar.reloadData()
 
         }
 
-        viewModel.refreshView = { [weak self] () in
+        selectedOptionViewModel.refreshView = { [weak self] () in
             DispatchQueue.main.async {
                 self?.calendarTableView.reloadData()
+                self!.calendarTableView.calendar.reloadData()
             }
         }
 
-        optionViewModel.optionViewModels.bind { [weak self] events in
+        selectedOptionViewModel.optionViewModels.bind { [weak self] options in
 
-            self?.optionViewModel.onRefresh()
-            self?.calendarTableView.reloadData()
+            self?.selectedOptionViewModel.onRefresh()
 
         }
 
@@ -112,13 +128,11 @@ class CTableViewController: UIViewController {
 
         } else {
 
-            optionViewModel.fetchData(meeting: meetingInfo!)
+            selectedOptionViewModel.fetchData(meetingID: meetingID)
 
         }
 
         viewModel.fetchData()
-
-        setupRefresher()
 
     }
 
@@ -138,7 +152,6 @@ class CTableViewController: UIViewController {
     }
 
     func setupRefresher() {
-        self.calendarTableView.refresh.header = RefreshHeader(delegate: self)
 
         calendarTableView.refresh.header.addRefreshClosure { [weak self] in
             self?.viewModel.fetchData()
@@ -154,15 +167,26 @@ class CTableViewController: UIViewController {
         let _ = navigationController?.popViewController(animated: true)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "backToFirstSegue" {
+            let vc = segue.destination as! CreateFirstPageVC
+            self.delegate = vc
+        }
+    }
+
 }
 
 extension CTableViewController: JKCalendarDelegate {
 
     func calendar(_ calendar: JKCalendar, didTouch day: JKDay) {
+
         selectDay = day
+        
         calendar.focusWeek = day < calendar.month ? 0: day > calendar.month ? calendar.month.weeksCount - 1: day.weekOfMonth - 1
 
         let theDay = Date.intDateFormatter.string(from: self.selectDay.date)
+
+        selectedOptionViewModel.fetchData(meetingID: meetingID)
 
         eventViewModels = viewModel.createSelectedData(in: viewModel.eventViewModels.value, selectedDate: theDay)
 
@@ -196,9 +220,9 @@ extension CTableViewController: JKCalendarDataSource {
 
         var marksDay = viewModel.createMarksData()
 
-        let markColor = UIColor(red: 1, green: 0.3647, blue: 0, alpha: 1.0)
+        let markColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
 
-        let todayColor = UIColor(red: 252/255, green: 77/255, blue: 38/255, alpha: 1.0)
+        let todayColor = UIColor(red: 0.78, green: 0.49, blue: 0.35, alpha: 1.00)
 
 
         if selectDay == month {
@@ -240,46 +264,81 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CTableViewCell", for: indexPath) as! CTableViewCell
 
+        cell.setup(index: indexPath.row)
+
+        cell.meetingID = meetingID
+
+        cell.selectDay = selectDay.date
+
+        cell.delegate = self
+
+        cell.createOptionViewModel = createOptionViewModel
+
+        cell.selectedOptionViewModel = self.selectedOptionViewModel
+
+        let bookingDate = OptionTime(
+            year: selectDay.year,
+            month: selectDay.month,
+            day: selectDay.day)
 
         let hour = indexPath.row
-
-        cell.setup(index: hour)
 
         let selectedDays = viewModel.createTimeData(in: eventViewModels ?? [])
 
         if selectedDays.contains(selectDay) {
 
-            let hours = eventViewModels!.map({ Int(Date.hourFormatter.string(from: Date(millis: $0.event.startTime)))})
+            let eventHours = eventViewModels!.map({ Int(Date.hourFormatter.string(from: Date(millis: $0.event.startTime)))})
 
-            if hours.contains(hour) {
+                if eventHours.contains(hour) {
 
-                cell.hasEventStatus()
+                    cell.hasEventStatus()
 
             } else {
 
                 cell.setupEmptyStatus()
             }
-
-        } else {
-
-            cell.setupEmptyStatus()
-
         }
 
-        if selectDay.date < Date() - 1 {
+        let selectedOptionDays = selectedOptionViewModel.createDateData(in: selectedOptionViewModel.optionViewModels.value ?? [])
+
+        if selectedOptionDays.contains(bookingDate) {
+
+            let newVM = selectedOptionViewModel.createSelectedOption(in: selectedOptionViewModel.optionViewModels.value, selectedDate: bookingDate)
+
+            let optionHours =
+                selectedOptionViewModel.createTimeData(in: newVM)
+
+            if optionHours.contains(hour) {
+
+                cell.meetingTimeSelected()
+
+            } else {
+
+                cell.meetingTimeDeselected()
+            }
+        }  else {
+
+            cell.bookingButton.isSelected = false
+            cell.bookingMeetingButton.isHidden = true
+            cell.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        }
+
+//        } else {
+//
+//            cell.bookingMeetingButton.isHidden = true
+//        }
+//                    cell.resetCell()
+//                cell.bookingMeetingButton.isHidden = true
+
+        if selectDay.date < Date() {
 
             cell.bookingButton.isHidden = true
 
         } else {
-            
+
             cell.bookingButton.isHidden = false
+
         }
-
-        cell.delegate = self
-
-//        cell.delegate?.tapped(index: indexPath.row)
-
-//        cell.bookingButton.addTarget(self, action: #selector(addOption(sender:)), for: .touchUpInside)
 
         return cell
 
@@ -292,67 +351,46 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
 
 }
 
-//extension CTableViewController {
-//
-//    @objc func addOption(sender: UIButton) {
+extension CTableViewController {
 
-
-
-//
-//        guard let dateIndex = options.firstIndex(
-//                where: { JKDay(date: $0.date) == bookingDate }) else {
-//            options.append(Option(meetingID: "", startTime: startTime, endTime: endTime, date: Int(bookingDate.dateString()), selectedOptions: []))
-//
-//            return
-//        }
-//
-//        guard let hourIndex = options[sameDateIndex].hour.firstIndex(where: {$0 == hour}) else {
-//
-//            options[sameDateIndex].hour.append(hour)
-//            return
-//        }
-//
-//        if options[sameDateIndex].hour.count == 1 {
-//
-//            options.remove(at: sameDateIndex)
-//        } else {
-//
-//            options[sameDateIndex].hour.remove(at: hourIndex)
-//        }
-//    }
-
-
-extension CTableViewController: RefreshDelegate {
-
-    func refresherDidRefresh(_ refresher: Refresher) {
-        print("refresherDidRefresh")
-    }
-}
-
-extension CTableViewController: CTableViewCellDelegate {
-
-    func tapped(_ sender: CTableViewCell, index: Int) {
-
-        let storyboard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
-        let editVC = storyboard.instantiateViewController(identifier: "CreateFirstPageVC")
-           guard let edit = editVC as? CreateFirstPageVC else { return }
-
-//        guard self.tableView.indexPath(for: sender) != nil else { return }
-
-//        edit.options = sender.options
+    func getOptionArray(sender: UIButton) {
 
         let bookingDate = OptionTime(
             year: selectDay.year,
             month: selectDay.month,
             day: selectDay.day)
+        let hour = sender.tag
 
-        let hour = index
+        let updateDate = createOptionViewModel.option
+        guard let sameDateIndex =
 
-        let startTime = (hour < 10 ? "0": "") + String(hour) + ":00"
+         options.firstIndex(
+            where: { $0.optionTime == bookingDate }) else {
+            options.append(Option(startTime: Int((
+                                                    updateDate.startTime))
+, endTime: Int((
+                updateDate.endTime)), optionTime: bookingDate, duration: 60))
 
-        let endHour = hour + duration
-        let endTime = (endHour  < 10 ? "0": "") + String(endHour ) + ":00"
+
+            return }
+
+        guard let optionHours = optionViewModels?.map({ Int(Date.hourFormatter.string(from: Date(millis: $0.option.startTime)))}) else {
+
+            return
+        }
+    }
+}
+
+extension CTableViewController: CTableViewCellDelegate {
+
+    func tapped(_ sender: CTableViewCell, index: Int, vms: SelectVMController) {
+
+        self.selectedOptionViewModel = vms
+
+        selectedOptionViewModel.fetchData(meetingID: meetingID)
+        
+        calendarTableView.reloadData()
+
 
     }
-
 }

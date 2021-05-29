@@ -14,15 +14,15 @@ struct Option: Codable{
 //    @DocumentID var id: String?
     var startTime: Int64
     var endTime: Int64
-//    var optionTime: OptionTime?
-//    let duration: Int?
+    var optionTime: OptionTime?
+    var duration: Int
 
 
     enum CodingKeys: String, CodingKey {
 //        case selectedOptions
         case id
-//        case optionTime
-//        case duration
+        case optionTime
+        case duration
         case startTime
         case endTime
     }
@@ -31,8 +31,8 @@ struct Option: Codable{
         self.startTime = 0
         self.endTime = 0
         self.id = "id"
-//        self.optionTime = OptionTime(year: 2021, month: 10, day: 10)
-//        self.duration = 0
+        self.optionTime = OptionTime(year: 2021, month: 10, day: 10)
+        self.duration = 60
 
     }
 
@@ -41,8 +41,8 @@ struct Option: Codable{
             "id": id as Any,
             "startTime": startTime,
             "endTime": endTime,
-//            "duration": duration as Any,
-//            "optionTime": optionTime as Any
+            "duration": duration as Any,
+            "optionTime": optionTime?.toDict as Any
 
         ]
     }
@@ -62,6 +62,19 @@ struct Option: Codable{
         return  Date.timeFormatter.string(from: Date.init(millis: startTime))
 
     }
+
+    func startTimeToHour() -> String {
+
+        return  Date.hourFormatter.string(from: Date.init(millis: startTime))
+
+    }
+
+    func endTimeToHour() -> String {
+
+        return  Date.hourFormatter.string(from: Date.init(millis: endTime))
+
+    }
+
 
     func endTimeToTime() -> String {
 

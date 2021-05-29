@@ -4,6 +4,7 @@
 //
 //  Created by Hannah.C on 16.05.21.
 //
+//  swiftlint:disable comment_spacing onvenience_type trailing_closure
 
 import UIKit
 import FirebaseFirestore
@@ -27,10 +28,13 @@ class CreateFirstPageVC: BaseViewController {
 
     var isSwitchOn: Bool = false
 
-    let viewModel = CreateViewModel()
+    let viewModel = CreateMeetingViewModel()
 
-    let optionViewModel = SelectVMController()
-    
+    let mainViewModel = MainVMController()
+
+    var createOptionViewModel = CreateOptionViewModel()
+
+    let selectOptionViewModel = SelectVMController()
 
     @IBOutlet weak var confirmBtnView: UIButton!
 
@@ -60,7 +64,10 @@ class CreateFirstPageVC: BaseViewController {
 
         }
 
-        viewModel.create(with: &viewModel.meeting)
+        mainViewModel.onMeetingUpdated = {
+            self.mainViewModel.updateMeetingData(with: self.viewModel.meeting)
+        }
+
     }
 
     @IBOutlet weak var popupView: UIView!
@@ -74,28 +81,55 @@ class CreateFirstPageVC: BaseViewController {
 
     }
 
+
+//    override func viewWillAppear(_ animated: Bool) {
+//
+////        let secondVC = storyboard?.instantiateViewController(identifier: "CMeetingVC")
+////           guard let second = secondVC as? CTableViewController else { return }
+//        if isDataEmpty {
+//        } else {
+//        let meetingID = viewModel.meeting.id
+//            
+////        second.onUpdate = { (meetingID: String) -> Void in
+////            self.meetingInfo.id = meetingID
+//          selectOptionViewModel.fetchData(meetingID: (meetingID))
+////            self.isDataEmpty = false
+//        }
+////        }
+//
+//    }
+
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "saveSuccessSegue" {
+//            let destinationVC = segue.destination as! CTableViewController
+//            // Set any variable in ViewController2
+//            destinationVC.callbackResult = { data result in
+//            // assign passing data etc..
+//
+////                var meetingID = meetingInfo.id
+////                self.tableView.reloadData()
+//            }
+//        }
+//     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableview.delegate = self
         tableview.dataSource = self
-//        confirmBtnView.isEnabled = false
-//        self.popViewForSave.isHidden = true
+
         self.popupView.isHidden = true
 
         tableview.tableHeaderView = nil
         tableview.tableFooterView = nil
 
-//        NotificationCenter.default.addObserver(self,
-//                                                selector: #selector(enableConfirmBtn), name:
-//                                                Notification.Name("reloadCollection"),
-//                                                object: nil)
+        selectOptionViewModel.optionViewModels.bind { [weak self] options in
 
-        optionViewModel.optionViewModels.bind { [weak self] options in
-
-            self?.optionViewModel.onRefresh()
+            self?.selectOptionViewModel.onRefresh()
             self?.tableview.reloadData()
 
         }
+
 
         if meetingInfo != nil {
             confirmBtnView.setTitle("更新活動內容", for: .normal)
@@ -103,7 +137,7 @@ class CreateFirstPageVC: BaseViewController {
 
             isDataEmpty = !isDataEmpty
             
-            optionViewModel.fetchData(meeting: meetingInfo)
+            selectOptionViewModel.fetchData(meetingID: meetingInfo.id)
 
         } else {
 
@@ -130,6 +164,11 @@ class CreateFirstPageVC: BaseViewController {
 
     }
 
+
+
+
+
+
 //    func addParticipants() {
 //
 //        guard let currentUserID = UserDefaults.standard.value(forKey: "userID") as? String else { return }
@@ -149,10 +188,15 @@ class CreateFirstPageVC: BaseViewController {
     }
 
     func nextPage() {
-//        let secondVC = storyboard?.instantiateViewController(identifier: "SecondVC")
-//           guard let second = secondVC as? Calend else { return }
-        let secondVC = storyboard?.instantiateViewController(identifier: "TestMeetingVC")
+
+        let secondVC = storyboard?.instantiateViewController(identifier: "CMeetingVC")
            guard let second = secondVC as? CTableViewController else { return }
+
+//        viewModel.onMeetingCreated = {
+            self.viewModel.create(with: &self.viewModel.meeting)
+//        }
+
+        second.meetingID = self.viewModel.meeting.id
 
            navigationController?.pushViewController(second, animated: true)
     }
@@ -168,17 +212,7 @@ class CreateFirstPageVC: BaseViewController {
 //        }
 //    }
 
-//    func checkUpdateStatus() {
-//
-//        if isSwitchOn {
-//            confirmBtnView.isEnabled = false
-//            confirmBtnView.setTitleColor(UIColor.B5, for: .normal)
-//        } else {
-//            confirmBtnView.isEnabled = false
-//            confirmBtnView.setTitleColor(UIColor.B5, for: .normal)
-//        }
-//        confirmBtnView.setTitleColor(UIColor.lightGray, for: .disabled)
-//    }
+
 }
 
 extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
@@ -194,7 +228,7 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
             if isDataEmpty {
                 return 1
             } else {
-                return optionViewModel.optionViewModels.value.count
+                return selectOptionViewModel.optionViewModels.value.count
             }
         }
     }
@@ -228,14 +262,11 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionalSettingsCell", for: indexPath) as! OptionalSettingsCell
 
-//            cell.singleView.addTarget(self, action: #selector(updateSwitcher), for: .valueChanged)
-//            cell.hiddenView.addTarget(self, action: #selector(updateSwitcher), for: .valueChanged)
-//            cell.deadlineView.addTarget(self, action: #selector(updateSwitcher), for: .valueChanged)
             cell.setCell(model: meetingInfo)
 
             cell.viewModel = self.viewModel
 
-            cell.addSubtract.value = Double(meetingInfo.deadlineTag)
+            cell.addSubtract.value = Double(meetingInfo.deadlineTag ?? 0)
 
                 cell.observation = cell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { (stepper, change) in
                     if change.newValue! == 0.0 {
@@ -256,7 +287,7 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 
             cell.delegate = self
 
-            cell.optionViewModels = self.optionViewModel
+            cell.optionViewModels = self.selectOptionViewModel
 
             cell.meetingInfo = self.meetingInfo
 
@@ -266,7 +297,7 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 
             } else {
 
-                cell.setupCell(model: optionViewModel.optionViewModels.value[indexPath.row], index: indexPath.row)
+                cell.setupCell(model: selectOptionViewModel.optionViewModels.value[indexPath.row], index: indexPath.row)
 
             }
 
@@ -274,11 +305,11 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
                 return cell
             } else {
 
-                let cellViewModel = self.optionViewModel.optionViewModels.value[indexPath.row]
+                let cellViewModel = self.selectOptionViewModel.optionViewModels.value[indexPath.row]
 
                 cellViewModel.onDead = { [weak self] () in
                     print("onDead")
-                    self?.optionViewModel.fetchData(meeting: (self?.meetingInfo)!)
+                    self?.selectOptionViewModel.fetchData(meetingID: (self?.meetingInfo.id)!)
                 }
             }
 
@@ -286,11 +317,6 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-//    @objc func updateSwitcher() {
-//        confirmBtnView.isEnabled = false
-//        isSwitchOn = !isSwitchOn
-//        tableview.reloadData()
-//    }
 }
 
 extension CreateFirstPageVC: CreateFirstCellDelegate {
@@ -303,23 +329,18 @@ extension CreateFirstPageVC: CreateFirstCellDelegate {
     }
 }
 
-//extension CreateFirstPageVC: PopSaveSuccessDelegate {
-//
-//    func didTap() {
-//        popViewForSave.isHidden = true
-//
-////        if let backVC = UIStoryboard.meeting.instantiateInitialViewController() {
-////            backVC.modalPresentationStyle = .overCurrentContext
-////
-////            present(backVC, animated: false, completion: nil)
-////
-////        }
-//        self.pop(numberOfTimes: 1)
-////        self.navigationController?.popViewController(animated: true)
-//    }
-//}
 
-extension CreateFirstPageVC: SecondCellDelegate{
+extension CreateFirstPageVC: CTableViewDelegate {
+    func optionDidSelect(getData: Bool) {
+        if getData {
+            isDataEmpty = false
+        }
+    }
+
+
+}
+
+extension CreateFirstPageVC: SecondCellDelegate {
 
     func goToSecondPage() {
         nextPage()

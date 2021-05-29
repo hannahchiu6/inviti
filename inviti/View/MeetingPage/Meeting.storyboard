@@ -140,14 +140,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="VaP-QM-8dl">
-                                        <rect key="frame" x="0.0" y="40" width="314" height="56"/>
+                                        <rect key="frame" x="0.0" y="32" width="314" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="7kt-gg-Hqj"/>
-                                    <constraint firstItem="VaP-QM-8dl" firstAttribute="top" secondItem="OxM-A5-4Oh" secondAttribute="top" constant="40" id="e6T-Vd-6ZG"/>
+                                    <constraint firstItem="VaP-QM-8dl" firstAttribute="top" secondItem="OxM-A5-4Oh" secondAttribute="top" constant="32" id="e6T-Vd-6ZG"/>
                                     <constraint firstAttribute="trailing" secondItem="VaP-QM-8dl" secondAttribute="trailing" constant="100" id="fAg-LZ-pVf"/>
                                     <constraint firstItem="VaP-QM-8dl" firstAttribute="leading" secondItem="OxM-A5-4Oh" secondAttribute="leading" id="s3O-18-4mA"/>
                                 </constraints>
@@ -203,11 +203,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="hHT-6d-sGc">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="gCC-YG-Han">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="c2A-95-Cao">
-                                <rect key="frame" x="349" y="0.0" width="45" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="c2A-95-Cao">
+                                <rect key="frame" x="20" y="0.0" width="374" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="okR-PK-Kch"/>
+                                    <constraint firstAttribute="width" constant="22" id="okR-PK-Kch"/>
                                 </constraints>
                                 <color key="tintColor" red="1" green="0.36470588240000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <state key="normal" image="bell" catalog="system">

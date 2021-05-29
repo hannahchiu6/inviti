@@ -35,9 +35,9 @@ class VotingTableViewCell: UITableViewCell {
 
         let startTime = model.option.startTimeToTime()
         let endTime = model.option.endTimeToTime()
-        let date = Date.dateFormatter.string(from: model.option.startTimeToDate())
+//        let date = Date.dateFormatter.string(from: model.option.startTimeToDate())
 
-        titleLabel.text = date
+        titleLabel.text = model.option.optionTime?.dateString()
         
         valueLabel.text = "\(startTime) - \(endTime)"
 

@@ -48,6 +48,7 @@ class TabCalendarViewController: UIViewController {
 
             self?.viewModel.onRefresh()
             self?.calendarTableView.reloadData()
+            self!.calendarTableView.calendar.reloadData()
 
         }
 
@@ -113,7 +114,7 @@ extension TabCalendarViewController: JKCalendarDelegate {
         let theDay = Date.intDateFormatter.string(from: self.selectDay.date)
         eventViewModels = viewModel.createSelectedData(in: viewModel.eventViewModels.value, selectedDate: theDay)
 
-        calendar.reloadData()
+
 
         self.calendarTableView.reloadData()
     }

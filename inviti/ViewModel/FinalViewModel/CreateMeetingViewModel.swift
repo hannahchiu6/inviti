@@ -1,5 +1,5 @@
 //
-//  CreateViewModel.swift
+//  CreateMeetingViewModel.swift
 //  inviti
 //
 //  Created by Hannah.C on 20.05.21.
@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-class CreateViewModel {
+class CreateMeetingViewModel {
 
     var meeting: Meeting = Meeting(
         id: "",
@@ -92,7 +92,7 @@ class CreateViewModel {
 
             case .success:
 
-                print("onTapCreate, success")
+                print("onTapCreate meeting, success")
                 self.onMeetingCreated?()
 
             case .failure(let error):

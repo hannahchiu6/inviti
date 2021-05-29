@@ -9,14 +9,14 @@ import UIKit
 import Firebase
 import FirebaseFirestoreSwift
 
-protocol SecondCellDelegate {
+protocol SecondCellDelegate: AnyObject{
     func goToSecondPage()
 
 }
 
 class OptionsCell: UITableViewCell {
 
-    var viewModel = CreateViewModel()
+    var viewModel = CreateOptionViewModel()
 
     var optionViewModels = SelectVMController()
 
@@ -32,9 +32,9 @@ class OptionsCell: UITableViewCell {
     
     @IBAction func deleteOption(_ sender: UIButton) {
         let deleteItem = optionViewModels.optionViewModels.value[sender.tag]
-//        print(sender.tag)
-//        optionViewModels.onTap(with: sender.tag, meeting: meetingInfo!)
-        deleteOption(index: sender.tag, meeting: meetingInfo!)
+        print(sender.tag)
+        optionViewModels.onTap(with: sender.tag, meeting: meetingInfo!)
+
     }
     
     @IBOutlet weak var deleteXview: UIButton!
@@ -55,7 +55,7 @@ class OptionsCell: UITableViewCell {
 //        delegate?.goToSecondPage()
 //    }
 
-    var delegate: SecondCellDelegate?
+    weak var delegate: SecondCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -77,7 +77,7 @@ class OptionsCell: UITableViewCell {
         deleteXview.isEnabled = true
         optionsStackView.isHidden = false
 
-//        yearLabel.text = model.optionTime?.dateString()
+        yearLabel.text = model.option.optionTime?.dateString()
         startTimeLabel.text = model.option.startTimeToTime()
         endTimeLabel.text = model.option.endTimeToTime()
 
@@ -88,31 +88,6 @@ class OptionsCell: UITableViewCell {
         }
 
 
-    }
-
-
-
-    func deleteOption(index: Int, meeting: Meeting) {
-
-//        var db = Firestore.firestore()
-
-        let option = optionViewModels.optionViewModels.value[index]
-
-        let docRef = Firestore.firestore().collection("meetings").document(meeting.id).collection("options")
-
-        docRef.document(option.id).delete()
-        
-//        db.collection("meetings").document(meeting.id).collection("options").document(option.id).delete() { error in
-//
-//            if let error = error {
-//
-//                completion(.failure(error))
-//
-//            } else {
-//                print("delete success")
-//                completion(.success(option.id))
-//            }
-//        }
     }
 
 }

@@ -102,7 +102,16 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
              }
      }
 
+                override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+                    print("Selected item", item.tag )
+                }
 
+
+//                func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+//                    print("Selected view controller", viewController)
+//                    print("index", tabBarController.selectedIndex )
+//
+//                }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,6 +146,9 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         if self.selectedIndex == 2 {
          willBorder = !willBorder
         }
+//        self.selectedIndex == 3 || self.selectedIndex == 1 || self.selectedIndex == 0 || self.selectedIndex == 4 {
+//            willBorder = !willBorder
+//        }
 
     }
 
@@ -156,18 +168,23 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     }
 
     @objc func showViewController() {
+
         centerButton.backgroundColor = UIColor(red: 1, green: 0.3647, blue: 0, alpha: 1.0) /* #ff5d00 */
         self.selectedIndex = 2
         centerButton.layer.borderColor = UIColor.black.cgColor
         centerButton.layer.borderWidth = 3
         let storyBoard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
         storyBoard.instantiateViewController(withIdentifier: "CreateFirstPageVC") as! CreateFirstPageVC
-        resetCenterBtn()
+
+//        let viewModel = CreateMeetingViewModel()
+//
+//        viewModel.create(with: &viewModel.meeting)
+
     }
 
     @objc func showH() {
         centerButton.backgroundColor = UIColor.black
-
+       
     }
 
     // MARK: - UITabBarControllerDelegate
@@ -177,6 +194,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         shouldSelect viewController: UIViewController
     ) -> Bool {
 //        resetCenterBtn()
+
         guard let navVC = viewController as? UINavigationController,
               navVC.viewControllers.first is MeetingViewController
         else { return true }

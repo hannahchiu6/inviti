@@ -16,11 +16,11 @@ class OptionManager {
 
     lazy var db = Firestore.firestore()
 
-    func fetchOptions(meeting: Meeting, completion: @escaping (Result<[Option], Error>) -> Void) {
+    func fetchOptions(meetingID: String, completion: @escaping (Result<[Option], Error>) -> Void) {
         let docfef = db.collection("meetings")
-                    .document(meeting.id)
+                    .document(meetingID)
                     .collection("options")
-//                    .order(by: "optionTime", descending: true)
+                    .order(by: "startTime", descending: false)
                     .getDocuments() { (querySnapshot, error) in
 
                 if let error = error {
@@ -50,10 +50,12 @@ class OptionManager {
     }
 
 
-    func createOption(option: inout Option, completion: @escaping (Result<String, Error>) -> Void) {
+    func createOption(option: inout Option, meeting: Meeting, completion: @escaping (Result<String, Error>) -> Void) {
 
-        let document = db.collection("options").document()
-        option.id = document.documentID
+        let document = db.collection("meetings")
+            .document(meeting.id)
+            .collection("options").document()
+            option.id = document.documentID
 
         document.setData(option.toDict) { error in
 
@@ -61,6 +63,26 @@ class OptionManager {
 
                 completion(.failure(error))
                 
+            } else {
+
+                completion(.success(document.documentID))
+            }
+        }
+    }
+
+    func createEmptyOption(option: inout Option, meetingID: String, completion: @escaping (Result<String, Error>) -> Void) {
+
+        let document = db.collection("meetings")
+            .document(meetingID)
+            .collection("options").document()
+            option.id = document.documentID
+
+        document.setData(option.toDict) { error in
+
+            if let error = error {
+
+                completion(.failure(error))
+
             } else {
 
                 completion(.success(document.documentID))
@@ -79,6 +101,21 @@ class OptionManager {
             } else {
                 print("delete success")
                 completion(.success(option.id))
+            }
+        }
+    }
+
+    func deleteEmptyOption(optionID: String, meetingID: String, completion: @escaping (Result<String, Error>) -> Void) {
+
+        db.collection("meetings").document(meetingID).collection("options").document(optionID).delete() { error in
+
+            if let error = error {
+
+                completion(.failure(error))
+
+            } else {
+                print("\(optionID) has been deleted!")
+                completion(.success(optionID))
             }
         }
     }
