@@ -12,8 +12,6 @@ class CalendarVMController {
 
     let eventViewModels = Box([EventViewModel]())
 
-//    let selectedViewModels = Box([EventViewModel]())
-
     var refreshView: (() -> Void)?
 
     var scrollToTop: (() -> Void)?

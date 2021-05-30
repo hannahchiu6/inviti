@@ -93,8 +93,6 @@ class CTableViewCell: UITableViewCell {
 //        createOptionViewModel.option = option
 
 
-
-
 //        delegate?.tapped(cell, index: sender.tag, vms: selectedOptionViewModel)
         
 
@@ -116,7 +114,6 @@ class CTableViewCell: UITableViewCell {
             if newHour.contains(sender.tag) {
 
             let optionID = selectedOptionViewModel.getOptionID(in: newVM, index: sender.tag)
-
 
                 selectedOptionViewModel.onEmptyTap(optionID, meetingID: meetingID)
 

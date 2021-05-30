@@ -9,7 +9,6 @@ import UIKit
 import JKCalendar
 import Firebase
 import FirebaseFirestoreSwift
-//import EasyRefresher
 
 protocol CTableViewDelegate: AnyObject {
     func optionDidSelect(getData: Bool)
@@ -43,7 +42,7 @@ class CTableViewController: UIViewController {
         }
     }
 
-    var createOptionViewModel = CreateOptionViewModel()
+//    var createOptionViewModel = CreateOptionViewModel()
 
     var selectedOptionViewModel = SelectVMController()
 
@@ -51,11 +50,9 @@ class CTableViewController: UIViewController {
 
     var eventViewModels: [EventViewModel]?
 
-    var meetingInfo: Meeting?{
-        didSet {
-            dataIsEmpty = !dataIsEmpty
-        }
-    }
+    var onOptionCreated: (() -> Void )?
+
+    var meetingInfo: Meeting?
 
     var meetingID: String = ""
 
@@ -67,31 +64,34 @@ class CTableViewController: UIViewController {
 
     @IBOutlet weak var goNextPage: UIButton!
 
-
-    var hasOptionData = true
-
-    var callbackResult: (() -> ())?
+//    var hasOptionData = true
 
     var onUpdate: ((_ meetingID: String)->())?
 
-//       func updatesFinished() {
-//
-//            tableview.reloadData()
-//       }
+    @IBAction func goNextPage(_ sender: Any) {
+
+    }
+
+    @IBOutlet weak var confirmBtn: UIButton!
+
 
     @IBAction func backButton(_ sender: Any) {
 
-//        let optionData = selectedOptionViewModel.optionViewModels.value
-//        if optionData.isEmpty {
-//
-//        } else {
-//            delegate?.optionDidSelect(getData: true)
-//        }
-//        onUpdate?(meetingID)
-//        onUpdate?(meetingID)
+        guard let vc = storyboard?.instantiateViewController(identifier: "CreateFirstPageVC") as? CreateFirstPageVC else { return }
 
-//        callbackResult?()
-        self.navigationController?.popViewController(animated: true)
+        vc.meetingID = meetingID
+
+        vc.meetingInfo = meetingInfo
+
+        if selectedOptionViewModel.optionViewModels.value.isEmpty {
+            print("there's no options have been selected yet.")
+        } else {
+
+            vc.selectOptionViewModel.optionViewModels.value = selectedOptionViewModel.optionViewModels.value
+            
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+//        self.navigationController?.popViewController(animated: true)
     }
 
     override func viewDidLoad() {
@@ -272,7 +272,7 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
 
         cell.delegate = self
 
-        cell.createOptionViewModel = createOptionViewModel
+        cell.createOptionViewModel.option = selectedOptionViewModel.option
 
         cell.selectedOptionViewModel = self.selectedOptionViewModel
 
@@ -361,7 +361,7 @@ extension CTableViewController {
             day: selectDay.day)
         let hour = sender.tag
 
-        let updateDate = createOptionViewModel.option
+        let updateDate = selectedOptionViewModel.option
         guard let sameDateIndex =
 
          options.firstIndex(

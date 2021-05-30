@@ -32,7 +32,6 @@ class FurtureTableViewController: UITableViewController {
         }
 
         viewModel.meetingViewModels.bind { [weak self] meetings in
-//            self?.tableView.reloadData()
             self?.viewModel.onRefresh()
         }
 
@@ -159,6 +158,9 @@ extension FurtureTableViewController: MeetingTableCellDelegate {
         guard self.tableView.indexPath(for: sender) != nil else { return }
 
         edit.meetingInfo = sender.meeting
+
+        edit.meetingID = sender.meeting?.id
+//        edit.createMeetingViewModel.meetingViewModels.value[0] = viewModel.meetingViewModels.value[0]
 
         navigationController?.pushViewController(edit, animated: true)
     }
