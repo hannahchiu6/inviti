@@ -88,6 +88,8 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     var trolleyTabBarItem: UITabBarItem!
 
+    let viewModel = CreateMeetingViewModel()
+
     var willBorder: Bool = false {
          didSet {
              if (willBorder) {
@@ -120,6 +122,9 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
         settingButton()
 
+        viewModel.meetingViewModels.bind { [weak self] meetings in
+            self?.viewModel.onRefresh()
+        }
 
     }
 
@@ -162,10 +167,16 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
         centerButton.clipsToBounds = true
         centerButton.adjustsImageWhenHighlighted = false
-        centerButton.addTarget(self, action: #selector(showH), for: .touchDown)
-        centerButton.addTarget(self, action: #selector(showViewController), for: .touchUpInside)
+
+//        centerButton.addTarget(self, action: #selector(showH), for: .touchDown)
+        centerButton.addTarget(self, action: #selector(showViewController), for: .touchDown)
         tabBar.addSubview(centerButton)
     }
+
+    var onMeetingIDGet: ((String) -> Void)?
+    
+
+//    var onMeetingGet: ((CreateMeetingViewModel) -> Void)?
 
     @objc func showViewController() {
 
@@ -173,12 +184,43 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         self.selectedIndex = 2
         centerButton.layer.borderColor = UIColor.black.cgColor
         centerButton.layer.borderWidth = 3
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
-        storyBoard.instantiateViewController(withIdentifier: "CreateFirstPageVC") as! CreateFirstPageVC
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
+//        let createVC = storyBoard.instantiateViewController(withIdentifier: "CreateFirstPageVC") as! CreateFirstPageVC
 
-//        let viewModel = CreateMeetingViewModel()
-//
-//        viewModel.create(with: &viewModel.meeting)
+        viewModel.create()
+
+//        viewModel.create()
+
+        onMeetingIDGet?(viewModel.meeting.id)
+
+        viewControllers?.forEach { vc in
+
+            if let navVC = vc as? UINavigationController,
+               let vc = navVC.viewControllers.first as? CreateFirstPageVC {
+                vc.meetingID = viewModel.meeting.id
+                vc.createMeetingViewModel = viewModel
+            }
+        }
+
+
+
+//        self.onMeetingGet?(viewModel)
+
+//        createVC.createMeetingViewModel = viewModel
+
+
+//        createVC.mainViewModel = mainViewModel
+
+//        mainViewModel.onMeetingFetched = { [weak self] () in
+//            print("fetch Meeting data")
+//            mainViewModel.fetchData()
+//        }
+
+//        viewModel.onMeetingCreated = { [weak self] () in
+//            print("create Meeting data")
+
+//        }
+
 
     }
 

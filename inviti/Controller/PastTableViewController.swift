@@ -100,6 +100,8 @@ extension PastTableViewController: MeetingTableCellDelegate {
 
         edit.meetingInfo = sender.meeting
 
+        edit.meetingID = sender.meeting?.id
+
         navigationController?.pushViewController(edit, animated: true)
     }
 

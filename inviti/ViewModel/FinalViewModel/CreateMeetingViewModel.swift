@@ -10,6 +10,8 @@ import Firebase
 
 class CreateMeetingViewModel {
 
+    var meetingViewModels = Box([MeetingViewModel]())
+
     var meeting: Meeting = Meeting(
         id: "",
 //        owner: (UserManager.shared.user?.id)!,
@@ -28,6 +30,11 @@ class CreateMeetingViewModel {
         deadlineTag: 0
     )
 
+//    var onOneMeetingGet: (() -> Void)?
+
+    func onIDChanged(_ id: String) {
+        self.meeting.id = id
+    }
 
     func onSubjectChanged(text subject: String) {
         self.meeting.subject = subject
@@ -59,6 +66,90 @@ class CreateMeetingViewModel {
 
     var onMeetingCreated: (() -> Void)?
 
+    var onMeetingIDGet: ((String) -> Void)?
+
+    var refreshView: (() -> Void)?
+
+    var scrollToTop: (() -> Void)?
+
+    var onMeetingFetched: ((Meeting) -> Void)?
+
+    func fetchOneMeeitngData(meetingID: String) {
+
+        NetworkManager.shared.fetchOneMeeting(meetingID: meetingID) { [weak self] result in
+
+            switch result {
+
+            case .success(let meeting):
+
+                self?.setMeeting(meeting)
+
+                print("MainViewModel:" + "\n" + " Meeting: \(meeting)")
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
+    func onRefresh() {
+
+        self.refreshView?()
+    }
+
+    func onScrollToTop() {
+
+        self.scrollToTop?()
+    }
+
+    func onTap(withIndex index: Int) {
+        meetingViewModels.value[index].onTap()
+    }
+
+    var onMeetingUpdated: (() -> Void)?
+
+    func update(with meeting: Meeting) {
+
+        NetworkManager.shared.updateMeeting(meeting: meeting) { result in
+
+            switch result {
+
+            case .success:
+
+                print("onTapCreate meeting, success")
+                self.onMeetingUpdated?()
+
+            case .failure(let error):
+
+                print("createMeeting.failure: \(error)")
+            }
+        }
+
+    }
+
+    func convertMeetingToViewModels(from meeting: Meeting) -> [MeetingViewModel] {
+        var viewModels = [MeetingViewModel]()
+        let viewModel = MeetingViewModel(model: meeting)
+        viewModels.append(viewModel)
+        print("MainVMController convertMeetingToViewModel")
+        print(viewModel.id)
+
+        return viewModels
+    }
+
+    func setMeeting(_ meeting: Meeting) {
+        meetingViewModels.value = convertMeetingToViewModels(from: meeting)
+    }
+
+
+    func onOneMeetingGet(from meeting: Meeting) -> MeetingViewModel {
+
+        let viewModel = MeetingViewModel(model: meeting)
+
+        return viewModel
+    }
+
     func onTapCreate() {
 
         if hasUserInMeeting() {
@@ -84,6 +175,7 @@ class CreateMeetingViewModel {
             }
         }
     }
+
 
     func create(with meeting: inout Meeting) {
         NetworkManager.shared.createMeeting(meeting: &meeting) { result in
@@ -114,4 +206,5 @@ class CreateMeetingViewModel {
     func hasUserInMeeting() -> Bool {
         return meeting.owner != nil
     }
+
 }

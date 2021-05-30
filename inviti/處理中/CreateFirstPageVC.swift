@@ -20,19 +20,21 @@ class CreateFirstPageVC: BaseViewController {
 
     var meetingInfo: Meeting!
 
-//    var options: [Option]? = []
+    var meetingForOption : Meeting!
+
+    var meetingID: String?
 
     var isDataEmpty: Bool = true
 
-    var meetingDataHandler: ( (Meeting) -> Void)?
+    var meetingDataHandler: ((Meeting) -> Void)?
 
     var isSwitchOn: Bool = false
 
-    let viewModel = CreateMeetingViewModel()
+    var createMeetingViewModel = CreateMeetingViewModel()
 
-    let mainViewModel = MainVMController()
+//    var mainViewModel = MainVMController()
 
-    var createOptionViewModel = CreateOptionViewModel()
+//    var createOptionViewModel = CreateOptionViewModel()
 
     let selectOptionViewModel = SelectVMController()
 
@@ -40,33 +42,19 @@ class CreateFirstPageVC: BaseViewController {
 
     @IBAction func confirm(_ sender: Any) {
 
-        if isDataEmpty {
-//            performSegue(withIdentifier: Segue.success, sender: nil)
-            let popOver = storyboard?.instantiateViewController(withIdentifier: "savePopVC") as! PopSaveSuccessVC
-            popOver.modalPresentationStyle = .overCurrentContext
-            self.present(popOver, animated: true)
+        UIView.animate(withDuration: 5.0, animations: { () -> Void in
+            self.popupView.isHidden = false
+        })
 
-//            self.popViewForSave.isHidden = false
-//            performSegue(withIdentifier: "successSaveSegue", sender: self)
-//            let successVC = storyboard?.instantiateViewController(identifier: "PopSaveVC")
-//               guard let success = successVC as? PopSaveSuccessVC else { return }
-//
-//            navigationController?.pushViewController(success, animated: false)
+        createMeetingViewModel.update(with: createMeetingViewModel.meeting)
 
+//        meetingDataHandler?(meetingInfo)
 
-        } else {
+//        createMeetingViewModel.onMeetingUpdated?()
 
-            UIView.animate(withDuration: 5.0, animations: { () -> Void in
-                self.popupView.isHidden = false
-            })
-
-            meetingDataHandler?(meetingInfo)
-
-        }
-
-        mainViewModel.onMeetingUpdated = {
-            self.mainViewModel.updateMeetingData(with: self.viewModel.meeting)
-        }
+//        mainViewModel.onMeetingUpdated = {
+//            self.mainViewModel.updateMeetingData(with: self.createMeetingViewModel.meeting)
+//        }
 
     }
 
@@ -82,35 +70,20 @@ class CreateFirstPageVC: BaseViewController {
     }
 
 
-//    override func viewWillAppear(_ animated: Bool) {
-//
-////        let secondVC = storyboard?.instantiateViewController(identifier: "CMeetingVC")
-////           guard let second = secondVC as? CTableViewController else { return }
-//        if isDataEmpty {
-//        } else {
-//        let meetingID = viewModel.meeting.id
-//            
-////        second.onUpdate = { (meetingID: String) -> Void in
-////            self.meetingInfo.id = meetingID
-//          selectOptionViewModel.fetchData(meetingID: (meetingID))
-////            self.isDataEmpty = false
-//        }
-////        }
-//
-//    }
+    override func viewWillAppear(_ animated: Bool) {
 
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "saveSuccessSegue" {
-//            let destinationVC = segue.destination as! CTableViewController
-//            // Set any variable in ViewController2
-//            destinationVC.callbackResult = { data result in
-//            // assign passing data etc..
-//
-////                var meetingID = meetingInfo.id
-////                self.tableView.reloadData()
-//            }
-//        }
-//     }
+//        createMeetingViewModel.fetchOneMeeitngData(meetingID: meetingID ?? "")
+
+        selectOptionViewModel.fetchData(meetingID: meetingID ?? "" )
+        createMeetingViewModel.onRefresh()
+
+        if selectOptionViewModel.optionViewModels.value.isEmpty {
+            print("there's no options have been selected yet.")
+        } else {
+            self.isDataEmpty = false
+        }
+        tableview.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,8 +100,20 @@ class CreateFirstPageVC: BaseViewController {
 
             self?.selectOptionViewModel.onRefresh()
             self?.tableview.reloadData()
-
         }
+
+        createMeetingViewModel.meetingViewModels.bind { [weak self] meetings in
+            self?.createMeetingViewModel.onRefresh()
+        }
+
+
+        createMeetingViewModel.fetchOneMeeitngData(meetingID: meetingID ?? "")
+
+//        tabVC.onMeetingGet = { [weak self] viewModel in
+//
+//            self?.createMeetingViewModel = viewModel
+//        }
+//        mainViewModel.fetchOneMeeitngData(meetingID: meetingID!)
 
 
         if meetingInfo != nil {
@@ -140,6 +125,8 @@ class CreateFirstPageVC: BaseViewController {
             selectOptionViewModel.fetchData(meetingID: meetingInfo.id)
 
         } else {
+
+//            if createMeetingViewModel.meeting.id.isEmpty {
 
             meetingInfo = Meeting(
 //                id: UUID().uuidString,
@@ -160,8 +147,12 @@ class CreateFirstPageVC: BaseViewController {
 
 //            isDataEmpty = !isDataEmpty
 //            addParticipants()
-        }
+//            } else {
+//
+//                mainViewModel.onMeetingFetched?(createMeetingViewModel.meeting.id)
+//            }
 
+        }
     }
 
 
@@ -192,11 +183,15 @@ class CreateFirstPageVC: BaseViewController {
         let secondVC = storyboard?.instantiateViewController(identifier: "CMeetingVC")
            guard let second = secondVC as? CTableViewController else { return }
 
-//        viewModel.onMeetingCreated = {
-            self.viewModel.create(with: &self.viewModel.meeting)
-//        }
+        createMeetingViewModel.update(with: createMeetingViewModel.meeting)
 
-        second.meetingID = self.viewModel.meeting.id
+//        viewModel.onMeetingCreated = {
+//            self.viewModel.create(with: &self.viewModel.meeting)
+//       }
+//
+        second.meetingID = meetingID ?? ""
+
+        second.meetingInfo = createMeetingViewModel.meeting
 
            navigationController?.pushViewController(second, animated: true)
     }
@@ -264,7 +259,7 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 
             cell.setCell(model: meetingInfo)
 
-            cell.viewModel = self.viewModel
+            cell.viewModel = self.createMeetingViewModel
 
             cell.addSubtract.value = Double(meetingInfo.deadlineTag ?? 0)
 
@@ -287,7 +282,7 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 
             cell.delegate = self
 
-            cell.optionViewModels = self.selectOptionViewModel
+            cell.selectedOptionViewModel = self.selectOptionViewModel
 
             cell.meetingInfo = self.meetingInfo
 
@@ -303,6 +298,7 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 
             if isDataEmpty {
                 return cell
+                
             } else {
 
                 let cellViewModel = self.selectOptionViewModel.optionViewModels.value[indexPath.row]
@@ -313,6 +309,7 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
                 }
             }
 
+
             return cell
         }
     }
@@ -321,11 +318,11 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 
 extension CreateFirstPageVC: CreateFirstCellDelegate {
     func getSubjectData(_ subject: String) {
-        viewModel.onSubjectChanged(text: subject)
+        createMeetingViewModel.onSubjectChanged(text: subject)
     }
 
     func getLocationData(_ location: String) {
-        viewModel.onLocationChanged(text: location)
+        createMeetingViewModel.onLocationChanged(text: location)
     }
 }
 
@@ -337,10 +334,22 @@ extension CreateFirstPageVC: CTableViewDelegate {
         }
     }
 
-
 }
 
 extension CreateFirstPageVC: SecondCellDelegate {
+
+    func deleteTap(_ index: Int, vms: SelectVMController) {
+
+        selectOptionViewModel.onTap(with: index, meeting: meetingInfo)
+
+        selectOptionViewModel.fetchData(meetingID: meetingID ?? "")
+
+        if selectOptionViewModel.optionViewModels.value.isEmpty {
+            isDataEmpty = true
+        }
+
+//        tableview.reloadData()
+    }
 
     func goToSecondPage() {
         nextPage()

@@ -11,14 +11,13 @@ import FirebaseFirestoreSwift
 
 protocol SecondCellDelegate: AnyObject{
     func goToSecondPage()
+    func deleteTap(_ index: Int, vms: SelectVMController)
 
 }
 
 class OptionsCell: UITableViewCell {
 
-    var viewModel = CreateOptionViewModel()
-
-    var optionViewModels = SelectVMController()
+    var selectedOptionViewModel = SelectVMController()
 
     var meetingInfo: Meeting?
 
@@ -31,9 +30,16 @@ class OptionsCell: UITableViewCell {
     @IBOutlet weak var bottomAlarmIcon: UIImageView!
     
     @IBAction func deleteOption(_ sender: UIButton) {
-        let deleteItem = optionViewModels.optionViewModels.value[sender.tag]
-        print(sender.tag)
-        optionViewModels.onTap(with: sender.tag, meeting: meetingInfo!)
+
+//        selectedOptionViewModel.onTap(with: sender.tag, meeting: meetingInfo!)
+
+        let meetingID = meetingInfo?.id
+
+//        selectedOptionViewModel.fetchData(meetingID: meetingID!)
+
+//        selectedOptionViewModel.onDead?()
+
+        delegate?.deleteTap(sender.tag, vms: selectedOptionViewModel)
 
     }
     

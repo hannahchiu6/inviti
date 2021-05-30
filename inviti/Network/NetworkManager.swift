@@ -55,6 +55,39 @@ class NetworkManager {
         }
     }
 
+    func fetchOneMeeting(meetingID: String, completion: @escaping (Result<Meeting, Error>) -> Void) {
+
+        let docRef = db.collection("meetings").document(meetingID)
+            docRef.getDocument() { (document, error) in
+
+        let result = Result {
+          try document?.data(as: Meeting.self)
+        }
+
+        switch result {
+
+            case .success(let meeting):
+                if let meeting = meeting {
+
+                    print("NetWorkManager:" + "\n" + " Meeting: \(meeting)")
+
+                    completion(.success(meeting))
+
+                } else {
+
+                    print("Document does not exist")
+
+                }
+            case .failure(let error):
+
+                print("Error decoding city: \(error)")
+
+                completion(.failure(error))
+            }
+        }
+    }
+
+
     func fetchNewMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
 
         db.collection("meetings")
@@ -185,4 +218,5 @@ class NetworkManager {
 
          }
     }
+
 }
