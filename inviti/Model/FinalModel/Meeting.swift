@@ -18,7 +18,7 @@ struct Meeting: Codable {
     var location: String?
     var notes: String?
     var image: String?
-//    let options: [Option]?
+    var options: [Option]?
     var singleMeeting: Bool
     var hiddenMeeting: Bool
     var deadlineMeeting: Bool
@@ -30,7 +30,7 @@ struct Meeting: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id, owner, subject, notes, createdTime
-//        case options
+        case options
 //        case startTime, endTime
 //        case askInfo
         case participants, location, numOfParticipants
@@ -51,7 +51,7 @@ struct Meeting: Codable {
             "participants": participants as Any,
             "location": location as Any,
 //            "duration": duration as Any,
-//            "options": options as Any,
+            "options": options as Any,
             "singleMeeting": singleMeeting as Any,
             "deadlineMeeting": deadlineMeeting as Any,
             "hiddenMeeting": hiddenMeeting as Any,

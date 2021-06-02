@@ -11,14 +11,9 @@ import EasyRefresher
 
 class FurtureTableViewController: UITableViewController {
 
-    let viewModel = MainVMController()
+    let viewModel = MainViewModel()
 
     var selectedIndex: Int?
-
-//    var meetingData: Meeting?
-
-//    var refreshControl: UIRefreshControl!
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +38,6 @@ class FurtureTableViewController: UITableViewController {
         viewModel.fetchNewData()
 
         setupRefresher()
-
     }
 
     func setupRefresher() {
@@ -79,7 +73,7 @@ class FurtureTableViewController: UITableViewController {
             return cell
         }
         tableView.deleteRows(at: [indexPath], with: .automatic)
-        
+
         let cellViewModel = self.viewModel.meetingViewModels.value[indexPath.row]
 
         cellViewModel.onDead = { [weak self] () in
@@ -88,9 +82,6 @@ class FurtureTableViewController: UITableViewController {
         }
 
         meetingViewCell.setup(viewModel: cellViewModel)
-
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(toCreatePage(_:)))
-//        cell.background.addGestureRecognizer(tap)
 
         return meetingViewCell
 
@@ -160,6 +151,9 @@ extension FurtureTableViewController: MeetingTableCellDelegate {
         edit.meetingInfo = sender.meeting
 
         edit.meetingID = sender.meeting?.id
+
+        edit.createMeetingViewModel.meetingViewModel = sender.viewModel!
+
 //        edit.createMeetingViewModel.meetingViewModels.value[0] = viewModel.meetingViewModels.value[0]
 
         navigationController?.pushViewController(edit, animated: true)
@@ -181,6 +175,6 @@ extension FurtureTableViewController: MeetingTableCellDelegate {
 
 extension FurtureTableViewController: RefreshDelegate {
     func refresherDidRefresh(_ refresher: Refresher) {
-        print("refresherDidRefresh")
+
     }
 }

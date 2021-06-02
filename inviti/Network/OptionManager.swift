@@ -17,11 +17,11 @@ class OptionManager {
     lazy var db = Firestore.firestore()
 
     func fetchOptions(meetingID: String, completion: @escaping (Result<[Option], Error>) -> Void) {
-        let docfef = db.collection("meetings")
-                    .document(meetingID)
-                    .collection("options")
-                    .order(by: "startTime", descending: false)
-                    .getDocuments() { (querySnapshot, error) in
+        db.collection("meetings")
+        .document(meetingID)
+        .collection("options")
+        .order(by: "startTime", descending: false)
+        .getDocuments() { (querySnapshot, error) in
 
                 if let error = error {
 
@@ -133,6 +133,50 @@ class OptionManager {
 //                return
 //            }
 //        }
+    func fetchVotes(completion: @escaping (Result<[Option], Error>) -> Void) {
+        db.collection("options")
+       //   .order(by: “name “)
+//       .whereField("", arrayContains: UserManager.shared.userID!)
+       .getDocuments { (querySnapshot, error) in
+        if let error = error {
+         completion(.failure(error))
+        } else {
+         var options = [Option]()
+         for document in querySnapshot!.documents {
+          do {
 
+            if var option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
+            self.db.collection("options")
+             .document("\(option.id)")
+             .collection("")
+             .order(by: "startTime", descending: false)
+             .getDocuments { (querySnapshot, error) in
+              if let error = error {
+               completion(.failure(error))
+              } else {
+               var selectedOptions = [SelectedOption]()
+               for document in querySnapshot!.documents {
+                do {
+                 if let selectedOption = try document.data(as: SelectedOption.self, decoder: Firestore.Decoder()) {
+                    selectedOptions.append(selectedOption)
+                 }
+                } catch {
+                 completion(.failure(error))
+                }
+               }
+               options.append(option)
+               completion(.success(options))
+              }
+             }
+            }
+           } catch {
+            completion(.failure(error))
+            // completion(.failure(FirebaseError.documentError))
+           }
+          }
+         }
+        }
+      }
 
+ 
 }

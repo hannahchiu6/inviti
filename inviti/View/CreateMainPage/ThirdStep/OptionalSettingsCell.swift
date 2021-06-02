@@ -31,13 +31,17 @@ class OptionalSettingsCell: UITableViewCell{
         if sender.isOn {
 
             viewModel.meetingSingleChanged(true)
+        } else {
+            viewModel.meetingSingleChanged(false)
         }
     }
 
     @IBAction func hiddenToggle(_ sender: UISwitch) {
         if sender.isOn {
 
-            viewModel.meetingHiddenChanged(sender.isOn)
+            viewModel.meetingHiddenChanged(true)
+        } else {
+            viewModel.meetingSingleChanged(false)
         }
     }
 
@@ -97,15 +101,13 @@ class OptionalSettingsCell: UITableViewCell{
         super.setSelected(selected, animated: animated)
     }
 
-    func setCell(model: Meeting) {
-        textView.text = model.notes
-        singleView.isOn = model.singleMeeting
-        hiddenView.isOn = model.hiddenMeeting
-        deadlineView.isOn = model.deadlineMeeting
-        deadlineTag = model.deadlineTag ?? 0
-//        placeholder.alpha = 0
-//        placeholder.text = ""
-        
+    func setCell(model: MeetingViewModel) {
+        textView.text = model.meeting.notes
+        singleView.isOn = model.meeting.singleMeeting
+        hiddenView.isOn = model.meeting.hiddenMeeting
+        deadlineView.isOn = model.meeting.deadlineMeeting
+        deadlineTag = model.meeting.deadlineTag ?? 0
+
         if deadlineTag != 0 {
             dealineFullView.isHidden = false
 
@@ -120,7 +122,7 @@ class OptionalSettingsCell: UITableViewCell{
 
         placeholder.frame = CGRect(x: 6, y: 6, width: 250, height: 36)
         placeholder.text = ""
-        placeholder.textColor = UIColor.hexStringToUIColor(hex: "B8B8B8")
+        placeholder.textColor = UIColor(red: 0.9922, green: 0.9098, blue: 0.8784, alpha: 1.0) 
         placeholder.backgroundColor?.withAlphaComponent(0)
         placeholder.font = UIFont(name: "PingFang TC", size: 17)
         textView.addSubview(placeholder)
@@ -132,17 +134,21 @@ class OptionalSettingsCell: UITableViewCell{
 extension OptionalSettingsCell: UITextViewDelegate {
 
     func textViewDidChange(_ textView: UITextView) {
-        print("textViewDidChange!!!!!!!!")
+
         guard let notes = textView.text else {
             return
         }
 
         if textView.text.isEmpty {
+
              placeholder.alpha = 1
+
             } else {
+
              placeholder.alpha = 0
              placeholder.text = ""
              viewModel.onNotesChanged(text: notes)
+
             }
 
     }

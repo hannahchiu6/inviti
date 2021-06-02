@@ -9,9 +9,15 @@ import UIKit
 
 class VotingTableViewCell: UITableViewCell {
 
-    var optionViewModels = SelectVMController()
+    var optionViewModels = SelectOptionViewModel()
 
-    var meeting: Meeting?
+    var votingViewModel: VotingViewModel?
+
+    var meetingID: String?
+
+    var user: User?
+
+    var optionID: String?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,22 +26,38 @@ class VotingTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
+
     @IBOutlet weak var checkBoxView: CheckBoxButton!
     
-    @IBAction func checkBox(_ sender: Any) {
+    @IBAction func checkBox(_ sender: UIButton) {
+        
+        if sender.isSelected {
+
+            votingViewModel?.onVotingChanged(false)
+
+        } else {
+
+            votingViewModel?.onVotingChanged(true)
+        }
+
+        votingViewModel?.onSelectedUserAdded(user?.appleID ?? "5gWVjg7xTHElu9p6Jkl1")
+
+        votingViewModel?.createWithEmptyData(with: optionID!, meetingID: meetingID!, selectedOption: &votingViewModel!.selectedOption)
     }
+
     @IBOutlet weak var titleLabel: UILabel!
+
     @IBOutlet weak var valueLabel: UILabel!
+
     @IBOutlet weak var cellBackgroundView: UIView!
 
 
-    func setupCell(model: OptionViewModel, index: Int) {
+    func setupVotingCell(model: OptionViewModel, index: Int) {
 
         let startTime = model.option.startTimeToTime()
+        
         let endTime = model.option.endTimeToTime()
-//        let date = Date.dateFormatter.string(from: model.option.startTimeToDate())
 
         titleLabel.text = model.option.optionTime?.dateString()
         
@@ -45,7 +67,7 @@ class VotingTableViewCell: UITableViewCell {
 
         checkBoxView.tag = index
 
-
     }
-}
 
+    
+}

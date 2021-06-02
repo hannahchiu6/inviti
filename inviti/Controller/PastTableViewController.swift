@@ -12,6 +12,10 @@ import EasyRefresher
 
 class PastTableViewController: UITableViewController {
 
+    let viewModel = MainViewModel()
+
+    var selectedIndex: Int?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.do_registerCellWithNib(
@@ -22,8 +26,8 @@ class PastTableViewController: UITableViewController {
                 self?.tableView.reloadData()
             }
         }
+
         viewModel.meetingViewModels.bind { [weak self] meetings in
-//            self?.tableView.reloadData()
             self?.viewModel.onRefresh()
         }
 
@@ -35,14 +39,8 @@ class PastTableViewController: UITableViewController {
         viewModel.fetchOldData()
 
         setupRefresher()
-
     }
 
-    let viewModel = MainVMController()
-
-    var selectedIndex: Int?
-
-    var meetingData: Meeting?
 
     func setupRefresher() {
         self.tableView.refresh.header = RefreshHeader(delegate: self)
@@ -73,6 +71,7 @@ class PastTableViewController: UITableViewController {
         }
 
         let cellViewModel = self.viewModel.meetingViewModels.value[indexPath.row]
+
         cellViewModel.onDead = { [weak self] () in
             print("onDead")
             self?.viewModel.fetchOldData()
@@ -81,6 +80,8 @@ class PastTableViewController: UITableViewController {
 
         return meetingViewCell
     }
+
+    
 
 }
 
@@ -102,6 +103,8 @@ extension PastTableViewController: MeetingTableCellDelegate {
 
         edit.meetingID = sender.meeting?.id
 
+        edit.createMeetingViewModel.meetingViewModel = sender.viewModel!
+
         navigationController?.pushViewController(edit, animated: true)
     }
 
@@ -120,6 +123,6 @@ extension PastTableViewController: MeetingTableCellDelegate {
 
 extension PastTableViewController: RefreshDelegate {
     func refresherDidRefresh(_ refresher: Refresher) {
-        print("refresherDidRefresh")
+
     }
 }

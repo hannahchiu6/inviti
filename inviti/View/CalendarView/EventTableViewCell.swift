@@ -10,7 +10,7 @@ import Foundation
 
 class EventTableViewCell: UITableViewCell {
 
-    var viewModel: CalendarVMController?
+    var viewModel: CalendarViewModel?
 
     @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var startTime: UILabel!

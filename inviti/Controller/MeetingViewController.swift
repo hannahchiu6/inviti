@@ -46,22 +46,25 @@ class MeetingViewController: BaseViewController {
 
         notiPopView.isHidden = true
         setupView()
-//        self.tabBarController?.tabBar.isHidden = false
+
         navigationController?.navigationBar.backgroundColor = UIColor.clear
+
         let vc = self.storyboard?.instantiateViewController(identifier: "MeetingVC") as? MeetingViewController
-              self.view.window?.rootViewController = vc
+        self.view.window?.rootViewController = vc
+
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+
+        self.tabBarController?.tabBar.isHidden = false
     }
+
 
     override func viewWillAppear(_ animated: Bool) {
              super.viewWillAppear(animated)
-             // Hide the navigation bar on the this view controller
-//             self.navigationController?.setNavigationBarHidden(false, animated: true)
-//             self.tabBarController?.tabBar.isHidden = false
 
+        self.tabBarController?.tabBar.isHidden = false
 
          }
-
-
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)

@@ -20,11 +20,11 @@ class CreateFirstPageVC: BaseViewController {
 
     var meetingInfo: Meeting!
 
-    var meetingForOption : Meeting!
+    var optionID: String = ""
 
     var meetingID: String?
 
-    var isDataEmpty: Bool = true
+    var isDataEmpty: Bool = false
 
     var meetingDataHandler: ((Meeting) -> Void)?
 
@@ -32,57 +32,74 @@ class CreateFirstPageVC: BaseViewController {
 
     var createMeetingViewModel = CreateMeetingViewModel()
 
+//    var meetingViewModel = createMeetingViewModel.meetingViewModel
+
 //    var mainViewModel = MainVMController()
 
 //    var createOptionViewModel = CreateOptionViewModel()
 
-    let selectOptionViewModel = SelectVMController()
+    var selectOptionViewModel = SelectOptionViewModel()
 
     @IBOutlet weak var confirmBtnView: UIButton!
 
-    @IBAction func confirm(_ sender: Any) {
+    @IBAction func deleteMeeting(_ sender: Any) {
 
-        UIView.animate(withDuration: 5.0, animations: { () -> Void in
-            self.popupView.isHidden = false
-        })
+        print("deleteMeeting clicked!")
+//        createMeetingViewModel.onOneTap(meetingID: meetingID!)
 
-        createMeetingViewModel.update(with: createMeetingViewModel.meeting)
 
-//        meetingDataHandler?(meetingInfo)
+        let storyboard: UIStoryboard = UIStoryboard(name: "Meeting", bundle: nil)
+        let meetingVC = storyboard.instantiateViewController(identifier: "MeetingVC")
+        guard let vc = meetingVC as? MeetingViewController else { return }
 
-//        createMeetingViewModel.onMeetingUpdated?()
 
-//        mainViewModel.onMeetingUpdated = {
-//            self.mainViewModel.updateMeetingData(with: self.createMeetingViewModel.meeting)
-//        }
+        self.navigationController?.show(vc, sender: true)
 
     }
 
-    @IBOutlet weak var popupView: UIView!
+    @IBAction func confirm(_ sender: Any) {
 
-    @IBOutlet weak var popViewForSave: UIView!
+        if meetingInfo == nil {
+        UIView.animate(withDuration: 5.0, animations: { () -> Void in
+            self.popView.isHidden = false
+            self.createMeetingViewModel.update(with: self.createMeetingViewModel.meeting)
+
+        })} else {
+
+        performSegue(withIdentifier: "showSuccessSegue", sender: self)
+            createMeetingViewModel.update(with: meetingInfo)
+        }
+
+
+    }
+
+
+    @IBOutlet weak var popView: UIView!
 
     @IBOutlet weak var tableview: UITableView!
 
     @IBAction func nextPage(_ sender: Any) {
         nextPage()
-
     }
-
 
     override func viewWillAppear(_ animated: Bool) {
 
-//        createMeetingViewModel.fetchOneMeeitngData(meetingID: meetingID ?? "")
+        createMeetingViewModel.fetchOneMeeitngData(meetingID: meetingID ?? "")
 
         selectOptionViewModel.fetchData(meetingID: meetingID ?? "" )
-        createMeetingViewModel.onRefresh()
 
         if selectOptionViewModel.optionViewModels.value.isEmpty {
+
             print("there's no options have been selected yet.")
+
         } else {
+
             self.isDataEmpty = false
+
         }
+
         tableview.reloadData()
+
     }
 
     override func viewDidLoad() {
@@ -91,74 +108,89 @@ class CreateFirstPageVC: BaseViewController {
         tableview.delegate = self
         tableview.dataSource = self
 
-        self.popupView.isHidden = true
+        self.popView.isHidden = true
 
         tableview.tableHeaderView = nil
         tableview.tableFooterView = nil
 
         selectOptionViewModel.optionViewModels.bind { [weak self] options in
-
             self?.selectOptionViewModel.onRefresh()
             self?.tableview.reloadData()
+            self?.enableButton()
         }
 
         createMeetingViewModel.meetingViewModels.bind { [weak self] meetings in
             self?.createMeetingViewModel.onRefresh()
+            self?.tableview.reloadData()
         }
 
+        isDataGet()
 
-        createMeetingViewModel.fetchOneMeeitngData(meetingID: meetingID ?? "")
+        confirmBtnView.isEnabled = false
 
-//        tabVC.onMeetingGet = { [weak self] viewModel in
+        NotificationCenter.default.addObserver(self, selector: #selector(textChanged), name: UITextField.textDidChangeNotification, object: nil)
+    }
+
+    // swiftLint disable: operator_usage_whitespace empty_string
+
+    @objc func textChanged() {
+
+//        let cellOne = createMeetingViewModel.meeting.subject
+//        let cellTwo = createMeetingViewModel.meeting.location
 //
-//            self?.createMeetingViewModel = viewModel
+//        if cellOne != "" && cellTwo != "" && selectOptionViewModel.optionViewModels.value.isEmpty != true {
+//
+//            self.confirmBtnView.isEnabled = true
+//            self.confirmBtnView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+//
+//        } else {
+//            self.confirmBtnView.isEnabled = false
+//            self.confirmBtnView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+//
 //        }
-//        mainViewModel.fetchOneMeeitngData(meetingID: meetingID!)
+    }
 
+    func enableButton() {
 
-        if meetingInfo != nil {
-            confirmBtnView.setTitle("更新活動內容", for: .normal)
-            self.navigationController?.isNavigationBarHidden = true
+       let cellOne = createMeetingViewModel.meeting.subject
+       let cellTwo = createMeetingViewModel.meeting.location
 
-            isDataEmpty = !isDataEmpty
-            
-            selectOptionViewModel.fetchData(meetingID: meetingInfo.id)
+       if cellOne != "" && cellTwo != "" && selectOptionViewModel.optionViewModels.value.isEmpty != true {
 
-        } else {
+           self.confirmBtnView.isEnabled = true
+           self.confirmBtnView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
 
-//            if createMeetingViewModel.meeting.id.isEmpty {
+       } else {
+           self.confirmBtnView.isEnabled = false
+           self.confirmBtnView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
 
-            meetingInfo = Meeting(
-//                id: UUID().uuidString,
-                id: "",
-                owner: SimpleUser(id: "", email: "", image: ""),
-                createdTime: -1,
-                subject: "",
-                location: "",
-                notes: "",
-                image: "",
-//                options: [],
-                singleMeeting: false,
-                hiddenMeeting: false,
-                deadlineMeeting: false,
-                participants: [],
-                numOfParticipants:0,
-                deadlineTag: 0)
-
-//            isDataEmpty = !isDataEmpty
-//            addParticipants()
-//            } else {
-//
-//                mainViewModel.onMeetingFetched?(createMeetingViewModel.meeting.id)
-//            }
-
-        }
+       }
     }
 
 
 
+    func isDataGet() {
 
+        let optionData = selectOptionViewModel.optionViewModels.value
 
+        if optionData.isEmpty {
+
+            isDataEmpty = true
+
+        } else {
+
+            selectOptionViewModel.fetchData(meetingID: meetingInfo.id)
+        }
+
+        if meetingInfo != nil {
+
+            confirmBtnView.setTitle("更新活動內容", for: .normal)
+            self.navigationController?.isNavigationBarHidden = true
+
+            isDataEmpty = !isDataEmpty
+
+        }
+    }
 
 //    func addParticipants() {
 //
@@ -171,13 +203,6 @@ class CreateFirstPageVC: BaseViewController {
 //        self.meetingInfo.participantImage.append(participantImage)
 //    }
 
-
-    @objc func enableConfirmBtn(noti: Notification) {
-        confirmBtnView.isEnabled = true
-        confirmBtnView.backgroundColor = .blue
-        confirmBtnView.isHidden = true
-    }
-
     func nextPage() {
 
         let secondVC = storyboard?.instantiateViewController(identifier: "CMeetingVC")
@@ -185,29 +210,12 @@ class CreateFirstPageVC: BaseViewController {
 
         createMeetingViewModel.update(with: createMeetingViewModel.meeting)
 
-//        viewModel.onMeetingCreated = {
-//            self.viewModel.create(with: &self.viewModel.meeting)
-//       }
-//
+        second.selectedOptionViewModel = selectOptionViewModel
+
         second.meetingID = meetingID ?? ""
 
-        second.meetingInfo = createMeetingViewModel.meeting
-
-           navigationController?.pushViewController(second, animated: true)
+        navigationController?.pushViewController(second, animated: true)
     }
-
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//        if segue.identifier == "saveSuccessSegue" {
-//            if let presentVC = segue.destination as? PopSaveSuccessVC {
-//                presentVC.delegate = self
-//
-//            }
-//
-//        }
-//    }
-
-
 }
 
 extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
@@ -249,31 +257,70 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 
                 cell.delegate = self
 
-                cell.subjectTextField.text = meetingInfo.subject
-                cell.locationTextField.text = meetingInfo.location
+            if createMeetingViewModel.meetingViewModels.value.isEmpty {
+
+                cell.setCell(model: createMeetingViewModel.meetingViewModel)
+
+                cell.viewModel = self.createMeetingViewModel.meetingViewModel
+
+            } else {
+
+                let data = createMeetingViewModel.meetingViewModels.value[indexPath.row]
+
+                cell.setCell(model: data)
+
+                cell.viewModel = data
+
+            }
 
             return cell
 
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionalSettingsCell", for: indexPath) as! OptionalSettingsCell
 
-            cell.setCell(model: meetingInfo)
+            if createMeetingViewModel.meetingViewModels.value.isEmpty {
 
-            cell.viewModel = self.createMeetingViewModel
+                cell.setCell(model: createMeetingViewModel.meetingViewModel)
 
-            cell.addSubtract.value = Double(meetingInfo.deadlineTag ?? 0)
+                cell.viewModel = self.createMeetingViewModel
 
-                cell.observation = cell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { (stepper, change) in
-                    if change.newValue! == 0.0 {
-                        if change.newValue! > change.oldValue! {
-                            cell.addSubtract.value = 1
-                        } else {
-                            cell.addSubtract.value = -1
+                cell.addSubtract.value = Double(createMeetingViewModel.meetingViewModel.meeting.deadlineTag ?? 0)
+
+                    cell.observation = cell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { (stepper, change) in
+                        if change.newValue! == 0.0 {
+                            if change.newValue! > change.oldValue! {
+                                cell.addSubtract.value = 1
+                            } else {
+                                cell.addSubtract.value = -1
+                            }
                         }
-                    }
-                    self.meetingInfo.deadlineTag = Int(cell.addSubtract.value)
-                })
-            return cell
+                        self.createMeetingViewModel.meetingViewModel.meeting.deadlineTag = Int(cell.addSubtract.value)
+                    })
+                return cell
+                
+            } else {
+
+                let data = createMeetingViewModel.meetingViewModels.value[indexPath.row]
+
+                cell.setCell(model: data)
+
+                cell.viewModel = createMeetingViewModel
+
+                cell.addSubtract.value = Double(data.meeting.deadlineTag ?? 0)
+
+                    cell.observation = cell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { (stepper, change) in
+                        if change.newValue! == 0.0 {
+                            if change.newValue! > change.oldValue! {
+                                cell.addSubtract.value = 1
+                            } else {
+                                cell.addSubtract.value = -1
+                            }
+                        }
+                        self.createMeetingViewModel.meetingViewModels.value[indexPath.row].meeting.deadlineTag = Int(cell.addSubtract.value)
+                    })
+                return cell
+
+            }
 
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionsCell", for: indexPath) as! OptionsCell
@@ -294,21 +341,14 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 
                 cell.setupCell(model: selectOptionViewModel.optionViewModels.value[indexPath.row], index: indexPath.row)
 
-            }
-
-            if isDataEmpty {
-                return cell
-                
-            } else {
-
                 let cellViewModel = self.selectOptionViewModel.optionViewModels.value[indexPath.row]
 
                 cellViewModel.onDead = { [weak self] () in
                     print("onDead")
                     self?.selectOptionViewModel.fetchData(meetingID: (self?.meetingInfo.id)!)
                 }
-            }
 
+            }
 
             return cell
         }
@@ -317,6 +357,7 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension CreateFirstPageVC: CreateFirstCellDelegate {
+
     func getSubjectData(_ subject: String) {
         createMeetingViewModel.onSubjectChanged(text: subject)
     }
@@ -326,21 +367,21 @@ extension CreateFirstPageVC: CreateFirstCellDelegate {
     }
 }
 
-
 extension CreateFirstPageVC: CTableViewDelegate {
     func optionDidSelect(getData: Bool) {
         if getData {
             isDataEmpty = false
         }
     }
-
 }
 
 extension CreateFirstPageVC: SecondCellDelegate {
 
-    func deleteTap(_ index: Int, vms: SelectVMController) {
+    func deleteTap(_ index: Int, vms: SelectOptionViewModel) {
+        
+        optionID = selectOptionViewModel.getOptionID(in: selectOptionViewModel.optionViewModels.value, index: index)
 
-        selectOptionViewModel.onTap(with: index, meeting: meetingInfo)
+        selectOptionViewModel.onEmptyTap(optionID, meetingID: meetingID ?? "")
 
         selectOptionViewModel.fetchData(meetingID: meetingID ?? "")
 
@@ -348,11 +389,9 @@ extension CreateFirstPageVC: SecondCellDelegate {
             isDataEmpty = true
         }
 
-//        tableview.reloadData()
     }
 
     func goToSecondPage() {
         nextPage()
     }
-
 }

@@ -3,12 +3,12 @@
 //  inviti
 //
 //  Created by Hannah.C on 20.05.21.
-//
+// swiftLint disable: trailing_closure
 
 import Foundation
 import JKCalendar
 
-class CalendarVMController {
+class CalendarViewModel {
 
     let eventViewModels = Box([EventViewModel]())
 
@@ -45,12 +45,20 @@ class CalendarVMController {
     }
 
     func createSelectedData(in viewModels: [EventViewModel], selectedDate: String) -> [EventViewModel] {
-        let oldViewModel = eventViewModels.value
+
         var newViewModels = [EventViewModel]()
-        newViewModels = oldViewModel.filter({$0.event.date == Int(selectedDate)})
+        newViewModels = viewModels.filter({$0.event.date == Int(selectedDate)})
         return newViewModels
     }
 
+    func createIntDateData(in viewModels: [EventViewModel]) -> [Int?] {
+
+        let theTime = viewModels.map({
+                                        Int(Date.intDateFormatter.string(from: Date(millis: $0.event.startTime)))})
+
+        return theTime
+    }
+    
     func createMarksData() -> [JKDay] {
         let viewModel = eventViewModels.value
         let marksDates = viewModel.map({
@@ -62,6 +70,7 @@ class CalendarVMController {
         })
         return JDay
     }
+
 
     func createTimeData(in viewModels: [EventViewModel]) -> [JKDay] {
         let eventDates = viewModels.map({
