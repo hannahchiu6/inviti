@@ -29,6 +29,11 @@ class OptionViewModel {
         }
     }
 
+    var selectedOptions: [SelectedOption]? {
+        get {
+            return option.selectedOptions
+        }
+    }
 
     var id: String {
         get {

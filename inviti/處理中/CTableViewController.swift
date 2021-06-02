@@ -31,12 +31,12 @@ class CTableViewController: UIViewController {
         didSet {
 
 //            self.options.sort(by: <)
-            updateButton()
+//            updateButton()
             calendarTableView.reloadData()
         }
     }
 
-    var viewModel = CalendarVMController() {
+    var viewModel = CalendarViewModel() {
         didSet {
             calendarTableView.calendar.reloadData()
         }
@@ -44,7 +44,7 @@ class CTableViewController: UIViewController {
 
 //    var createOptionViewModel = CreateOptionViewModel()
 
-    var selectedOptionViewModel = SelectVMController()
+    var selectedOptionViewModel = SelectOptionViewModel()
 
     var optionViewModels: [OptionViewModel]?
 
@@ -60,38 +60,17 @@ class CTableViewController: UIViewController {
 
     @IBOutlet weak var calendarTableView: JKCalendarTableView!
 
-    @IBOutlet weak var nextBtnView: UIButton!
-
-    @IBOutlet weak var goNextPage: UIButton!
-
 //    var hasOptionData = true
 
     var onUpdate: ((_ meetingID: String)->())?
 
-    @IBAction func goNextPage(_ sender: Any) {
-
-    }
 
     @IBOutlet weak var confirmBtn: UIButton!
 
-
     @IBAction func backButton(_ sender: Any) {
 
-        guard let vc = storyboard?.instantiateViewController(identifier: "CreateFirstPageVC") as? CreateFirstPageVC else { return }
+        self.navigationController?.popViewController(animated: true)
 
-        vc.meetingID = meetingID
-
-        vc.meetingInfo = meetingInfo
-
-        if selectedOptionViewModel.optionViewModels.value.isEmpty {
-            print("there's no options have been selected yet.")
-        } else {
-
-            vc.selectOptionViewModel.optionViewModels.value = selectedOptionViewModel.optionViewModels.value
-            
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
-//        self.navigationController?.popViewController(animated: true)
     }
 
     override func viewDidLoad() {
@@ -102,6 +81,9 @@ class CTableViewController: UIViewController {
         calendarTableView.calendar.dataSource = self
 
         calendarTableView.calendar.focusWeek = selectDay.weekOfMonth - 1
+
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
 
         viewModel.eventViewModels.bind { [weak self] events in
 
@@ -114,13 +96,13 @@ class CTableViewController: UIViewController {
         selectedOptionViewModel.refreshView = { [weak self] () in
             DispatchQueue.main.async {
                 self?.calendarTableView.reloadData()
-                self!.calendarTableView.calendar.reloadData()
+//                self!.calendarTableView.calendar.reloadData()
             }
         }
 
         selectedOptionViewModel.optionViewModels.bind { [weak self] options in
-
             self?.selectedOptionViewModel.onRefresh()
+//            self?.calendarTableView.reloadData()
 
         }
 
@@ -134,22 +116,48 @@ class CTableViewController: UIViewController {
 
         viewModel.fetchData()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(optionAdded), name: UITextField.textDidChangeNotification, object: nil)
+
     }
 
-    private func updateButton() {
+    @objc func optionAdded(){
 
-        switch options.count {
+        let data = selectedOptionViewModel.optionViewModels.value
 
-        case 0:
-            nextBtnView.alpha = 0.7
-            nextBtnView.isEnabled = false
-            nextBtnView.tintColor = UIColor.lightGray
+        if data.isEmpty {
 
-        default:
-            nextBtnView.alpha = 1
-            nextBtnView.isEnabled = true
+            self.confirmBtn.isEnabled  = false
+            self.confirmBtn.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+
+        } else {
+
+            self.confirmBtn.isEnabled = true
+            self.confirmBtn.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
         }
     }
+
+//    private func updateButton() {
+//
+//        switch options.count {
+//
+//        case 0:
+//            nextBtnView.alpha = 0.7
+//            nextBtnView.isEnabled = false
+//            nextBtnView.tintColor = UIColor.lightGray
+//
+//        default:
+//            nextBtnView.alpha = 1
+//            nextBtnView.isEnabled = true
+//        }
+//    }
+
+//    private var cTableViewController: UIViewController
+//
+//       override func show(_ vc: UIViewController, sender: Any?) {
+//            cTableViewController.removeFromParent()
+//            cTableViewController = vc
+//            add(vc)
+//       }
 
     func setupRefresher() {
 
@@ -216,9 +224,13 @@ extension CTableViewController: JKCalendarDataSource {
 
         var marks: [JKCalendarMark] = []
 
+        let bookingDate = OptionTime(year: selectDay.year, month: selectDay.month, day: selectDay.day)
+
+        let selectedOptions = selectedOptionViewModel.markSelectedDay(in: selectedOptionViewModel.optionViewModels.value, selectedDate: bookingDate)
+
         let today = JKDay(date: Date())
 
-        var marksDay = viewModel.createMarksData()
+        let marksDay = viewModel.createMarksData()
 
         let markColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
 
@@ -229,6 +241,15 @@ extension CTableViewController: JKCalendarDataSource {
             marks.append(JKCalendarMark(type: .circle,
                                         day: selectDay,
                                         color: markColor))
+        }
+
+
+        for day in selectedOptions {
+            if day == month {
+                marks.append(JKCalendarMark(type: .circle,
+                                            day: day,
+                                            color: markColor))
+            }
         }
 
         if today == month {
@@ -243,7 +264,7 @@ extension CTableViewController: JKCalendarDataSource {
             marks.append(JKCalendarMark(type: .dot,
                                         day: i,
                                         color: todayColor))
-        }
+            }
 
         }
             return marks
@@ -275,6 +296,16 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
         cell.createOptionViewModel.option = selectedOptionViewModel.option
 
         cell.selectedOptionViewModel = self.selectedOptionViewModel
+
+        if selectDay.date < Date() {
+
+            cell.bookingButton.isHidden = true
+
+        } else {
+
+            cell.bookingButton.isHidden = false
+
+        }
 
         let bookingDate = OptionTime(
             year: selectDay.year,
@@ -330,15 +361,6 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
 //                    cell.resetCell()
 //                cell.bookingMeetingButton.isHidden = true
 
-        if selectDay.date < Date() {
-
-            cell.bookingButton.isHidden = true
-
-        } else {
-
-            cell.bookingButton.isHidden = false
-
-        }
 
         return cell
 
@@ -366,10 +388,10 @@ extension CTableViewController {
 
          options.firstIndex(
             where: { $0.optionTime == bookingDate }) else {
-            options.append(Option(startTime: Int((
-                                                    updateDate.startTime))
-, endTime: Int((
-                updateDate.endTime)), optionTime: bookingDate, duration: 60))
+            options.append(Option(id: "", startTime: Int64(Int((
+                                                        updateDate.startTime)))
+                                  , endTime: Int64(Int((
+                                                        updateDate.endTime))), optionTime: bookingDate, duration: 60))
 
 
             return }
@@ -383,7 +405,7 @@ extension CTableViewController {
 
 extension CTableViewController: CTableViewCellDelegate {
 
-    func tapped(_ sender: CTableViewCell, index: Int, vms: SelectVMController) {
+    func tapped(_ sender: CTableViewCell, index: Int, vms: SelectOptionViewModel) {
 
         self.selectedOptionViewModel = vms
 

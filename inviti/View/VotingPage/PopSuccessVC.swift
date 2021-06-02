@@ -7,10 +7,15 @@
 
 import UIKit
 
-class PopSuccessVC: UIViewController {
+class PopSuccessVC: BaseViewController {
 
     @IBAction func returnMain(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
+//        navigationController?.popToRootViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let meetingVC = storyboard.instantiateViewController(identifier: "tabBarVC")
+        guard let vc = meetingVC as? TabBarViewController else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

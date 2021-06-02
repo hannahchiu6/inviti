@@ -23,7 +23,7 @@ class TabCalendarViewController: UIViewController {
         }
     }
 
-    var viewModel = CalendarVMController()
+    var viewModel = CalendarViewModel()
 
     var eventViewModels: [EventViewModel]?{
         didSet {
@@ -85,15 +85,38 @@ extension TabCalendarViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventViewModels?.count ?? 0
+
+        let theDay = Date.intDateFormatter.string(from: self.selectDay.date)
+
+        let selectedDays = viewModel.createIntDateData(in: viewModel.eventViewModels.value ?? [])
+
+        if selectedDays.contains(Int(theDay)) {
+
+            let theDay = Date.intDateFormatter.string(from: self.selectDay.date)
+
+            let eventModel = viewModel.createSelectedData(in: viewModel.eventViewModels.value, selectedDate: theDay)
+
+            return eventModel.count
+
+        } else {
+
+            return 0
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventTableViewCell", for: indexPath) as! EventTableViewCell
 
-        guard let newViewModels = eventViewModels?[indexPath.row] else { return cell }
+        let selectedDays = viewModel.createTimeData(in: eventViewModels ?? [])
 
-            cell.setup(vm: newViewModels)
+        if selectedDays.contains(selectDay) {
+
+            let theDay = Date.intDateFormatter.string(from: self.selectDay.date)
+
+            let eventModel = viewModel.createSelectedData(in: viewModel.eventViewModels.value, selectedDate: theDay)
+
+            cell.setup(vm: eventModel[indexPath.row])
+        }
 
         return cell
     }
@@ -114,8 +137,6 @@ extension TabCalendarViewController: JKCalendarDelegate {
         let theDay = Date.intDateFormatter.string(from: self.selectDay.date)
         eventViewModels = viewModel.createSelectedData(in: viewModel.eventViewModels.value, selectedDate: theDay)
 
-
-
         self.calendarTableView.reloadData()
     }
 
@@ -133,19 +154,20 @@ extension TabCalendarViewController: JKCalendarDelegate {
     }
 }
 
+
 extension TabCalendarViewController: JKCalendarDataSource {
 
     func calendar(_ calendar: JKCalendar, marksWith month: JKMonth) -> [JKCalendarMark]? {
 
-        let markColor = UIColor(red: 1, green: 0.3647, blue: 0, alpha: 1.0)
+        let markColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
 
-        let todayColor = UIColor(red: 1, green: 0.8432, blue: 0.2784, alpha: 1.0)
+        let todayColor = UIColor(red: 0.78, green: 0.49, blue: 0.35, alpha: 1.00)
 
         var marks: [JKCalendarMark] = []
 
         let today = JKDay(date: Date())
 
-        var marksDay = viewModel.createMarksData()
+        let marksDay = viewModel.createMarksData()
 
         if selectDay == month{
             marks.append(JKCalendarMark(type: .circle,

@@ -8,11 +8,13 @@
 import Foundation
 import JKCalendar
 
-class SelectVMController {
+class SelectOptionViewModel {
 
     let optionViewModels = Box([OptionViewModel]())
 
-    var option: Option = Option(startTime: 0, endTime: 0, optionTime: OptionTime(year: 2021, month: 5, day: 5), duration: 60)
+    var optionViewModel = OptionViewModel(model: Option(id: "", startTime: 0, endTime: 0, optionTime: OptionTime(year: 2021, month: 5, day: 5), duration: 60, selectedOptions: []))
+
+    var option: Option = Option(id: "", startTime: 0, endTime: 0, optionTime: OptionTime(year: 2021, month: 5, day: 5), duration: 60, selectedOptions: [])
 
 //    let selectedViewModels = Box([EventViewModel]())
 
@@ -21,6 +23,12 @@ class SelectVMController {
     var onDead: (() -> Void)?
 
     var scrollToTop: (() -> Void)?
+
+    var getOptionData: (() -> Void)?
+
+    var onOptionCreated: (() -> Void)?
+
+    var onOptionUpdated: (() -> Void)?
 
     func fetchData(meetingID: String) {
         
@@ -39,9 +47,7 @@ class SelectVMController {
         }
     }
 
-
     func onRefresh() {
-        // maybe do something
         self.refreshView?()
     }
 
@@ -52,7 +58,6 @@ class SelectVMController {
 
     func onStartTimeChanged(_ time: Int, date: Date) {
         let newHour = time * 3600000
-//        let newDate = (date.day * 86400) + (date.month * 259200) + (date.year * 31536000)
         let newDate = date.millisecondsSince1970
         self.option.startTime = Int64(newHour) + newDate
 
@@ -62,7 +67,6 @@ class SelectVMController {
     func onEndTimeChanged(_ time: Int, date: Date) {
         self.option.duration = 60
         let newHour = (time * 3600000) + (self.option.duration * 60000)
-//        let newDate = (date.day * 86400) + (date.month * 2629746) + (date.year * 31556952)
         let newDate = date.millisecondsSince1970
         self.option.endTime = Int64(newHour) + newDate
     }
@@ -70,10 +74,6 @@ class SelectVMController {
     func onOptionTimeChanged(_ date: Date) {
         self.option.optionTime = OptionTime(year: date.year, month: date.month, day: date.day)
     }
-
-    var onOptionCreated: (() -> Void)?
-
-    var onOptionUpdated: (() -> Void)?
 
     func create(with meeting: Meeting, option: inout Option) {
 
@@ -127,18 +127,30 @@ class SelectVMController {
         return theTime
     }
 
+
     func createHourData(in viewModels: [OptionViewModel]) -> [Int?] {
 
-        let theTime = viewModels.map({
+        let theTime = viewModels.map ({
                                         Int(Date.hourFormatter.string(from: Date(millis: $0.option.startTime)))})
         return theTime
     }
 
     func createSelectedOption(in viewModels: [OptionViewModel], selectedDate: OptionTime) -> [OptionViewModel] {
-        let oldViewModel = viewModels
 
-        let newViewModels = oldViewModel.filter({$0.option.optionTime == selectedDate})
+        let newViewModels = viewModels.filter({$0.option.optionTime == selectedDate})
         return newViewModels
+    }
+
+    func markSelectedDay(in viewModels: [OptionViewModel], selectedDate: OptionTime) -> [JKDay] {
+        let newViewModels = viewModels.filter({ $0.option.optionTime == selectedDate})
+        let marksDates = newViewModels.map ({
+            Date.init(millis: $0.option.startTime)
+        })
+
+        let JDay = marksDates.map({
+            JKDay(date: $0)
+        })
+        return JDay
     }
 
     func getOptionID(in viewModels: [OptionViewModel], index: Int) -> String {
@@ -146,8 +158,15 @@ class SelectVMController {
         let newVMs = viewModels.filter({ Int(Date.hourFormatter.string(from: Date(millis: $0.option.startTime))) == index})
 
         let theVM = newVMs.first(where: { Int(Date.hourFormatter.string(from: Date(millis: $0.option.startTime))) == index})
+//
+//        if index == 0 {
 
-        return theVM!.id
+            return viewModels[index].id
+            
+//        } else {
+//
+//            return theVM!.id
+//        }
 
     }
 

@@ -12,6 +12,24 @@ class CreateMeetingViewModel {
 
     var meetingViewModels = Box([MeetingViewModel]())
 
+    var meetingViewModel = MeetingViewModel(model: Meeting(
+        id: "",
+//        owner: (UserManager.shared.user?.id)!,
+        owner: SimpleUser(id: "5gWVjg7xTHElu9p6Jkl1", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"),
+        createdTime: 0,
+        subject: "",
+        location: "",
+        notes: "",
+        image: "https://500px.com/static/media/editors8@1x.126c6fb9.png",
+        singleMeeting: false,
+        hiddenMeeting: false,
+        deadlineMeeting: false,
+//        askInfo: AskInfo,
+        participants: ["aaa"],
+        numOfParticipants: 0,
+        deadlineTag: 0
+    ))
+
     var meeting: Meeting = Meeting(
         id: "",
 //        owner: (UserManager.shared.user?.id)!,
@@ -29,8 +47,6 @@ class CreateMeetingViewModel {
         numOfParticipants: 0,
         deadlineTag: 0
     )
-
-//    var onOneMeetingGet: (() -> Void)?
 
     func onIDChanged(_ id: String) {
         self.meeting.id = id
@@ -84,8 +100,6 @@ class CreateMeetingViewModel {
 
                 self?.setMeeting(meeting)
 
-                print("MainViewModel:" + "\n" + " Meeting: \(meeting)")
-
             case .failure(let error):
 
                 print("fetchData.failure: \(error)")
@@ -105,6 +119,25 @@ class CreateMeetingViewModel {
 
     func onTap(withIndex index: Int) {
         meetingViewModels.value[index].onTap()
+    }
+
+    var onDead: (() -> Void)?
+
+    func onOneTap(meetingID: String) {
+        NetworkManager.shared.deleteOneMeeting(meetingID: meetingID) { [weak self] result in
+
+            switch result {
+
+            case .success(let meetingID):
+
+                print(meetingID)
+                self?.onDead?()
+
+            case .failure(let error):
+
+                print("publishMeeting.failure: \(error)")
+            }
+        }
     }
 
     var onMeetingUpdated: (() -> Void)?
@@ -132,7 +165,7 @@ class CreateMeetingViewModel {
         var viewModels = [MeetingViewModel]()
         let viewModel = MeetingViewModel(model: meeting)
         viewModels.append(viewModel)
-        print("MainVMController convertMeetingToViewModel")
+        print("----MainVMController ID ---  @ convertMeetingToViewModel---")
         print(viewModel.id)
 
         return viewModels

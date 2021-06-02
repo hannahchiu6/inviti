@@ -10,18 +10,13 @@ import Firebase
 
 class CreateOptionViewModel {
 
-    let optionViewModel = SelectVMController()
+    let optionViewModel = SelectOptionViewModel()
 
-    var option: Option = Option(startTime: 0, endTime: 0, optionTime: OptionTime(year: 2021, month: 5, day: 5), duration: 60)
-
-//    func onDurationChanged(time duration: Int) {
-//        self.option.duration = duration
-//    }
+    var option: Option = Option(id: "", startTime: 0, endTime: 0, optionTime: OptionTime(year: 2021, month: 5, day: 5), duration: 60)
 
 
     func onStartTimeChanged(_ time: Int, date: Date) {
         let newHour = time * 3600000
-//        let newDate = (date.day * 86400) + (date.month * 259200) + (date.year * 31536000)
         let newDate = date.millisecondsSince1970
         self.option.startTime = Int64(newHour) + newDate
 
@@ -31,7 +26,6 @@ class CreateOptionViewModel {
     func onEndTimeChanged(_ time: Int, date: Date) {
         self.option.duration = 60
         let newHour = (time * 3600000) + (self.option.duration * 60000)
-//        let newDate = (date.day * 86400) + (date.month * 2629746) + (date.year * 31556952)
         let newDate = date.millisecondsSince1970
         self.option.endTime = Int64(newHour) + newDate
     }
@@ -43,32 +37,6 @@ class CreateOptionViewModel {
     var onOptionCreated: (() -> Void)?
 
     var onOptionUpdated: (() -> Void)?
-
-//    func onTapCreate() {
-//
-//        if hasUserInMeeting() {
-//            print("has user in meeting...")
-//            create() // MARK: check which function this call is
-//
-//        } else {
-//            print("login...")
-//            SimpleManager.shared.login() { [weak self] result in
-//                // MARK: - put your id into login function
-//                switch result {
-//
-//                case .success(let user):
-//
-//                    print("login success")
-//                    self?.create(with: user) // MARK: check which function this call is
-//
-//                case .failure(let error):
-//
-//                    print("login.failure: \(error)")
-//                }
-//
-//            }
-//        }
-//    }
 
     func create(with meeting: Meeting, option: inout Option) {
 

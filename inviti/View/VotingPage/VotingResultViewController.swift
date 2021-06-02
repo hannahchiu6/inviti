@@ -1,5 +1,5 @@
 //
-//  VotingViewController.swift
+//  VotingResultViewController.swift
 //  inviti
 //
 //  Created by Hannah.C on 13.05.21.
@@ -10,7 +10,7 @@ import Kingfisher
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class VotingViewController: UIViewController {
+class VotingResultViewController: UIViewController {
 
     let cellSpacingHeight: CGFloat = 5
 
@@ -61,14 +61,6 @@ class VotingViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.gray
         self.navigationController?.navigationBar.backgroundColor = UIColor.clear
 
-//        optionViewModels.fetchData(meetingID: meetingInfo.id)
-
-
-//        optionViewModels.optionViewModels.bind { [weak self] options in
-//
-//            self?.optionViewModels.onRefresh()
-//            self?.tableview.reloadData()
-//        }
         votingViewModel.fetchVoteForYes(meetingID: meetingInfo.id)
 
         votingViewModel.optionViewModels.bind { [weak self] options in
@@ -117,39 +109,10 @@ extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
 
         let index = indexPath.row
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "votingTableViewCell", for: indexPath) as! VotingTableViewCell
-
         let filterOptions = votingViewModel.optionViewModels.value[index].selectedOptions
 
         let voteForYesArray = filterOptions?.filter({ $0.isSelected == true })
 
-        switch filterOptions?.count {
-
-        case 0:
-
-            let cell = tableView.dequeueReusableCell(withIdentifier: "votingTableViewCell", for: indexPath) as! VotingTableViewCell
-
-            cell.votingViewModel = self.votingViewModel
-
-            cell.setupVotingCell(model: votingViewModel.optionViewModels.value[index], index: index)
-
-            cell.meetingID = self.meetingInfo.id
-
-            cell.optionID = votingViewModel.optionViewModels.value[index].id
-
-//            cell.optionViewModels = self.optionViewModels
-//
-//            cell.setupVotingCell(model: optionViewModels.optionViewModels.value[index], index: index)
-//
-//            cell.meetingID = self.meetingInfo.id
-//
-//            cell.votingViewModel = self.votingViewModel
-//
-//            cell.optionID = optionViewModels.optionViewModels.value[index].id
-
-            return cell
-
-        default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "resultTableViewCell", for: indexPath) as! ResultTableViewCell
 
 
@@ -160,12 +123,8 @@ extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.meetingID = self.meetingInfo.id
 
             cell.setupYesCell(model: votingViewModel.optionViewModels.value[index], index: index)
-
-            return cell
-
+                
             }
-
-        }
 
         return cell
     }

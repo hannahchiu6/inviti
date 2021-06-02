@@ -41,10 +41,10 @@ class MeetingViewModel {
         }
     }
 
-    var createdTime: String {
+    var createdTime: Int64 {
         get {
            
-            return Date.dateFormatter.string(from: Date.init(millis: meeting.createdTime))
+            return meeting.createdTime
         }
     }
 
@@ -71,6 +71,12 @@ class MeetingViewModel {
 //        }
 //    }
 
+    var options: [Option]? {
+        get {
+            return meeting.options
+        }
+    }
+
     var owner: SimpleUser {
         get {
             return meeting.owner
@@ -93,4 +99,6 @@ class MeetingViewModel {
             }
         }
     }
+
+
 }

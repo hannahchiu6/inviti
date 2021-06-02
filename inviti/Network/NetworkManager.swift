@@ -4,6 +4,7 @@
 //
 //  Created by Hannah.C on 20.05.21.
 //
+//  swiftlint:disable force_unwrapping inclusive_language closure_end_indentation
 
 import Foundation
 import Firebase
@@ -26,7 +27,7 @@ class NetworkManager {
     func fetchMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
 
         db.collection("meetings")
-            .getDocuments() { (querySnapshot, error) in
+            .getDocuments { querySnapshot, error in
 
                 if let error = error {
 
@@ -52,19 +53,19 @@ class NetworkManager {
 
                     completion(.success(meetings))
                 }
-        }
+            }
     }
 
     func fetchOneMeeting(meetingID: String, completion: @escaping (Result<Meeting, Error>) -> Void) {
 
         let docRef = db.collection("meetings").document(meetingID)
-            docRef.getDocument() { (document, error) in
+            docRef.getDocument { document, error in
 
         let result = Result {
           try document?.data(as: Meeting.self)
         }
 
-        switch result {
+            switch result {
 
             case .success(let meeting):
                 if let meeting = meeting {
@@ -93,7 +94,7 @@ class NetworkManager {
         db.collection("meetings")
             .order(by: "createdTime", descending: true)
             .whereField("createdTime", isGreaterThanOrEqualTo: Date().millisecondsSince1970)
-            .getDocuments() { (querySnapshot, error) in
+            .getDocuments { querySnapshot, error in
 
                 if let error = error {
 
@@ -119,7 +120,7 @@ class NetworkManager {
 
                     completion(.success(meetings))
                 }
-        }
+            }
     }
 
     func fetchOldMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
@@ -127,7 +128,7 @@ class NetworkManager {
         db.collection("meetings")
             .order(by: "createdTime", descending: true)
             .whereField("createdTime", isLessThanOrEqualTo: Date().millisecondsSince1970)
-            .getDocuments() { (querySnapshot, error) in
+            .getDocuments { querySnapshot, error in
 
                 if let error = error {
 
@@ -153,7 +154,7 @@ class NetworkManager {
 
                     completion(.success(meetings))
                 }
-        }
+            }
     }
 
     func createMeeting(meeting: inout Meeting, completion: @escaping (Result<String, Error>) -> Void) {
@@ -203,20 +204,196 @@ class NetworkManager {
         }
     }
 
+    func deleteOneMeeting(meetingID: String, completion: @escaping (Result<String, Error>) -> Void) {
+
+        db.collection("meetings")
+            .document(meetingID)
+            .delete { error in
+
+            if let error = error {
+
+                completion(.failure(error))
+
+            } else {
+
+                completion(.success(meetingID))
+            }
+        }
+    }
+
     func updateMeeting(meeting: Meeting, completion: @escaping (Result<Meeting, Error>) -> Void) {
 
 
-        _ = try? db.collection("meetings") .document(meeting.id)
-                .setData(from: meeting) { err in
+        _ = try? db.collection("meetings")
+                    .document(meeting.id)
+                    .setData(from: meeting) { err in
 
                 if let err = err {
                     completion(.failure(err))
 
                 } else {
                     completion(.success(meeting))
-                }
+                    }
+            }
+    }
 
-         }
+    // Fetch Meetings & Options
+    func fetchMeetingsPackage(completion: @escaping (Result<[Meeting], Error>) -> Void) {
+       db.collection("meetings")
+        //   .order(by: “name “)
+   //     .whereField(“teachers”, arrayContains: UserManager.shared.userID!)
+        .getDocuments { querySnapshot, error in
+
+         if let error = error {
+
+            completion(.failure(error))
+         } else {
+
+            var meeitngs = [Meeting]()
+
+            for document in querySnapshot!.documents {
+
+                do {
+                    if var meeting = try document.data(as: Meeting.self, decoder: Firestore.Decoder()) {
+                        self.db.collection("meetings")
+                            .document("\(meeting.id)")
+                            .collection("options")
+   //           .order(by: “number”, descending: false)
+                            .getDocuments { querySnapshot, error in
+
+                                if let error = error {
+
+                                    completion(.failure(error))
+
+                                } else {
+
+                                    var options = [Option]()
+
+                                    for document in querySnapshot!.documents {
+
+                                        do {
+                                            if let option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
+                                                options.append(option)
+                                            }
+                                        } catch {
+                                            completion(.failure(error))
+                                        }
+                                    }
+
+                                    meeting.options = options
+                                    meeitngs.append(meeting)
+                                    completion(.success(meeitngs))
+
+                                }
+                            }
+                    }
+                } catch {
+
+                    completion(.failure(error))
+                }
+            }
+          }
+        }
+    }
+
+    // Fetch Meetings & Options & SelectedOptions
+    func fetchFullPackage(completion: @escaping (Result<[Meeting], Error>) -> Void) {
+       db.collection("meetings")
+        //   .order(by: “name “)
+   //     .whereField(“teachers”, arrayContains: UserManager.shared.userID!)
+        .getDocuments { querySnapshot, error in
+
+         if let error = error {
+
+            completion(.failure(error))
+
+         } else {
+
+            var meeitngs = [Meeting]()
+
+            for document in querySnapshot!.documents {
+
+                do {
+                        if var meeting = try document.data(as: Meeting.self, decoder: Firestore.Decoder()) {
+
+                        self.db.collection("meetings")
+                            .document("\(meeting.id)")
+                            .collection("options")
+   //           .order(by: “number”, descending: false)
+                            .getDocuments { querySnapshot, error in
+
+                                if let error = error {
+
+                                    completion(.failure(error))
+
+                                } else {
+
+                                    var options = [Option]()
+
+                                    for document in querySnapshot!.documents {
+
+                                        do {
+                                            if var option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
+
+                                            self.db.collection("meetings")
+                                                .document("\(meeting.id)")
+                                                .collection("options")
+                                                .document("\(option.id)")
+                                                .collection("selectedOptions")
+                       //           .order(by: “number”, descending: false)
+                                                .getDocuments { querySnapshot, error in
+
+                                                    if let error = error {
+
+                                                        completion(.failure(error))
+
+                                                    } else {
+
+                                                        var selectedOptions = [SelectedOption]()
+
+                                                        for document in querySnapshot!.documents {
+
+                                                            do {
+                                                                 if let selectedOption = try document.data(as: SelectedOption.self, decoder: Firestore.Decoder()) {
+
+                                                                    selectedOptions.append(selectedOption)
+
+                                                                    }
+                                                            } catch {
+
+                                                                    completion(.failure(error))
+                                                            }
+
+                                                    }
+                                                        option.selectedOptions = selectedOptions
+                                                        options.append(option)
+                                                }
+
+
+                                            }
+
+                                        }
+
+                                        } catch {
+
+                                            completion(.failure(error))
+                                        }
+                                    }
+
+                                    meeting.options = options
+                                    meeitngs.append(meeting)
+                                    completion(.success(meeitngs))
+
+                                }
+                            }
+                    }
+                } catch {
+
+                    completion(.failure(error))
+                }
+            }
+          }
+        }
     }
 
 }
