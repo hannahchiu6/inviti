@@ -13,7 +13,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FurtureTVC" id="lVk-cS-May" customClass="FurtureTableViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HuS-tT-jJU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="683"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="637"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -97,10 +97,15 @@
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fm-kN-DRv">
                                         <rect key="frame" x="147" y="49.5" width="50" height="5.5"/>
-                                        <color key="backgroundColor" red="1" green="0.36470588240000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.99698060749999995" green="0.29971152540000001" blue="0.25877732040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="VA4-2U-S7q"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="lkCornerRadius">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -114,14 +119,14 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZu-Ru-Hka" userLabel="Past Container View">
-                                <rect key="frame" x="0.0" y="179" width="414" height="683"/>
+                                <rect key="frame" x="0.0" y="179" width="414" height="637"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="tb9-i9-YGq" kind="embed" id="Vfj-sq-Ccc"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Fl-Xt-PWz" userLabel="Future Container View">
-                                <rect key="frame" x="0.0" y="179" width="414" height="683"/>
+                                <rect key="frame" x="0.0" y="179" width="414" height="637"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="lVk-cS-May" kind="embed" id="BTv-9K-LdX"/>
@@ -136,27 +141,45 @@
                                     <segue destination="FZx-5c-viO" kind="embed" id="jXu-Ju-9le"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OxM-A5-4Oh">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OxM-A5-4Oh" userLabel="NaviView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="VaP-QM-8dl">
-                                        <rect key="frame" x="0.0" y="40" width="314" height="56"/>
+                                        <rect key="frame" x="24" y="40" width="290" height="56"/>
+                                        <color key="tintColor" red="0.99698060749999995" green="0.29971152540000001" blue="0.25877732040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PxI-Sk-TmJ">
+                                        <rect key="frame" x="368" y="55" width="22" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="22" id="Vgo-we-IsL"/>
+                                            <constraint firstAttribute="height" constant="27" id="lO9-2k-LrE"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.99698060749999995" green="0.29971152540000001" blue="0.25877732040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" image="bell" catalog="system">
+                                            <color key="titleColor" red="1" green="0.36470588240000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="notificationBtn:" destination="2TF-7B-EX5" eventType="touchUpInside" id="W3k-XJ-Sfm"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="PxI-Sk-TmJ" firstAttribute="top" secondItem="OxM-A5-4Oh" secondAttribute="top" constant="55" id="6hR-ya-9Zg"/>
+                                    <constraint firstAttribute="trailing" secondItem="PxI-Sk-TmJ" secondAttribute="trailing" constant="24" id="6k1-r0-eG9"/>
                                     <constraint firstAttribute="height" constant="80" id="7kt-gg-Hqj"/>
                                     <constraint firstItem="VaP-QM-8dl" firstAttribute="top" secondItem="OxM-A5-4Oh" secondAttribute="top" constant="40" id="e6T-Vd-6ZG"/>
                                     <constraint firstAttribute="trailing" secondItem="VaP-QM-8dl" secondAttribute="trailing" constant="100" id="fAg-LZ-pVf"/>
-                                    <constraint firstItem="VaP-QM-8dl" firstAttribute="leading" secondItem="OxM-A5-4Oh" secondAttribute="leading" id="s3O-18-4mA"/>
+                                    <constraint firstItem="VaP-QM-8dl" firstAttribute="leading" secondItem="OxM-A5-4Oh" secondAttribute="leading" constant="24" id="s3O-18-4mA"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="lkBorderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="lkBorderColor">
-                                        <color key="value" systemColor="systemGray6Color"/>
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -166,7 +189,7 @@
                         <constraints>
                             <constraint firstItem="O0f-aY-6OM" firstAttribute="top" secondItem="WYB-WR-ney" secondAttribute="top" constant="100" id="8gt-On-zfg"/>
                             <constraint firstItem="OxM-A5-4Oh" firstAttribute="top" secondItem="WYB-WR-ney" secondAttribute="top" id="96e-cv-TrT"/>
-                            <constraint firstItem="NNP-1V-qgP" firstAttribute="bottom" secondItem="SZu-Ru-Hka" secondAttribute="bottom" id="C2e-H0-eUB"/>
+                            <constraint firstAttribute="bottom" secondItem="SZu-Ru-Hka" secondAttribute="bottom" constant="80" id="C2e-H0-eUB"/>
                             <constraint firstItem="O0f-aY-6OM" firstAttribute="trailing" secondItem="NNP-1V-qgP" secondAttribute="trailing" id="Crg-t0-G6w"/>
                             <constraint firstItem="NNP-1V-qgP" firstAttribute="trailing" secondItem="RhY-4W-1et" secondAttribute="trailing" id="L7s-ep-rDW"/>
                             <constraint firstItem="SZu-Ru-Hka" firstAttribute="leading" secondItem="NNP-1V-qgP" secondAttribute="leading" id="LIe-fP-kMl"/>
@@ -183,25 +206,7 @@
                             <constraint firstItem="SZu-Ru-Hka" firstAttribute="trailing" secondItem="NNP-1V-qgP" secondAttribute="trailing" id="p1o-wf-q7a"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="hHT-6d-sGc">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="gCC-YG-Han">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="c2A-95-Cao">
-                                <rect key="frame" x="349" y="0.0" width="45" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="okR-PK-Kch"/>
-                                </constraints>
-                                <color key="tintColor" red="1" green="0.36470588240000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <state key="normal" image="bell" catalog="system">
-                                    <color key="titleColor" red="1" green="0.36470588240000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
-                                </state>
-                                <connections>
-                                    <action selector="notificationBtn:" destination="2TF-7B-EX5" eventType="touchUpInside" id="dNZ-sO-wvv"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="hHT-6d-sGc"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="bottomLine" destination="5fm-kN-DRv" id="lRh-jU-DXc"/>
@@ -209,8 +214,6 @@
                         <outlet property="futureView" destination="8Fl-Xt-PWz" id="OhB-r6-ksa"/>
                         <outlet property="indicatorCenterXConstraint" destination="mTx-g1-BiX" id="yMh-It-BAG"/>
                         <outlet property="notiPopView" destination="RhY-4W-1et" id="yeY-gY-UFq"/>
-                        <outlet property="notiView" destination="c2A-95-Cao" id="JVp-Fc-Cvh"/>
-                        <outlet property="notificationIcon" destination="c2A-95-Cao" id="oCH-Di-FM1"/>
                         <outlet property="pastLabel" destination="ayh-kF-MHr" id="zJ0-eL-yph"/>
                         <outlet property="pastView" destination="SZu-Ru-Hka" id="2of-OO-ZQa"/>
                         <outlet property="searchBar" destination="VaP-QM-8dl" id="8Ha-c2-SYw"/>
@@ -368,7 +371,7 @@
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Q5Z-D3-oar">
                                                             <rect key="frame" x="8" y="13" width="35" height="34"/>
-                                                            <color key="tintColor" red="0.6391431689" green="0.4181905212" blue="0.025881827690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="tintColor" red="0.55174833359999997" green="0.39931780049999999" blue="0.2580114584" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="35" id="LPa-A7-Cbr"/>
                                                                 <constraint firstAttribute="height" constant="35" id="cbQ-ap-wns"/>
@@ -460,7 +463,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="PastTVC" id="tb9-i9-YGq" customClass="PastTableViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WVX-TR-Qi9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="683"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="637"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -487,22 +490,25 @@
         <!--Navigation Controller-->
         <scene sceneID="DyY-2c-BpA">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jMD-BA-07e" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Meeting" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="jMD-BA-07e" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="t2b-He-nNK">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9qR-U6-4Ch">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="2TF-7B-EX5" kind="relationship" relationship="rootViewController" id="OKB-Zp-1Pu"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d4O-4R-yjf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="585.50724637681162" y="-53.571428571428569"/>
+            <point key="canvasLocation" x="655" y="-228"/>
         </scene>
     </scenes>
     <designables>
@@ -521,9 +527,6 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
