@@ -47,6 +47,8 @@ class MeetingTableViewCell: UITableViewCell {
         super.awakeFromNib()
 
         setUpView()
+
+        selectionStyle = .none
     }
 
     weak var delegate: MeetingTableCellDelegate?
@@ -68,7 +70,7 @@ class MeetingTableViewCell: UITableViewCell {
         
         meeting = viewModel?.meeting
         meetingSubject.text = viewModel?.subject
-        meetingTimeLabel.text = "投票建立時間：\(String(describing: viewModel!.createdTime))"
+        meetingTimeLabel.text = "投票建立時間：\(Date.pointFormatter.string(from: Date.init(millis: viewModel!.createdTime)))"
         participanCountLabel.text = "和其他 \(String(describing: viewModel!.numOfParticipants)) 位參與者"
 
         guard let url = viewModel?.image else { return }

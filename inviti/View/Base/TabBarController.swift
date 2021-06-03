@@ -197,7 +197,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         viewControllers?.forEach { vc in
 
             if let navVC = vc as? UINavigationController,
-               let vc = navVC.viewControllers.first as? CreateFirstPageVC {
+               let vc = navVC.viewControllers.first as? CreateFirstViewController {
                 vc.meetingID = viewModel.meeting.id
                 vc.createMeetingViewModel = viewModel
                 vc.isDataEmpty = true

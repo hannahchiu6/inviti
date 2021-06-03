@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftHEXColors
 
 class ResultTableViewCell: UITableViewCell {
 
@@ -21,6 +22,12 @@ class ResultTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+//        selectionStyle = .none
+        selectedBackgroundView = UIView()
+        selectedBackgroundView?.backgroundColor = UIColor(red: 1, green: 0.9373, blue: 0.9294, alpha: 1.0)
+        backgroundView = UIView()
+        backgroundView?.backgroundColor = UIColor.white
        
     }
 
@@ -28,34 +35,10 @@ class ResultTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    @IBOutlet weak var checkBoxView: CheckBoxButton!
-    
-    @IBAction func checkBox(_ sender: UIButton) {
-        
-//        if sender.isSelected {
-//
-//
-//        } else {
-//
-//        }
-//
-//        votingViewModel?.onSelectedUserAdded(user?.appleID ?? "5gWVjg7xTHElu9p6Jkl1")
-//
-//        votingViewModel?.createWithEmptyData(with: optionID!, meetingID: meetingID!, selectedOption: &votingViewModel!.selectedOption)
 
-        if sender.isSelected {
+    @IBOutlet weak var checkCircle: UIImageView!
 
-            votingViewModel?.onVotingChanged(false)
-
-        } else {
-
-            votingViewModel?.onVotingChanged(true)
-        }
-
-        votingViewModel?.onSelectedUserAdded(user?.appleID ?? "5gWVjg7xTHElu9p6Jkl1")
-
-        votingViewModel?.createWithEmptyData(with: optionID!, meetingID: meetingID!, selectedOption: &votingViewModel!.selectedOption)
-    }
+    @IBOutlet weak var emptyCircle: UIImageView!
 
     @IBOutlet weak var titleLabel: UILabel!
 
@@ -75,8 +58,6 @@ class ResultTableViewCell: UITableViewCell {
         titleLabel.text = model.option.optionTime?.dateString()
 
         valueLabel.text = "\(startTime) - \(endTime)"
-
-        checkBoxView.tag = index
 
     }
     
@@ -100,7 +81,9 @@ class ResultTableViewCell: UITableViewCell {
 
                 voteCountLabel.textColor = redColor
 
-                checkBoxView.image(for: .normal)
+                self.emptyCircle.isHidden = true
+
+                self.checkCircle.isHidden = false
 
                 titleLabel.textColor = redColor
 
@@ -112,42 +95,44 @@ class ResultTableViewCell: UITableViewCell {
 
                 self.voteCountLabel.textColor = UIColor.gray
 
-                self.checkBoxView.image(for: .normal)
+                self.emptyCircle.isHidden = true
+
+                self.checkCircle.isHidden = false
+
+                self.checkCircle.tintColor =  UIColor.gray
 
             } else {
 
-                self.voteCountLabel.text = "0"
+                self.voteCountLabel.text = ""
 
                 self.voteCountLabel.textColor = UIColor.gray
 
-                self.checkBoxView.image(for: .highlighted)
+                self.checkCircle.isHidden = true
+
+                self.emptyCircle.isHidden = false
 
             }
         }
 
-        checkBoxView.isEnabled = false
-
-        selectionStyle = UITableViewCell.SelectionStyle.none
-
     }
 
-    func setupFirstYesCell(model: OptionViewModel) {
-
-        if let yesCount = model.selectedOptions?.count {
-
-            let redColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
-
-            voteCountLabel.text = "\(yesCount)"
-
-            voteCountLabel.textColor = redColor
-
-            checkBoxView.image(for: .selected)
-
-            titleLabel.textColor = redColor
-
-            valueLabel.textColor = redColor
-        }
-    }
+//    func setupFirstYesCell(model: OptionViewModel) {
+//
+//        if let yesCount = model.selectedOptions?.count {
+//
+//            let redColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+//
+//            voteCountLabel.text = "\(yesCount)"
+//
+//            voteCountLabel.textColor = redColor
+//
+//            checkBoxView.image(for: .selected)
+//
+//            titleLabel.textColor = redColor
+//
+//            valueLabel.textColor = redColor
+//        }
+//    }
 
 
 }

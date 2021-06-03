@@ -7,13 +7,7 @@
 import Foundation
 import UIKit
 
-protocol CTableViewCellDelegate: AnyObject {
-    func tapped(_ sender: CTableViewCell, index: Int, vms: SelectOptionViewModel)
-}
-
 class CTableViewCell: UITableViewCell {
-
-    weak var delegate: CTableViewCellDelegate?
 
     var viewModel: CalendarViewModel?
 
@@ -38,15 +32,13 @@ class CTableViewCell: UITableViewCell {
     override func awakeFromNib() {
     super.awakeFromNib()
         bookingMeetingButton.isHidden = true
-        bookingButton.isHidden = true
+//        bookingButton.isHidden = true
         eventView.isHidden = true
+        self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
 
-        resetCell()
 
-//            UserDefaults.standard.set(myArray, forKey: "yourArray")
-//
-//       let data = UserDefaults.standard.object(forKey: "yourArray")!
-//       print(data)
+//        resetCell()
+
     }
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -57,39 +49,35 @@ class CTableViewCell: UITableViewCell {
 
     @IBAction func bookingAction(_ sender: UIButton) {
 
-        let cell = CTableViewCell()
+//        let cell = CTableViewCell()
 
         sender.isSelected = !sender.isSelected
 
     if bookingButton.isSelected {
 
-        print(meetingID)
-
-        createOptionViewModel .onStartTimeChanged(sender.tag, date: selectDay)
+        createOptionViewModel.onStartTimeChanged(sender.tag, date: selectDay)
 
         createOptionViewModel.onEndTimeChanged(sender.tag, date: selectDay)
 
         createOptionViewModel.onOptionTimeChanged(selectDay)
 
         createOptionViewModel.onOptionCreated = {
+            
             self.selectedOptionViewModel.fetchData(meetingID: self.meetingID)
         }
 
-        createOptionViewModel.createWithEmptyData(with: meetingID, option: &createOptionViewModel .option)
+        createOptionViewModel.createWithEmptyData(with: meetingID, option: &createOptionViewModel.option)
 
+//        sender.isSelected = true
 
     } else {
 
-        selectedOptionViewModel.fetchData(meetingID: meetingID)
 
         let bookingDate = OptionTime(year: selectDay.year, month: selectDay.month, day: selectDay.day)
 
         let newVM = selectedOptionViewModel.createSelectedOption(in: selectedOptionViewModel.optionViewModels.value, selectedDate: bookingDate)
 
-        let newHour = selectedOptionViewModel.createHourData(in: newVM)
-
-        if selectedOptionViewModel.createTimeData(in: newVM).contains(sender.tag) {
-
+        let newHour = selectedOptionViewModel.createTimeData(in: newVM)
             
             if newHour.contains(sender.tag) {
 
@@ -98,10 +86,6 @@ class CTableViewCell: UITableViewCell {
                 selectedOptionViewModel.onEmptyTap(optionID, meetingID: meetingID)
 
                 selectedOptionViewModel.fetchData(meetingID: meetingID)
-
-                delegate?.tapped(cell, index: sender.tag, vms: selectedOptionViewModel)
-
-                }
 
             }
         }
@@ -124,7 +108,6 @@ class CTableViewCell: UITableViewCell {
         } else {
             timeLabel.text = "\(index)" + ":00"
         }
-
     }
 
     func setupEmptyStatus() {
@@ -159,14 +142,15 @@ class CTableViewCell: UITableViewCell {
 
         bookingMeetingButton.isHidden = true
         eventView.isHidden = true
-        self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
+//        self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
     }
 
     override func prepareForReuse() {
 
         super.prepareForReuse()
-        bookingButton.isHidden = false
-        self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        bookingButton.isSelected = false
+//        bookingButton.isHidden = false
+        eventView.isHidden = true
 
     }
 

@@ -14,13 +14,6 @@ struct Event: Equatable, Codable {
         return lhs.startTime == rhs.startTime && lhs.endTime  == rhs.endTime
     }
 
-//    static func < (lhs: Event, rhs: Event) -> Bool {
-//
-//        return lhs.startTime == lhs.startTime ? lhs.endTime == lhs.endTime :
-//            lhs.endTime < rhs.endTime : lhs.startTime < rhs.startTime
-//
-//    }
-
     var id: String
     var owner: SimpleUser
     var startTime: Int64
@@ -46,12 +39,12 @@ struct Event: Equatable, Codable {
 //
     var toDict: [String: Any] {
         return [
-            "id": id as Any,
-            "owner": owner as Any,
-            "startTime": startTime as Any,
-            "endTime": endTime as Any,
-            "subject": subject as Any,
-            "date": date as Any,
+            "id": id,
+            "owner": owner.toDict,
+            "startTime": startTime,
+            "endTime": endTime,
+            "subject": subject,
+            "date": date,
 //            "notes": notes as Any,
 //            "participants": participants as Any,
             "location": location as Any

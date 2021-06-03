@@ -34,6 +34,10 @@ class OptionsCell: UITableViewCell {
         delegate?.deleteTap(sender.tag, vms: selectedOptionViewModel)
     }
     
+    @IBAction func goCalendar(_ sender: Any) {
+        delegate?.goToSecondPage()
+    }
+    
     @IBOutlet weak var deleteXview: UIButton!
 
     @IBOutlet weak var yearLabel: UILabel!

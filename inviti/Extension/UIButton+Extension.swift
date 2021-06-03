@@ -204,8 +204,8 @@ private class MyDropBoxCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         imgView.frame = CGRect(x: 10, y: 12, width: 20, height: 20)
-        if (imgView.image == nil) {
-            imgView.frame = .zero
+        if imgView.image == nil {
+           imgView.frame = .zero
         }
         label.frame = CGRect(x: imgView.frame.maxX + 10, y: 0, width: self.frame.width - 80, height: 44)
         selectedBackgroundView?.frame = CGRect(x: 0, y: 0, width: frame.width - 10, height: 44)

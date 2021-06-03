@@ -1,5 +1,5 @@
 //
-//  CreateFirstPageVC.swift
+//  CreateFirstViewController.swift
 //  inviti
 //
 //  Created by Hannah.C on 16.05.21.
@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 
-class CreateFirstPageVC: BaseViewController {
+class CreateFirstViewController: BaseViewController {
 
     private struct Segue {
 
@@ -40,28 +40,52 @@ class CreateFirstPageVC: BaseViewController {
 
     var selectOptionViewModel = SelectOptionViewModel()
 
-    @IBOutlet weak var confirmBtnView: UIButton!
+    @IBOutlet weak var showButtonView: UIButton!
 
-    @IBAction func deleteMeeting(_ sender: Any) {
+    @IBAction func deleteMeeting(_ sender: UIButton) {
 
-        print("deleteMeeting clicked!")
-//        createMeetingViewModel.onOneTap(meetingID: meetingID!)
+        if isDataEmpty {
+
+            self.createMeetingViewModel.onTap(withIndex: sender.tag)
+
+//            let storyboard: UIStoryboard = UIStoryboard(name: "Meeting", bundle: nil)
+//            let meetingVC = storyboard.instantiateViewController(identifier: "MeetingVC")
+//            guard let vc = meetingVC as? MeetingViewController else { return }
+
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let meetingVC = storyboard.instantiateViewController(identifier: "tabBarVC")
+            guard let vc = meetingVC as? TabBarViewController else { return }
+            self.navigationController?.pushViewController(vc, animated: true)
+
+//            if let secondVC = self.navigationController?.viewControllers[0] {
+//
+//                   if let secondVC = self.navigationController?.viewControllers[0] {
+//                        self.navigationController?.popToViewController(secondVC, animated: true)
+//                   }
+//
+//               }
+
+//            self.navigationController?.show(vc, sender: true)
 
 
-        let storyboard: UIStoryboard = UIStoryboard(name: "Meeting", bundle: nil)
-        let meetingVC = storyboard.instantiateViewController(identifier: "MeetingVC")
-        guard let vc = meetingVC as? MeetingViewController else { return }
+        } else {
 
+            self.navigationController?.popViewController(animated: true)
+        }
 
-        self.navigationController?.show(vc, sender: true)
 
     }
 
-    @IBAction func confirm(_ sender: Any) {
+    @IBOutlet weak var tableView: UITableView!
+
+    
+    @IBOutlet weak var successView: UIView!
+
+    @IBAction func confrim(_ sender: Any) {
 
         if meetingInfo == nil {
         UIView.animate(withDuration: 5.0, animations: { () -> Void in
-            self.popView.isHidden = false
+            self.successView.isHidden = false
             self.createMeetingViewModel.update(with: self.createMeetingViewModel.meeting)
 
         })} else {
@@ -69,18 +93,13 @@ class CreateFirstPageVC: BaseViewController {
         performSegue(withIdentifier: "showSuccessSegue", sender: self)
             createMeetingViewModel.update(with: meetingInfo)
         }
-
-
     }
 
 
-    @IBOutlet weak var popView: UIView!
-
-    @IBOutlet weak var tableview: UITableView!
-
-    @IBAction func nextPage(_ sender: Any) {
+    @IBAction func goCalendar(_ sender: Any) {
         nextPage()
     }
+
 
     override func viewWillAppear(_ animated: Bool) {
 
@@ -98,76 +117,61 @@ class CreateFirstPageVC: BaseViewController {
 
         }
 
-        tableview.reloadData()
+        tableView.reloadData()
 
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableview.delegate = self
-        tableview.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
 
-        self.popView.isHidden = true
+        self.successView.isHidden = true
 
-        tableview.tableHeaderView = nil
-        tableview.tableFooterView = nil
+        tableView.tableHeaderView = nil
+        tableView.tableFooterView = nil
 
         selectOptionViewModel.optionViewModels.bind { [weak self] options in
             self?.selectOptionViewModel.onRefresh()
-            self?.tableview.reloadData()
+            self?.tableView.reloadData()
             self?.enableButton()
         }
 
         createMeetingViewModel.meetingViewModels.bind { [weak self] meetings in
             self?.createMeetingViewModel.onRefresh()
-            self?.tableview.reloadData()
+            self?.tableView.reloadData()
         }
 
         isDataGet()
 
-        confirmBtnView.isEnabled = false
+        showButtonView.isEnabled = false
 
-        NotificationCenter.default.addObserver(self, selector: #selector(textChanged), name: UITextField.textDidChangeNotification, object: nil)
-    }
-
-    // swiftLint disable: operator_usage_whitespace empty_string
-
-    @objc func textChanged() {
-
-//        let cellOne = createMeetingViewModel.meeting.subject
-//        let cellTwo = createMeetingViewModel.meeting.location
-//
-//        if cellOne != "" && cellTwo != "" && selectOptionViewModel.optionViewModels.value.isEmpty != true {
-//
-//            self.confirmBtnView.isEnabled = true
-//            self.confirmBtnView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
-//
-//        } else {
-//            self.confirmBtnView.isEnabled = false
-//            self.confirmBtnView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
-//
-//        }
     }
 
     func enableButton() {
 
-       let cellOne = createMeetingViewModel.meeting.subject
-       let cellTwo = createMeetingViewModel.meeting.location
+        if isDataEmpty {
+           let cellOne = createMeetingViewModel.meeting.subject
+           let cellTwo = createMeetingViewModel.meeting.location
 
-       if cellOne != "" && cellTwo != "" && selectOptionViewModel.optionViewModels.value.isEmpty != true {
+           if cellOne != "" && cellTwo != "" && selectOptionViewModel.optionViewModels.value.isEmpty != true {
 
-           self.confirmBtnView.isEnabled = true
-           self.confirmBtnView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+               self.showButtonView.isEnabled = true
+               self.showButtonView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
 
-       } else {
-           self.confirmBtnView.isEnabled = false
-           self.confirmBtnView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+           } else {
+               self.showButtonView.isEnabled = false
+               self.showButtonView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
 
-       }
+           }
+
+        } else {
+
+            self.showButtonView.isEnabled = true
+            self.showButtonView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+        }
     }
-
-
 
     func isDataGet() {
 
@@ -184,7 +188,7 @@ class CreateFirstPageVC: BaseViewController {
 
         if meetingInfo != nil {
 
-            confirmBtnView.setTitle("更新活動內容", for: .normal)
+            showButtonView.setTitle("更新活動內容", for: .normal)
             self.navigationController?.isNavigationBarHidden = true
 
             isDataEmpty = !isDataEmpty
@@ -218,12 +222,11 @@ class CreateFirstPageVC: BaseViewController {
     }
 }
 
-extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
+extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section  {
         case 0:
             return 1
-
         case 2:
           return 1
 
@@ -356,7 +359,7 @@ extension CreateFirstPageVC: UITableViewDelegate, UITableViewDataSource {
 
 }
 
-extension CreateFirstPageVC: CreateFirstCellDelegate {
+extension CreateFirstViewController: CreateFirstCellDelegate {
 
     func getSubjectData(_ subject: String) {
         createMeetingViewModel.onSubjectChanged(text: subject)
@@ -367,7 +370,7 @@ extension CreateFirstPageVC: CreateFirstCellDelegate {
     }
 }
 
-extension CreateFirstPageVC: CTableViewDelegate {
+extension CreateFirstViewController: CTableViewDelegate {
     func optionDidSelect(getData: Bool) {
         if getData {
             isDataEmpty = false
@@ -375,7 +378,10 @@ extension CreateFirstPageVC: CTableViewDelegate {
     }
 }
 
-extension CreateFirstPageVC: SecondCellDelegate {
+extension CreateFirstViewController: SecondCellDelegate {
+    func goToSecondPage() {
+        nextPage()
+    }
 
     func deleteTap(_ index: Int, vms: SelectOptionViewModel) {
         
@@ -391,7 +397,4 @@ extension CreateFirstPageVC: SecondCellDelegate {
 
     }
 
-    func goToSecondPage() {
-        nextPage()
-    }
 }

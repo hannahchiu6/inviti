@@ -128,16 +128,9 @@ class SelectOptionViewModel {
     }
 
 
-    func createHourData(in viewModels: [OptionViewModel]) -> [Int?] {
-
-        let theTime = viewModels.map ({
-                                        Int(Date.hourFormatter.string(from: Date(millis: $0.option.startTime)))})
-        return theTime
-    }
-
     func createSelectedOption(in viewModels: [OptionViewModel], selectedDate: OptionTime) -> [OptionViewModel] {
 
-        let newViewModels = viewModels.filter({$0.option.optionTime == selectedDate})
+        let newViewModels = viewModels.filter({ $0.option.optionTime == selectedDate })
         return newViewModels
     }
 
@@ -158,15 +151,15 @@ class SelectOptionViewModel {
         let newVMs = viewModels.filter({ Int(Date.hourFormatter.string(from: Date(millis: $0.option.startTime))) == index})
 
         let theVM = newVMs.first(where: { Int(Date.hourFormatter.string(from: Date(millis: $0.option.startTime))) == index})
-//
-//        if index == 0 {
+
+        if index == 0 {
 
             return viewModels[index].id
             
-//        } else {
-//
-//            return theVM!.id
-//        }
+        } else {
+
+            return theVM!.id
+        }
 
     }
 
@@ -176,13 +169,12 @@ class SelectOptionViewModel {
     }
 
     func onEmptyTap(_ optionID: String, meetingID: String) {
-        OptionManager.shared.deleteEmptyOption(optionID: optionID, meetingID: meetingID){ [weak self] result in
+        OptionManager.shared.deleteEmptyOption(optionID: optionID, meetingID: meetingID) { [weak self] result in
 
             switch result {
 
             case .success(let optionID):
-
-                print(optionID)
+                
                 self?.onDead?()
 
             case .failure(let error):

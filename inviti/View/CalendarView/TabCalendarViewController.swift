@@ -60,6 +60,8 @@ class TabCalendarViewController: UIViewController {
 
         viewModel.fetchData()
 
+        self.tabBarController?.tabBar.isHidden = false
+
         let nib = UINib(nibName: "EventTableViewCell", bundle: nil)
         calendarTableView.register(nib, forCellReuseIdentifier: "eventTableViewCell")
 

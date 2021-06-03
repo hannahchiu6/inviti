@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Create First PageVC-->
+        <!--Create First View Controller-->
         <scene sceneID="9rZ-Yb-ATF">
             <objects>
-                <viewController storyboardIdentifier="CreateFirstPageVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="klU-5H-enz" customClass="CreateFirstPageVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateFirstPageVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="klU-5H-enz" customClass="CreateFirstViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="25Q-F2-YQe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,7 +30,7 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
                                         </state>
                                         <connections>
-                                            <action selector="nextPage:" destination="klU-5H-enz" eventType="touchUpInside" id="iiV-Hj-LTU"/>
+                                            <action selector="goCalendar:" destination="klU-5H-enz" eventType="touchUpInside" id="TWs-kt-kHV"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhl-n8-Nba">
@@ -43,7 +43,7 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
                                         </state>
                                         <connections>
-                                            <action selector="deleteMeeting:" destination="klU-5H-enz" eventType="touchUpInside" id="8GV-hS-9L2"/>
+                                            <action selector="deleteMeeting:" destination="klU-5H-enz" eventType="touchUpInside" id="lfF-iQ-IOu"/>
                                             <action selector="popBack:" destination="klU-5H-enz" eventType="touchUpInside" id="A03-HJ-AC7"/>
                                         </connections>
                                     </button>
@@ -303,8 +303,7 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                             <connections>
-                                                                                <action selector="goNextPage:" destination="bJM-6k-p5Z" eventType="touchUpInside" id="QpQ-u5-ffJ"/>
-                                                                                <action selector="nextPage:" destination="klU-5H-enz" eventType="touchUpInside" id="JfM-e4-hM3"/>
+                                                                                <action selector="goCalendar:" destination="bJM-6k-p5Z" eventType="touchUpInside" id="IAB-5J-1a3"/>
                                                                             </connections>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G4F-95-YER">
@@ -317,7 +316,7 @@
                                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                                                             </state>
                                                                             <connections>
-                                                                                <action selector="nextPage:" destination="klU-5H-enz" eventType="touchUpInside" id="QMO-gk-AV0"/>
+                                                                                <action selector="goNextPage:" destination="bJM-6k-p5Z" eventType="touchUpInside" id="gMH-zE-zNj"/>
                                                                             </connections>
                                                                         </button>
                                                                     </subviews>
@@ -734,11 +733,11 @@
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="lkCornerRadius">
-                                                <real key="value" value="25"/>
+                                                <real key="value" value="23"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="confirm:" destination="klU-5H-enz" eventType="touchUpInside" id="c2f-jW-fbg"/>
+                                            <action selector="confrim:" destination="klU-5H-enz" eventType="touchUpInside" id="Fhg-cb-dEL"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -788,10 +787,9 @@
                     <navigationItem key="navigationItem" id="RAC-Qq-XSZ"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="confirmBtnView" destination="IBg-sw-Ql6" id="Ned-uT-ITK"/>
-                        <outlet property="popView" destination="fg9-Uz-RUM" id="nN4-6A-1wM"/>
-                        <outlet property="tableview" destination="Q2i-up-Xhp" id="dRx-nL-diD"/>
-                        <segue destination="UcU-hN-QWa" kind="show" identifier="meetingSegue" id="SSO-N6-byM"/>
+                        <outlet property="showButtonView" destination="IBg-sw-Ql6" id="zCg-d2-BCV"/>
+                        <outlet property="successView" destination="fg9-Uz-RUM" id="Ajf-BI-Nm3"/>
+                        <outlet property="tableView" destination="Q2i-up-Xhp" id="FRN-A9-rcV"/>
                         <segue destination="BEt-er-ct9" kind="show" identifier="showSuccessSegue" id="4yW-uG-x1m"/>
                     </connections>
                 </viewController>
@@ -1192,7 +1190,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="L93-OR-FIY"/>
                                     <constraint firstAttribute="width" secondItem="ArA-Hj-HhK" secondAttribute="height" multiplier="21:22" id="T8E-td-WPT"/>
                                 </constraints>
                                 <color key="tintColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -1218,20 +1215,10 @@
             </objects>
             <point key="canvasLocation" x="-346.37681159420293" y="815.625"/>
         </scene>
-        <!--Meeting-->
-        <scene sceneID="Xvh-WN-HY0">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="MeetingVC" storyboardName="Meeting" id="UcU-hN-QWa" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="eqK-2c-917"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0T7-Ro-awD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1238" y="662"/>
-        </scene>
-        <!--Pop SuccessVC-->
+        <!--Edit SuccessVC-->
         <scene sceneID="gyp-8d-nsB">
             <objects>
-                <viewController storyboardIdentifier="savePopVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="BEt-er-ct9" customClass="PopSuccessVC" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editPopVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="BEt-er-ct9" customClass="EditSuccessVC" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="coi-EK-qP4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1243,10 +1230,10 @@
                                         <rect key="frame" x="57" y="273" width="300" height="350"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0B5-WM-YPS">
-                                                <rect key="frame" x="80" y="80" width="140" height="124"/>
+                                                <rect key="frame" x="70" y="80" width="160" height="124"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kKz-DJ-XMC">
-                                                        <rect key="frame" x="30" y="0.5" width="80" height="79"/>
+                                                        <rect key="frame" x="40" y="0.5" width="80" height="79"/>
                                                         <color key="tintColor" red="0.99698060749999995" green="0.29971152540000001" blue="0.25877732040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="80" id="ALH-Ss-28V"/>
@@ -1255,7 +1242,10 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投票修改成功！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYd-C0-jaK">
-                                                        <rect key="frame" x="0.0" y="96" width="140" height="28"/>
+                                                        <rect key="frame" x="0.0" y="96" width="160" height="28"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="160" id="Lpx-Ly-Nkb"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="20"/>
                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -1283,7 +1273,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="returnMain:" destination="BEt-er-ct9" eventType="touchUpInside" id="16C-vC-vde"/>
+                                                    <action selector="backToMain:" destination="BEt-er-ct9" eventType="touchUpInside" id="z00-cx-gOK"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1291,12 +1281,11 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="350" id="10I-Ne-zVv"/>
                                             <constraint firstAttribute="trailing" secondItem="BCG-4S-Y55" secondAttribute="trailing" constant="24" id="FlN-WU-rm9"/>
+                                            <constraint firstItem="0B5-WM-YPS" firstAttribute="centerX" secondItem="H6H-rU-GSp" secondAttribute="centerX" id="Mnc-HP-0JZ"/>
                                             <constraint firstItem="BCG-4S-Y55" firstAttribute="leading" secondItem="H6H-rU-GSp" secondAttribute="leading" constant="24" id="Sm7-bk-sXF"/>
                                             <constraint firstItem="0B5-WM-YPS" firstAttribute="top" secondItem="H6H-rU-GSp" secondAttribute="top" constant="80" id="UDc-IL-DnS"/>
-                                            <constraint firstItem="0B5-WM-YPS" firstAttribute="leading" secondItem="H6H-rU-GSp" secondAttribute="leading" constant="80" id="UdV-SU-0P4"/>
                                             <constraint firstAttribute="bottom" secondItem="BCG-4S-Y55" secondAttribute="bottom" constant="50" id="Vfa-CK-Tk3"/>
                                             <constraint firstAttribute="width" constant="300" id="Wao-Ic-pcN"/>
-                                            <constraint firstAttribute="trailing" secondItem="0B5-WM-YPS" secondAttribute="trailing" constant="80" id="wNU-TF-jvu"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="lkBorderWidth">
@@ -1345,8 +1334,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTT-Jb-VGp">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Djy-tt-ft7">
-                                        <rect key="frame" x="36" y="100" width="342" height="718"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Djy-tt-ft7">
+                                        <rect key="frame" x="36" y="200" width="342" height="618"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screenshot 2021-05-31 at 22.16.56" translatesAutoresizingMaskIntoConstraints="NO" id="A1h-au-6QR">
                                                 <rect key="frame" x="59" y="443" width="240" height="128"/>
@@ -1360,6 +1349,7 @@
                                 <constraints>
                                     <constraint firstItem="Djy-tt-ft7" firstAttribute="top" secondItem="gTT-Jb-VGp" secondAttribute="top" constant="200" id="Byu-lO-HT6"/>
                                     <constraint firstAttribute="trailing" secondItem="Djy-tt-ft7" secondAttribute="trailing" constant="36" id="Wom-R1-Vr5"/>
+                                    <constraint firstAttribute="bottom" secondItem="Djy-tt-ft7" secondAttribute="bottom" constant="78" id="iho-a4-MDQ"/>
                                     <constraint firstItem="Djy-tt-ft7" firstAttribute="leading" secondItem="gTT-Jb-VGp" secondAttribute="leading" constant="36" id="oNB-PV-PCz"/>
                                 </constraints>
                             </view>
@@ -1441,7 +1431,7 @@
                                                                 <constraint firstAttribute="width" secondItem="iux-rl-fhN" secondAttribute="height" multiplier="1:1" id="gWP-wZ-fgd"/>
                                                             </constraints>
                                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <state key="normal" image="UIButtonBarNew"/>
+                                                            <state key="selected" image="minus" catalog="system"/>
                                                             <connections>
                                                                 <action selector="bookingAction:" destination="uyN-Dd-jW1" eventType="touchUpInside" id="CCK-io-it4"/>
                                                             </connections>
@@ -1517,7 +1507,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="bookingButton" destination="iux-rl-fhN" id="7YT-Cf-zKq"/>
+                                            <outlet property="bookingButton" destination="iux-rl-fhN" id="Lqk-g8-lPm"/>
                                             <outlet property="bookingMeetingButton" destination="PKF-YM-bFY" id="NKv-Qy-RQd"/>
                                             <outlet property="eventView" destination="ZfE-by-3E7" id="orp-4m-beZ"/>
                                             <outlet property="timeLabel" destination="2WN-Vn-W0L" id="1Un-4h-PB0"/>
@@ -1828,9 +1818,6 @@
                                         <state key="normal" title="確 認">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="confirm:" destination="4RX-SC-vXh" eventType="touchUpInside" id="beb-N8-hO4"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1874,16 +1861,9 @@
                                 <state key="normal" title="Next">
                                     <color key="titleColor" red="1" green="0.36470588240000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="nextPage:" destination="4RX-SC-vXh" eventType="touchUpInside" id="bJk-jA-gJ6"/>
-                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="confirmBtnView" destination="Ygc-R0-iel" id="NYb-bl-x78"/>
-                        <outlet property="tableview" destination="Rvd-P1-JXE" id="wfy-2d-c3D"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uz7-cR-AoQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1892,7 +1872,6 @@
     </scenes>
     <resources>
         <image name="Screenshot 2021-05-31 at 22.16.56" width="182" height="166"/>
-        <image name="UIButtonBarNew" width="17.5" height="17.5"/>
         <image name="alarm.fill" catalog="system" width="124" height="128"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
@@ -1901,6 +1880,7 @@
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>
         <image name="message.fill" catalog="system" width="128" height="113"/>
+        <image name="minus" catalog="system" width="128" height="24"/>
         <image name="pencil.circle.fill" catalog="system" width="128" height="121"/>
         <image name="terminal.fill" catalog="system" width="128" height="93"/>
         <image name="xmark" catalog="system" width="128" height="113"/>

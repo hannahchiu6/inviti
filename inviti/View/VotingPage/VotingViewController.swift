@@ -37,6 +37,7 @@ class VotingViewController: UIViewController {
     @IBOutlet weak var eventImageBg: UIImageView!
 
     @IBAction func returnToMain(_ sender: Any) {
+
         navigationController?.popViewController(animated: true)
     }
 
@@ -77,9 +78,6 @@ class VotingViewController: UIViewController {
             self?.tableview.reloadData()
         }
 
-
-
-
         self.tabBarController?.tabBar.isHidden = true
     }
 
@@ -116,17 +114,7 @@ extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let index = indexPath.row
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "votingTableViewCell", for: indexPath) as! VotingTableViewCell
-
-        let filterOptions = votingViewModel.optionViewModels.value[index].selectedOptions
-
-        let voteForYesArray = filterOptions?.filter({ $0.isSelected == true })
-
-        switch filterOptions?.count {
-
-        case 0:
-
+        
             let cell = tableView.dequeueReusableCell(withIdentifier: "votingTableViewCell", for: indexPath) as! VotingTableViewCell
 
             cell.votingViewModel = self.votingViewModel
@@ -149,24 +137,5 @@ extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
 
             return cell
 
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "resultTableViewCell", for: indexPath) as! ResultTableViewCell
-
-
-            if votingViewModel.optionViewModels.value[index].selectedOptions?.count ?? 0 > 0 {
-
-            cell.votingViewModel = self.votingViewModel
-
-            cell.meetingID = self.meetingInfo.id
-
-            cell.setupYesCell(model: votingViewModel.optionViewModels.value[index], index: index)
-
-            return cell
-
-            }
-
-        }
-
-        return cell
     }
 }

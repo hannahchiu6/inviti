@@ -16,7 +16,9 @@ class VotingResultViewController: UIViewController {
 
     var meetingInfo: Meeting!
 
-    let optionViewModels = SelectOptionViewModel()
+    var isSelected: Bool = false
+
+    let eventViewModel = CreateEventViewModel()
 
     let votingViewModel = VotingViewModel()
 
@@ -36,7 +38,10 @@ class VotingResultViewController: UIViewController {
 
     @IBOutlet weak var eventImageBg: UIImageView!
 
+    @IBOutlet weak var confirmBtnView: UIButton!
+
     @IBAction func returnToMain(_ sender: Any) {
+
         navigationController?.popViewController(animated: true)
     }
 
@@ -44,17 +49,16 @@ class VotingResultViewController: UIViewController {
         UIView.animate(withDuration: 1) {
             self.popupView.isHidden = false
             self.popupView.transform = .identity
-            self.meetingDataHandler?(self.meetingInfo)
-        }
 
+            self.eventViewModel.create()
+            
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.delegate = self
         tableview.dataSource = self
-
-        popupView.isHidden = true
 
         setUpView()
 
@@ -67,12 +71,12 @@ class VotingResultViewController: UIViewController {
 
             self?.votingViewModel.onRefresh()
             self?.tableview.reloadData()
+
         }
 
-
-
-
         self.tabBarController?.tabBar.isHidden = true
+
+        enableButton()
     }
 
     func setUpView() {
@@ -84,7 +88,10 @@ class VotingResultViewController: UIViewController {
         meetingNotes.text = meetingInfo.notes
         eventImageBg.alpha = 0.5
 
-        popupView.shadowView(popupView)
+        popupView.isHidden = true
+
+        confirmBtnView.isEnabled = false
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -98,9 +105,23 @@ class VotingResultViewController: UIViewController {
        self.navigationController?.navigationBar.shadowImage = UIImage()
        self.navigationController?.navigationBar.isTranslucent = false
    }
+
+    func enableButton() {
+
+        if isSelected {
+
+           self.confirmBtnView.isEnabled = true
+           self.confirmBtnView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+
+       } else {
+           self.confirmBtnView.isEnabled = false
+           self.confirmBtnView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+
+       }
+    }
 }
 
-extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
+extension VotingResultViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return votingViewModel.optionViewModels.value.count
     }
@@ -115,17 +136,27 @@ extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
 
             let cell = tableView.dequeueReusableCell(withIdentifier: "resultTableViewCell", for: indexPath) as! ResultTableViewCell
 
-
-            if votingViewModel.optionViewModels.value[index].selectedOptions?.count ?? 0 > 0 {
-
             cell.votingViewModel = self.votingViewModel
 
             cell.meetingID = self.meetingInfo.id
 
             cell.setupYesCell(model: votingViewModel.optionViewModels.value[index], index: index)
-                
-            }
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let selectedOption = votingViewModel.optionViewModels.value[indexPath.row]
+
+        guard let info = meetingInfo else { return }
+
+        self.eventViewModel.onInfoChanged(text: info.subject!, location: info.location!, date: Int(selectedOption.optionTime.dateInt()) ?? 0)
+
+        eventViewModel.onTimeChanged(selectedOption.startTime, endTime: selectedOption.endTime)
+
+        isSelected = true
+
+        enableButton()
     }
 }
