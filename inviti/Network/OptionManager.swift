@@ -107,7 +107,7 @@ class OptionManager {
 
     func deleteEmptyOption(optionID: String, meetingID: String, completion: @escaping (Result<String, Error>) -> Void) {
 
-        db.collection("meetings").document(meetingID).collection("options").document(optionID).delete() { error in
+        db.collection("meetings").document(meetingID).collection("options").document(optionID).delete { error in
 
             if let error = error {
 

@@ -81,8 +81,15 @@ class PastTableViewController: UITableViewController {
         return meetingViewCell
     }
 
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
+        guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ResultVC") as? VotingResultViewController else { return }
+        nextViewController.meetingInfo = self.viewModel.meetingViewModels.value[indexPath.row].meeting
+
+        navigationController?.pushViewController(nextViewController, animated: true)
+
+    }
 }
 
 extension PastTableViewController: MeetingTableCellDelegate {
@@ -95,7 +102,7 @@ extension PastTableViewController: MeetingTableCellDelegate {
     func editButtonPressed(_ sender: MeetingTableViewCell) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
         let editVC = storyboard.instantiateViewController(identifier: "CreateFirstPageVC")
-           guard let edit = editVC as? CreateFirstPageVC else { return }
+           guard let edit = editVC as? CreateFirstViewController else { return }
 
         guard let indexPath = self.tableView.indexPath(for: sender) else { return }
 

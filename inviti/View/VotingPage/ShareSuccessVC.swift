@@ -26,8 +26,6 @@ class ShareSuccessVC: BaseViewController {
 
     @IBAction func returnMain(_ sender: Any) {
 
-        print("ShareSuccessVC return button")
-
 //        let storyboard: UIStoryboard = UIStoryboard(name: "Meeting", bundle: nil)
 //        let meetingVC = storyboard.instantiateViewController(identifier: "MeetingVC")
 //        guard let vc = meetingVC as? MeetingViewController else { return }
@@ -41,7 +39,6 @@ class ShareSuccessVC: BaseViewController {
     }
 
     @IBAction func shareLinkBtn(_ sender: Any) {
-
 
         let shareURL = URL(string: "http://www.inviti.tw")
         let items:[Any] = [shareURL as Any]
@@ -64,10 +61,7 @@ class ShareSuccessVC: BaseViewController {
 
         present(ac, animated: true, completion: nil)
 
-
     }
-
-    var createMeetingViewModel = CreateMeetingViewModel()
  
     override func viewDidLoad() {
         super.viewDidLoad()

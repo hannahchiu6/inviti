@@ -10,9 +10,7 @@ import FirebaseFirestoreSwift
 
 struct SimpleUser: Identifiable, Codable {
     let id: String
-//    @DocumentID var id: String?
     var email: String
-//    let name: String
     var image: String?
 
     enum CodingKeys: String, CodingKey {
@@ -21,9 +19,8 @@ struct SimpleUser: Identifiable, Codable {
 
     var toDict: [String: Any] {
         return [
-            "id": id as Any,
-            "email": email as Any,
-//            "name": name as Any,
+            "id": id,
+            "email": email,
             "image": image as Any,
         ]
     }
