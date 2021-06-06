@@ -19,7 +19,7 @@ class OptionCollectionViewCell: UICollectionViewCell {
     
     private var events = ["讀書會", "牙醫洗牙", "行銷會議面談", "打疫苗去", "我是歌手", "選秀比賽"]
     private var startTime = ["09:30", "13:00", "15:00", "17:00", "19:00", "22:00"]
-    private var endTime = ["11:00", "13:40","16:30", "17:30", "20:40","22:30"]
+    private var endTime = ["11:00", "13:40", "16:30", "17:30", "20:40","22:30"]
 
     func roundCorners(cornerRadius: Double) {
         let path = UIBezierPath(roundedRect: bottomView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
@@ -65,10 +65,10 @@ class OptionCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension OptionCollectionViewCell: UITableViewDelegate{
+extension OptionCollectionViewCell: UITableViewDelegate {
 }
 
-extension OptionCollectionViewCell: UITableViewDataSource{
+extension OptionCollectionViewCell: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }

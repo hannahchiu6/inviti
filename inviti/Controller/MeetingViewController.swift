@@ -29,23 +29,29 @@ class MeetingViewController: BaseViewController {
     @IBAction func notificationBtn(_ sender: Any) {
         willDrop = !willDrop
     }
+    
+    @IBOutlet weak var addMeetingPopView: UIView!
+
+    @IBAction func addMeeting(_ sender: Any) {
+        willPopup = !willPopup
+
+    }
 
     @IBOutlet weak var futureView: UIView!
     @IBOutlet weak var pastView: UIView!
     @IBOutlet weak var notiPopView: UIView!
     @IBOutlet weak var indicatorCenterXConstraint: NSLayoutConstraint!
     @IBOutlet weak var notificationIcon: UIButton!
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var bottomLine: UIView!
     @IBOutlet weak var pastLabel: UIButton!
     @IBOutlet weak var futureLabel: UIButton!
-    @IBOutlet weak var notiView: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         notiPopView.isHidden = true
-        setupView()
+
+        addMeetingPopView.isHidden = true
 
         navigationController?.navigationBar.backgroundColor = UIColor.clear
 
@@ -71,7 +77,6 @@ class MeetingViewController: BaseViewController {
         view.endEditing(false)
     }
 
-
     private var willDrop = false {
         didSet {
             if (willDrop) {
@@ -86,6 +91,32 @@ class MeetingViewController: BaseViewController {
 
                 }
             }
+        }
+    }
+
+    private var willPopup = false {
+        didSet {
+            if (willPopup) {
+                UIView.animate(withDuration: 1) { [weak self] () in
+
+                    self?.addMeetingPopView.isHidden = false
+                }
+            } else {
+
+                UIView.animate(withDuration: 1) { [weak self] () in
+                    self?.addMeetingPopView.isHidden = true
+
+                }
+            }
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addMeetingSegue" {
+            let controller = segue.destination as! AddMeetingViewController
+
+            controller.delegate = self
+
         }
     }
 
@@ -105,8 +136,10 @@ class MeetingViewController: BaseViewController {
         })
     }
 
-    func setupView() {
-        searchBar.backgroundImage = UIImage()
-    }
+}
 
+extension MeetingViewController: AddMeetingVCDelegate {
+    func didtap() {
+        addMeetingPopView.isHidden = true
+    }
 }

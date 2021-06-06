@@ -16,6 +16,8 @@ class PastTableViewController: UITableViewController {
 
     var selectedIndex: Int?
 
+//    participants
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.do_registerCellWithNib(
@@ -36,7 +38,7 @@ class PastTableViewController: UITableViewController {
             self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
 
-        viewModel.fetchOldData()
+        viewModel.fetchParticipatedData()
 
         setupRefresher()
     }
@@ -46,7 +48,7 @@ class PastTableViewController: UITableViewController {
         self.tableView.refresh.header = RefreshHeader(delegate: self)
 
         tableView.refresh.header.addRefreshClosure { [weak self] in
-            self?.viewModel.fetchOldData()
+            self?.viewModel.fetchParticipatedData()
             self?.tableView.refresh.header.endRefreshing()
         }
     }
@@ -58,9 +60,11 @@ class PastTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MeetingTableViewCell.self), for: indexPath) as! MeetingTableViewCell
 
-        cell.delegate = self
+//        cell.delegate = self
 
         cell.index = indexPath.row
+
+        cell.setupParticipatedCell()
 
         cell.completionHandler = {index in
             self.selectedIndex = index
@@ -74,52 +78,61 @@ class PastTableViewController: UITableViewController {
 
         cellViewModel.onDead = { [weak self] () in
             print("onDead")
-            self?.viewModel.fetchOldData()
+            self?.viewModel.fetchParticipatedData()
         }
         meetingViewCell.setup(viewModel: cellViewModel)
 
         return meetingViewCell
     }
 
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-}
-
-extension PastTableViewController: MeetingTableCellDelegate {
-    func deleteBtnPressed(_ sender: MeetingTableViewCell) {
-        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
-        viewModel.onTap(withIndex: indexPath.row)
-        
-    }
-
-    func editButtonPressed(_ sender: MeetingTableViewCell) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
-        let editVC = storyboard.instantiateViewController(identifier: "CreateFirstPageVC")
-           guard let edit = editVC as? CreateFirstPageVC else { return }
-
-        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
-
-        edit.meetingInfo = sender.meeting
-
-        edit.meetingID = sender.meeting?.id
-
-        edit.createMeetingViewModel.meetingViewModel = sender.viewModel!
-
-        navigationController?.pushViewController(edit, animated: true)
-    }
-
-    func goButtonPressed(_ sender: MeetingTableViewCell) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
         let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
            guard let voting = votingVC as? VotingViewController else { return }
 
-        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
+        voting.meetingInfo = self.viewModel.meetingViewModels.value[indexPath.row].meeting
 
-        voting.meetingInfo = sender.meeting
-        
         navigationController?.pushViewController(voting, animated: true)
+
     }
 }
+
+//extension PastTableViewController: MeetingTableCellDelegate {
+//    func deleteBtnPressed(_ sender: MeetingTableViewCell) {
+//        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
+//        viewModel.onTap(withIndex: indexPath.row)
+//
+//    }
+//
+//    func editButtonPressed(_ sender: MeetingTableViewCell) {
+//        let storyboard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
+//        let editVC = storyboard.instantiateViewController(identifier: "CreateFirstPageVC")
+//           guard let edit = editVC as? CreateFirstViewController else { return }
+//
+//        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
+//
+//        edit.meetingInfo = sender.meeting
+//
+//        edit.meetingID = sender.meeting?.id
+//
+//        edit.createMeetingViewModel.meetingViewModel = sender.viewModel!
+//
+//        navigationController?.pushViewController(edit, animated: true)
+//    }
+//
+//    func goButtonPressed(_ sender: MeetingTableViewCell) {
+//        let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
+//        let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
+//           guard let voting = votingVC as? VotingViewController else { return }
+//
+//        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
+//
+//        voting.meetingInfo = sender.meeting
+//
+//        navigationController?.pushViewController(voting, animated: true)
+//    }
+//}
 
 extension PastTableViewController: RefreshDelegate {
     func refresherDidRefresh(_ refresher: Refresher) {

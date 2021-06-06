@@ -42,8 +42,6 @@ class ResutlsCollectionViewCell: UICollectionViewCell {
     }
 
     func setupCell(model: Option?) {
-        
-
 
         topTimeLabel.text = "\(viewModel.onTimeChanged(model!.startTime)) - \(viewModel.onTimeChanged(model!.endTime))"
 

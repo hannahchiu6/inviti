@@ -9,7 +9,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="UMB-vz-YhV">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarVC" automaticallyAdjustsScrollViewInsets="NO" id="oXU-se-lW5" customClass="TabBarViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarVC" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overCurrentContext" id="oXU-se-lW5" customClass="TabBarViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="spn-a8-MK1">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

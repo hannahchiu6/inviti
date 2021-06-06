@@ -24,6 +24,8 @@ class NetworkManager {
 
     lazy var db = Firestore.firestore()
 
+    var userUID = UserDefaults.standard.value(forKey: "uid")
+
     func fetchMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
 
         db.collection("meetings")
@@ -47,7 +49,6 @@ class NetworkManager {
                         } catch {
 
                             completion(.failure(error))
-//                            completion(.failure(FirebaseError.documentError))
                         }
                     }
 
@@ -70,8 +71,6 @@ class NetworkManager {
             case .success(let meeting):
                 if let meeting = meeting {
 
-                    print("NetWorkManager:" + "\n" + " Meeting: \(meeting)")
-
                     completion(.success(meeting))
 
                 } else {
@@ -89,11 +88,11 @@ class NetworkManager {
     }
 
 
-    func fetchNewMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
+    func fetchHostedMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
 
-        db.collection("meetings")
-            .order(by: "createdTime", descending: true)
-            .whereField("createdTime", isGreaterThanOrEqualTo: Date().millisecondsSince1970)
+       let docRef = db.collection("meetings")
+            .whereField("ownerAppleID", isEqualTo: userUID)
+//            .order(by: "createdTime", descending: true)
             .getDocuments { querySnapshot, error in
 
                 if let error = error {
@@ -114,7 +113,6 @@ class NetworkManager {
                         } catch {
 
                             completion(.failure(error))
-//                            completion(.failure(FirebaseError.documentError))
                         }
                     }
 
@@ -123,11 +121,10 @@ class NetworkManager {
             }
     }
 
-    func fetchOldMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
+    func fetchParticipatedMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
 
         db.collection("meetings")
-            .order(by: "createdTime", descending: true)
-            .whereField("createdTime", isLessThanOrEqualTo: Date().millisecondsSince1970)
+            .whereField("participants", arrayContains: userUID)
             .getDocuments { querySnapshot, error in
 
                 if let error = error {
@@ -148,7 +145,6 @@ class NetworkManager {
                         } catch {
 
                             completion(.failure(error))
-//                            completion(.failure(FirebaseError.documentError))
                         }
                     }
 
@@ -174,22 +170,8 @@ class NetworkManager {
         }
     }
 
+
     func deleteMeeting(meeting: Meeting, completion: @escaping (Result<String, Error>) -> Void) {
-
-//        if !UserManager.shared.isLogin() {
-//            print("who r u?")
-//            return
-//        }
-
-//        if let user = meeting.owner {
-//            if user.id == "5gWVjg7xTHElu9p6Jkl1"
-//                && meeting.category.lowercased() != "test"
-//                && !meeting.category.trimmingCharacters(in: .whitespaces).isEmpty
-//        {
-//                completion(.failure(MasterError.youKnowNothingError("You know nothing!! \(user.id)")))
-//                return
-//            }
-//        }
 
         db.collection("meetings").document(meeting.id).delete() { error in
 
@@ -236,6 +218,7 @@ class NetworkManager {
                     }
             }
     }
+
 
     // Fetch Meetings & Options
     func fetchMeetingsPackage(completion: @escaping (Result<[Meeting], Error>) -> Void) {

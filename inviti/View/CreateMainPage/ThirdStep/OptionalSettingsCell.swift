@@ -86,7 +86,7 @@ class OptionalSettingsCell: UITableViewCell{
 
         setLayout()
 
-        observation = addSubtract.observe(\.value, options: [.old, .new], changeHandler: { (stepper, change) in
+        observation = addSubtract.observe(\.value, options: [.old, .new], changeHandler: { stepper, change in
                 if change.newValue! == 0.0 {
                     if change.newValue! > change.oldValue! {
                         stepper.value = 1

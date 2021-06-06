@@ -16,9 +16,11 @@ class CalendarViewModel {
 
     var scrollToTop: (() -> Void)?
 
+    var onEventCreated: (() -> Void)?
+
     func fetchData() {
         
-        EventManager.shared.fetchEvents { [weak self] result in
+        EventManager.shared.fetchSubEvents { [weak self] result in
 
             switch result {
 
@@ -33,7 +35,19 @@ class CalendarViewModel {
         }
     }
 
+    func convertEventsToViewModels(from events: [Event]) -> [EventViewModel] {
+        var viewModels = [EventViewModel]()
+        for event in events {
+            let viewModel = EventViewModel(model: event)
+            viewModels.append(viewModel)
+        }
+        return viewModels
+    }
 
+    func setEvents(_ events: [Event]) {
+        eventViewModels.value = convertEventsToViewModels(from: events)
+    }
+    
     func onRefresh() {
         // maybe do something
         self.refreshView?()
@@ -44,8 +58,25 @@ class CalendarViewModel {
         self.scrollToTop?()
     }
 
-    func createSelectedData(in viewModels: [EventViewModel], selectedDate: String) -> [EventViewModel] {
+    func createEvent(with event: inout Event) {
 
+        EventManager.shared.createEvent(event: &event) { result in
+
+            switch result {
+
+            case .success:
+
+                print("onTapCreate event, success")
+                self.onEventCreated?()
+
+            case .failure(let error):
+
+                print("createMeeting.failure: \(error)")
+            }
+        }
+    }
+
+    func createSelectedData(in viewModels: [EventViewModel], selectedDate: String) -> [EventViewModel] {
         var newViewModels = [EventViewModel]()
         newViewModels = viewModels.filter({$0.event.date == Int(selectedDate)})
         return newViewModels
@@ -70,8 +101,6 @@ class CalendarViewModel {
         })
         return JDay
     }
-
-
     func createTimeData(in viewModels: [EventViewModel]) -> [JKDay] {
         let eventDates = viewModels.map({
             Date.init(millis: $0.event.startTime)
@@ -87,16 +116,4 @@ class CalendarViewModel {
         eventViewModels.value[index].onTap()
     }
 
-    func convertEventsToViewModels(from events: [Event]) -> [EventViewModel] {
-        var viewModels = [EventViewModel]()
-        for event in events {
-            let viewModel = EventViewModel(model: event)
-            viewModels.append(viewModel)
-        }
-        return viewModels
-    }
-
-    func setEvents(_ events: [Event]) {
-        eventViewModels.value = convertEventsToViewModels(from: events)
-    }
 }

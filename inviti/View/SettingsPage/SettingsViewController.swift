@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SettingsViewController: UIViewController {
 
@@ -13,6 +14,19 @@ class SettingsViewController: UIViewController {
     let values: [String] = ["Moon Chiu", "moon2021@gmail.com", "", "English", "gmail"]
     let cellSpacingHeight: CGFloat = 5
     
+    @IBAction func logout(_ sender: Any) {
+
+
+            let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+            print("logout success!")
+        } catch let signOutError as NSError {
+          print ("Error signing out: %@", signOutError)
+        }
+
+    }
+
     @IBOutlet weak var settingsTableView: UITableView!
 
     @IBOutlet weak var profilePhoto: UIImageView!

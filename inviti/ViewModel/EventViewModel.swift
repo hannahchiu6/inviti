@@ -29,11 +29,11 @@ class EventViewModel {
         }
     }
 
-    var owner: SimpleUser {
-        get {
-            return event.owner
-        }
-    }
+//    var ownerAppleID: String {
+//        get {
+//            return event.ownerAppleID
+//        }
+//    }
 
     var location: String {
         get {

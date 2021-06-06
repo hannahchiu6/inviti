@@ -11,11 +11,13 @@ class MainViewModel {
 
     var meetingViewModels = Box([MeetingViewModel]())
 
-    var meeting: Meeting = Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
+    var meeting: Meeting = Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
 
     var refreshView: (() -> Void)?
 
     var scrollToTop: (() -> Void)?
+
+    var onDead: (() -> Void)?
 
     var onMeetingFetched: ((Meeting) -> Void)?
 
@@ -36,9 +38,9 @@ class MainViewModel {
         }
     }
 
-    func fetchNewData() {
+    func fetchHostedData() {
 
-        NetworkManager.shared.fetchNewMeetings { [weak self] result in
+        NetworkManager.shared.fetchHostedMeetings { [weak self] result in
 
             switch result {
 
@@ -53,9 +55,9 @@ class MainViewModel {
         }
     }
 
-    func fetchOldData() {
+    func fetchParticipatedData() {
 
-        NetworkManager.shared.fetchOldMeetings { [weak self] result in
+        NetworkManager.shared.fetchParticipatedMeetings { [weak self] result in
 
             switch result {
 
@@ -103,6 +105,22 @@ class MainViewModel {
         meetingViewModels.value[index].onTap()
     }
 
+    func onEmptyTap(_ meetingID: String) {
+        NetworkManager.shared.deleteOneMeeting(meetingID: meetingID) { [weak self] result in
+
+            switch result {
+
+            case .success( _):
+
+                self?.onDead?()
+
+            case .failure(let error):
+
+                print("deleteMeeting.failure: \(error)")
+            }
+        }
+    }
+
     var onMeetingUpdated: (() -> Void)?
 
     func update(with meeting: Meeting) {
@@ -127,7 +145,10 @@ class MainViewModel {
 
     func convertMeetingsToViewModels(from meetings: [Meeting]) -> [MeetingViewModel] {
         var viewModels = [MeetingViewModel]()
-        for meeting in meetings {
+
+        let newMeetings = meetings.sorted(by: { $0.createdTime > $1.createdTime })
+
+        for meeting in newMeetings {
             let viewModel = MeetingViewModel(model: meeting)
             viewModels.append(viewModel)
         }
@@ -142,7 +163,7 @@ class MainViewModel {
 
         if hasUserInMeeting() {
             print("has user in meeting...")
-            create() // MARK: check which function this call is
+            create()
 
         } else {
             print("login...")
@@ -189,7 +210,7 @@ class MainViewModel {
             meeting.owner = user
         }
 
-        create(with: &meeting) // MARK: check which function this call is
+        create(with: &meeting)
     }
 
     func hasUserInMeeting() -> Bool {

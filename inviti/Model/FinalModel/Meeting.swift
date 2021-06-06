@@ -13,6 +13,7 @@ struct Meeting: Codable {
     var id: String
 //    var owner: String
     var owner: SimpleUser
+    var ownerAppleID: String
     var createdTime: Int64
     var subject: String?
     var location: String?
@@ -22,15 +23,16 @@ struct Meeting: Codable {
     var singleMeeting: Bool
     var hiddenMeeting: Bool
     var deadlineMeeting: Bool
-//    let askInfo: AskInfo
     var participants: [String]?
     var numOfParticipants: Int?
     var deadlineTag: Int?
 //    @Document var id: String?
+    //    let askInfo: AskInfo
+    //    var invitation: [String]?
 
     enum CodingKeys: String, CodingKey {
         case id, owner, subject, notes, createdTime
-        case options
+        case options, ownerAppleID
 //        case startTime, endTime
 //        case askInfo
         case participants, location, numOfParticipants
@@ -42,12 +44,14 @@ struct Meeting: Codable {
         return [
             "id": id as Any,
             "owner": owner.toDict,
+            "ownerAppleID": ownerAppleID,
             "createdTime": createdTime,
 //            "startTime": startTime as Any,
 //            "endTime": endTime as Any,
             "subject": subject as Any,
             "image": image as Any,
             "notes": notes as Any,
+//            "invitation": invitation as Any,
             "participants": participants as Any,
             "location": location as Any,
 //            "duration": duration as Any,

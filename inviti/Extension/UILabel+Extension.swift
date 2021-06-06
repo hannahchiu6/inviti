@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Foundation
 import UIKit
 
 @IBDesignable
@@ -33,7 +32,7 @@ extension UILabel {
         get {
             guard let spacing = attributedText?.value(
                 forKey: NSAttributedString.Key.kern.rawValue
-            ) as? CGFloat else {return 0}
+            ) as? CGFloat else { return 0 }
             return spacing
         }
 

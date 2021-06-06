@@ -55,7 +55,7 @@ extension Date {
 
         let formatter = DateFormatter()
 
-        formatter.dateFormat = "hh"
+        formatter.dateFormat = "HH"
 
         return formatter
 
@@ -94,6 +94,16 @@ extension Date {
         let formatter = DateFormatter()
 
         formatter.dateFormat = "yyyyMMdd"
+
+        return formatter
+
+    }
+
+    static var pointFormatter: DateFormatter {
+
+        let formatter = DateFormatter()
+
+        formatter.dateFormat = "yyyy.MM.dd"
 
         return formatter
 
