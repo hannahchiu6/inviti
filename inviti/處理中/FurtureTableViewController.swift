@@ -17,6 +17,7 @@ class FurtureTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.do_registerCellWithNib(
             identifier: String(describing: MeetingTableViewCell.self),bundle: nil)
 
@@ -35,7 +36,7 @@ class FurtureTableViewController: UITableViewController {
             self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
 
-        viewModel.fetchNewData()
+        viewModel.fetchHostedData()
 
         setupRefresher()
     }
@@ -44,7 +45,7 @@ class FurtureTableViewController: UITableViewController {
         self.tableView.refresh.header = RefreshHeader(delegate: self)
 
         tableView.refresh.header.addRefreshClosure { [weak self] in
-            self?.viewModel.fetchNewData()
+            self?.viewModel.fetchHostedData()
             self?.tableView.refresh.header.endRefreshing()
         }
     }
@@ -63,22 +64,15 @@ class FurtureTableViewController: UITableViewController {
         cell.completionHandler = { index in
             self.selectedIndex = index
         }
-
-//        cell.firstParticipantView.loadImage("\(String(describing: meetingVM?.participants[indexPath.section].image))")
-//        cell.secondParticipantView.loadImage("\(String(describing: meetingVM?.userImage))")
-//        cell.thirdParticipantView.loadImage("\(String(describing: meetingVM?.userImage))")
-       
-
         guard let meetingViewCell = cell as? MeetingTableViewCell else {
             return cell
         }
-        tableView.deleteRows(at: [indexPath], with: .automatic)
 
         let cellViewModel = self.viewModel.meetingViewModels.value[indexPath.row]
 
         cellViewModel.onDead = { [weak self] () in
             print("onDead")
-            self?.viewModel.fetchNewData()
+            self?.viewModel.fetchHostedData()
         }
 
         meetingViewCell.setup(viewModel: cellViewModel)
@@ -128,23 +122,29 @@ class FurtureTableViewController: UITableViewController {
 //            }
 //        }
 //    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
+        guard let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ResultVC") as? VotingResultViewController else { return }
+
+        nextViewController.meetingInfo = self.viewModel.meetingViewModels.value[indexPath.row].meeting
+
+        navigationController?.pushViewController(nextViewController, animated: true)
+
+    }
 }
 
 extension FurtureTableViewController: MeetingTableCellDelegate {
     func deleteBtnPressed(_ sender: MeetingTableViewCell) {
-
         guard let indexPath = self.tableView.indexPath(for: sender) else { return }
-        UIView.animate(withDuration: 3, delay: 1, options: .curveEaseOut, animations: {
-            sender.alpha = 1
-        }, completion: {_ in
-            self.viewModel.onTap(withIndex: indexPath.row)
-        })
+        viewModel.onTap(withIndex: indexPath.row)
     }
 
     func editButtonPressed(_ sender: MeetingTableViewCell) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
         let editVC = storyboard.instantiateViewController(identifier: "CreateFirstPageVC")
-           guard let edit = editVC as? CreateFirstPageVC else { return }
+           guard let edit = editVC as? CreateFirstViewController else { return }
 
         guard self.tableView.indexPath(for: sender) != nil else { return }
 
@@ -153,8 +153,6 @@ extension FurtureTableViewController: MeetingTableCellDelegate {
         edit.meetingID = sender.meeting?.id
 
         edit.createMeetingViewModel.meetingViewModel = sender.viewModel!
-
-//        edit.createMeetingViewModel.meetingViewModels.value[0] = viewModel.meetingViewModels.value[0]
 
         navigationController?.pushViewController(edit, animated: true)
     }

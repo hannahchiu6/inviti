@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol VotingTableViewCellDelegate: AnyObject {
+    func didVote(_ votedOne: Bool)
+}
+
 class VotingTableViewCell: UITableViewCell {
+
+    weak var delegate: VotingTableViewCellDelegate?
 
     var optionViewModels = SelectOptionViewModel()
 
@@ -18,6 +24,8 @@ class VotingTableViewCell: UITableViewCell {
     var user: User?
 
     var optionID: String?
+
+    var userUID = UserDefaults.standard.array(forKey: "uid")
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,9 +47,18 @@ class VotingTableViewCell: UITableViewCell {
         } else {
 
             votingViewModel?.onVotingChanged(true)
+
         }
 
-        votingViewModel?.onSelectedUserAdded(user?.appleID ?? "5gWVjg7xTHElu9p6Jkl1")
+        if votingViewModel?.optionViewModels.value[sender.tag].selectedOptions != nil {
+            delegate?.didVote(true)
+
+        } else {
+            
+            delegate?.didVote(false)
+        }
+
+        votingViewModel?.onSelectedUserAdded(String(describing: userUID))
 
         votingViewModel?.createWithEmptyData(with: optionID!, meetingID: meetingID!, selectedOption: &votingViewModel!.selectedOption)
     }

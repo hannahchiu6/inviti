@@ -29,7 +29,7 @@ struct Invite: Identifiable, Codable {
             "receiver": receiver as Any,
             "createdTime": createdTime as Any,
             "email": email as Any,
-            "meeting": meeting as Any,
+            "meeting": meeting as Any
         ]
     }
 }

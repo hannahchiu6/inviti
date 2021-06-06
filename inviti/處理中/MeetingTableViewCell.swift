@@ -26,6 +26,9 @@ class MeetingTableViewCell: UITableViewCell {
     @IBOutlet weak var meetingTimeLabel: UILabel!
     @IBOutlet weak var meetingSubject: UILabel!
     @IBOutlet weak var editIcon: UIButton!
+    @IBOutlet weak var deleteIcon: UIButton!
+    @IBOutlet weak var voteIcon: UIButton!
+
 
     @IBAction func edit(_ sender: Any) {
         delegate?.editButtonPressed(self)
@@ -47,6 +50,8 @@ class MeetingTableViewCell: UITableViewCell {
         super.awakeFromNib()
 
         setUpView()
+
+        selectionStyle = .none
     }
 
     weak var delegate: MeetingTableCellDelegate?
@@ -68,13 +73,20 @@ class MeetingTableViewCell: UITableViewCell {
         
         meeting = viewModel?.meeting
         meetingSubject.text = viewModel?.subject
-        meetingTimeLabel.text = "投票建立時間：\(String(describing: viewModel!.createdTime))"
-        participanCountLabel.text = "和其他 \(String(describing: viewModel!.numOfParticipants)) 位參與者"
+        meetingTimeLabel.text = "投票建立時間：\(Date.pointFormatter.string(from: Date.init(millis: viewModel!.createdTime)))"
+        participanCountLabel.text = "和其他 \(String(describing: viewModel!.participants.count)) 位參與者"
 
         guard let url = viewModel?.image else { return }
             let imageUrl = URL(string: String(url))
             hostImage.kf.setImage(with: imageUrl)
 
+    }
+
+    func setupParticipatedCell() {
+
+        editIcon.isHidden = true
+        deleteIcon.isHidden = true
+        voteIcon.isHidden = true
     }
 
     func setUpView() {

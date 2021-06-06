@@ -54,17 +54,4 @@ struct UserSelectedData {
 //        self.store = store
 //    }
 
-    func returnStatusString() -> String {
-
-        switch status {
-        case BookingStatus.confirm.rawValue:
-            return BookingStatus.confirm.display
-        case BookingStatus.refuse.rawValue:
-            return BookingStatus.refuse.display
-        case BookingStatus.tobeConfirm.rawValue:
-            return BookingStatus.tobeConfirm.display
-        default:
-            return "BUG"
-        }
-    }
 }

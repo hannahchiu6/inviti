@@ -28,4 +28,27 @@ struct OptionTime: Equatable, Codable {
 
         return "\(year) 年 \(month) 月 \(day) 日"
     }
+
+    func dateInt() -> String {
+
+        if month < 10 {
+
+            if day < 10 {
+
+                return "\(year)0\(month)0\(day)"
+            }
+
+                return "\(year)0\(month)\(day)"
+
+        } else {
+
+            if day < 10 {
+
+                return "\(year)\(month)0\(day)"
+            }
+
+                return "\(year)\(month)\(day)"
+
+        }
+    }
 }

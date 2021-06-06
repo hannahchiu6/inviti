@@ -21,11 +21,11 @@ class VotingViewModel {
 
     var optionViewModel = OptionViewModel(model: Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: []))
 
-    var meetingViewModel = MeetingViewModel(model: Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
+    var meetingViewModel = MeetingViewModel(model: Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
 
     var option: Option = Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: [])
 
-    var meeting: Meeting = Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
+//    var meeting: Meeting = Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
 
     var selectedOption: SelectedOption = SelectedOption(isSelected: false, selectedUser: "")
 
@@ -36,9 +36,9 @@ class VotingViewModel {
     var scrollToTop: (() -> Void)?
 
     var getSelectedOptionData: (() -> Void)?
-
+//
     var onSelectedOptionCreated: (() -> Void)?
-
+//
     var onSelectedOptionUpdated: (() -> Void)?
 
     func onVotingChanged(_ bool: Bool) {
@@ -82,8 +82,8 @@ class VotingViewModel {
         }
     }
 
-    func fetchVoteForYes(meetingID: String) {
-        VoteManager.shared.fetchVoteForYes(meetingID: meetingID) { [weak self] result in
+    func fetchVotedData(meetingID: String) {
+        VoteManager.shared.fetchVotedData(meetingID: meetingID) { [weak self] result in
 
             switch result {
 
@@ -122,6 +122,13 @@ class VotingViewModel {
             let viewModel = OptionViewModel(model: option)
             viewModels.append(viewModel)
         }
+        if option.selectedOptions != nil {
+
+            let newViewModels = self.sortVotes(vms: viewModels)
+
+            return newViewModels
+        }
+
         return viewModels
     }
 
@@ -214,14 +221,13 @@ class VotingViewModel {
 
             switch result {
 
-            case .success(let selectedOptionID):
+            case .success( _):
 
-                print(selectedOptionID)
                 self?.onDead?()
 
             case .failure(let error):
 
-                print("fetchData.failure: \(error)")
+                print("deleteData.failure: \(error)")
             }
         }
     }
@@ -245,5 +251,42 @@ class VotingViewModel {
 
         return newTime
     }
+
+    func sortVotes(vms: [OptionViewModel]) -> [OptionViewModel] {
+
+        let sorted = vms.sorted { $0.selectedOptions!.count > $1.selectedOptions!.count }
+
+        return sorted
+    }
+
+    func fetchOneMeeitngData(meetingID: String) {
+
+        NetworkManager.shared.fetchOneMeeting(meetingID: meetingID) { [weak self] result in
+
+            switch result {
+
+            case .success(let meeting):
+
+                self?.setMeeting(meeting)
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
+    func convertMeetingToViewModels(from meeting: Meeting) -> [MeetingViewModel] {
+        var viewModels = [MeetingViewModel]()
+        let viewModel = MeetingViewModel(model: meeting)
+        viewModels.append(viewModel)
+
+        return viewModels
+    }
+
+    func setMeeting(_ meeting: Meeting) {
+        meetingViewModels.value = convertMeetingToViewModels(from: meeting)
+    }
+
 
 }

@@ -153,7 +153,7 @@ class VoteManager {
 //        }
 
     // Fetch Options & SelectedOptions
-    func fetchVoteForYes(meetingID: String, completion: @escaping (Result<[Option], Error>) -> Void) {
+    func fetchVotedData(meetingID: String, completion: @escaping (Result<[Option], Error>) -> Void) {
 
             db.collection("meetings")
                 .document(meetingID)
@@ -178,7 +178,6 @@ class VoteManager {
                                     .collection("options")
                                     .document("\(option.id)")
                                     .collection("selectedOptions")
-//                                    .whereField("isSelected", isEqualTo: true)
                                     .getDocuments { querySnapshot, error in
 
                                         if let error = error {
@@ -208,7 +207,6 @@ class VoteManager {
                                             completion(.success(options))
                                     }
                                 }
-
                             }
 
                             } catch {
