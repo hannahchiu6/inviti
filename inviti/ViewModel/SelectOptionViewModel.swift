@@ -173,7 +173,7 @@ class SelectOptionViewModel {
 
             switch result {
 
-            case .success(let optionID):
+            case .success( _):
                 
                 self?.onDead?()
 

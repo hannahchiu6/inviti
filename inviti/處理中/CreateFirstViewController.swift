@@ -7,16 +7,12 @@
 //  swiftlint:disable comment_spacing onvenience_type trailing_closure
 
 import UIKit
+import JGProgressHUD
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 
 class CreateFirstViewController: BaseViewController {
-
-    private struct Segue {
-
-        static let success = "SegueSuccess"
-    }
 
     var meetingInfo: Meeting!
 
@@ -30,13 +26,13 @@ class CreateFirstViewController: BaseViewController {
 
     var isSwitchOn: Bool = false
 
+    var meetingSubject: String? {
+        didSet {
+            meetingSubject = createMeetingViewModel.meeting.subject
+        }
+    }
+
     var createMeetingViewModel = CreateMeetingViewModel()
-
-//    var meetingViewModel = createMeetingViewModel.meetingViewModel
-
-//    var mainViewModel = MainVMController()
-
-//    var createOptionViewModel = CreateOptionViewModel()
 
     var selectOptionViewModel = SelectOptionViewModel()
 
@@ -48,53 +44,67 @@ class CreateFirstViewController: BaseViewController {
 
             self.createMeetingViewModel.onTap(withIndex: sender.tag)
 
-//            let storyboard: UIStoryboard = UIStoryboard(name: "Meeting", bundle: nil)
-//            let meetingVC = storyboard.instantiateViewController(identifier: "MeetingVC")
-//            guard let vc = meetingVC as? MeetingViewController else { return }
-
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let meetingVC = storyboard.instantiateViewController(identifier: "tabBarVC")
+            let meetingVC = storyboard.instantiateViewController(identifier: "TabBarVC")
             guard let vc = meetingVC as? TabBarViewController else { return }
             self.navigationController?.pushViewController(vc, animated: true)
-
-//            if let secondVC = self.navigationController?.viewControllers[0] {
-//
-//                   if let secondVC = self.navigationController?.viewControllers[0] {
-//                        self.navigationController?.popToViewController(secondVC, animated: true)
-//                   }
-//
-//               }
-
-//            self.navigationController?.show(vc, sender: true)
-
 
         } else {
 
             self.navigationController?.popViewController(animated: true)
         }
-
-
     }
 
     @IBOutlet weak var tableView: UITableView!
 
+    @IBOutlet weak var inviteBtnView: UIButton!
+
+    @IBAction func invite(_ sender: Any) {
+
+        if let name = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue),
+           let meetingSubject = createMeetingViewModel.meeting.subject {
+
+        let message = "您的好友 \(name) 邀請您參加 \(String(describing: meetingSubject))，來 inviti 票選時間吧！打開 APP 輸入活動 ID 即可參與投票 👉🏻 \(meetingID!)"
+               //Set the link to share.
+//               if let link = NSURL(string: "http://yoururl.com") {
+       let objectsToShare = [message]
+
+        let ac = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+
+        ac.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+
+            if completed {
+
+                INProgressHUD.showSuccess(text: "發送邀請成功")
+
+            } else {
+                
+                INProgressHUD.showFailure(text: "請稍後再試")
+            }
+        }
+
+        present(ac, animated: true, completion: nil)
+        }
+    }
     
     @IBOutlet weak var successView: UIView!
 
     @IBAction func confrim(_ sender: Any) {
 
         if meetingInfo == nil {
+            
         UIView.animate(withDuration: 5.0, animations: { () -> Void in
+
             self.successView.isHidden = false
             self.createMeetingViewModel.update(with: self.createMeetingViewModel.meeting)
 
         })} else {
 
         performSegue(withIdentifier: "showSuccessSegue", sender: self)
+
             createMeetingViewModel.update(with: meetingInfo)
         }
     }
-
 
     @IBAction func goCalendar(_ sender: Any) {
         nextPage()
@@ -108,8 +118,6 @@ class CreateFirstViewController: BaseViewController {
         selectOptionViewModel.fetchData(meetingID: meetingID ?? "" )
 
         if selectOptionViewModel.optionViewModels.value.isEmpty {
-
-            print("there's no options have been selected yet.")
 
         } else {
 
@@ -145,8 +153,20 @@ class CreateFirstViewController: BaseViewController {
 
         isDataGet()
 
+        enableShareBtn()
+        
         showButtonView.isEnabled = false
 
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "shareSegue" {
+            let controller = segue.destination as! ShareSuccessVC
+
+            controller.meetingID = meetingID
+            controller.viewModel = createMeetingViewModel
+
+        }
     }
 
     func enableButton() {
@@ -157,20 +177,35 @@ class CreateFirstViewController: BaseViewController {
 
            if cellOne != "" && cellTwo != "" && selectOptionViewModel.optionViewModels.value.isEmpty != true {
 
-               self.showButtonView.isEnabled = true
-               self.showButtonView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+                enableShareBtn()
+                self.showButtonView.isEnabled = true
+                self.showButtonView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
 
            } else {
-               self.showButtonView.isEnabled = false
-               self.showButtonView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
-
+                enableShareBtn()
+                self.showButtonView.isEnabled = false
+                self.showButtonView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
            }
-
         } else {
-
+            enableShareBtn()
             self.showButtonView.isEnabled = true
             self.showButtonView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
         }
+    }
+
+    func enableShareBtn() {
+        if meetingInfo != nil  || createMeetingViewModel.meeting.subject != nil {
+
+            self.inviteBtnView.isEnabled = true
+            self.inviteBtnView.tintColor = UIColor.darkGray
+
+        } else {
+
+            self.inviteBtnView.isEnabled = false
+            self.inviteBtnView.tintColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+
+        }
+
     }
 
     func isDataGet() {
@@ -180,14 +215,17 @@ class CreateFirstViewController: BaseViewController {
         if optionData.isEmpty {
 
             isDataEmpty = true
+            enableShareBtn()
 
         } else {
 
             selectOptionViewModel.fetchData(meetingID: meetingInfo.id)
+            inviteBtnView.isHidden = false
         }
 
         if meetingInfo != nil {
 
+            inviteBtnView.isHidden = false
             showButtonView.setTitle("更新活動內容", for: .normal)
             self.navigationController?.isNavigationBarHidden = true
 
@@ -308,9 +346,7 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
                 cell.setCell(model: data)
 
                 cell.viewModel = createMeetingViewModel
-
                 cell.addSubtract.value = Double(data.meeting.deadlineTag ?? 0)
-
                     cell.observation = cell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { (stepper, change) in
                         if change.newValue! == 0.0 {
                             if change.newValue! > change.oldValue! {
@@ -356,13 +392,13 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
             return cell
         }
     }
-
 }
 
 extension CreateFirstViewController: CreateFirstCellDelegate {
 
     func getSubjectData(_ subject: String) {
         createMeetingViewModel.onSubjectChanged(text: subject)
+
     }
 
     func getLocationData(_ location: String) {
@@ -384,17 +420,21 @@ extension CreateFirstViewController: SecondCellDelegate {
     }
 
     func deleteTap(_ index: Int, vms: SelectOptionViewModel) {
-        
-        optionID = selectOptionViewModel.getOptionID(in: selectOptionViewModel.optionViewModels.value, index: index)
 
-        selectOptionViewModel.onEmptyTap(optionID, meetingID: meetingID ?? "")
+        let newVMs = selectOptionViewModel.optionViewModels.value
 
-        selectOptionViewModel.fetchData(meetingID: meetingID ?? "")
+        if newVMs.count < 3 {
 
-        if selectOptionViewModel.optionViewModels.value.isEmpty {
-            isDataEmpty = true
+            INProgressHUD.showFailure(text: "投票選項至少兩個")
+
+        } else {
+
+            let theOptionID = newVMs[index].id
+
+            selectOptionViewModel.onEmptyTap(theOptionID, meetingID: meetingID ?? "")
+
+            selectOptionViewModel.fetchData(meetingID: meetingID ?? "")
+
         }
-
     }
-
 }

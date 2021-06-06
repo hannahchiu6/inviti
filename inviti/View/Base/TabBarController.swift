@@ -102,11 +102,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
                  centerButton.layer.borderWidth = 0
                  }
              }
-     }
-
-                override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-                    print("Selected item", item.tag )
-                }
+    }
 
 
 //                func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
@@ -193,6 +189,9 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         viewModel.create()
 
         onMeetingIDGet?(viewModel.meeting.id)
+
+        viewModel.meeting.ownerAppleID = UserDefaults.standard.string(forKey: UserDefaults.Keys.uid.rawValue)!
+//        UserDefaults.standard.setValue(UserDefaults.Keys.meetingID.rawValue, forKey: "viewModel.meeting.id")
 
         viewControllers?.forEach { vc in
 

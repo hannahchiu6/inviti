@@ -6,40 +6,43 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseFirestoreSwift
 
-struct User: Identifiable, Codable {
-//    let id: String
-    @DocumentID var id: String?
-    let email: String
-    let name: String
-    let appleID: String
-    let image: String?
+struct User: Codable {
+
+    var id: String
+    var email: String
+    var name: String
+    var image: String?
     let phone: String?
     let address: String?
-    let isCalendarSynced: Bool
+    let isCalendarSynced: Bool = false
     let calendarType: String?
     let numOfMeetings: Int?
+    var events: [Event]?
+
 
     enum CodingKeys: String, CodingKey {
-        case id, email, name, appleID
+        case id, email, name
         case image, phone, address, numOfMeetings
         case isCalendarSynced, calendarType
+        case events
 
     }
 
     var toDict: [String: Any] {
         return [
-            "id": id as Any,
-            "email": email as Any,
-            "lastName": name as Any,
-            "appleID": appleID as Any,
+            "id": id,
+            "email": email,
+            "name": name as Any,
+            "events": events as Any,
             "image": image as Any,
             "numOfMeetings": numOfMeetings as Any,
             "phone": phone as Any,
             "address": address as Any,
-            "calendarTye": calendarType as Any,
-            "isCalendarSynced": isCalendarSynced as Any
+            "calendarType": calendarType as Any,
+            "isCalendarSynced": isCalendarSynced,
 
         ]
     }

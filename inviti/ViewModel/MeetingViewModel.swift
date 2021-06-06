@@ -23,6 +23,12 @@ class MeetingViewModel {
         }
     }
 
+    var ownerAppleID: String {
+        get{
+            return meeting.ownerAppleID
+        }
+    }
+
     var subject: String {
         get {
             return meeting.subject ?? ""

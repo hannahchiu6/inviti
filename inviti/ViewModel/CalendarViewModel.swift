@@ -20,7 +20,7 @@ class CalendarViewModel {
 
     func fetchData() {
         
-        EventManager.shared.fetchEvents { [weak self] result in
+        EventManager.shared.fetchSubEvents { [weak self] result in
 
             switch result {
 
@@ -58,7 +58,8 @@ class CalendarViewModel {
         self.scrollToTop?()
     }
 
-    func create(with event: inout Event) {
+    func createEvent(with event: inout Event) {
+
         EventManager.shared.createEvent(event: &event) { result in
 
             switch result {

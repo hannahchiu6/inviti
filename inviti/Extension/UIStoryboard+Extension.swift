@@ -33,27 +33,27 @@ private struct StoryboardCategory {
 
 extension UIStoryboard {
 
-    static var main: UIStoryboard { return stStoryboard(name: StoryboardCategory.main) }
+    static var main: UIStoryboard { return uiStoryboard(name: StoryboardCategory.main) }
 
-    static var meeting: UIStoryboard { return stStoryboard(name: StoryboardCategory.meeting) }
+    static var meeting: UIStoryboard { return uiStoryboard(name: StoryboardCategory.meeting) }
 
-    static var news: UIStoryboard { return stStoryboard(name: StoryboardCategory.news) }
+    static var news: UIStoryboard { return uiStoryboard(name: StoryboardCategory.news) }
 
-    static var calendar: UIStoryboard { return stStoryboard(name: StoryboardCategory.calendar) }
+    static var calendar: UIStoryboard { return uiStoryboard(name: StoryboardCategory.calendar) }
 
-    static var create: UIStoryboard { return stStoryboard(name: StoryboardCategory.create) }
+    static var create: UIStoryboard { return uiStoryboard(name: StoryboardCategory.create) }
 
-    static var settings: UIStoryboard { return stStoryboard(name: StoryboardCategory.settings) }
+    static var settings: UIStoryboard { return uiStoryboard(name: StoryboardCategory.settings) }
 
-    static var noti: UIStoryboard { return stStoryboard(name: StoryboardCategory.noti) }
+    static var noti: UIStoryboard { return uiStoryboard(name: StoryboardCategory.noti) }
 
-    static var second: UIStoryboard { return stStoryboard(name: StoryboardCategory.second) }
+    static var second: UIStoryboard { return uiStoryboard(name: StoryboardCategory.second) }
 
-    static var third: UIStoryboard { return stStoryboard(name: StoryboardCategory.third) }
+    static var third: UIStoryboard { return uiStoryboard(name: StoryboardCategory.third) }
 
-    static var voting: UIStoryboard { return stStoryboard(name: StoryboardCategory.voting) }
+    static var voting: UIStoryboard { return uiStoryboard(name: StoryboardCategory.voting) }
 
-    private static func stStoryboard(name: String) -> UIStoryboard {
+    private static func uiStoryboard(name: String) -> UIStoryboard {
         return UIStoryboard(name: name, bundle: nil)
     }
 }

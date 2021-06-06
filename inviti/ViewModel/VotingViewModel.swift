@@ -21,7 +21,7 @@ class VotingViewModel {
 
     var optionViewModel = OptionViewModel(model: Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: []))
 
-    var meetingViewModel = MeetingViewModel(model: Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
+    var meetingViewModel = MeetingViewModel(model: Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
 
     var option: Option = Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: [])
 
@@ -221,14 +221,13 @@ class VotingViewModel {
 
             switch result {
 
-            case .success(let selectedOptionID):
+            case .success( _):
 
-                print(selectedOptionID)
                 self?.onDead?()
 
             case .failure(let error):
 
-                print("fetchData.failure: \(error)")
+                print("deleteData.failure: \(error)")
             }
         }
     }
