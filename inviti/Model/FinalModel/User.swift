@@ -21,13 +21,14 @@ struct User: Codable {
     let calendarType: String?
     let numOfMeetings: Int?
     var events: [Event]?
+    var notification: [Notification]?
 
 
     enum CodingKeys: String, CodingKey {
         case id, email, name
         case image, phone, address, numOfMeetings
         case isCalendarSynced, calendarType
-        case events
+        case events, notification
 
     }
 
@@ -43,6 +44,7 @@ struct User: Codable {
             "address": address as Any,
             "calendarType": calendarType as Any,
             "isCalendarSynced": isCalendarSynced,
+            "notification": notification as Any
 
         ]
     }

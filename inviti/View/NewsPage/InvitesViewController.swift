@@ -11,6 +11,17 @@ class InvitesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    var viewModel = UpdateNotificationVM()
+
+    var participants: [String] = [] {
+
+        didSet {
+
+            tableView.reloadData()
+        }
+    }
+
+    var observation: NSKeyValueObservation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +33,19 @@ class InvitesViewController: UIViewController {
         let nib = UINib(nibName: "InvitesTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "invitesTableViewCell")
 
-    }
+        viewModel.notificationViewModels.bind { [weak self] notifications in
 
+            self?.viewModel.onRefresh()
+            self?.tableView.reloadData()
+        }
+
+        viewModel.fetchHostedData()
+    }
 }
 
 extension InvitesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return viewModel.notificationViewModels.value.count
     }
 
 

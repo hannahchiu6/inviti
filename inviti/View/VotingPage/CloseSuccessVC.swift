@@ -11,6 +11,8 @@ class CloseSuccessVC: BaseViewController {
 
     var viewModel = CreateEventViewModel()
 
+    var notificationVM = UpdateNotificationVM()
+
     var participants: [String] = []
     
     @IBOutlet weak var returnBtnView: UIButton!
@@ -29,6 +31,8 @@ class CloseSuccessVC: BaseViewController {
     @IBAction func shareLinkBtn(_ sender: Any) {
 
         viewModel.createForParticipants(peopleID: participants)
+
+        notificationVM.createParticipantsNotification(type: TypeName.calendar.rawValue, peopleID: participants, event: viewModel.event)
     }
  
     override func viewDidLoad() {

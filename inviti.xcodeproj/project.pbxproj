@@ -18,7 +18,7 @@
 		860B5C922652297200171ED3 /* CreateFirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860B5C912652297200171ED3 /* CreateFirstCell.swift */; };
 		86102767266CA68C008DEFD0 /* InvitesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86102765266CA68C008DEFD0 /* InvitesTableViewCell.swift */; };
 		86102768266CA68C008DEFD0 /* InvitesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86102766266CA68C008DEFD0 /* InvitesTableViewCell.xib */; };
-		8610276C266CB713008DEFD0 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8610276B266CB713008DEFD0 /* NotificationViewModel.swift */; };
+		8610276C266CB713008DEFD0 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8610276B266CB713008DEFD0 /* OrderViewModel.swift */; };
 		8614DE9C2652A56200DC0A9D /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE9B2652A56100DC0A9D /* UIButton+Extension.swift */; };
 		861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885ED264E31FD0048D9AA /* UITableView+Extension.swift */; };
 		861885F6264E5FD60048D9AA /* OptionEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */; };
@@ -68,6 +68,10 @@
 		867177522669171B00F96535 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867177512669171B00F96535 /* File.swift */; };
 		86717782266927F800F96535 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86717781266927F800F96535 /* UserViewModel.swift */; };
 		8671778526692B6200F96535 /* StoryboardName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8671778426692B6200F96535 /* StoryboardName.swift */; };
+		8672AB3F266CBEB300FB44B4 /* UpdateNotificationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672AB3E266CBEB300FB44B4 /* UpdateNotificationVM.swift */; };
+		8672AB44266CC2A200FB44B4 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672AB43266CC2A200FB44B4 /* Notification.swift */; };
+		8672AB48266CC3F300FB44B4 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672AB47266CC3F300FB44B4 /* NotificationViewModel.swift */; };
+		8672AB4C266CC4C800FB44B4 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672AB4B266CC4C700FB44B4 /* NotificationManager.swift */; };
 		867950C32651741C0041847C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867950C22651741C0041847C /* String+Extension.swift */; };
 		8680F09D26653D2C004B46D6 /* VotingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680F09C26653D2C004B46D6 /* VotingViewModel.swift */; };
 		8681A643265E87D4007CF61A /* SelectOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8681A642265E87D4007CF61A /* SelectOptionViewModel.swift */; };
@@ -118,6 +122,7 @@
 		86C3FA6E264BE2A700480E4F /* NotificationPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */; };
 		86C9C670265AA23B0074B2B5 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C9C66F265AA23B0074B2B5 /* ViewController+Extension.swift */; };
 		86D4F68426582D6E00C00062 /* PaddingableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D4F68326582D6E00C00062 /* PaddingableHelper.swift */; };
+		86EBFA75266D3098008E6955 /* AddPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBFA74266D3098008E6955 /* AddPeopleViewController.swift */; };
 		86ECEAA6265FDD7E00465424 /* CreateOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ECEAA5265FDD7E00465424 /* CreateOptionViewModel.swift */; };
 		86EE497A265102BD003B0C25 /* CreateFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */; };
 		86EE498026511C9B003B0C25 /* NotiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE497F26511C9B003B0C25 /* NotiViewController.swift */; };
@@ -140,7 +145,7 @@
 		860B5C912652297200171ED3 /* CreateFirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstCell.swift; sourceTree = "<group>"; };
 		86102765266CA68C008DEFD0 /* InvitesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesTableViewCell.swift; sourceTree = "<group>"; };
 		86102766266CA68C008DEFD0 /* InvitesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvitesTableViewCell.xib; sourceTree = "<group>"; };
-		8610276B266CB713008DEFD0 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		8610276B266CB713008DEFD0 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		8614DE9B2652A56100DC0A9D /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		861885ED264E31FD0048D9AA /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Extension.swift"; path = "inviti/Extension/UITableView+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionEventTableViewCell.swift; sourceTree = "<group>"; };
@@ -191,6 +196,10 @@
 		867177512669171B00F96535 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		86717781266927F800F96535 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		8671778426692B6200F96535 /* StoryboardName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardName.swift; sourceTree = "<group>"; };
+		8672AB3E266CBEB300FB44B4 /* UpdateNotificationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNotificationVM.swift; sourceTree = "<group>"; };
+		8672AB43266CC2A200FB44B4 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		8672AB47266CC3F300FB44B4 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		8672AB4B266CC4C700FB44B4 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		867950C22651741C0041847C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		8680F09C26653D2C004B46D6 /* VotingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingViewModel.swift; sourceTree = "<group>"; };
 		8681A642265E87D4007CF61A /* SelectOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectOptionViewModel.swift; sourceTree = "<group>"; };
@@ -243,6 +252,7 @@
 		86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotificationPage.storyboard; sourceTree = "<group>"; };
 		86C9C66F265AA23B0074B2B5 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 		86D4F68326582D6E00C00062 /* PaddingableHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingableHelper.swift; sourceTree = "<group>"; };
+		86EBFA74266D3098008E6955 /* AddPeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPeopleViewController.swift; sourceTree = "<group>"; };
 		86ECEAA5265FDD7E00465424 /* CreateOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOptionViewModel.swift; sourceTree = "<group>"; };
 		86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstViewController.swift; sourceTree = "<group>"; };
 		86EE497F26511C9B003B0C25 /* NotiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiViewController.swift; sourceTree = "<group>"; };
@@ -318,6 +328,8 @@
 				861F6626264D5D9800A54C00 /* OptionCollectionViewCell.xib */,
 				861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */,
 				861885F5264E5FD60048D9AA /* OptionEventTableViewCell.xib */,
+				86C3FA64264BE22900480E4F /* Create.storyboard */,
+				86EBFA74266D3098008E6955 /* AddPeopleViewController.swift */,
 			);
 			path = CreateMainPage;
 			sourceTree = "<group>";
@@ -331,6 +343,7 @@
 				869F84092655357A00DA1D53 /* Meeting.swift */,
 				869F83F326551ACC00DA1D53 /* User.swift */,
 				860792ED2658E6760085ED7D /* SimpleUser.swift */,
+				8672AB43266CC2A200FB44B4 /* Notification.swift */,
 				8681A64D265E898B007CF61A /* OptionTime.swift */,
 			);
 			path = FinalModel;
@@ -433,17 +446,23 @@
 			path = Example;
 			sourceTree = "<group>";
 		};
+		8672AB41266CBEB800FB44B4 /* delete */ = {
+			isa = PBXGroup;
+			children = (
+				8610276B266CB713008DEFD0 /* OrderViewModel.swift */,
+			);
+			path = delete;
+			sourceTree = "<group>";
+		};
 		868649FF265B768100E7040F /* 處理中 */ = {
 			isa = PBXGroup;
 			children = (
-				86C3FA64264BE22900480E4F /* Create.storyboard */,
 				865A00ED265428FF0061A0E4 /* FurtureTableViewController.swift */,
 				86392C57264FA46C003F7EBC /* MeetingTableViewCell.swift */,
 				860A035C265BA31100067F23 /* CalendarNibCell.swift */,
 				860A035D265BA31100067F23 /* CalendarNibCell.xib */,
 				86AAB24E265A620600C40141 /* UserSelectedData.swift */,
 				86AAB24B265A61E200C40141 /* OptionsData.swift */,
-				86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */,
 				860A0364265BA7D900067F23 /* CTableViewController.swift */,
 				860A036B265BB2AD00067F23 /* CTableViewCell.swift */,
 			);
@@ -458,6 +477,7 @@
 				8694B6E6266532D500B9A489 /* VoteManager.swift */,
 				8688E3A6266C8E9800D41A6D /* SampleUserManager.swift */,
 				8665BE54265B6A2200408685 /* EventManager.swift */,
+				8672AB4B266CC4C700FB44B4 /* NotificationManager.swift */,
 				869F842526560C6900DA1D53 /* UserManager.swift */,
 			);
 			path = Network;
@@ -518,6 +538,7 @@
 		86B4740C2657E94100384C21 /* FirstStep */ = {
 			isa = PBXGroup;
 			children = (
+				86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */,
 				860B5C912652297200171ED3 /* CreateFirstCell.swift */,
 				86B474092657E93B00384C21 /* Switcher.swift */,
 			);
@@ -554,9 +575,11 @@
 		86C3FA5D264BDDE200480E4F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8672AB41266CBEB800FB44B4 /* delete */,
 				86A6620B2669E68400DBB799 /* LoginViewModel.swift */,
 				8680F09C26653D2C004B46D6 /* VotingViewModel.swift */,
-				8610276B266CB713008DEFD0 /* NotificationViewModel.swift */,
+				8672AB3E266CBEB300FB44B4 /* UpdateNotificationVM.swift */,
+				8672AB47266CC3F300FB44B4 /* NotificationViewModel.swift */,
 				8664422226600CFD00CE0CFA /* VoteViewModel.swift */,
 				868DA03E26652E7600E53722 /* OptionViewModel.swift */,
 				8681A642265E87D4007CF61A /* SelectOptionViewModel.swift */,
@@ -754,6 +777,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8672AB44266CC2A200FB44B4 /* Notification.swift in Sources */,
 				8618860C264E78160048D9AA /* CreateSecondVC.swift in Sources */,
 				869F8434265613DD00DA1D53 /* MeetingViewModel.swift in Sources */,
 				8632C7702668E6A5004D5D3A /* LoginViewController.swift in Sources */,
@@ -772,6 +796,9 @@
 				86102767266CA68C008DEFD0 /* InvitesTableViewCell.swift in Sources */,
 				86A67D032667C58500E2F174 /* EditSuccessVC.swift in Sources */,
 				869F842626560C6900DA1D53 /* UserManager.swift in Sources */,
+				8672AB48266CC3F300FB44B4 /* NotificationViewModel.swift in Sources */,
+				8672AB4C266CC4C800FB44B4 /* NotificationManager.swift in Sources */,
+				86EBFA75266D3098008E6955 /* AddPeopleViewController.swift in Sources */,
 				867950C32651741C0041847C /* String+Extension.swift in Sources */,
 				86EE497A265102BD003B0C25 /* CreateFirstViewController.swift in Sources */,
 				869F844A26561F7000DA1D53 /* CreateMeetingViewModel.swift in Sources */,
@@ -817,9 +844,10 @@
 				868DA03F26652E7600E53722 /* OptionViewModel.swift in Sources */,
 				861A626C2667AD420002EFD9 /* CreateEventViewModel.swift in Sources */,
 				86824A42265ABFDC00BD706D /* UILabel+Extension.swift in Sources */,
+				8672AB3F266CBEB300FB44B4 /* UpdateNotificationVM.swift in Sources */,
 				86406555264D98D6003C756D /* TabBarController.swift in Sources */,
 				860B5C922652297200171ED3 /* CreateFirstCell.swift in Sources */,
-				8610276C266CB713008DEFD0 /* NotificationViewModel.swift in Sources */,
+				8610276C266CB713008DEFD0 /* OrderViewModel.swift in Sources */,
 				8694B6E7266532D500B9A489 /* VoteManager.swift in Sources */,
 				869F8405265534A800DA1D53 /* SelectedOption.swift in Sources */,
 				860B3BB32669E0DE008D5267 /* UserDefaultsName.swift in Sources */,

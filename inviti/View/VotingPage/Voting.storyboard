@@ -112,7 +112,7 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google Meet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hv0-lM-hMJ" customClass="PaddingableHelper" customModule="inviti" customModuleProvider="target">
-                                                <rect key="frame" x="170.5" y="292" width="73" height="17"/>
+                                                <rect key="frame" x="160.5" y="292" width="93" height="17"/>
                                                 <color key="backgroundColor" red="0.80076938210000004" green="0.58820343239999995" blue="0.4715760356" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="Yeh-KI-hnO"/>
@@ -998,7 +998,7 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google Meet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDJ-k3-NE3" customClass="PaddingableHelper" customModule="inviti" customModuleProvider="target">
-                                                <rect key="frame" x="170.5" y="292" width="73" height="17"/>
+                                                <rect key="frame" x="160.5" y="292" width="93" height="17"/>
                                                 <color key="backgroundColor" red="0.80076938210000004" green="0.58820343239999995" blue="0.4715760356" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="p3b-VR-01V"/>
@@ -1266,10 +1266,10 @@
             <size key="intrinsicContentSize" width="43" height="42"/>
         </designable>
         <designable name="NDJ-k3-NE3">
-            <size key="intrinsicContentSize" width="73" height="17"/>
+            <size key="intrinsicContentSize" width="93" height="23"/>
         </designable>
         <designable name="hv0-lM-hMJ">
-            <size key="intrinsicContentSize" width="73" height="17"/>
+            <size key="intrinsicContentSize" width="93" height="23"/>
         </designable>
     </designables>
     <resources>

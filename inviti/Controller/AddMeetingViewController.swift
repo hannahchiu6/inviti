@@ -15,6 +15,8 @@ class AddMeetingViewController: BaseViewController {
 
     weak var delegate: AddMeetingVCDelegate?
 
+    var notificationVM = UpdateNotificationVM()
+
     var viewModel = AddViewModel()
 
     @IBAction func searchMeetingID(_ sender: Any) {
@@ -46,6 +48,8 @@ class AddMeetingViewController: BaseViewController {
         self.viewModel.updateParticipants()
 
         delegate?.didtap()
+
+        notificationVM.createOwnerNotification(type: TypeName.vote.rawValue, meetingID: viewModel.meetingInfo.id, ownerID: viewModel.meetingInfo.ownerAppleID)
 
         self.navigationController?.pushViewController(voting, animated: true)
 

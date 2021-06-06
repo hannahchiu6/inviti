@@ -20,6 +20,8 @@ class VotingViewController: BaseViewController {
 
     let votingViewModel = VotingViewModel()
 
+    var notificationviewModel = UpdateNotificationVM()
+
     var meetingDataHandler: ( (Meeting) -> Void)?
     
     @IBOutlet weak var tableview: UITableView!
@@ -50,6 +52,8 @@ class VotingViewController: BaseViewController {
             self.meetingDataHandler?(self.meetingInfo)
         }
 
+        notificationviewModel.createOneNotification(type: TypeName.vote.rawValue, meetingID: self.meetingInfo.id)
+
     }
 
     override func viewDidLoad() {
@@ -66,7 +70,7 @@ class VotingViewController: BaseViewController {
 
         enableButton(userSelected: false)
 
-        votingViewModel.fetchVoteForYes(meetingID: meetingInfo.id)
+        votingViewModel.fetchVotedData(meetingID: meetingInfo.id)
 
         votingViewModel.optionViewModels.bind { [weak self] options in
 
