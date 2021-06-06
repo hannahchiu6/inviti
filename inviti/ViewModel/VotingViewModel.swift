@@ -82,8 +82,8 @@ class VotingViewModel {
         }
     }
 
-    func fetchVoteForYes(meetingID: String) {
-        VoteManager.shared.fetchVoteForYes(meetingID: meetingID) { [weak self] result in
+    func fetchVotedData(meetingID: String) {
+        VoteManager.shared.fetchVotedData(meetingID: meetingID) { [weak self] result in
 
             switch result {
 

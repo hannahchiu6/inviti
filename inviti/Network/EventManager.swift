@@ -1,5 +1,5 @@
 //
-//  eventkManager.swift
+//  EventkManager.swift
 //  inviti
 //
 //  Created by Hannah.C on 20.05.21.
