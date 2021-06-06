@@ -130,6 +130,38 @@ class UserManager {
         }
     }
 
+    func fetchOneUser(userID: String, completion: @escaping
+                    (Result<User, Error>) -> Void) {
+        let docRef = db.collection("users")
+            .document(userID)
+
+        docRef.getDocument { document, error in
+
+            let result = Result {
+              try document?.data(as: User.self)
+            }
+
+                switch result {
+
+                case .success(let user):
+                    if let user = user {
+
+                        completion(.success(user))
+
+                    } else {
+
+                        print("User does not exist")
+
+                    }
+                case .failure(let error):
+
+                    print("Error decoding city: \(error)")
+
+                    completion(.failure(error))
+                }
+            }
+        }
+
     func didLoginBefore (completion: @escaping
                     (Result<[User], Error>) -> Void) {
         let docRef = db.collection("users")

@@ -17,6 +17,8 @@ class UpdateNotificationVM {
 
     var notificationViewModel = NotificationViewModel(model: Notification(id: "", meetingID: "", eventID: "", participantID: "", createdTime: 0, type: ""))
 
+    var userViewModel = UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: []))
+
     var notification: Notification = Notification(id: "", meetingID: "", eventID: "", participantID: "", createdTime: 0, type: "")
 
     var voteViewModel = VoteViewModel(model: SelectedOption(isSelected: false, selectedUser: ""))
@@ -81,6 +83,52 @@ class UpdateNotificationVM {
         }
     }
 
+    func fetchUserData(userID: String) {
+
+        UserManager.shared.fetchOneUser(userID: userID) { [weak self] result in
+
+            switch result {
+
+            case .success(let user):
+
+                self?.setUser(user)
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
+    func fetchOneMeeitngData(meetingID: String) {
+
+        NetworkManager.shared.fetchOneMeeting(meetingID: meetingID) { [weak self] result in
+
+            switch result {
+
+            case .success(let meeting):
+
+                self?.setMeeting(meeting)
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
+
+    func convertUserToViewModel(from user: User) -> UserViewModel {
+
+        let viewModel = UserViewModel(model: user)
+
+        return viewModel
+    }
+
+    func setUser(_ user: User) {
+        userViewModel = convertUserToViewModel(from: user)
+    }
+
     func convertNotificationsToViewModels(from notifications: [Notification]) -> [NotificationViewModel] {
         var viewModels = [NotificationViewModel]()
         for notification in notifications {
@@ -109,6 +157,15 @@ class UpdateNotificationVM {
         self.notification.meetingID = meetingID
 
         create(with: ownerID, notification: &notification)
+    }
+
+    func createInviteNotification(type: String, meetingID: String, participantID: String) {
+
+        self.notification.type = type
+
+        self.notification.meetingID = meetingID
+
+        create(with: participantID, notification: &notification)
     }
 
     func createParticipantsNotification(type: String, peopleID: [String], event: Event) {
@@ -146,10 +203,12 @@ class UpdateNotificationVM {
             case .success:
 
                 print("onTapCreate notification, success")
+                INProgressHUD.showSuccess(text: "送出通知")
 
             case .failure(let error):
 
                 print("create notification.failure: \(error)")
+                INProgressHUD.showFailure(text: "找無此用戶")
             }
         }
     }
@@ -319,23 +378,6 @@ class UpdateNotificationVM {
         let sorted = vms.sorted { $0.selectedOptions!.count > $1.selectedOptions!.count }
 
         return sorted
-    }
-
-    func fetchOneMeeitngData(meetingID: String) {
-
-        NetworkManager.shared.fetchOneMeeting(meetingID: meetingID) { [weak self] result in
-
-            switch result {
-
-            case .success(let meeting):
-
-                self?.setMeeting(meeting)
-
-            case .failure(let error):
-
-                print("fetchData.failure: \(error)")
-            }
-        }
     }
 
     func convertMeetingToViewModels(from meeting: Meeting) -> [MeetingViewModel] {
