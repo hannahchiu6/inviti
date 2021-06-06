@@ -40,7 +40,6 @@ class AddViewModel {
         }
     }
 
-
     func updateParticipants() {
 
         let db = Firestore.firestore()
@@ -59,6 +58,27 @@ class AddViewModel {
         }
 
     }
+
+    func addSearchParticipants(meetingID: String, text: String) {
+
+        let db = Firestore.firestore()
+
+            db.collection("meetings")
+                .document(meetingID)
+                .updateData([
+                    "participants": FieldValue.arrayUnion([text])
+                ]) { err in
+
+                if let err = err {
+                    print("Failed to update participants")
+
+                } else {
+                    print("Participant ID has been updated!")
+                }
+        }
+
+    }
+
 
 
     func onRefresh() {

@@ -61,7 +61,7 @@ class CreateFirstViewController: BaseViewController {
 
     @IBAction func invite(_ sender: Any) {
 
-      performSegue
+      performSegue(withIdentifier: "addPeopleSegue", sender: nil)
     }
     
     @IBOutlet weak var successView: UIView!
@@ -142,6 +142,9 @@ class CreateFirstViewController: BaseViewController {
 
             controller.meetingID = meetingID
             controller.viewModel = createMeetingViewModel
+        } else if segue.identifier == "addPeopleSegue" {
+            let controller = segue.destination as! AddPeopleViewController
+            controller.meetingID = meetingID
 
         }
     }

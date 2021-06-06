@@ -19,9 +19,9 @@ class AddPeopleViewController: BaseViewController {
 
     var viewModel = AddViewModel()
 
-    @IBAction func searchMeetingID(_ sender: Any) {
-        
-    }
+    var meetingID: String?
+
+    var userUID = UserDefaults.standard.value(forKey: "uid")
 
     @IBOutlet weak var searchField: UITextField! {
         didSet {
@@ -32,6 +32,8 @@ class AddPeopleViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        notificationVM.fetchOneMeeitngData(meetingID: meetingID ?? "")
+
     }
 
     @IBAction func returnButton(_ sender: UIButton) {
@@ -39,16 +41,24 @@ class AddPeopleViewController: BaseViewController {
     }
 
     @IBAction func  sendInviteButton(_ sender: UIButton) {
+
+        let type = TypeName.invite.rawValue
+
+        let participantID = notificationVM.userViewModel.id
+
+        notificationVM.createInviteNotification(type: type, meetingID: meetingID as! String, participantID: participantID as! String)
+
+        viewModel.addSearchParticipants(meetingID: meetingID ?? "", text: participantID)
     }
 
-
     @IBAction func goToShare(_ sender: Any) {
-        if let name = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue),
-           let meetingSubject = createMeetingViewModel.meeting.subject {
 
-        let message = "您的好友 \(name) 邀請您參加 \(String(describing: meetingSubject))，來 inviti 票選時間吧！打開 APP 輸入活動 ID 即可參與投票 👉🏻 \(meetingID!)"
-               //Set the link to share.
-//               if let link = NSURL(string: "http://yoururl.com") {
+        let name = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue) as! String
+
+        let meetingSubject = notificationVM.meetingViewModel.subject
+
+        let message = "您的好友 \(name) 邀請您參加 \(meetingSubject))，來 inviti 票選時間吧！打開 APP 輸入活動 ID 即可參與投票 👉🏻 \(meetingID!)"
+
        let objectsToShare = [message]
 
         let ac = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
@@ -66,7 +76,6 @@ class AddPeopleViewController: BaseViewController {
         }
 
         present(ac, animated: true, completion: nil)
-        }
     }
 
 
@@ -82,7 +91,7 @@ extension AddPeopleViewController: UITextFieldDelegate {
         guard let text = searchField.text else { return }
 
         if !text.isEmpty {
-            viewModel.fetchData(meetingID: text)
+            notificationVM.fetchUserData(userID: text)
         }
     }
 }

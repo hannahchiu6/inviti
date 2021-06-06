@@ -810,9 +810,7 @@
                         <outlet property="successView" destination="fg9-Uz-RUM" id="Ajf-BI-Nm3"/>
                         <outlet property="tableView" destination="Q2i-up-Xhp" id="FRN-A9-rcV"/>
                         <segue destination="BEt-er-ct9" kind="show" identifier="showSuccessSegue" id="4yW-uG-x1m"/>
-                        <segue destination="XuC-Xq-g0c" kind="popoverPresentation" identifier="addPeopleSegue" id="j0p-w4-PMx">
-                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
-                        </segue>
+                        <segue destination="XuC-Xq-g0c" kind="show" identifier="addPeopleSegue" id="j0p-w4-PMx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4z-hK-cSf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1120,14 +1118,14 @@
             <objects>
                 <viewController wantsFullScreenLayout="YES" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="XuC-Xq-g0c" customClass="AddPeopleViewController" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RJ5-Td-Xt8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SeD-Ye-9IT">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wav-RI-tKn">
-                                        <rect key="frame" x="57" y="211" width="300" height="420"/>
+                                        <rect key="frame" x="57" y="238" width="300" height="420"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="搜尋或分享" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJy-FP-cnU">
                                                 <rect key="frame" x="0.0" y="70" width="300" height="25"/>
