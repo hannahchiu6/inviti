@@ -9,12 +9,10 @@ import UIKit
 
 class VoteSuccessVC: BaseViewController {
 
-    @IBAction func returnMain(_ sender: Any) {
+    @IBAction func returnMain(_ sender:UIButton) {
        
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let meetingVC = storyboard.instantiateViewController(identifier: "tabBarVC")
-        guard let vc = meetingVC as? TabBarViewController else { return }
-        self.navigationController?.pushViewController(vc, animated: true)
+        popBack(sender)
+
     }
 
     override func viewDidLoad() {

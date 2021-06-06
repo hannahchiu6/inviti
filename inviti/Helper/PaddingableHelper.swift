@@ -4,6 +4,7 @@
 //
 //  Created by Hannah.C on 22.05.21.
 //
+// swiftlint:disable attributes computed_accessors_order
 
 import Foundation
 import UIKit

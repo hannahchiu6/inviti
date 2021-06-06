@@ -22,6 +22,8 @@ class VotingResultViewController: UIViewController {
 
     let votingViewModel = VotingViewModel()
 
+    let ownerAppleID: String = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as! String
+
     var meetingDataHandler: ( (Meeting) -> Void)?
     
     @IBOutlet weak var tableview: UITableView!
@@ -51,7 +53,16 @@ class VotingResultViewController: UIViewController {
             self.popupView.transform = .identity
 
             self.eventViewModel.create()
-            
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addToCalendarSegue" {
+            let controller = segue.destination as! CloseSuccessVC
+
+            controller.participants = meetingInfo.participants ?? []
+            controller.viewModel = eventViewModel
+
         }
     }
 
@@ -80,6 +91,7 @@ class VotingResultViewController: UIViewController {
     }
 
     func setUpView() {
+
         guard let url = meetingInfo.image else { return }
             let imageUrl = URL(string: String(url))
         eventImageBg.kf.setImage(with: imageUrl)
@@ -154,6 +166,8 @@ extension VotingResultViewController: UITableViewDelegate, UITableViewDataSource
         self.eventViewModel.onInfoChanged(text: info.subject!, location: info.location!, date: Int(selectedOption.optionTime.dateInt()) ?? 0)
 
         eventViewModel.onTimeChanged(selectedOption.startTime, endTime: selectedOption.endTime)
+
+//        eventViewModel.onOwnerChanged(text: ownerAppleID)
 
         isSelected = true
 

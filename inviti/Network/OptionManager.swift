@@ -21,7 +21,7 @@ class OptionManager {
         .document(meetingID)
         .collection("options")
         .order(by: "startTime", descending: false)
-        .getDocuments() { (querySnapshot, error) in
+        .getDocuments() { querySnapshot, error in
 
                 if let error = error {
 
@@ -54,7 +54,9 @@ class OptionManager {
 
         let document = db.collection("meetings")
             .document(meeting.id)
-            .collection("options").document()
+            .collection("options")
+            .document()
+
             option.id = document.documentID
 
         document.setData(option.toDict) { error in
@@ -74,7 +76,9 @@ class OptionManager {
 
         let document = db.collection("meetings")
             .document(meetingID)
-            .collection("options").document()
+            .collection("options")
+            .document()
+        
             option.id = document.documentID
 
         document.setData(option.toDict) { error in

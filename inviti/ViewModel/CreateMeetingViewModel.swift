@@ -15,7 +15,7 @@ class CreateMeetingViewModel {
     var meetingViewModel = MeetingViewModel(model: Meeting(
         id: "",
 //        owner: (UserManager.shared.user?.id)!,
-        owner: SimpleUser(id: "5gWVjg7xTHElu9p6Jkl1", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"),
+        owner: SimpleUser(id: "5gWVjg7xTHElu9p6Jkl1", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"), ownerAppleID: "",
         createdTime: 0,
         subject: "",
         location: "",
@@ -33,7 +33,7 @@ class CreateMeetingViewModel {
     var meeting: Meeting = Meeting(
         id: "",
 //        owner: (UserManager.shared.user?.id)!,
-        owner: SimpleUser(id: "5gWVjg7xTHElu9p6Jkl1", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"),
+        owner: SimpleUser(id: "5gWVjg7xTHElu9p6Jkl1", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"), ownerAppleID: "",
         createdTime: 0,
         subject: "",
         location: "",
@@ -48,12 +48,15 @@ class CreateMeetingViewModel {
         deadlineTag: 0
     )
 
+    var onSubjectAdded: ((String) -> Void)?
+
     func onIDChanged(_ id: String) {
         self.meeting.id = id
     }
 
     func onSubjectChanged(text subject: String) {
         self.meeting.subject = subject
+        self.onSubjectAdded?(subject)
     }
 
     func onNotesChanged(text notes: String) {
@@ -165,8 +168,6 @@ class CreateMeetingViewModel {
         var viewModels = [MeetingViewModel]()
         let viewModel = MeetingViewModel(model: meeting)
         viewModels.append(viewModel)
-        print("----MainVMController ID ---  @ convertMeetingToViewModel---")
-        print(viewModel.id)
 
         return viewModels
     }
@@ -183,31 +184,31 @@ class CreateMeetingViewModel {
         return viewModel
     }
 
-    func onTapCreate() {
-
-        if hasUserInMeeting() {
-            print("has user in meeting...")
-            create() // MARK: check which function this call is
-
-        } else {
-            print("login...")
-            SimpleManager.shared.login() { [weak self] result in
-                // MARK: - put your id into login function
-                switch result {
-
-                case .success(let user):
-
-                    print("login success")
-                    self?.create(with: user) // MARK: check which function this call is
-
-                case .failure(let error):
-
-                    print("login.failure: \(error)")
-                }
-
-            }
-        }
-    }
+//    func onTapCreate() {
+//
+//        if hasUserInMeeting() {
+//            print("has user in meeting...")
+//            create() // MARK: check which function this call is
+//
+//        } else {
+//            print("login...")
+//            UserManager.shared.didLoginBefore { [weak self] result in
+//                // MARK: - put your id into login function
+//                switch result {
+//
+//                case .success(let user):
+//
+//                    print("login success")
+//                    self?.create(with: user) // MARK: check which function this call is
+//
+//                case .failure(let error):
+//
+//                    print("login.failure: \(error)")
+//                }
+//
+//            }
+//        }
+//    }
 
 
     func create(with meeting: inout Meeting) {

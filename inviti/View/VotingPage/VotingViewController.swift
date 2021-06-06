@@ -10,7 +10,7 @@ import Kingfisher
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class VotingViewController: UIViewController {
+class VotingViewController: BaseViewController {
 
     let cellSpacingHeight: CGFloat = 5
 
@@ -32,11 +32,13 @@ class VotingViewController: UIViewController {
 
     @IBOutlet weak var popupView: UIView!
 
+    @IBOutlet weak var confirmVoteBtnView: UIButton!
+
     @IBOutlet weak var meetingNotes: UILabel!
 
     @IBOutlet weak var eventImageBg: UIImageView!
 
-    @IBAction func returnToMain(_ sender: Any) {
+    @IBAction func returnToMain(_ sender: UIButton) {
 
         navigationController?.popViewController(animated: true)
     }
@@ -62,23 +64,34 @@ class VotingViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.gray
         self.navigationController?.navigationBar.backgroundColor = UIColor.clear
 
-//        optionViewModels.fetchData(meetingID: meetingInfo.id)
+        enableButton(userSelected: false)
 
-
-//        optionViewModels.optionViewModels.bind { [weak self] options in
-//
-//            self?.optionViewModels.onRefresh()
-//            self?.tableview.reloadData()
-//        }
         votingViewModel.fetchVoteForYes(meetingID: meetingInfo.id)
 
         votingViewModel.optionViewModels.bind { [weak self] options in
 
             self?.votingViewModel.onRefresh()
             self?.tableview.reloadData()
+
         }
 
         self.tabBarController?.tabBar.isHidden = true
+    }
+
+    func enableButton(userSelected: Bool) {
+
+        if userSelected {
+
+            confirmVoteBtnView.isEnabled = true
+            confirmVoteBtnView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+
+        } else {
+
+            confirmVoteBtnView.isEnabled = false
+            confirmVoteBtnView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+
+        }
+
     }
 
     func setUpView() {
@@ -114,28 +127,30 @@ extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let index = indexPath.row
-        
-            let cell = tableView.dequeueReusableCell(withIdentifier: "votingTableViewCell", for: indexPath) as! VotingTableViewCell
 
-            cell.votingViewModel = self.votingViewModel
+        let theOptionVM = votingViewModel.optionViewModels.value[index]
 
-            cell.setupVotingCell(model: votingViewModel.optionViewModels.value[index], index: index)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "votingTableViewCell", for: indexPath) as! VotingTableViewCell
 
-            cell.meetingID = self.meetingInfo.id
+        cell.delegate = self
 
-            cell.optionID = votingViewModel.optionViewModels.value[index].id
+        cell.votingViewModel = self.votingViewModel
 
-//            cell.optionViewModels = self.optionViewModels
-//
-//            cell.setupVotingCell(model: optionViewModels.optionViewModels.value[index], index: index)
-//
-//            cell.meetingID = self.meetingInfo.id
-//
-//            cell.votingViewModel = self.votingViewModel
-//
-//            cell.optionID = optionViewModels.optionViewModels.value[index].id
+        cell.setupVotingCell(model: theOptionVM, index: index)
 
-            return cell
+        cell.meetingID = self.meetingInfo.id
+
+        cell.optionID = theOptionVM.id
+
+        return cell
 
     }
+}
+
+extension VotingViewController: VotingTableViewCellDelegate {
+    func didVote(_ votedOne: Bool) {
+        enableButton(userSelected: votedOne)
+    }
+
+
 }

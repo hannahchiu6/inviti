@@ -313,7 +313,7 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
                 }
         }
 
-            let selectedOptionDays = selectedOptionViewModel.createDateData(in: selectedOptionViewModel.optionViewModels.value ?? [])
+        let selectedOptionDays = selectedOptionViewModel.createDateData(in: selectedOptionViewModel.optionViewModels.value )
 
         cell.bookingButton.setImage(UIImage(systemName: "minus"), for: .selected)
         cell.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)

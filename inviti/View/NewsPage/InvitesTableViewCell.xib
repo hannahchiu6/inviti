@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="invitesTableViewCell" rowHeight="111" id="KGk-i7-Jjw" customClass="InvitesTableViewCell" customModule="inviti" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="468" height="111"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="468" height="111"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_photo" translatesAutoresizingMaskIntoConstraints="NO" id="vbn-gr-ftJ">
+                        <rect key="frame" x="24" y="24" width="65" height="65"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="65" id="lRz-TV-7QY"/>
+                            <constraint firstAttribute="height" constant="65" id="xIO-ny-K9l"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ip-h7-2kg" userLabel="Delete Button">
+                        <rect key="frame" x="424" y="16" width="20" height="20"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="BGC-PG-Ul0"/>
+                            <constraint firstAttribute="width" constant="20" id="rhR-e9-D0H"/>
+                        </constraints>
+                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal">
+                            <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Moon 邀請你參加這個活動的投票Moon 邀請你參加這個活動的投票" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsC-sg-SGe">
+                        <rect key="frame" x="103" y="35" width="283" height="42"/>
+                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="FsC-sg-SGe" secondAttribute="trailing" constant="60" id="C9i-eS-Qpy"/>
+                    <constraint firstItem="6Ip-h7-2kg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="D7K-oz-d6H"/>
+                    <constraint firstItem="FsC-sg-SGe" firstAttribute="leading" secondItem="vbn-gr-ftJ" secondAttribute="trailing" constant="16" id="T7V-yS-5FD"/>
+                    <constraint firstItem="vbn-gr-ftJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="bwI-b3-SQV"/>
+                    <constraint firstAttribute="bottom" secondItem="vbn-gr-ftJ" secondAttribute="bottom" constant="24" id="dV0-AG-5UD"/>
+                    <constraint firstAttribute="trailing" secondItem="6Ip-h7-2kg" secondAttribute="trailing" constant="24" id="mGF-7m-gCD"/>
+                    <constraint firstItem="vbn-gr-ftJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="vEz-qK-K3e"/>
+                    <constraint firstItem="FsC-sg-SGe" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yFf-Ly-Kh0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="invitesLabel" destination="FsC-sg-SGe" id="Dl7-we-Js9"/>
+                <outlet property="ownerImage" destination="vbn-gr-ftJ" id="DiV-PP-5ik"/>
+            </connections>
+            <point key="canvasLocation" x="110.14492753623189" y="87.388392857142847"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="profile_photo" width="200" height="133"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+    </resources>
+</document>

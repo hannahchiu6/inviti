@@ -6,25 +6,36 @@
 //
 
 import UIKit
-import JGProgressHUD
 
 class ShareSuccessVC: BaseViewController {
     
     @IBOutlet weak var returnBtnView: UIButton!
 
-//    override func backToRoot(_ sender: Any) {
+    var meetingID: String!
+
+    var meetingSubject: String?
+
+    var viewModel = CreateMeetingViewModel()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        viewModel.onSubjectAdded = { [weak self] subject in
+
+            self?.meetingSubject = subject
+        }
+    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
 //
-//        backToRoot(completion: {
+//        createMeetingViewModel.fetchOneMeeitngData(meetingID: meetingID)
 //
-//            let appdelegate = UIApplication.shared.delegate as? AppDelegate
+//        meetingSubject = createMeetingViewModel.meetingViewModels.value[0].subject
 //
-//            let root = appdelegate?.window?.rootViewController as? TabBarViewController
-//
-//            root?.selectedIndex = 0
-//        })
 //    }
 
-    @IBAction func returnMain(_ sender: Any) {
+
+    @IBAction func returnMain(_ sender: UIButton) {
 
 //        let storyboard: UIStoryboard = UIStoryboard(name: "Meeting", bundle: nil)
 //        let meetingVC = storyboard.instantiateViewController(identifier: "MeetingVC")
@@ -32,7 +43,7 @@ class ShareSuccessVC: BaseViewController {
 //        self.navigationController?.pushViewController(vc, animated: true)
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let meetingVC = storyboard.instantiateViewController(identifier: "tabBarVC")
+        let meetingVC = storyboard.instantiateViewController(identifier: "TabBarVC")
         guard let vc = meetingVC as? TabBarViewController else { return }
         self.navigationController?.pushViewController(vc, animated: true)
 
@@ -40,32 +51,35 @@ class ShareSuccessVC: BaseViewController {
 
     @IBAction func shareLinkBtn(_ sender: Any) {
 
-        let shareURL = URL(string: "http://www.inviti.tw")
-        let items:[Any] = [shareURL as Any]
+        if let name = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue),
+           let subject = meetingSubject {
 
-        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            let message = "您的好友 \(name) 邀請您參加 \(subject)，來 inviti 票選時間吧！打開 APP 輸入活動 ID 即可參與投票 👉🏻 \(meetingID!)"
+
+               //Set the link to share.
+//               if let link = NSURL(string: "http://yoururl.com") {
+
+        let objectsToShare = [message]
+
+        let ac = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
 
         ac.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
 
             if completed {
 
-
-                LKProgressHUD.showSuccess(text: "複製成功")
-
+                INProgressHUD.showSuccess(text: "發送邀請成功")
                 return
 
             } else {
-                LKProgressHUD.showFailure()
+                INProgressHUD.showFailure(text: "請稍後再試")
             }
         }
 
         present(ac, animated: true, completion: nil)
 
+        }
     }
- 
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-    }
+ 
 
 }

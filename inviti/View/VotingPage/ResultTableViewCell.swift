@@ -35,7 +35,6 @@ class ResultTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-
     @IBOutlet weak var checkCircle: UIImageView!
 
     @IBOutlet weak var emptyCircle: UIImageView!
@@ -47,7 +46,6 @@ class ResultTableViewCell: UITableViewCell {
     @IBOutlet weak var valueLabel: UILabel!
 
     @IBOutlet weak var cellBackgroundView: UIView!
-
 
     func setupVotingCell(model: OptionViewModel, index: Int) {
 

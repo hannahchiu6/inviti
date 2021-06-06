@@ -25,13 +25,18 @@ class TabCalendarViewController: UIViewController {
 
     var viewModel = CalendarViewModel()
 
-    var eventViewModels: [EventViewModel]?{
+    var eventViewModels: [EventViewModel]? {
         didSet {
             self.calendarTableView.calendar.reloadData()
         }
     }
 
     @IBOutlet weak var calendarTableView: JKCalendarTableView!
+
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.fetchData()
+        calendarTableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,8 +62,6 @@ class TabCalendarViewController: UIViewController {
                 self?.calendarTableView.reloadData()
             }
         }
-
-        viewModel.fetchData()
 
         self.tabBarController?.tabBar.isHidden = false
 
@@ -90,7 +93,7 @@ extension TabCalendarViewController: UITableViewDelegate, UITableViewDataSource 
 
         let theDay = Date.intDateFormatter.string(from: self.selectDay.date)
 
-        let selectedDays = viewModel.createIntDateData(in: viewModel.eventViewModels.value ?? [])
+        let selectedDays = viewModel.createIntDateData(in: viewModel.eventViewModels.value)
 
         if selectedDays.contains(Int(theDay)) {
 
@@ -171,13 +174,13 @@ extension TabCalendarViewController: JKCalendarDataSource {
 
         let marksDay = viewModel.createMarksData()
 
-        if selectDay == month{
+        if selectDay == month {
             marks.append(JKCalendarMark(type: .circle,
                                         day: selectDay,
                                         color: markColor))
         }
 
-        if today == month{
+        if today == month {
             marks.append(JKCalendarMark(type: .hollowCircle,
                                         day: today,
                                         color: todayColor))

@@ -12,7 +12,9 @@ class CreateEventViewModel {
 
     var eventViewModels = Box([EventViewModel]())
 
-    var event: Event = Event(id: "", owner: SimpleUser(id: "5gWVjg7xTHElu9p6Jkl1", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"), startTime: 0, endTime: 0, date: 0, subject: "", location: "")
+    var ownerID = UserDefaults.standard.value(forKey: "uid")
+
+    var event: Event = Event(id: "", startTime: 0, endTime: 0, date: 0, subject: "", location: "")
 
     func onInfoChanged(text subject: String, location: String, date: Int) {
         self.event.subject = subject
@@ -25,10 +27,6 @@ class CreateEventViewModel {
         self.event.endTime = endTime
     }
 
-    func onOwnerChanged(_ owner: SimpleUser) {
-        self.event.owner = owner
-    }
-
     var refreshView: (() -> Void)?
 
     var scrollToTop: (() -> Void)?
@@ -36,10 +34,13 @@ class CreateEventViewModel {
     var onEventCreated: (() -> Void)?
 
     func convertEventsToViewModels(from events: [Event]) -> [EventViewModel] {
-        var viewModels = [EventViewModel]()
+        let viewModels = [EventViewModel]()
+
+        var newVMs = viewModels.sorted(by: { $0.startTime  > $1.startTime })
+
         for event in events {
             let viewModel = EventViewModel(model: event)
-            viewModels.append(viewModel)
+            newVMs.append(viewModel)
         }
         return viewModels
     }
@@ -50,7 +51,7 @@ class CreateEventViewModel {
 
     func fetchData() {
 
-        EventManager.shared.fetchEvents { [weak self] result in
+        EventManager.shared.fetchSubEvents { [weak self] result in
 
             switch result {
 
@@ -65,7 +66,6 @@ class CreateEventViewModel {
         }
     }
 
-
     func onRefresh() {
 
         self.refreshView?()
@@ -76,12 +76,27 @@ class CreateEventViewModel {
         self.scrollToTop?()
     }
 
+    func createForParticipants(peopleID: [String]) {
+        EventManager.shared.createParticipantsEvent(peopleID: peopleID, event: &event) { result in
 
-    func create(with user: SimpleUser? = nil) {
+            switch result {
 
-        if let user = user {
-            event.owner = user
+            case .success:
+
+                print("create event for everyone, success!")
+
+                INProgressHUD.showSuccess(text: "分享成功")
+
+            case .failure(let error):
+
+                INProgressHUD.showFailure(text: "請稍後再試")
+
+                print("create event failure: \(error)")
+            }
         }
+    }
+
+    func create() {
 
         create(with: &event)
     }
@@ -94,11 +109,12 @@ class CreateEventViewModel {
             case .success:
 
                 print("onTapCreate event, success")
+                
                 self.onEventCreated?()
 
             case .failure(let error):
 
-                print("createMeeting.failure: \(error)")
+                print("create event failure: \(error)")
             }
         }
     }
