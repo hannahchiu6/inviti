@@ -29,6 +29,7 @@
 		861A626C2667AD420002EFD9 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A626B2667AD420002EFD9 /* CreateEventViewModel.swift */; };
 		861B402226577AF9004D1763 /* OptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861B402126577AF8004D1763 /* OptionsCell.swift */; };
 		861B402526577B66004D1763 /* OptionalSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861B402426577B66004D1763 /* OptionalSettingsCell.swift */; };
+		861C85D1266E2E7B0015F7D4 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861C85D0266E2E7B0015F7D4 /* PrivacyViewController.swift */; };
 		861F65DC264D13E000A54C00 /* TabCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F65DB264D13E000A54C00 /* TabCalendarViewController.swift */; };
 		861F65E2264D1F8700A54C00 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861F65E0264D1F8700A54C00 /* EventTableViewCell.swift */; };
 		861F65E3264D1F8700A54C00 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861F65E1264D1F8700A54C00 /* EventTableViewCell.xib */; };
@@ -156,6 +157,7 @@
 		861A626B2667AD420002EFD9 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
 		861B402126577AF8004D1763 /* OptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCell.swift; sourceTree = "<group>"; };
 		861B402426577B66004D1763 /* OptionalSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalSettingsCell.swift; sourceTree = "<group>"; };
+		861C85D0266E2E7B0015F7D4 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		861F65DB264D13E000A54C00 /* TabCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCalendarViewController.swift; sourceTree = "<group>"; };
 		861F65E0264D1F8700A54C00 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		861F65E1264D1F8700A54C00 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				869F6E7F264CE10A004681A2 /* NavigationController.swift */,
 				86406554264D98D6003C756D /* TabBarController.swift */,
 				8632C76F2668E6A5004D5D3A /* LoginViewController.swift */,
+				861C85D0266E2E7B0015F7D4 /* PrivacyViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				868DA03F26652E7600E53722 /* OptionViewModel.swift in Sources */,
 				861A626C2667AD420002EFD9 /* CreateEventViewModel.swift in Sources */,
 				86824A42265ABFDC00BD706D /* UILabel+Extension.swift in Sources */,
+				861C85D1266E2E7B0015F7D4 /* PrivacyViewController.swift in Sources */,
 				8672AB3F266CBEB300FB44B4 /* UpdateNotificationVM.swift in Sources */,
 				86406555264D98D6003C756D /* TabBarController.swift in Sources */,
 				860B5C922652297200171ED3 /* CreateFirstCell.swift in Sources */,

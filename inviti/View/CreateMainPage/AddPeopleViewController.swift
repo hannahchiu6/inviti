@@ -7,13 +7,7 @@
 
 import UIKit
 
-protocol AddPeopleVCDelegate: AnyObject {
-    func didtap()
-}
-
-class AddPeopleViewController: BaseViewController {
-
-    weak var delegate: AddMeetingVCDelegate?
+class AddPeopleViewController: UIViewController {
 
     var notificationVM = UpdateNotificationVM()
 

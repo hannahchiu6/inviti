@@ -12,7 +12,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 
-class CreateFirstViewController: BaseViewController {
+class CreateFirstViewController: UIViewController {
 
     var meetingInfo: Meeting!
 
@@ -59,11 +59,6 @@ class CreateFirstViewController: BaseViewController {
 
     @IBOutlet weak var inviteBtnView: UIButton!
 
-    @IBAction func invite(_ sender: Any) {
-
-      performSegue(withIdentifier: "addPeopleSegue", sender: nil)
-    }
-    
     @IBOutlet weak var successView: UIView!
 
     @IBAction func confrim(_ sender: Any) {
@@ -81,6 +76,11 @@ class CreateFirstViewController: BaseViewController {
 
             createMeetingViewModel.update(with: meetingInfo)
         }
+    }
+
+    @IBAction func invitePeopleButton(_ sender: Any) {
+
+        performSegue(withIdentifier: "addPeopleSegue", sender: nil)
     }
 
     @IBAction func goCalendar(_ sender: Any) {
@@ -172,6 +172,7 @@ class CreateFirstViewController: BaseViewController {
                 self.showButtonView.isEnabled = false
                 self.showButtonView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
            }
+
         } else {
             enableShareBtn()
             self.showButtonView.isEnabled = true

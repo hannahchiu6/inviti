@@ -43,8 +43,7 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
                                         </state>
                                         <connections>
-                                            <action selector="deleteMeeting:" destination="klU-5H-enz" eventType="touchUpInside" id="lfF-iQ-IOu"/>
-                                            <action selector="popBack:" destination="klU-5H-enz" eventType="touchUpInside" id="A03-HJ-AC7"/>
+                                            <action selector="deleteMeeting:" destination="klU-5H-enz" eventType="touchUpInside" id="cPa-nT-Pqz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJg-Xc-Lre">
@@ -58,7 +57,7 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
                                         </state>
                                         <connections>
-                                            <action selector="invite:" destination="klU-5H-enz" eventType="touchUpInside" id="QGg-vb-KaL"/>
+                                            <action selector="invitePeopleButton:" destination="klU-5H-enz" eventType="touchUpInside" id="4bv-bc-Kax"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -805,12 +804,12 @@
                     <navigationItem key="navigationItem" id="RAC-Qq-XSZ"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="inviteBtnView" destination="CJg-Xc-Lre" id="1WW-Hj-Zh1"/>
+                        <outlet property="inviteBtnView" destination="CJg-Xc-Lre" id="2lB-Aj-pPq"/>
                         <outlet property="showButtonView" destination="IBg-sw-Ql6" id="zCg-d2-BCV"/>
                         <outlet property="successView" destination="fg9-Uz-RUM" id="Ajf-BI-Nm3"/>
                         <outlet property="tableView" destination="Q2i-up-Xhp" id="FRN-A9-rcV"/>
                         <segue destination="BEt-er-ct9" kind="show" identifier="showSuccessSegue" id="4yW-uG-x1m"/>
-                        <segue destination="XuC-Xq-g0c" kind="show" identifier="addPeopleSegue" animates="NO" id="j0p-w4-PMx"/>
+                        <segue destination="XuC-Xq-g0c" kind="presentation" identifier="addPeopleSegue" id="nlQ-vI-1h1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4z-hK-cSf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1337,7 +1336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DuS-6z-Br9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="673.91304347826087" y="490.84821428571428"/>
+            <point key="canvasLocation" x="868" y="488"/>
         </scene>
         <!--Create Third View Controller-->
         <scene sceneID="ILq-xV-4ui">
@@ -1583,18 +1582,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" navigationBarHidden="YES" id="cNv-Ky-Lxf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="3tR-Ph-OH3">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="Tcs-iG-YZF">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ArA-Hj-HhK">
-                                <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <state key="normal" image="xmark" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
-                                </state>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="3tR-Ph-OH3"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cG9-F9-MsF">
                         <autoresizingMask key="autoresizingMask"/>
