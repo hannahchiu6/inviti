@@ -125,7 +125,7 @@ class MainViewModel {
 
     func update(with meeting: Meeting) {
 
-        NetworkManager.shared.updateMeeting(meeting: meeting) { result in
+        NetworkManager.shared.updateMeeting(meetingID: meeting.id, meeting: meeting) { result in
 
             switch result {
 

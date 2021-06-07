@@ -25,7 +25,7 @@ class CreateMeetingViewModel {
         hiddenMeeting: false,
         deadlineMeeting: false,
 //        askInfo: AskInfo,
-        participants: ["aaa"],
+        participants: [],
         numOfParticipants: 0,
         deadlineTag: 0
     ))
@@ -55,32 +55,32 @@ class CreateMeetingViewModel {
     }
 
     func onSubjectChanged(text subject: String) {
-        self.meeting.subject = subject
+        self.meetingViewModel.meeting.subject = subject
         self.onSubjectAdded?(subject)
     }
 
     func onNotesChanged(text notes: String) {
-        self.meeting.notes = notes
+        self.meetingViewModel.meeting.notes = notes
     }
 
     func onLocationChanged(text location: String) {
-        self.meeting.location = location
+        self.meetingViewModel.meeting.location = location
     }
 
     func meetingDeadlineChanged(_ bool: Bool) {
-        self.meeting.deadlineMeeting = bool
+        self.meetingViewModel.meeting.deadlineMeeting = bool
     }
 
     func meetingSingleChanged(_ bool: Bool) {
-        self.meeting.singleMeeting = bool
+        self.meetingViewModel.meeting.singleMeeting = bool
     }
 
     func meetingHiddenChanged(_ bool: Bool) {
-        self.meeting.hiddenMeeting = bool
+        self.meetingViewModel.meeting.hiddenMeeting = bool
     }
 
     func onDeadlineTagChanged(_ day: Int) {
-        self.meeting.deadlineTag = day
+        self.meetingViewModel.meeting.deadlineTag = day
     }
 
     var onMeetingCreated: (() -> Void)?
@@ -147,14 +147,33 @@ class CreateMeetingViewModel {
 
     func update(with meeting: Meeting) {
 
-        NetworkManager.shared.updateMeeting(meeting: meeting) { result in
+        NetworkManager.shared.updateMeeting(meetingID: meeting.id, meeting: meeting) { result in
 
             switch result {
 
             case .success:
 
                 print("onTapCreate meeting, success")
-                self.onMeetingUpdated?()
+//                self.onMeetingUpdated?()
+
+            case .failure(let error):
+
+                print("createMeeting.failure: \(error)")
+            }
+        }
+
+    }
+
+    func updateSecond(meetingID: String) {
+
+        NetworkManager.shared.updateMeeting(meetingID: meetingID, meeting: self.meetingViewModel.meeting) { result in
+
+            switch result {
+
+            case .success:
+
+                print("onTapCreate meeting, success")
+//                self.onMeetingUpdated?()
 
             case .failure(let error):
 

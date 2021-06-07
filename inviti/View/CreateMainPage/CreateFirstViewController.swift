@@ -47,6 +47,7 @@ class CreateFirstViewController: UIViewController {
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let meetingVC = storyboard.instantiateViewController(identifier: "TabBarVC")
             guard let vc = meetingVC as? TabBarViewController else { return }
+            
             self.navigationController?.pushViewController(vc, animated: true)
 
         } else {
@@ -63,6 +64,7 @@ class CreateFirstViewController: UIViewController {
 
     @IBAction func confrim(_ sender: Any) {
 
+        // if true 代表是新增一個空的 meeting
         if meetingInfo == nil {
             
         UIView.animate(withDuration: 5.0, animations: { () -> Void in
@@ -72,9 +74,12 @@ class CreateFirstViewController: UIViewController {
 
         })} else {
 
-        performSegue(withIdentifier: "showSuccessSegue", sender: self)
+//            createMeetingViewModel.update(with: createMeetingViewModel.meeting)
 
-            createMeetingViewModel.update(with: meetingInfo)
+            createMeetingViewModel.updateSecond(meetingID: meetingID ?? "")
+            performSegue(withIdentifier: "showSuccessSegue", sender: self)
+
+
         }
     }
 
@@ -194,7 +199,7 @@ class CreateFirstViewController: UIViewController {
         }
 
     }
-
+    // option date
     func isDataGet() {
 
         let optionData = selectOptionViewModel.optionViewModels.value
@@ -289,15 +294,17 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
 
                 cell.setCell(model: createMeetingViewModel.meetingViewModel)
 
-                cell.viewModel = self.createMeetingViewModel.meetingViewModel
+//                cell.viewModel = self.createMeetingViewModel.meetingViewModel
 
             } else {
 
                 let data = createMeetingViewModel.meetingViewModels.value[indexPath.row]
 
+//                cell.createMeetingViewModel = createMeetingViewModel
+
                 cell.setCell(model: data)
 
-                cell.viewModel = data
+//                cell.viewModel = data
 
             }
 

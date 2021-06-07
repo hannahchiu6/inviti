@@ -203,20 +203,36 @@ class NetworkManager {
         }
     }
 
-    func updateMeeting(meeting: Meeting, completion: @escaping (Result<Meeting, Error>) -> Void) {
+    func updateMeeting(meetingID: String, meeting: Meeting, completion: @escaping (Result<Meeting, Error>) -> Void) {
 
+        let docRef = db.collection("meetings").document(meetingID)
 
-        _ = try? db.collection("meetings")
-                    .document(meeting.id)
-                    .setData(from: meeting) { err in
+        if let subject = meeting.subject,
+           let location = meeting.location,
+           let notes = meeting.notes {
+
+            docRef.updateData([
+                "subject": "\(subject)",
+                "location": "\(location)",
+                "notes": "\(notes)",
+                "singleMeeting": meeting.singleMeeting,
+                "deadlinTag": meeting.deadlineTag as Any,
+                "deadlineMeeting": meeting.deadlineMeeting,
+                "hiddenMeeting": meeting.hiddenMeeting
+
+            ]) { err in
 
                 if let err = err {
+
                     completion(.failure(err))
 
                 } else {
+
                     completion(.success(meeting))
-                    }
+
+                }
             }
+        }
     }
 
 
