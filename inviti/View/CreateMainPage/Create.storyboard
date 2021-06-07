@@ -805,10 +805,10 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="inviteBtnView" destination="CJg-Xc-Lre" id="2lB-Aj-pPq"/>
-                        <outlet property="showButtonView" destination="IBg-sw-Ql6" id="zCg-d2-BCV"/>
+                        <outlet property="showButtonView" destination="IBg-sw-Ql6" id="9Pt-Ca-ll7"/>
                         <outlet property="successView" destination="fg9-Uz-RUM" id="Ajf-BI-Nm3"/>
                         <outlet property="tableView" destination="Q2i-up-Xhp" id="FRN-A9-rcV"/>
-                        <segue destination="BEt-er-ct9" kind="show" identifier="showSuccessSegue" id="4yW-uG-x1m"/>
+                        <segue destination="BEt-er-ct9" kind="presentation" identifier="editSuccessSegue" id="4yW-uG-x1m"/>
                         <segue destination="XuC-Xq-g0c" kind="presentation" identifier="addPeopleSegue" id="nlQ-vI-1h1"/>
                     </connections>
                 </viewController>
@@ -1602,7 +1602,7 @@
         <!--Edit SuccessVC-->
         <scene sceneID="gyp-8d-nsB">
             <objects>
-                <viewController storyboardIdentifier="editPopVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="BEt-er-ct9" customClass="EditSuccessVC" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editPopVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="BEt-er-ct9" customClass="EditSuccessVC" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="coi-EK-qP4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

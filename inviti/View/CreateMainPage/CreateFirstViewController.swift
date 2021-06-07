@@ -70,14 +70,14 @@ class CreateFirstViewController: UIViewController {
         UIView.animate(withDuration: 5.0, animations: { () -> Void in
 
             self.successView.isHidden = false
-            self.createMeetingViewModel.update(with: self.createMeetingViewModel.meeting)
+            self.createMeetingViewModel.updateSecond(meetingID: self.meetingID ?? "")
 
         })} else {
 
 //            createMeetingViewModel.update(with: createMeetingViewModel.meeting)
 
             createMeetingViewModel.updateSecond(meetingID: meetingID ?? "")
-            performSegue(withIdentifier: "showSuccessSegue", sender: self)
+            performSegue(withIdentifier: "editSuccessSegue", sender: self)
 
 
         }
@@ -156,6 +156,12 @@ class CreateFirstViewController: UIViewController {
             let controller = segue.destination as! AddPeopleViewController
 
             controller.meetingID = meetingID
+
+        } else if segue.identifier == "editSuccessSegue" {
+
+            let controller = segue.destination as! EditSuccessVC
+
+            controller.delegate = self
 
         }
     }
@@ -242,7 +248,7 @@ class CreateFirstViewController: UIViewController {
         let secondVC = storyboard?.instantiateViewController(identifier: "CMeetingVC")
            guard let second = secondVC as? CTableViewController else { return }
 
-        createMeetingViewModel.update(with: createMeetingViewModel.meeting)
+        createMeetingViewModel.updateSecond(meetingID: meetingID ?? "")
 
         second.selectedOptionViewModel = selectOptionViewModel
 
@@ -294,13 +300,13 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
 
                 cell.setCell(model: createMeetingViewModel.meetingViewModel)
 
-//                cell.viewModel = self.createMeetingViewModel.meetingViewModel
+                cell.viewModel = self.createMeetingViewModel.meetingViewModel
 
             } else {
 
                 let data = createMeetingViewModel.meetingViewModels.value[indexPath.row]
 
-//                cell.createMeetingViewModel = createMeetingViewModel
+                cell.viewModel = createMeetingViewModel.meetingViewModel
 
                 cell.setCell(model: data)
 
@@ -430,5 +436,14 @@ extension CreateFirstViewController: SecondCellDelegate {
             selectOptionViewModel.fetchData(meetingID: meetingID ?? "")
 
         }
+    }
+}
+
+extension CreateFirstViewController: EditSuccessVCDelegate {
+    func didTapReturnButton() {
+
+        dismiss(animated: false, completion: nil)
+
+        self.navigationController?.popViewController(animated: true)
     }
 }

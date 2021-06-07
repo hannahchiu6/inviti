@@ -18,7 +18,7 @@ class CreateFirstCell: UITableViewCell {
 
 //    var createMeetingViewModel = CreateMeetingViewModel()
 
-//    var viewModel = MeetingViewModel(model: Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), ownerAppleID: "", createdTime: 0, subject: "", location: "", notes: "", image: "", singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
+    var viewModel = MeetingViewModel(model: Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), ownerAppleID: "", createdTime: 0, subject: "", location: "", notes: "", image: "", singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
 
     @IBOutlet weak var subjectTextField: UITextField!
 

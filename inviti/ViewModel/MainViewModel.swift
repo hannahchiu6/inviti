@@ -72,25 +72,6 @@ class MainViewModel {
         }
     }
 
-//    func updateMeetingData(with meeting: Meeting) {
-//
-//        NetworkManager.shared.updateMeeting(meeting: meeting) { result in
-//
-//            switch result {
-//
-//            case .success:
-//
-//                print("onTapCreate meeting, success")
-//                self.onMeetingUpdated?()
-//
-//            case .failure(let error):
-//
-//                print("createMeeting.failure: \(error)")
-//            }
-//        }
-//
-//    }
-
     func onRefresh() {
        
         self.refreshView?()
@@ -102,10 +83,12 @@ class MainViewModel {
     }
 
     func onTap(withIndex index: Int) {
+
         meetingViewModels.value[index].onTap()
     }
 
     func onEmptyTap(_ meetingID: String) {
+
         NetworkManager.shared.deleteOneMeeting(meetingID: meetingID) { [weak self] result in
 
             switch result {

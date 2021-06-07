@@ -33,10 +33,10 @@ class PastTableViewController: UITableViewController {
             self?.viewModel.onRefresh()
         }
 
-        viewModel.scrollToTop = { [weak self] () in
-
-            self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        }
+//        viewModel.scrollToTop = { [weak self] () in
+//
+//            self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+//        }
 
         viewModel.fetchParticipatedData()
 

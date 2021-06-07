@@ -40,7 +40,8 @@ class AddViewModel {
         }
     }
 
-    func updateParticipants() {
+
+    func updateParticipantData() {
 
         let db = Firestore.firestore()
 
@@ -78,8 +79,6 @@ class AddViewModel {
         }
 
     }
-
-
 
     func onRefresh() {
        
