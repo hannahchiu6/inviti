@@ -18,7 +18,6 @@
 		860B5C922652297200171ED3 /* CreateFirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860B5C912652297200171ED3 /* CreateFirstCell.swift */; };
 		86102767266CA68C008DEFD0 /* InvitesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86102765266CA68C008DEFD0 /* InvitesTableViewCell.swift */; };
 		86102768266CA68C008DEFD0 /* InvitesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86102766266CA68C008DEFD0 /* InvitesTableViewCell.xib */; };
-		8610276C266CB713008DEFD0 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8610276B266CB713008DEFD0 /* OrderViewModel.swift */; };
 		8614DE9C2652A56200DC0A9D /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE9B2652A56100DC0A9D /* UIButton+Extension.swift */; };
 		861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885ED264E31FD0048D9AA /* UITableView+Extension.swift */; };
 		861885F6264E5FD60048D9AA /* OptionEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */; };
@@ -66,7 +65,6 @@
 		866C974D26563CD900687386 /* UIColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C974B26563CD900687386 /* UIColorHelper.swift */; };
 		866C975026563E9400687386 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C974F26563E9400687386 /* ImageHelper.swift */; };
 		8671774D2669059A00F96535 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8671774C2669059A00F96535 /* Login.storyboard */; };
-		867177522669171B00F96535 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867177512669171B00F96535 /* File.swift */; };
 		86717782266927F800F96535 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86717781266927F800F96535 /* UserViewModel.swift */; };
 		8671778526692B6200F96535 /* StoryboardName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8671778426692B6200F96535 /* StoryboardName.swift */; };
 		8672AB3F266CBEB300FB44B4 /* UpdateNotificationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672AB3E266CBEB300FB44B4 /* UpdateNotificationVM.swift */; };
@@ -146,7 +144,6 @@
 		860B5C912652297200171ED3 /* CreateFirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstCell.swift; sourceTree = "<group>"; };
 		86102765266CA68C008DEFD0 /* InvitesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesTableViewCell.swift; sourceTree = "<group>"; };
 		86102766266CA68C008DEFD0 /* InvitesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvitesTableViewCell.xib; sourceTree = "<group>"; };
-		8610276B266CB713008DEFD0 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		8614DE9B2652A56100DC0A9D /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		861885ED264E31FD0048D9AA /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Extension.swift"; path = "inviti/Extension/UITableView+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionEventTableViewCell.swift; sourceTree = "<group>"; };
@@ -195,7 +192,6 @@
 		866C974B26563CD900687386 /* UIColorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHelper.swift; sourceTree = "<group>"; };
 		866C974F26563E9400687386 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		8671774C2669059A00F96535 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		867177512669171B00F96535 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		86717781266927F800F96535 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		8671778426692B6200F96535 /* StoryboardName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardName.swift; sourceTree = "<group>"; };
 		8672AB3E266CBEB300FB44B4 /* UpdateNotificationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNotificationVM.swift; sourceTree = "<group>"; };
@@ -442,22 +438,6 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		867177502669170F00F96535 /* Example */ = {
-			isa = PBXGroup;
-			children = (
-				867177512669171B00F96535 /* File.swift */,
-			);
-			path = Example;
-			sourceTree = "<group>";
-		};
-		8672AB41266CBEB800FB44B4 /* delete */ = {
-			isa = PBXGroup;
-			children = (
-				8610276B266CB713008DEFD0 /* OrderViewModel.swift */,
-			);
-			path = delete;
-			sourceTree = "<group>";
-		};
 		868649FF265B768100E7040F /* 處理中 */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,7 +543,6 @@
 		86C3FA5C264BD3B800480E4F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				867177502669170F00F96535 /* Example */,
 				865A00DE265394600061A0E4 /* VotingPage */,
 				86531182264FC82100CFB4F7 /* NewsPage */,
 				86B8ED8C264E27B700F2508A /* MeetingPage */,
@@ -578,7 +557,6 @@
 		86C3FA5D264BDDE200480E4F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				8672AB41266CBEB800FB44B4 /* delete */,
 				86A6620B2669E68400DBB799 /* LoginViewModel.swift */,
 				8680F09C26653D2C004B46D6 /* VotingViewModel.swift */,
 				8672AB3E266CBEB300FB44B4 /* UpdateNotificationVM.swift */,
@@ -851,7 +829,6 @@
 				8672AB3F266CBEB300FB44B4 /* UpdateNotificationVM.swift in Sources */,
 				86406555264D98D6003C756D /* TabBarController.swift in Sources */,
 				860B5C922652297200171ED3 /* CreateFirstCell.swift in Sources */,
-				8610276C266CB713008DEFD0 /* OrderViewModel.swift in Sources */,
 				8694B6E7266532D500B9A489 /* VoteManager.swift in Sources */,
 				869F8405265534A800DA1D53 /* SelectedOption.swift in Sources */,
 				860B3BB32669E0DE008D5267 /* UserDefaultsName.swift in Sources */,
@@ -882,7 +859,6 @@
 				86B4740A2657E93B00384C21 /* Switcher.swift in Sources */,
 				868B1D4E266777B9004CFDF1 /* VotingResultViewController.swift in Sources */,
 				860A0365265BA7D900067F23 /* CTableViewController.swift in Sources */,
-				867177522669171B00F96535 /* File.swift in Sources */,
 				869F83F426551ACC00DA1D53 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

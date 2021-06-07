@@ -30,7 +30,7 @@
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="fJD-V5-9eK">
-                                                <rect key="frame" x="32" y="105" width="350" height="206"/>
+                                                <rect key="frame" x="32" y="105" width="350" height="200"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="2021 Marketing &amp; PM Meeting " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xY-lf-zPr">
                                                         <rect key="frame" x="12" y="0.0" width="326.5" height="31"/>
@@ -115,7 +115,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <label opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google Meet" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hv0-lM-hMJ" customClass="PaddingableHelper" customModule="inviti" customModuleProvider="target">
-                                                        <rect key="frame" x="125.5" y="183" width="99" height="23"/>
+                                                        <rect key="frame" x="138.5" y="183" width="73" height="17"/>
                                                         <color key="backgroundColor" red="0.44597887752032039" green="0.34361206795000876" blue="0.27578489916862386" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
@@ -996,7 +996,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <label opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google Meet" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDJ-k3-NE3" customClass="PaddingableHelper" customModule="inviti" customModuleProvider="target">
-                                                        <rect key="frame" x="125.5" y="179" width="99" height="20"/>
+                                                        <rect key="frame" x="138.5" y="179" width="73" height="20"/>
                                                         <color key="backgroundColor" red="0.44597887752032039" green="0.34361206795000876" blue="0.27578489916862386" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
@@ -1260,10 +1260,10 @@
             <size key="intrinsicContentSize" width="43" height="42"/>
         </designable>
         <designable name="NDJ-k3-NE3">
-            <size key="intrinsicContentSize" width="99" height="23"/>
+            <size key="intrinsicContentSize" width="73" height="17"/>
         </designable>
         <designable name="hv0-lM-hMJ">
-            <size key="intrinsicContentSize" width="99" height="23"/>
+            <size key="intrinsicContentSize" width="73" height="17"/>
         </designable>
     </designables>
     <resources>
