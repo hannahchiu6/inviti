@@ -137,13 +137,19 @@ class CreateFirstViewController: BaseViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
         if segue.identifier == "shareSegue" {
+            
             let controller = segue.destination as! ShareSuccessVC
 
             controller.meetingID = meetingID
+
             controller.viewModel = createMeetingViewModel
+
         } else if segue.identifier == "addPeopleSegue" {
+
             let controller = segue.destination as! AddPeopleViewController
+
             controller.meetingID = meetingID
 
         }

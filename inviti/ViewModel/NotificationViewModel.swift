@@ -31,6 +31,12 @@ class NotificationViewModel {
         }
     }
 
+    var subject: String? {
+        get {
+            return notification.subject
+        }
+    }
+
     var participantID: String? {
         get {
             return notification.participantID
@@ -55,6 +61,14 @@ class NotificationViewModel {
             return notification.createdTime
         }
     }
+
+    var  ownerName: String? {
+        get {
+            return notification.ownerName
+        }
+    }
+
+
 
 //    var typeName: UIColor {
 //        get {

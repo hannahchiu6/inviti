@@ -810,7 +810,7 @@
                         <outlet property="successView" destination="fg9-Uz-RUM" id="Ajf-BI-Nm3"/>
                         <outlet property="tableView" destination="Q2i-up-Xhp" id="FRN-A9-rcV"/>
                         <segue destination="BEt-er-ct9" kind="show" identifier="showSuccessSegue" id="4yW-uG-x1m"/>
-                        <segue destination="XuC-Xq-g0c" kind="show" identifier="addPeopleSegue" id="j0p-w4-PMx"/>
+                        <segue destination="XuC-Xq-g0c" kind="show" identifier="addPeopleSegue" animates="NO" id="j0p-w4-PMx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4z-hK-cSf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1128,7 +1128,7 @@
                                         <rect key="frame" x="57" y="238" width="300" height="420"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="搜尋或分享" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJy-FP-cnU">
-                                                <rect key="frame" x="0.0" y="70" width="300" height="25"/>
+                                                <rect key="frame" x="0.0" y="65" width="300" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="agp-3f-SLE"/>
                                                 </constraints>
@@ -1142,7 +1142,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請在下方欄位搜尋好友 ID，或是直接分享邀請碼：）" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujg-gE-zco">
-                                                <rect key="frame" x="32" y="107" width="236" height="39.5"/>
+                                                <rect key="frame" x="32" y="102" width="236" height="39.5"/>
                                                 <fontDescription key="fontDescription" name="PingFangTC-Light" family="PingFang TC" pointSize="14"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1172,7 +1172,7 @@
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="輸入邀請碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Qp-u9-6dp">
-                                                <rect key="frame" x="32" y="189" width="236" height="45"/>
+                                                <rect key="frame" x="32" y="221" width="236" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="cZU-zd-R6m"/>
                                                 </constraints>
@@ -1195,13 +1195,13 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10f-Eb-HDs">
-                                                <rect key="frame" x="24" y="266" width="252" height="45"/>
+                                                <rect key="frame" x="24" y="282" width="252" height="45"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="hw9-SO-q03"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="PingFangTC-Medium" family="PingFang TC" pointSize="18"/>
-                                                <state key="normal" title="搜 尋 並 送 出 邀 請">
+                                                <state key="normal" title="搜 尋 好 友">
                                                     <color key="titleColor" red="0.99698060749999995" green="0.29971152540000001" blue="0.25877732040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -1216,9 +1216,59 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="sendInviteButton:" destination="XuC-Xq-g0c" eventType="touchUpInside" id="pfv-oA-pbs"/>
+                                                    <action selector="searchButton:" destination="XuC-Xq-g0c" eventType="touchUpInside" id="1et-nQ-O2P"/>
                                                 </connections>
                                             </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YoE-sM-Cbg">
+                                                <rect key="frame" x="24" y="161" width="252" height="30"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6kG-8K-KAk">
+                                                        <rect key="frame" x="0.0" y="0.5" width="30" height="29"/>
+                                                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="fxn-FY-wOr"/>
+                                                            <constraint firstAttribute="width" constant="30" id="wkM-jg-oky"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乖乖小夥伴" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82T-qW-8ev">
+                                                        <rect key="frame" x="40" y="0.0" width="137" height="30"/>
+                                                        <fontDescription key="fontDescription" name="PingFangTC-Light" family="PingFang TC" pointSize="15"/>
+                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="characterSpacing">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Jr-V8-C1v" customClass="UIButtonActivity" customModule="inviti" customModuleProvider="target">
+                                                        <rect key="frame" x="187" y="0.0" width="65" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="65" id="xfe-w0-ydp"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                        <state key="normal" title="送出邀請"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                                                <color key="value" systemColor="systemIndigoColor"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="sendInvite:" destination="XuC-Xq-g0c" eventType="touchUpInside" id="Y4h-aX-ncJ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="82T-qW-8ev" firstAttribute="top" secondItem="YoE-sM-Cbg" secondAttribute="top" id="4b1-r6-OEa"/>
+                                                    <constraint firstItem="2Jr-V8-C1v" firstAttribute="top" secondItem="YoE-sM-Cbg" secondAttribute="top" id="Ncb-vJ-369"/>
+                                                    <constraint firstAttribute="bottom" secondItem="82T-qW-8ev" secondAttribute="bottom" id="dHX-IJ-fdc"/>
+                                                    <constraint firstItem="6kG-8K-KAk" firstAttribute="leading" secondItem="YoE-sM-Cbg" secondAttribute="leading" id="dJT-eP-X9y"/>
+                                                    <constraint firstAttribute="bottom" secondItem="2Jr-V8-C1v" secondAttribute="bottom" id="fyd-Un-fSV"/>
+                                                    <constraint firstAttribute="bottom" secondItem="6kG-8K-KAk" secondAttribute="bottom" id="lhY-kT-snR"/>
+                                                    <constraint firstAttribute="trailing" secondItem="2Jr-V8-C1v" secondAttribute="trailing" id="lrU-AM-anE"/>
+                                                    <constraint firstItem="6kG-8K-KAk" firstAttribute="top" secondItem="YoE-sM-Cbg" secondAttribute="top" id="tlC-3A-xfq"/>
+                                                </constraints>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -1227,20 +1277,24 @@
                                             <constraint firstAttribute="trailing" secondItem="qJy-FP-cnU" secondAttribute="trailing" id="8C8-h2-5Rq"/>
                                             <constraint firstItem="uvZ-h2-RqZ" firstAttribute="leading" secondItem="wav-RI-tKn" secondAttribute="leading" constant="24" id="FiD-ba-qTv"/>
                                             <constraint firstItem="5Qp-u9-6dp" firstAttribute="leading" secondItem="wav-RI-tKn" secondAttribute="leading" constant="32" id="HMn-Eg-5zE"/>
+                                            <constraint firstItem="5Qp-u9-6dp" firstAttribute="top" secondItem="YoE-sM-Cbg" secondAttribute="bottom" constant="30" id="ILS-iO-yKt"/>
                                             <constraint firstItem="uvZ-h2-RqZ" firstAttribute="top" secondItem="wav-RI-tKn" secondAttribute="top" constant="24" id="IUc-nj-6p6"/>
                                             <constraint firstAttribute="trailing" secondItem="10f-Eb-HDs" secondAttribute="trailing" constant="24" id="L9F-zO-7t6"/>
-                                            <constraint firstItem="qJy-FP-cnU" firstAttribute="top" secondItem="wav-RI-tKn" secondAttribute="top" constant="70" id="NvQ-v5-Vn5"/>
+                                            <constraint firstItem="qJy-FP-cnU" firstAttribute="top" secondItem="wav-RI-tKn" secondAttribute="top" constant="65" id="NvQ-v5-Vn5"/>
                                             <constraint firstItem="ujg-gE-zco" firstAttribute="leading" secondItem="wav-RI-tKn" secondAttribute="leading" constant="32" id="OfE-aP-DcI"/>
                                             <constraint firstAttribute="width" constant="300" id="WuZ-MI-aCv"/>
                                             <constraint firstItem="10f-Eb-HDs" firstAttribute="leading" secondItem="wav-RI-tKn" secondAttribute="leading" constant="24" id="aEQ-it-jJw"/>
                                             <constraint firstAttribute="bottom" secondItem="T3V-Q9-CT4" secondAttribute="bottom" constant="32" id="cQt-We-MpY"/>
-                                            <constraint firstItem="T3V-Q9-CT4" firstAttribute="top" secondItem="10f-Eb-HDs" secondAttribute="bottom" constant="32" id="eQn-aj-RIf"/>
+                                            <constraint firstItem="YoE-sM-Cbg" firstAttribute="trailing" secondItem="10f-Eb-HDs" secondAttribute="trailing" id="d1f-P3-WjT"/>
+                                            <constraint firstItem="T3V-Q9-CT4" firstAttribute="top" secondItem="10f-Eb-HDs" secondAttribute="bottom" constant="16" id="eQn-aj-RIf"/>
                                             <constraint firstAttribute="trailing" secondItem="ujg-gE-zco" secondAttribute="trailing" constant="32" id="f7s-Ec-yoD"/>
                                             <constraint firstItem="ujg-gE-zco" firstAttribute="top" secondItem="qJy-FP-cnU" secondAttribute="bottom" constant="12" id="fnn-cP-HMA"/>
+                                            <constraint firstItem="YoE-sM-Cbg" firstAttribute="height" secondItem="10f-Eb-HDs" secondAttribute="height" multiplier="0.666667" id="kEM-Cj-Nxd"/>
                                             <constraint firstAttribute="trailing" secondItem="T3V-Q9-CT4" secondAttribute="trailing" constant="24" id="lvr-Ds-Jzs"/>
+                                            <constraint firstItem="YoE-sM-Cbg" firstAttribute="leading" secondItem="10f-Eb-HDs" secondAttribute="leading" id="nh1-Xt-YNq"/>
                                             <constraint firstItem="T3V-Q9-CT4" firstAttribute="leading" secondItem="wav-RI-tKn" secondAttribute="leading" constant="24" id="sTB-2P-QSB"/>
                                             <constraint firstItem="qJy-FP-cnU" firstAttribute="leading" secondItem="wav-RI-tKn" secondAttribute="leading" id="wbd-uN-vLH"/>
-                                            <constraint firstItem="10f-Eb-HDs" firstAttribute="top" secondItem="5Qp-u9-6dp" secondAttribute="bottom" constant="32" id="xQy-RW-Hsp"/>
+                                            <constraint firstItem="10f-Eb-HDs" firstAttribute="top" secondItem="5Qp-u9-6dp" secondAttribute="bottom" constant="16" id="xQy-RW-Hsp"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="lkBorderWidth">
@@ -1274,12 +1328,16 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="bUU-FE-nRR"/>
                     <connections>
+                        <outlet property="resultPersonImage" destination="6kG-8K-KAk" id="p2y-ke-6fA"/>
+                        <outlet property="resultPersonName" destination="82T-qW-8ev" id="4bB-R4-Gd2"/>
                         <outlet property="searchField" destination="5Qp-u9-6dp" id="Sw3-Ba-DgW"/>
+                        <outlet property="searchResultView" destination="YoE-sM-Cbg" id="BCb-nO-Wg2"/>
+                        <outlet property="sendInviteView" destination="2Jr-V8-C1v" id="1uZ-T9-GFy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DuS-6z-Br9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="674" y="491"/>
+            <point key="canvasLocation" x="673.91304347826087" y="490.84821428571428"/>
         </scene>
         <!--Create Third View Controller-->
         <scene sceneID="ILq-xV-4ui">
@@ -2163,6 +2221,11 @@
             <point key="canvasLocation" x="-1423.1884057971015" y="953.57142857142856"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="2Jr-V8-C1v">
+            <size key="intrinsicContentSize" width="58" height="29"/>
+        </designable>
+    </designables>
     <resources>
         <image name="alarm.fill" catalog="system" width="124" height="128"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
@@ -2174,6 +2237,7 @@
         <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="pencil.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="113"/>
         <image name="terminal.fill" catalog="system" width="128" height="93"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
@@ -2194,6 +2258,9 @@
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
