@@ -27,7 +27,7 @@ class AddMeetingViewController: BaseViewController {
         let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
            guard let voting = votingVC as? VotingViewController else { return }
 
-        self.viewModel.updateParticipants()
+        self.viewModel.updateParticipantData()
 
         voting.meetingInfo = viewModel.meetingInfo
 

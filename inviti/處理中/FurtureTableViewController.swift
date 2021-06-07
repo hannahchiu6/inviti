@@ -19,7 +19,7 @@ class FurtureTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.do_registerCellWithNib(
-            identifier: String(describing: MeetingTableViewCell.self),bundle: nil)
+            identifier: String(describing: MeetingTableViewCell.self), bundle: nil)
 
         viewModel.refreshView = { [weak self] () in
             DispatchQueue.main.async {
@@ -29,12 +29,13 @@ class FurtureTableViewController: UITableViewController {
 
         viewModel.meetingViewModels.bind { [weak self] meetings in
             self?.viewModel.onRefresh()
+//            self?.tableView.reloadData()
         }
 
-        viewModel.scrollToTop = { [weak self] () in
-
-            self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        }
+//        viewModel.scrollToTop = { [weak self] () in
+//
+//            self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+//        }
 
         viewModel.fetchHostedData()
 
@@ -80,48 +81,6 @@ class FurtureTableViewController: UITableViewController {
         return meetingViewCell
 
     }
-
-//    @objc func toCreatePage(_ sender: UIGestureRecognizer) {
-//
-//        guard let viewController = UIStoryboard(name: "Create", bundle: nil).instantiateViewController(identifier: "CreateFirstPageVC") as? CreateFirstPageVC else { return }
-//
-//        guard let cell = sender.view?.superview?.superview as? CreateFirstCell,
-//              let indexPath = tableView.indexPath(for: cell)
-//
-//        else {
-//            return
-//        }
-//
-//        viewController.meetingInfo = meetingData
-//
-//        show(viewController, sender: nil)
-//    }
-
-//    func addRefreshControl() {
-//
-//        refreshControl = UIRefreshControl()
-//        tableView.addSubview(refreshControl)
-//        refreshControl.addTarget(self, action: #selector(getMeetingData), for: .valueChanged)
-//
-//    }
-//
-//    @objc func getMeetingData() {
-//
-//        UploadManager.shared.simplePetInfo.removeAll()
-//        DownloadManager.shared.petData.removeAll()
-//
-//        DownloadManager.shared.downloadPetData { result in
-//
-//            switch result {
-//
-//            case .success(let downloadPetData):
-//                self.petData = downloadPetData
-//                self.alertView.isHidden = self.petData.count != 0
-//            case . failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 

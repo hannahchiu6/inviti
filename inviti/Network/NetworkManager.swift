@@ -218,7 +218,8 @@ class NetworkManager {
                 "singleMeeting": meeting.singleMeeting,
                 "deadlinTag": meeting.deadlineTag as Any,
                 "deadlineMeeting": meeting.deadlineMeeting,
-                "hiddenMeeting": meeting.hiddenMeeting
+                "hiddenMeeting": meeting.hiddenMeeting,
+                "ownerAppleID": userUID!
 
             ]) { err in
 

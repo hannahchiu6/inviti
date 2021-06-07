@@ -24,65 +24,11 @@
                             <constraint firstAttribute="width" constant="65" id="Wvc-0l-Ipw"/>
                         </constraints>
                     </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Wry-RL-Cfj">
-                        <rect key="frame" x="432" y="20.5" width="20" height="100"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VI3-y0-bGO" userLabel="Edit Button">
-                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="VI3-y0-bGO" secondAttribute="height" multiplier="1:1" id="2fY-ZT-PUr"/>
-                                    <constraint firstAttribute="width" constant="20" id="WXS-Ic-btC"/>
-                                </constraints>
-                                <color key="tintColor" red="0.99698060749999995" green="0.29971152540000001" blue="0.25877732040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal">
-                                    <imageReference key="image" image="square.and.pencil" catalog="system" symbolScale="large"/>
-                                </state>
-                                <connections>
-                                    <action selector="edit:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qQb-HK-4RK"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAA-GT-dJ8" userLabel="Vote Button">
-                                <rect key="frame" x="0.0" y="40" width="20" height="20"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="TzV-uO-Uae"/>
-                                    <constraint firstAttribute="width" secondItem="nAA-GT-dJ8" secondAttribute="height" multiplier="1:1" id="cvl-o2-maD"/>
-                                </constraints>
-                                <color key="tintColor" red="0.99698060749999995" green="0.29971152540000001" blue="0.25877732040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal">
-                                    <imageReference key="image" image="chevron.right.square.fill" catalog="system" symbolScale="large"/>
-                                </state>
-                                <connections>
-                                    <action selector="participate:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5Sg-hk-RSr"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JiU-8r-iTZ" userLabel="Delete Button">
-                                <rect key="frame" x="0.0" y="80" width="20" height="20"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="fBb-Vt-grt"/>
-                                    <constraint firstAttribute="width" secondItem="JiU-8r-iTZ" secondAttribute="height" multiplier="1:1" id="pd8-3N-7vg"/>
-                                </constraints>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <imageReference key="image" image="trash" catalog="system" symbolScale="large"/>
-                                </state>
-                                <connections>
-                                    <action selector="deleteBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Xax-BK-0nA"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="VI3-y0-bGO" firstAttribute="width" secondItem="VI3-y0-bGO" secondAttribute="height" multiplier="1:1" id="L6D-aH-U47"/>
-                            <constraint firstItem="nAA-GT-dJ8" firstAttribute="width" secondItem="nAA-GT-dJ8" secondAttribute="height" multiplier="1:1" id="XBY-LA-Qtv"/>
-                        </constraints>
-                    </stackView>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="wYo-fO-tra">
-                        <rect key="frame" x="92" y="26" width="194.5" height="89"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="254" horizontalCompressionResistancePriority="752" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="wYo-fO-tra">
+                        <rect key="frame" x="92" y="26" width="319" height="89"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XZp-84-rtD">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="52"/>
+                                <rect key="frame" x="0.0" y="0.0" width="319" height="52"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="星期天家庭聚會" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRv-Cz-f9c">
                                         <rect key="frame" x="0.0" y="0.0" width="119" height="24"/>
@@ -153,18 +99,77 @@
                             </stackView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="XZp-84-rtD" secondAttribute="trailing" id="2X5-ei-gBx"/>
                             <constraint firstItem="V5n-eP-8wr" firstAttribute="top" secondItem="XZp-84-rtD" secondAttribute="bottom" constant="12" id="4EZ-2I-KPv"/>
                             <constraint firstAttribute="bottom" secondItem="V5n-eP-8wr" secondAttribute="bottom" id="6YD-Al-n2u"/>
+                            <constraint firstItem="XZp-84-rtD" firstAttribute="leading" secondItem="wYo-fO-tra" secondAttribute="leading" id="T6m-U8-Cbr"/>
+                            <constraint firstItem="XZp-84-rtD" firstAttribute="top" secondItem="wYo-fO-tra" secondAttribute="top" id="vYY-o0-e05"/>
+                        </constraints>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Wry-RL-Cfj">
+                        <rect key="frame" x="427" y="20.5" width="25" height="100"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VI3-y0-bGO" userLabel="Edit Button">
+                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="VI3-y0-bGO" secondAttribute="height" multiplier="1:1" id="2fY-ZT-PUr"/>
+                                    <constraint firstAttribute="width" constant="20" id="WXS-Ic-btC"/>
+                                </constraints>
+                                <color key="tintColor" red="0.99698060749999995" green="0.29971152540000001" blue="0.25877732040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="square.and.pencil" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="edit:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qQb-HK-4RK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAA-GT-dJ8" userLabel="Vote Button">
+                                <rect key="frame" x="0.0" y="40" width="20" height="20"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="TzV-uO-Uae"/>
+                                    <constraint firstAttribute="width" secondItem="nAA-GT-dJ8" secondAttribute="height" multiplier="1:1" id="cvl-o2-maD"/>
+                                </constraints>
+                                <color key="tintColor" red="0.99698060749999995" green="0.29971152540000001" blue="0.25877732040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="chevron.right.square.fill" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="participate:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5Sg-hk-RSr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JiU-8r-iTZ" userLabel="Delete Button">
+                                <rect key="frame" x="0.0" y="80" width="20" height="20"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="fBb-Vt-grt"/>
+                                    <constraint firstAttribute="width" secondItem="JiU-8r-iTZ" secondAttribute="height" multiplier="1:1" id="pd8-3N-7vg"/>
+                                </constraints>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="trash" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Xax-BK-0nA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="ELb-bl-Hqi"/>
+                            <constraint firstItem="VI3-y0-bGO" firstAttribute="width" secondItem="VI3-y0-bGO" secondAttribute="height" multiplier="1:1" id="L6D-aH-U47"/>
+                            <constraint firstItem="nAA-GT-dJ8" firstAttribute="width" secondItem="nAA-GT-dJ8" secondAttribute="height" multiplier="1:1" id="XBY-LA-Qtv"/>
                         </constraints>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="Wry-RL-Cfj" firstAttribute="leading" secondItem="wYo-fO-tra" secondAttribute="trailing" constant="16" id="3tt-sL-kzs"/>
                     <constraint firstItem="wYo-fO-tra" firstAttribute="leading" secondItem="zvi-pk-gJv" secondAttribute="trailing" constant="11" id="HAc-we-Bbm"/>
                     <constraint firstAttribute="bottom" secondItem="wYo-fO-tra" secondAttribute="bottom" constant="26" id="MI6-9e-YyZ"/>
+                    <constraint firstAttribute="trailing" secondItem="Wry-RL-Cfj" secondAttribute="trailing" constant="16" id="Nib-5J-dYs"/>
                     <constraint firstItem="wYo-fO-tra" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="26" id="SeV-2w-qap"/>
                     <constraint firstItem="zvi-pk-gJv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="WoH-6T-Vls"/>
-                    <constraint firstAttribute="right" secondItem="Wry-RL-Cfj" secondAttribute="right" constant="16" id="dxg-kX-4R6"/>
                     <constraint firstItem="Wry-RL-Cfj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eIL-b6-8Nd"/>
                     <constraint firstItem="zvi-pk-gJv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fDo-af-cKV"/>
                 </constraints>

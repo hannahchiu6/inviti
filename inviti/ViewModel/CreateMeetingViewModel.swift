@@ -43,7 +43,7 @@ class CreateMeetingViewModel {
         hiddenMeeting: false,
         deadlineMeeting: false,
 //        askInfo: AskInfo,
-        participants: ["aaa"],
+        participants: [],
         numOfParticipants: 0,
         deadlineTag: 0
     )
