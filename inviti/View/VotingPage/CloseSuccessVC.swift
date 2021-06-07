@@ -32,6 +32,8 @@ class CloseSuccessVC: BaseViewController {
 
         viewModel.createForParticipants(peopleID: participants)
 
+        notificationVM.onImageChanged(notificationVM.userViewModel.user.image ?? "")
+
         notificationVM.createParticipantsNotification(type: TypeName.calendar.rawValue, peopleID: participants, event: viewModel.event)
     }
  

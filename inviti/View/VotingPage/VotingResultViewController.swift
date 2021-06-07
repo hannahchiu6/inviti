@@ -22,6 +22,8 @@ class VotingResultViewController: UIViewController {
 
     let votingViewModel = VotingViewModel()
 
+    var notificationVM = UpdateNotificationVM()
+
     let ownerAppleID: String = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as! String
 
     var meetingDataHandler: ( (Meeting) -> Void)?
@@ -60,8 +62,13 @@ class VotingResultViewController: UIViewController {
         if segue.identifier == "addToCalendarSegue" {
             let controller = segue.destination as! CloseSuccessVC
 
+            notificationVM.fetchUserData(userID: meetingInfo.ownerAppleID)
+
             controller.participants = meetingInfo.participants ?? []
+
             controller.viewModel = eventViewModel
+
+            controller.notificationVM = notificationVM
 
         }
     }

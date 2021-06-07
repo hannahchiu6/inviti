@@ -17,7 +17,9 @@ class NotificationManager {
 
     lazy var db = Firestore.firestore()
 
-    var userUID = UserDefaults.standard.value(forKey: "uid")
+    var userUID = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue)
+
+    var userName = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue)
 
     func fetchNotifications(completion: @escaping (Result<[Notification], Error>) -> Void) {
 
@@ -61,6 +63,7 @@ class NotificationManager {
             .document()
             notification.id = document.documentID
             notification.createdTime = Int64(Date().millisecondsSince1970)
+            notification.ownerName = userName as? String
             document.setData(notification.toDict) { error in
 
             if let error = error {
@@ -83,6 +86,7 @@ class NotificationManager {
             .document()
             notification.id = document.documentID
             notification.createdTime = Int64(Date().millisecondsSince1970)
+            notification.ownerName = userName as? String
             document.setData(notification.toDict) { error in
 
             if let error = error {

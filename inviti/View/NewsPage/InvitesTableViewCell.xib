@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,10 +19,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_photo" translatesAutoresizingMaskIntoConstraints="NO" id="vbn-gr-ftJ">
-                        <rect key="frame" x="24" y="24" width="65" height="65"/>
+                        <rect key="frame" x="24" y="24" width="45" height="45"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="65" id="lRz-TV-7QY"/>
-                            <constraint firstAttribute="height" constant="65" id="xIO-ny-K9l"/>
+                            <constraint firstAttribute="width" constant="45" id="lRz-TV-7QY"/>
+                            <constraint firstAttribute="height" constant="45" id="xIO-ny-K9l"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ip-h7-2kg" userLabel="Delete Button">
@@ -35,35 +36,108 @@
                         <state key="normal">
                             <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
                         </state>
+                        <connections>
+                            <action selector="deleteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="i89-ou-WiK"/>
+                        </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Moon 邀請你參加這個活動的投票Moon 邀請你參加這個活動的投票" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsC-sg-SGe">
-                        <rect key="frame" x="103" y="35" width="283" height="42"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moon 邀請你參加這個活動的投票為什麼邀請你參加這個活動的投票" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsC-sg-SGe">
+                        <rect key="frame" x="85" y="16" width="323" height="42"/>
                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="15"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
+                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="characterSpacing">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="5HA-UA-Paq">
+                        <rect key="frame" x="243" y="79" width="155" height="20"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWn-ai-lMT" customClass="UIButtonActivity" customModule="inviti" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="20"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="CCT-Or-lUe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
+                                <state key="normal" title="先不要">
+                                    <color key="titleColor" systemColor="linkColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                        <color key="value" systemColor="systemPurpleColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="rejectButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bgq-tW-ytz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rb8-vS-T5l" customClass="UIButtonActivity" customModule="inviti" customModuleProvider="target">
+                                <rect key="frame" x="89.5" y="0.0" width="65.5" height="20"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="kgK-YB-QfE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
+                                <state key="normal" title="去投票">
+                                    <color key="titleColor" systemColor="linkColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                        <color key="value" systemColor="systemPurpleColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="goVoteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XDk-lY-Qaa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="155" id="igR-Nk-1Kj"/>
+                        </constraints>
+                    </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="5HA-UA-Paq" secondAttribute="trailing" constant="70" id="2Rz-qZ-mk6"/>
+                    <constraint firstItem="FsC-sg-SGe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="7Hi-DV-nHS"/>
                     <constraint firstAttribute="trailing" secondItem="FsC-sg-SGe" secondAttribute="trailing" constant="60" id="C9i-eS-Qpy"/>
                     <constraint firstItem="6Ip-h7-2kg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="D7K-oz-d6H"/>
                     <constraint firstItem="FsC-sg-SGe" firstAttribute="leading" secondItem="vbn-gr-ftJ" secondAttribute="trailing" constant="16" id="T7V-yS-5FD"/>
                     <constraint firstItem="vbn-gr-ftJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="bwI-b3-SQV"/>
-                    <constraint firstAttribute="bottom" secondItem="vbn-gr-ftJ" secondAttribute="bottom" constant="24" id="dV0-AG-5UD"/>
+                    <constraint firstAttribute="bottom" secondItem="vbn-gr-ftJ" secondAttribute="bottom" constant="45" id="h7X-sj-0yj"/>
                     <constraint firstAttribute="trailing" secondItem="6Ip-h7-2kg" secondAttribute="trailing" constant="24" id="mGF-7m-gCD"/>
                     <constraint firstItem="vbn-gr-ftJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="vEz-qK-K3e"/>
-                    <constraint firstItem="FsC-sg-SGe" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yFf-Ly-Kh0"/>
+                    <constraint firstAttribute="bottom" secondItem="5HA-UA-Paq" secondAttribute="bottom" constant="12" id="y6E-e4-BY0"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="invitesLabel" destination="FsC-sg-SGe" id="Dl7-we-Js9"/>
-                <outlet property="ownerImage" destination="vbn-gr-ftJ" id="DiV-PP-5ik"/>
+                <outlet property="invitesLabel" destination="FsC-sg-SGe" id="Den-5s-LvC"/>
+                <outlet property="ownerImage" destination="vbn-gr-ftJ" id="gMe-gC-QT5"/>
+                <outlet property="rejectBtnView" destination="dWn-ai-lMT" id="sd5-RS-SKe"/>
+                <outlet property="voteBtnView" destination="Rb8-vS-T5l" id="dgf-ts-OUV"/>
             </connections>
             <point key="canvasLocation" x="110.14492753623189" y="87.388392857142847"/>
         </tableViewCell>
     </objects>
+    <designables>
+        <designable name="Rb8-vS-T5l">
+            <size key="intrinsicContentSize" width="42" height="32"/>
+        </designable>
+        <designable name="dWn-ai-lMT">
+            <size key="intrinsicContentSize" width="42" height="32"/>
+        </designable>
+    </designables>
     <resources>
         <image name="profile_photo" width="200" height="133"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

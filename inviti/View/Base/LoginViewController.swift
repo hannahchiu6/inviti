@@ -21,9 +21,9 @@ class LoginViewController: UIViewController {
 
         performSegue(withIdentifier: "goToMainSegue", sender: nil)
 
-//        let testUserID = "uLkwCQPXM4NrsnFc1mTSmw7GsPu2"
+        let testID = "uLkwCQPXM4NrsnFc1mTSmw7GsPu2"
 
-        let testID = "5gWVjg7xTHElu9p6Jkl1"
+//        let testID = "5gWVjg7xTHElu9p6Jkl1"
 
 //        let testEmail = "moon2021@gmail.com"
 

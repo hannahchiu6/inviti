@@ -15,6 +15,9 @@ struct Notification: Codable {
     var participantID: String?
     var createdTime: Int64
     var type: String?
+    var ownerName: String?
+    var subject: String?
+    var image: String?
 
 //    [
 //        "participantVoted",
@@ -25,8 +28,8 @@ struct Notification: Codable {
 //    ]
 
     enum CodingKeys: String, CodingKey {
-        case meetingID, eventID, participantID
-        case type, id, createdTime
+        case meetingID, eventID, participantID, image
+        case type, id, createdTime, ownerName, subject
     }
 
     var toDict: [String: Any] {
@@ -35,9 +38,18 @@ struct Notification: Codable {
             "meetingID": meetingID as Any,
             "eventID": eventID as Any,
             "participantID": participantID as Any,
+            "subject": subject as Any,
             "type": type as Any,
             "createdTime": createdTime,
+            "ownerName": ownerName as Any,
+            "image": image as Any
         ]
+    }
+
+    func timeToDate() -> String {
+
+        return  Date.pointFormatter.string(from: Date.init(millis: createdTime))
+
     }
 }
 
@@ -51,3 +63,5 @@ enum TypeName: String {
 
     case calendar = "calendarEventAdded"
 }
+
+

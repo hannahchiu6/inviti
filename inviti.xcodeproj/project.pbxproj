@@ -319,6 +319,7 @@
 		861F6620264D5C5E00A54C00 /* CreateMainPage */ = {
 			isa = PBXGroup;
 			children = (
+				86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */,
 				86B4740C2657E94100384C21 /* FirstStep */,
 				8648A7562657EA390091DFFA /* SecondStep */,
 				8648A7572657EA430091DFFA /* ThirdStep */,
@@ -538,7 +539,6 @@
 		86B4740C2657E94100384C21 /* FirstStep */ = {
 			isa = PBXGroup;
 			children = (
-				86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */,
 				860B5C912652297200171ED3 /* CreateFirstCell.swift */,
 				86B474092657E93B00384C21 /* Switcher.swift */,
 			);

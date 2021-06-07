@@ -15,7 +15,7 @@ class UpdateNotificationVM {
 
     var meetingViewModels = Box([MeetingViewModel]())
 
-    var notificationViewModel = NotificationViewModel(model: Notification(id: "", meetingID: "", eventID: "", participantID: "", createdTime: 0, type: ""))
+    var notificationViewModel = NotificationViewModel(model: Notification(id: "", meetingID: "", eventID: "", participantID: "", createdTime: 0, type: "", image:  ""))
 
     var userViewModel = UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: []))
 
@@ -33,6 +33,8 @@ class UpdateNotificationVM {
 
     var scrollToTop: (() -> Void)?
 
+    var user: User?
+
     func onNotiTypeChanged(with type: String) {
         self.notification.type = type
     }
@@ -41,12 +43,20 @@ class UpdateNotificationVM {
         self.notification.meetingID = meetingID
     }
 
+    func onImageChanged(_ image: String) {
+        self.notification.image = image
+    }
+
     func onNotiEventIDAdded(_ eventID: String) {
         self.notification.eventID = eventID
     }
 
     func onNotiParticipantIDAdded(_ participantID: String) {
         self.notification.participantID = participantID
+    }
+
+    func onSubjectChanged(_ subject: String) {
+        self.notification.subject = subject
     }
 
     func fetchHostedData() {
@@ -92,6 +102,23 @@ class UpdateNotificationVM {
             case .success(let user):
 
                 self?.setUser(user)
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
+    func fetchUserToSelf(userID: String) {
+
+        UserManager.shared.fetchOneUser(userID: userID) { [weak self] result in
+
+            switch result {
+
+            case .success(let user):
+
+                self?.onImageChanged(user.image ?? "")
 
             case .failure(let error):
 
@@ -150,7 +177,10 @@ class UpdateNotificationVM {
         create(with: &notification)
     }
 
+    // 搜尋 meeting 確定去投票
     func createOwnerNotification(type: String, meetingID: String, ownerID: String) {
+
+        fetchOneMeeitngData(meetingID: meetingID)
 
         self.notification.type = type
 
@@ -161,9 +191,13 @@ class UpdateNotificationVM {
 
     func createInviteNotification(type: String, meetingID: String, participantID: String) {
 
+        fetchOneMeeitngData(meetingID: meetingID)
+
         self.notification.type = type
 
         self.notification.meetingID = meetingID
+
+        self.notification.subject = meetingViewModels.value[0].subject
 
         create(with: participantID, notification: &notification)
     }
@@ -173,6 +207,8 @@ class UpdateNotificationVM {
         self.notification.type = type
 
         self.notification.eventID = event.id
+
+        self.notification.subject = event.subject
 
         create(with: peopleID, notification: &notification)
     }
@@ -203,12 +239,11 @@ class UpdateNotificationVM {
             case .success:
 
                 print("onTapCreate notification, success")
-                INProgressHUD.showSuccess(text: "送出通知")
 
             case .failure(let error):
 
                 print("create notification.failure: \(error)")
-                INProgressHUD.showFailure(text: "找無此用戶")
+                INProgressHUD.showFailure(text: "請稍後再試")
             }
         }
     }
@@ -391,6 +426,4 @@ class UpdateNotificationVM {
     func setMeeting(_ meeting: Meeting) {
         meetingViewModels.value = convertMeetingToViewModels(from: meeting)
     }
-
-
 }

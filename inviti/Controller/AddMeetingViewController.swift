@@ -19,9 +19,65 @@ class AddMeetingViewController: BaseViewController {
 
     var viewModel = AddViewModel()
 
-    @IBAction func searchMeetingID(_ sender: Any) {
-        
+    @IBOutlet weak var goVoteBtnView: UIButton!
+
+    @IBAction func goVoteButton(_ sender: Any) {
+
+        let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
+        let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
+           guard let voting = votingVC as? VotingViewController else { return }
+
+        self.viewModel.updateParticipants()
+
+        voting.meetingInfo = viewModel.meetingInfo
+
+        delegate?.didtap()
+
+        notificationVM.createOwnerNotification(type: TypeName.vote.rawValue, meetingID: viewModel.meetingInfo.id, ownerID: viewModel.meetingInfo.ownerAppleID)
+
+        self.navigationController?.pushViewController(voting, animated: true)
     }
+
+    @IBAction func searchButton(_ sender: Any) {
+
+
+        guard let text = searchField.text else { return }
+
+        searchStackView.isHidden = false
+
+        if !text.isEmpty {
+
+            if text == viewModel.meetingInfo.id {
+
+                notificationVM.fetchUserToSelf(userID: viewModel.meetingInfo.ownerAppleID)
+
+                notificationVM.onSubjectChanged(viewModel.meetingInfo.subject ?? "")
+
+                guard let subject = viewModel.meetingInfo.subject else { return }
+
+                searchResultLabel.text = subject
+
+            } else {
+
+                goVoteBtnView.isHidden = true
+
+                searchResultLabel.text = "查無此活動，請重新輸入。"
+
+            }
+
+        } else {
+
+            goVoteBtnView.isHidden = true
+
+            searchResultLabel.text = "請輸入活動邀請碼。"
+
+        }
+
+    }
+
+    @IBOutlet weak var searchResultLabel: UILabel!
+
+    @IBOutlet weak var searchStackView: UIStackView!
 
     @IBOutlet weak var searchField: UITextField! {
         didSet {
@@ -32,34 +88,14 @@ class AddMeetingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        searchStackView.isHidden = true
+
     }
 
     @IBAction func returnButton(_ sender: UIButton) {
         dismiss(animated: false, completion: nil)
     }
-
-    @IBAction func goToVote(_ sender: Any) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
-        let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
-           guard let voting = votingVC as? VotingViewController else { return }
-
-        voting.meetingInfo = viewModel.meetingInfo
-
-        self.viewModel.updateParticipants()
-
-        delegate?.didtap()
-
-        notificationVM.createOwnerNotification(type: TypeName.vote.rawValue, meetingID: viewModel.meetingInfo.id, ownerID: viewModel.meetingInfo.ownerAppleID)
-
-        self.navigationController?.pushViewController(voting, animated: true)
-
-    }
-
-
-    @IBOutlet weak var voteBtnView: UIButton!
-
 }
-
 
 extension AddMeetingViewController: UITextFieldDelegate {
 
