@@ -26,10 +26,6 @@ class MeetingViewController: BaseViewController {
         pastView.isHidden = true
     }
 
-    @IBAction func notificationBtn(_ sender: Any) {
-        willDrop = !willDrop
-    }
-    
     @IBOutlet weak var addMeetingPopView: UIView!
 
     @IBAction func addMeeting(_ sender: Any) {
@@ -39,17 +35,13 @@ class MeetingViewController: BaseViewController {
 
     @IBOutlet weak var futureView: UIView!
     @IBOutlet weak var pastView: UIView!
-    @IBOutlet weak var notiPopView: UIView!
     @IBOutlet weak var indicatorCenterXConstraint: NSLayoutConstraint!
-    @IBOutlet weak var notificationIcon: UIButton!
     @IBOutlet weak var bottomLine: UIView!
     @IBOutlet weak var pastLabel: UIButton!
     @IBOutlet weak var futureLabel: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        notiPopView.isHidden = true
 
         addMeetingPopView.isHidden = true
 
@@ -75,23 +67,6 @@ class MeetingViewController: BaseViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(false)
-    }
-
-    private var willDrop = false {
-        didSet {
-            if (willDrop) {
-                UIView.animate(withDuration: 1) { [weak self] () in
-
-                    self?.notiPopView.isHidden = false
-                }
-            } else {
-                
-                UIView.animate(withDuration: 1) { [weak self] () in
-                    self?.notiPopView.isHidden = true
-
-                }
-            }
-        }
     }
 
     private var willPopup = false {
