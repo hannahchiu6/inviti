@@ -27,16 +27,19 @@ class InvitesTableViewCell: UITableViewCell {
     @IBAction func goVoteButton(_ sender: Any) {
     }
 
-    @IBAction func deleteButton(_ sender: Any) {
+    @IBOutlet weak var deleteBtnView: UIButton!
 
+    @IBAction func deleteButton(_ sender: UIButton) {
+
+        viewModel.onTap(withIndex: sender.tag)
     }
 
     @IBOutlet weak var rejectBtnView: UIButton!
 
-
     @IBOutlet weak var voteBtnView: UIButton!
 
     @IBAction func rejectButton(_ sender: Any) {
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -91,9 +94,13 @@ class InvitesTableViewCell: UITableViewCell {
             invitesLabel.text = "\(whoSend) 邀請您參加「\(subject)」活動，您可以直接前往投票，選出適合的時間。"
         }
 
-        voteBtnView.setTitle("去投票", for: .normal)
+//        voteBtnView.setTitle("去投票", for: .normal)
 
         ownerImage.isHidden = false
+
+        rejectBtnView.isHidden = true
+
+        voteBtnView.isHidden = true
 
         guard let url = model.notification.image else { return }
 
@@ -114,7 +121,13 @@ class InvitesTableViewCell: UITableViewCell {
 
         ownerImage.isHidden = false
 
-        voteBtnView.setTitle("去查看", for: .normal)
+//        voteBtnView.setTitle("去查看", for: .normal)
+
+//        rejectBtnView.setTitle("先移除", for: .normal)
+        rejectBtnView.isHidden = true
+
+        voteBtnView.isHidden = true
+
 
         guard let url = model.notification.image else { return }
 
@@ -125,5 +138,5 @@ class InvitesTableViewCell: UITableViewCell {
 //        UIImage(systemName: "person.circle")
     }
 
-
+    
 }

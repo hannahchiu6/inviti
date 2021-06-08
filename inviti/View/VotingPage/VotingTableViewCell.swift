@@ -58,8 +58,6 @@ class VotingTableViewCell: UITableViewCell {
             delegate?.didVote(false)
         }
 
-        votingViewModel?.onSelectedUserAdded(String(describing: userUID))
-
         votingViewModel?.createWithEmptyData(with: optionID!, meetingID: meetingID!, selectedOption: &votingViewModel!.selectedOption)
     }
 
@@ -69,6 +67,11 @@ class VotingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cellBackgroundView: UIView!
 
+
+    func setupIfVoted() {
+        
+        checkBoxView.isHidden = true
+    }
 
     func setupVotingCell(model: OptionViewModel, index: Int) {
 

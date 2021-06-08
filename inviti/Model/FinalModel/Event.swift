@@ -15,8 +15,6 @@ struct Event: Equatable, Codable {
     }
 
     var id: String
-//    var owner: SimpleUser
-//    var ownerAppleID: String
     var startTime: Int64
     var endTime: Int64
     var date: Int
@@ -41,7 +39,6 @@ struct Event: Equatable, Codable {
     var toDict: [String: Any] {
         return [
             "id": id,
-//            "ownerAppleID": ownerAppleID,
             "startTime": startTime,
             "endTime": endTime,
             "subject": subject,

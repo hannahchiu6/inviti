@@ -12,10 +12,18 @@ struct UserSelectedData {
     let selectedOption: OptionsData
     let status: String
 //    let pathID: String
-    let userInfo: SimpleUser
+//    let userInfo: SimpleUser
     let userUID: String
     let meetingID: String
-//    let title: String
+
+    enum CodingKeys: String, CodingKey {
+
+        case selectedOptions
+        case id
+        case status
+        case userUID
+        case meetingID
+    }
 
     var toDict: [String: Any] {
         return [
@@ -23,8 +31,8 @@ struct UserSelectedData {
             "selectedOption": selectedOption.toDict as Any,
             "status": status as Any,
             "userUID": userUID as Any,
-            "meetingID": meetingID as Any,
-            "userInfo": userInfo.toDict as Any,
+            "meetingID": meetingID as Any
+//            "userInfo": userInfo.toDict as Any,
 //            "title": title as Any
         ]
     }

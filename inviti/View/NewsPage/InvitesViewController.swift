@@ -68,6 +68,8 @@ extension InvitesViewController: UITableViewDataSource, UITableViewDelegate {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "invitesTableViewCell", for: indexPath) as! InvitesTableViewCell
 
+        cell.deleteBtnView.tag = indexPath.row
+
         if viewModel.notificationViewModels.value.isEmpty {
 
             cell.setupEmptyCell()
@@ -84,9 +86,15 @@ extension InvitesViewController: UITableViewDataSource, UITableViewDelegate {
 
                 cell.setupEventCell(model: model)
 
+//                cell.rejectBtnView.addTarget(self, action: #selector(removeFromCalendar), for: UIControl.Event.touchUpInside)
+
             case TypeName.invite.rawValue:
 
                 cell.setupInviteCell(model: model)
+
+                cell.voteBtnView.addTarget(self, action: #selector(goToVote), for: UIControl.Event.touchUpInside)
+
+                cell.voteBtnView.tag = index
 
             default:
 
@@ -95,11 +103,47 @@ extension InvitesViewController: UITableViewDataSource, UITableViewDelegate {
             }
 
             cell.viewModel = viewModel
+
+            guard let inviteViewCell = cell as? InvitesTableViewCell else {
+                return cell
+            }
+
+            let cellViewModel = self.viewModel.notificationViewModels.value[index]
+            
+            cellViewModel.onDead = { [weak self] () in
+
+                self?.viewModel.fetchData()
+            }
+
+//            inviteViewCell.setup(viewModel: cellViewModel)
+
+            return inviteViewCell
         }
 
         return cell
         
     }
+
+    @objc func goToVote(sender: UIButton) {
+
+        let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
+        let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
+           guard let voting = votingVC as? VotingViewController else { return }
+
+        let meetingID = viewModel.notificationViewModels.value[sender.tag].meetingID ?? ""
+
+        viewModel.fetchOneMeeitngData(meetingID: meetingID)
+
+        voting.meetingInfo = viewModel.meeting
+
+        navigationController?.pushViewController(voting, animated: true)
+
+    }
+
+    //    @objc func removeFromCalendar() {
+    //
+    //    }
+
 
 }
 

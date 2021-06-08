@@ -66,11 +66,13 @@ class AddPeopleViewController: UIViewController {
 
         if !text.isEmpty {
 
+            notificationVM.fetchUserData(userID: text)
+
             if text == notificationVM.userViewModel.user.id {
 
-//                notificationVM.fetchUserData(userID: text)
-
                 resultPersonName.text = notificationVM.userViewModel.user.name
+
+                sendInviteView.isHidden = false
 
                 guard let url = notificationVM.userViewModel.user.image else { return }
 

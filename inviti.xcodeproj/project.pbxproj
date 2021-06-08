@@ -120,7 +120,10 @@
 		86C3FA6B264BE25B00480E4F /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA6A264BE25B00480E4F /* Calendar.storyboard */; };
 		86C3FA6E264BE2A700480E4F /* NotificationPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */; };
 		86C9C670265AA23B0074B2B5 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C9C66F265AA23B0074B2B5 /* ViewController+Extension.swift */; };
+		86D15407266F6E600091AA95 /* ResultClosedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D15406266F6E600091AA95 /* ResultClosedCell.swift */; };
 		86D4F68426582D6E00C00062 /* PaddingableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D4F68326582D6E00C00062 /* PaddingableHelper.swift */; };
+		86D772E5266FBC4C0028158C /* HasVotedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D772E4266FBC4C0028158C /* HasVotedVC.swift */; };
+		86D772E8266FBCB10028158C /* 49976-sdss.json in Resources */ = {isa = PBXBuildFile; fileRef = 86D772E7266FBCB10028158C /* 49976-sdss.json */; };
 		86EBFA75266D3098008E6955 /* AddPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBFA74266D3098008E6955 /* AddPeopleViewController.swift */; };
 		86ECEAA6265FDD7E00465424 /* CreateOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ECEAA5265FDD7E00465424 /* CreateOptionViewModel.swift */; };
 		86EE497A265102BD003B0C25 /* CreateFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */; };
@@ -249,7 +252,10 @@
 		86C3FA6A264BE25B00480E4F /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotificationPage.storyboard; sourceTree = "<group>"; };
 		86C9C66F265AA23B0074B2B5 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		86D15406266F6E600091AA95 /* ResultClosedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultClosedCell.swift; sourceTree = "<group>"; };
 		86D4F68326582D6E00C00062 /* PaddingableHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingableHelper.swift; sourceTree = "<group>"; };
+		86D772E4266FBC4C0028158C /* HasVotedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasVotedVC.swift; sourceTree = "<group>"; };
+		86D772E7266FBCB10028158C /* 49976-sdss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "49976-sdss.json"; sourceTree = "<group>"; };
 		86EBFA74266D3098008E6955 /* AddPeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPeopleViewController.swift; sourceTree = "<group>"; };
 		86ECEAA5265FDD7E00465424 /* CreateOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOptionViewModel.swift; sourceTree = "<group>"; };
 		86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstViewController.swift; sourceTree = "<group>"; };
@@ -288,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				860B3BAD266937FF008D5267 /* 56380-calendar.json */,
+				86D772E7266FBCB10028158C /* 49976-sdss.json */,
 				860B3BAC266937FF008D5267 /* 60377-letter.json */,
 			);
 			path = Lotties;
@@ -412,6 +419,7 @@
 			children = (
 				865A00DF265394820061A0E4 /* Voting.storyboard */,
 				865A00E22653A9AA0061A0E4 /* VotingViewController.swift */,
+				86D15406266F6E600091AA95 /* ResultClosedCell.swift */,
 				868B1D4D266777B8004CFDF1 /* VotingResultViewController.swift */,
 				8637064E2654EDC100D0A0AB /* VotingTableViewCell.swift */,
 				866813DF2667389D00659495 /* ResultTableViewCell.swift */,
@@ -419,6 +427,7 @@
 				8637064C2654EDC100D0A0AB /* EditViewController.swift */,
 				865A00E32653A9AA0061A0E4 /* EditTableViewCell.swift */,
 				8699BB2F2667BBEA00D71254 /* CloseSuccessVC.swift */,
+				86D772E4266FBC4C0028158C /* HasVotedVC.swift */,
 				863B083126581C2D007CFBF3 /* ShareSuccessVC.swift */,
 			);
 			path = VotingPage;
@@ -672,6 +681,7 @@
 				861F65E3264D1F8700A54C00 /* EventTableViewCell.xib in Resources */,
 				86C3FA62264BE1F200480E4F /* Settings.storyboard in Resources */,
 				86102768266CA68C008DEFD0 /* InvitesTableViewCell.xib in Resources */,
+				86D772E8266FBCB10028158C /* 49976-sdss.json in Resources */,
 				865A00E0265394820061A0E4 /* Voting.storyboard in Resources */,
 				86C3FA6B264BE25B00480E4F /* Calendar.storyboard in Resources */,
 				86B12B52264A8587006EE7FE /* LaunchScreen.storyboard in Resources */,
@@ -794,6 +804,7 @@
 				8699BB302667BBEB00D71254 /* CloseSuccessVC.swift in Sources */,
 				86EE499F26514C97003B0C25 /* CreateThirdViewController.swift in Sources */,
 				869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */,
+				86D772E5266FBC4C0028158C /* HasVotedVC.swift in Sources */,
 				865A00F22654297A0061A0E4 /* PastTableViewController.swift in Sources */,
 				861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */,
 				861F661D264D38EA00A54C00 /* SettingsTableViewCell.swift in Sources */,
@@ -824,6 +835,7 @@
 				8661E03D26661DDF00BD23F5 /* ResutlsViewController.swift in Sources */,
 				868DA03F26652E7600E53722 /* OptionViewModel.swift in Sources */,
 				861A626C2667AD420002EFD9 /* CreateEventViewModel.swift in Sources */,
+				86D15407266F6E600091AA95 /* ResultClosedCell.swift in Sources */,
 				86824A42265ABFDC00BD706D /* UILabel+Extension.swift in Sources */,
 				861C85D1266E2E7B0015F7D4 /* PrivacyViewController.swift in Sources */,
 				8672AB3F266CBEB300FB44B4 /* UpdateNotificationVM.swift in Sources */,

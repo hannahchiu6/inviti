@@ -12,7 +12,7 @@ import FirebaseFirestoreSwift
 struct Meeting: Codable {
     var id: String
 //    var owner: String
-    var owner: SimpleUser
+//    var owner: SimpleUser
     var ownerAppleID: String
     var createdTime: Int64
     var subject: String?
@@ -20,34 +20,33 @@ struct Meeting: Codable {
     var notes: String?
     var image: String?
     var options: [Option]?
-    var singleMeeting: Bool
-    var hiddenMeeting: Bool
-    var deadlineMeeting: Bool
+    var singleMeeting: Bool = false
+    var hiddenMeeting: Bool = false
+    var deadlineMeeting: Bool = false
     var participants: [String]?
     var numOfParticipants: Int?
     var deadlineTag: Int?
+    var isClosed: Bool = false
+    var finalOption: Option?
 //    @Document var id: String?
     //    let askInfo: AskInfo
     //    var invitation: [String]?
 
     enum CodingKeys: String, CodingKey {
-        case id, owner, subject, notes, createdTime
-        case options, ownerAppleID
-//        case startTime, endTime
-//        case askInfo
+        case id, subject, notes, createdTime
+        case options, ownerAppleID, isClosed
         case participants, location, numOfParticipants
         case hiddenMeeting, singleMeeting, image
-        case deadlineTag, deadlineMeeting
+        case deadlineTag, deadlineMeeting, finalOption
     }
 
     var toDict: [String: Any] {
         return [
             "id": id as Any,
-            "owner": owner.toDict,
+//            "owner": owner.toDict,
             "ownerAppleID": ownerAppleID,
             "createdTime": createdTime,
-//            "startTime": startTime as Any,
-//            "endTime": endTime as Any,
+            "finalOption": finalOption?.toDict as Any,
             "subject": subject as Any,
             "image": image as Any,
             "notes": notes as Any,
@@ -60,8 +59,9 @@ struct Meeting: Codable {
             "deadlineMeeting": deadlineMeeting as Any,
             "hiddenMeeting": hiddenMeeting as Any,
             "numOfParticipants": numOfParticipants as Any,
-            "deadlineTag": deadlineTag as Any
+            "deadlineTag": deadlineTag as Any,
 //            "askInfo": askInfo.toDict as Any
+            "isClosed": isClosed
 
         ]
     }

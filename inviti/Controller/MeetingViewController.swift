@@ -115,6 +115,15 @@ class MeetingViewController: BaseViewController {
 
 extension MeetingViewController: AddMeetingVCDelegate {
     func didtap() {
+
+    let pastVC = storyboard?.instantiateViewController(identifier: "PastVC")
+           guard let vc = pastVC as? PastTableViewController else { return }
+
+//        vc.tableView.reloadData()
+
+        vc.viewModel.fetchParticipatedData()
+
         addMeetingPopView.isHidden = true
     }
+
 }

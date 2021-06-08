@@ -11,7 +11,7 @@ class MainViewModel {
 
     var meetingViewModels = Box([MeetingViewModel]())
 
-    var meeting: Meeting = Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
+    var meeting: Meeting = Meeting(id: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
 
     var refreshView: (() -> Void)?
 
@@ -141,32 +141,32 @@ class MainViewModel {
     func setMeetings(_ meetings: [Meeting]) {
         meetingViewModels.value = convertMeetingsToViewModels(from: meetings)
     }
-
-    func onTapCreate() {
-
-        if hasUserInMeeting() {
-            print("has user in meeting...")
-            create()
-
-        } else {
-            print("login...")
-            SimpleManager.shared.login() { [weak self] result in
-                // MARK: - put your id into login function
-                switch result {
-
-                case .success(let user):
-
-                    print("login success")
-                    self?.create(with: user) // MARK: check which function this call is
-
-                case .failure(let error):
-
-                    print("login.failure: \(error)")
-                }
-
-            }
-        }
-    }
+//
+//    func onTapCreate() {
+//
+//        if hasUserInMeeting() {
+//            print("has user in meeting...")
+//            create()
+//
+//        } else {
+//            print("login...")
+//            SimpleManager.shared.login() { [weak self] result in
+//                // MARK: - put your id into login function
+//                switch result {
+//
+//                case .success(let user):
+//
+//                    print("login success")
+//                    self?.create(with: user) // MARK: check which function this call is
+//
+//                case .failure(let error):
+//
+//                    print("login.failure: \(error)")
+//                }
+//
+//            }
+//        }
+//    }
 
     var onMeetingCreated: (() -> Void)?
 
@@ -187,18 +187,18 @@ class MainViewModel {
         }
     }
 
-    func create(with user: SimpleUser? = nil) {
-
-        if let user = user {
-            meeting.owner = user
-        }
-
-        create(with: &meeting)
-    }
-
-    func hasUserInMeeting() -> Bool {
-        return meeting.owner != nil
-    }
+//    func create(with user: User = nil) {
+//
+//        if let user = user {
+//            meeting.owner = user
+//        }
+//
+//        create(with: &meeting)
+//    }
+//
+//    func hasUserInMeeting() -> Bool {
+//        return meeting.ownerAppleID != nil
+//    }
 
 
 }

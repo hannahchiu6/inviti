@@ -44,6 +44,7 @@ class VotingResultViewController: UIViewController {
 
     @IBOutlet weak var confirmBtnView: UIButton!
 
+    @IBOutlet weak var bottomView: UIView!
     @IBAction func returnToMain(_ sender: Any) {
 
         navigationController?.popViewController(animated: true)
@@ -55,6 +56,9 @@ class VotingResultViewController: UIViewController {
             self.popupView.transform = .identity
 
             self.eventViewModel.create()
+
+            self.votingViewModel.updateCloseStatus(with: self.meetingInfo.id)
+
         }
     }
 
@@ -62,7 +66,7 @@ class VotingResultViewController: UIViewController {
         if segue.identifier == "addToCalendarSegue" {
             let controller = segue.destination as! CloseSuccessVC
 
-            notificationVM.fetchUserData(userID: meetingInfo.ownerAppleID)
+//            notificationVM.fetchUserData(userID: meetingInfo.ownerAppleID)
 
             controller.participants = meetingInfo.participants ?? []
 
@@ -78,23 +82,48 @@ class VotingResultViewController: UIViewController {
         tableview.delegate = self
         tableview.dataSource = self
 
-        setUpView()
-
         self.navigationController?.navigationBar.tintColor = UIColor.gray
         self.navigationController?.navigationBar.backgroundColor = UIColor.clear
 
         votingViewModel.fetchVotedData(meetingID: meetingInfo.id)
 
+        votingViewModel.fetchOneMeeitngData(meetingID: meetingInfo.id)
+
+
+        votingViewModel.fetchUserData(userID: meetingInfo.ownerAppleID)
+
+
         votingViewModel.optionViewModels.bind { [weak self] options in
 
             self?.votingViewModel.onRefresh()
-            self?.tableview.reloadData()
 
+        }
+
+        votingViewModel.meetingViewModels.bind { [weak self] meetings in
+
+            self?.votingViewModel.onRefresh()
+
+        }
+
+        votingViewModel.userBox.bind { [weak self] user in
+
+            self?.votingViewModel.onRefresh()
+            self?.setUpView()
+
+        }
+
+        votingViewModel.refreshView = { [weak self] () in
+            DispatchQueue.main.async {
+                self?.tableview.reloadData()
+
+            }
         }
 
         self.tabBarController?.tabBar.isHidden = true
 
         enableButton()
+
+        setUpView()
     }
 
     func setUpView() {
@@ -105,7 +134,10 @@ class VotingResultViewController: UIViewController {
         meetingSubject.text = meetingInfo.subject
         locationLabel.text = meetingInfo.location
         meetingNotes.text = meetingInfo.notes
-        eventImageBg.alpha = 0.5
+
+        hostNameLabel.text = votingViewModel.userBox.value.name
+        
+        eventImageBg.alpha = 0.3
 
         popupView.isHidden = true
 
@@ -114,54 +146,82 @@ class VotingResultViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-       self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-       self.navigationController?.navigationBar.shadowImage = UIImage()
-       self.navigationController?.navigationBar.isTranslucent = true
-       }
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+
+    }
 
    override func viewWillDisappear(_ animated: Bool) {
-       self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-       self.navigationController?.navigationBar.shadowImage = UIImage()
-       self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = false
    }
 
     func enableButton() {
 
-        if isSelected {
+        if meetingInfo.isClosed {
 
-           self.confirmBtnView.isEnabled = true
-           self.confirmBtnView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+            self.confirmBtnView.isHidden = true
 
-       } else {
-           self.confirmBtnView.isEnabled = false
-           self.confirmBtnView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+            self.bottomView.isHidden = true
 
-       }
+        } else {
+            if isSelected {
+
+               self.confirmBtnView.isEnabled = true
+               self.confirmBtnView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+
+           } else {
+
+               self.confirmBtnView.isEnabled = false
+               self.confirmBtnView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+
+           }
+        }
     }
 }
 
 extension VotingResultViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return votingViewModel.optionViewModels.value.count
+        if meetingInfo.isClosed {
+
+            return 1
+
+        } else {
+
+            return votingViewModel.optionViewModels.value.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let index = indexPath.row
 
-        let filterOptions = votingViewModel.optionViewModels.value[index].selectedOptions
+        if meetingInfo.isClosed {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "resultClosedCell", for: indexPath) as! ResultClosedCell
 
-        let voteForYesArray = filterOptions?.filter({ $0.isSelected == true })
+            guard let option = meetingInfo.finalOption else { return cell }
+                cell.setupCell(option: option)
 
-            let cell = tableView.dequeueReusableCell(withIdentifier: "resultTableViewCell", for: indexPath) as! ResultTableViewCell
+            return cell
 
-            cell.votingViewModel = self.votingViewModel
+        } else {
 
-            cell.meetingID = self.meetingInfo.id
+            let filterOptions = votingViewModel.optionViewModels.value[index].selectedOptions
 
-            cell.setupYesCell(model: votingViewModel.optionViewModels.value[index], index: index)
+            let voteForYesArray = filterOptions?.filter({ $0.isSelected == true })
 
-        return cell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "resultTableViewCell", for: indexPath) as! ResultTableViewCell
+
+                cell.votingViewModel = self.votingViewModel
+
+                cell.meetingID = self.meetingInfo.id
+
+                cell.setupYesCell(model: votingViewModel.optionViewModels.value[index], index: index)
+
+            return cell
+        }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -174,7 +234,7 @@ extension VotingResultViewController: UITableViewDelegate, UITableViewDataSource
 
         eventViewModel.onTimeChanged(selectedOption.startTime, endTime: selectedOption.endTime)
 
-//        eventViewModel.onOwnerChanged(text: ownerAppleID)
+        votingViewModel.onMeetingOptionChanged(selectedOption.option)
 
         isSelected = true
 

@@ -114,6 +114,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="deleteBtnView" destination="6Ip-h7-2kg" id="Pm9-mt-cj5"/>
                 <outlet property="invitesLabel" destination="FsC-sg-SGe" id="Den-5s-LvC"/>
                 <outlet property="ownerImage" destination="vbn-gr-ftJ" id="gMe-gC-QT5"/>
                 <outlet property="rejectBtnView" destination="dWn-ai-lMT" id="sd5-RS-SKe"/>

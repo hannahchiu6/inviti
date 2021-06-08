@@ -23,7 +23,6 @@ class ResultTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-//        selectionStyle = .none
         selectedBackgroundView = UIView()
         selectedBackgroundView?.backgroundColor = UIColor(red: 1, green: 0.9373, blue: 0.9294, alpha: 1.0)
         backgroundView = UIView()
@@ -113,24 +112,5 @@ class ResultTableViewCell: UITableViewCell {
         }
 
     }
-
-//    func setupFirstYesCell(model: OptionViewModel) {
-//
-//        if let yesCount = model.selectedOptions?.count {
-//
-//            let redColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
-//
-//            voteCountLabel.text = "\(yesCount)"
-//
-//            voteCountLabel.textColor = redColor
-//
-//            checkBoxView.image(for: .selected)
-//
-//            titleLabel.textColor = redColor
-//
-//            valueLabel.textColor = redColor
-//        }
-//    }
-
 
 }

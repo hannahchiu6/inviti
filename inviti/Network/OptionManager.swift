@@ -21,7 +21,7 @@ class OptionManager {
         .document(meetingID)
         .collection("options")
         .order(by: "startTime", descending: false)
-        .getDocuments() { querySnapshot, error in
+        .getDocuments { querySnapshot, error in
 
                 if let error = error {
 
@@ -40,7 +40,7 @@ class OptionManager {
                         } catch {
 
                             completion(.failure(error))
-//                            completion(.failure(FirebaseError.documentError))
+
                         }
                     }
 
