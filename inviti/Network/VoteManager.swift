@@ -16,6 +16,8 @@ class VoteManager {
 
     lazy var db = Firestore.firestore()
 
+    var userUID = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as! String
+
     func fetchSelectedOptions(optionID: String, meetingID: String, completion: @escaping (Result<[SelectedOption], Error>) -> Void) {
                 db.collection("meetings")
                     .document(meetingID)
@@ -41,13 +43,53 @@ class VoteManager {
                         } catch {
 
                             completion(.failure(error))
-//                            completion(.failure(FirebaseError.documentError))
+
                         }
                     }
 
                     completion(.success(selectedOptions))
                 }
                     }
+    }
+
+    func checkIfVoted(optionIDs: [String], meetingID: String, completion: @escaping (Result<[SelectedOption], Error>) -> Void) {
+
+        for optionID in optionIDs {
+
+            db.collection("meetings")
+                .document(meetingID)
+                .collection("options")
+                .document(optionID)
+                .collection("selectedOptions")
+                .whereField("selectedUser", isEqualTo: userUID)
+                .getDocuments { querySnapshot, error in
+
+            if let error = error {
+
+                completion(.failure(error))
+
+            } else {
+
+                var selectedOptions = [SelectedOption]()
+                
+                for document in querySnapshot!.documents {
+
+                    do {
+                        if let selectedOption = try document.data(as: SelectedOption.self, decoder: Firestore.Decoder()) {
+                            selectedOptions.append(selectedOption)
+                        }
+
+                    } catch {
+
+                        completion(.failure(error))
+
+                    }
+                }
+
+                completion(.success(selectedOptions))
+            }
+                }
+        }
     }
 
 
@@ -61,6 +103,7 @@ class VoteManager {
             .document()
 
         selectedOption.id = document.documentID
+        selectedOption.selectedUser = userUID as? String
 
         document.setData(selectedOption.toDict) { error in
 
@@ -84,6 +127,7 @@ class VoteManager {
             .collection("selectedOptions")
             .document()
             selectedOption.id = document.documentID
+            selectedOption.selectedUser = userUID as? String
 
         document.setData(selectedOption.toDict) { error in
 

@@ -15,9 +15,7 @@ class AddViewModel {
 
     var userUID = UserDefaults.standard.value(forKey: "uid") as! String
 
-    var meeting: Meeting = Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
-
-    var meetingInfo: Meeting = Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
+    var meeting: Meeting = Meeting(id: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
 
     var refreshView: (() -> Void)?
 
@@ -31,7 +29,7 @@ class AddViewModel {
 
             case .success(let meeting):
 
-                self?.meetingInfo = meeting
+                self?.meeting = meeting
 
             case .failure(let error):
 
@@ -46,7 +44,7 @@ class AddViewModel {
         let db = Firestore.firestore()
 
             db.collection("meetings")
-                .document(meetingInfo.id)
+                .document(meeting.id)
                 .updateData([
                     "participants": FieldValue.arrayUnion([userUID])
                 ]) { err in

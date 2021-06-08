@@ -124,27 +124,13 @@ class NotificationManager {
 //        }
 //    }
 
-    func deleteEvent(notification: Notification, completion: @escaping (Result<String, Error>) -> Void) {
+    func deleteNotification(notification: Notification, completion: @escaping (Result<String, Error>) -> Void) {
 
-//        if !UserManager.shared.isLogin() {
-//            print("who r u?")
-//            return
-//        }
-
-//        if let user = meeting.owner {
-//            if user.id == "5gWVjg7xTHElu9p6Jkl1"
-//                && meeting.category.lowercased() != "test"
-//                && !meeting.category.trimmingCharacters(in: .whitespaces).isEmpty
-//        {
-//                completion(.failure(MasterError.youKnowNothingError("You know nothing!! \(user.id)")))
-//                return
-//            }
-//        }
         let document = db.collection("users")
             .document(userUID as! String)
             .collection("notifications")
 
-            document.document(notification.id).delete() { error in
+            document.document(notification.id).delete { error in
 
             if let error = error {
 

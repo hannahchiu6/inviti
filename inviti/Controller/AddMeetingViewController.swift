@@ -29,11 +29,11 @@ class AddMeetingViewController: BaseViewController {
 
         self.viewModel.updateParticipantData()
 
-        voting.meetingInfo = viewModel.meetingInfo
+        voting.meetingInfo = viewModel.meeting
 
         delegate?.didtap()
 
-        notificationVM.createOwnerNotification(type: TypeName.vote.rawValue, meetingID: viewModel.meetingInfo.id, ownerID: viewModel.meetingInfo.ownerAppleID)
+        notificationVM.createOwnerNotification(type: TypeName.vote.rawValue, meetingID: viewModel.meeting.id, ownerID: viewModel.meeting.ownerAppleID)
 
         self.navigationController?.pushViewController(voting, animated: true)
     }
@@ -47,13 +47,15 @@ class AddMeetingViewController: BaseViewController {
 
         if !text.isEmpty {
 
-            if text == viewModel.meetingInfo.id {
+            if text == viewModel.meeting.id {
 
-                notificationVM.fetchUserToSelf(userID: viewModel.meetingInfo.ownerAppleID)
+                notificationVM.fetchUserToSelf(userID: viewModel.meeting.ownerAppleID)
 
-                notificationVM.onSubjectChanged(viewModel.meetingInfo.subject ?? "")
+                 notificationVM.meeting = viewModel.meeting
 
-                guard let subject = viewModel.meetingInfo.subject else { return }
+                notificationVM.onSubjectChanged(viewModel.meeting.subject ?? "")
+
+                guard let subject = viewModel.meeting.subject else { return }
 
                 searchResultLabel.text = subject
 

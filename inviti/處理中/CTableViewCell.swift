@@ -36,9 +36,6 @@ class CTableViewCell: UITableViewCell {
         eventView.isHidden = true
         self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
 
-
-//        resetCell()
-
     }
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -67,8 +64,6 @@ class CTableViewCell: UITableViewCell {
         }
 
         createOptionViewModel.createWithEmptyData(with: meetingID, option: &createOptionViewModel.option)
-
-//        sender.isSelected = true
 
     } else {
 
@@ -115,7 +110,6 @@ class CTableViewCell: UITableViewCell {
         eventView.isHidden = true
         bookingButton.isHidden = false
 
-
     }
 
     func hasEventStatus() {
@@ -138,18 +132,11 @@ class CTableViewCell: UITableViewCell {
         self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
     }
 
-    func resetCell() {
-
-        bookingMeetingButton.isHidden = true
-        eventView.isHidden = true
-//        self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
-    }
-
     override func prepareForReuse() {
 
         super.prepareForReuse()
         bookingButton.isSelected = false
-//        bookingButton.isHidden = false
+        bookingMeetingButton.isHidden = true
         eventView.isHidden = true
 
     }

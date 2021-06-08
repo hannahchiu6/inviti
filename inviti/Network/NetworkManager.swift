@@ -87,7 +87,6 @@ class NetworkManager {
         }
     }
 
-
     func fetchHostedMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
 
        let docRef = db.collection("meetings")
@@ -173,7 +172,7 @@ class NetworkManager {
 
     func deleteMeeting(meeting: Meeting, completion: @escaping (Result<String, Error>) -> Void) {
 
-        db.collection("meetings").document(meeting.id).delete() { error in
+        db.collection("meetings").document(meeting.id).delete { error in
 
             if let error = error {
 
@@ -234,6 +233,30 @@ class NetworkManager {
                 }
             }
         }
+    }
+
+
+    func updateMeetingClose(meetingID: String, option: Option) {
+
+        let docRef = db.collection("meetings").document(meetingID)
+
+            docRef.updateData([
+
+                "isClosed": true,
+                "finalOption": option.toDict
+
+            ]) { err in
+
+                if err != nil {
+
+                    print("Error in updating time capsule status")
+
+                } else {
+
+                    print("Successfully updated time capsule status!")
+
+                }
+            }
     }
 
 

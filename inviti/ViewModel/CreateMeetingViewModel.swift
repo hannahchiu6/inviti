@@ -14,8 +14,7 @@ class CreateMeetingViewModel {
 
     var meetingViewModel = MeetingViewModel(model: Meeting(
         id: "",
-//        owner: (UserManager.shared.user?.id)!,
-        owner: SimpleUser(id: "", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"), ownerAppleID: "",
+        ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as! String,
         createdTime: 0,
         subject: "",
         location: "",
@@ -32,8 +31,7 @@ class CreateMeetingViewModel {
 
     var meeting: Meeting = Meeting(
         id: "",
-//        owner: (UserManager.shared.user?.id)!,
-        owner: SimpleUser(id: "", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"), ownerAppleID: "",
+        ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as! String,
         createdTime: 0,
         subject: "",
         location: "",
@@ -247,17 +245,17 @@ class CreateMeetingViewModel {
         }
     }
 
-    func create(with user: SimpleUser? = nil) {
+    func create(with userUID: String? = nil) {
 
-        if let user = user {
-            meeting.owner = user
+        if let userUID = userUID {
+            meeting.ownerAppleID = userUID
         }
 
-        create(with: &meeting) // MARK: check which function this call is
+        create(with: &meeting)
     }
 
     func hasUserInMeeting() -> Bool {
-        return meeting.owner != nil
+        return !meeting.ownerAppleID.isEmpty
     }
 
 }

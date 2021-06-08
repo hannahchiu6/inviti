@@ -10,12 +10,6 @@ import UIKit
 class ResultsTableViewCell: UITableViewCell {
 
     var viewModel = VotingViewModel()
-    
-//    var meetingViewModel = MeetingViewModel(model: Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), createdTime: 0, subject: "", location: "", notes: "", image: "", singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
-//
-//    var voteViewModel = VoteViewModel(model: SelectedOption(isSelected: false, selectedUser: ""))
-//
-//    var optionViewModel = OptionViewModel(model: Option(startTime: 0, endTime: 0, optionTime: OptionTime(year: 2021, month: 5, day: 5), duration: 60))
 
     var meetingID: String = ""
 

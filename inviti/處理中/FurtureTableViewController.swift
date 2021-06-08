@@ -32,11 +32,6 @@ class FurtureTableViewController: UITableViewController {
 //            self?.tableView.reloadData()
         }
 
-//        viewModel.scrollToTop = { [weak self] () in
-//
-//            self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-//        }
-
         viewModel.fetchHostedData()
 
         setupRefresher()

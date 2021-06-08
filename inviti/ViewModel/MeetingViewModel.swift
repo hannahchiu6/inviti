@@ -24,7 +24,7 @@ class MeetingViewModel {
     }
 
     var ownerAppleID: String {
-        get{
+        get {
             return meeting.ownerAppleID
         }
     }
@@ -54,38 +54,29 @@ class MeetingViewModel {
         }
     }
 
+    var isClosed: Bool {
+        get {
+
+            return meeting.isClosed
+        }
+    }
+
+    var singleMeeting: Bool {
+        get {
+
+            return meeting.singleMeeting
+        }
+    }
+
     var participants: [String] {
         get {
             return meeting.participants ?? []
         }
     }
 
-//    var calendarType: String {
-//        get {
-//            switch article.category {
-//            case "IU":
-//                return UIColor.deepPurple
-//            case "Beauty":
-//                return UIColor.indigo
-//            case "SchoolLife":
-//                return UIColor.orange
-//            case "Test":
-//                return UIColor.red
-//            default:
-//                return UIColor.green
-//            }
-//        }
-//    }
-
     var options: [Option]? {
         get {
             return meeting.options
-        }
-    }
-
-    var owner: SimpleUser {
-        get {
-            return meeting.owner
         }
     }
 

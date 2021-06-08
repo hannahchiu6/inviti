@@ -118,37 +118,6 @@ class CTableViewController: UIViewController {
         }
     }
 
-//    private func updateButton() {
-//
-//        switch options.count {
-//
-//        case 0:
-//            nextBtnView.alpha = 0.7
-//            nextBtnView.isEnabled = false
-//            nextBtnView.tintColor = UIColor.lightGray
-//
-//        default:
-//            nextBtnView.alpha = 1
-//            nextBtnView.isEnabled = true
-//        }
-//    }
-
-//    private var cTableViewController: UIViewController
-//
-//       override func show(_ vc: UIViewController, sender: Any?) {
-//            cTableViewController.removeFromParent()
-//            cTableViewController = vc
-//            add(vc)
-//       }
-
-//    func setupRefresher() {
-//
-//        calendarTableView.refresh.header.addRefreshClosure { [weak self] in
-//            self?.viewModel.fetchData()
-//            self?.calendarTableView.refresh.header.endRefreshing()
-//        }
-//    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -342,7 +311,6 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
             }  else {
 
                 cell.bookingButton.isSelected = false
-
 
             }
         return cell

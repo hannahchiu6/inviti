@@ -16,12 +16,11 @@ class PastTableViewController: UITableViewController {
 
     var selectedIndex: Int?
 
-//    participants
-
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.do_registerCellWithNib(
-            identifier: String(describing: MeetingTableViewCell.self),bundle: nil)
+            identifier: String(describing: MeetingTableViewCell.self), bundle: nil)
 
         viewModel.refreshView = { [weak self] () in
             DispatchQueue.main.async {
@@ -32,11 +31,6 @@ class PastTableViewController: UITableViewController {
         viewModel.meetingViewModels.bind { [weak self] meetings in
             self?.viewModel.onRefresh()
         }
-
-//        viewModel.scrollToTop = { [weak self] () in
-//
-//            self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-//        }
 
         viewModel.fetchParticipatedData()
 
