@@ -61,6 +61,11 @@ class CreateMeetingViewModel {
         self.meetingViewModel.meeting.notes = notes
     }
 
+    func onImageUploaded(url: String) {
+        self.meetingViewModel.meeting.image = url
+        self.updateImage(with: self.meetingViewModel.meeting)
+    }
+
     func onLocationChanged(text location: String) {
         self.meetingViewModel.meeting.location = location
     }
@@ -141,7 +146,42 @@ class CreateMeetingViewModel {
         }
     }
 
-    var onMeetingUpdated: (() -> Void)?
+    func uploadImage(with image: UIImage) {
+
+        NetworkManager.shared.uploadImage(selectedImage: image) { result in
+            switch result {
+            
+            case .success(let imageUrl):
+
+                self.onImageUploaded(url: imageUrl)
+
+                print("Publish Image Succeeded")
+
+            case .failure(let error):
+
+                print("publishArticle.failure: \(error)")
+
+            }
+        }
+    }
+
+    func updateImage(with meeting: Meeting) {
+
+        NetworkManager.shared.updateMeetingImageURL(meeting: meeting) { result in
+
+            switch result {
+
+            case .success(_ ):
+
+                print("Publish Image Succeeded")
+
+            case .failure(let error):
+
+                print("publishArticle.failure: \(error)")
+
+            }
+        }
+    }
 
     func update(with meeting: Meeting) {
 
@@ -152,7 +192,6 @@ class CreateMeetingViewModel {
             case .success:
 
                 print("onTapCreate meeting, success")
-//                self.onMeetingUpdated?()
 
             case .failure(let error):
 
@@ -162,7 +201,7 @@ class CreateMeetingViewModel {
 
     }
 
-    func updateSecond(meetingID: String) {
+    func updateDetails(meetingID: String) {
 
         NetworkManager.shared.updateMeeting(meetingID: meetingID, meeting: self.meetingViewModel.meeting) { result in
 
@@ -171,7 +210,6 @@ class CreateMeetingViewModel {
             case .success:
 
                 print("onTapCreate meeting, success")
-//                self.onMeetingUpdated?()
 
             case .failure(let error):
 

@@ -56,7 +56,6 @@ class MeetingViewController: BaseViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
 
-
     override func viewWillAppear(_ animated: Bool) {
              super.viewWillAppear(animated)
 
@@ -118,8 +117,6 @@ extension MeetingViewController: AddMeetingVCDelegate {
 
     let pastVC = storyboard?.instantiateViewController(identifier: "PastVC")
            guard let vc = pastVC as? PastTableViewController else { return }
-
-//        vc.tableView.reloadData()
 
         vc.viewModel.fetchParticipatedData()
 

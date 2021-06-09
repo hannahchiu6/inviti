@@ -78,8 +78,7 @@ class MeetingTableViewCell: UITableViewCell {
 
         guard let url = viewModel?.image else { return }
             let imageUrl = URL(string: String(url))
-            hostImage.kf.setImage(with: imageUrl)
-
+        hostImage.kf.setImage(with: imageUrl, placeholder: UIImage(systemName: "moon.circle.fill"))
     }
 
     func setupParticipatedCell() {
@@ -91,7 +90,7 @@ class MeetingTableViewCell: UITableViewCell {
 
     func setUpView() {
 
-        bgView.layer.shadowOpacity = 0.6
+        bgView.layer.shadowOpacity = 0.4
         bgView.layer.shadowOffset = CGSize(width: 0, height: 0)
         bgView.layer.shadowRadius = 3
         bgView.layer.shadowColor = UIColor.lightGray.cgColor

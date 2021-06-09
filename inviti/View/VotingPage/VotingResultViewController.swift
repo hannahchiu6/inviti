@@ -45,6 +45,7 @@ class VotingResultViewController: UIViewController {
     @IBOutlet weak var confirmBtnView: UIButton!
 
     @IBOutlet weak var bottomView: UIView!
+    
     @IBAction func returnToMain(_ sender: Any) {
 
         navigationController?.popViewController(animated: true)

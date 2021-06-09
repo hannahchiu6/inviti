@@ -7,11 +7,22 @@
 
 import UIKit
 import SwiftHEXColors
+import Firebase
+import FirebaseFirestoreSwift
 
+protocol OptionalSettingsCellDelegate: AnyObject {
+    func didTapController(controller: UIAlertController)
+    func didTapImagePicker(imagePicker: UIImagePickerController)
+    func dismissView()
+}
 
 class OptionalSettingsCell: UITableViewCell{
 
+    weak var delegate: OptionalSettingsCellDelegate?
+
     var viewModel = CreateMeetingViewModel()
+
+    var imagePicker = UIImagePickerController()
 
     var deadlineTag: Int = 0
 
@@ -21,7 +32,7 @@ class OptionalSettingsCell: UITableViewCell{
     
     @IBOutlet weak var singleView: UISwitch!
 
-    @IBOutlet weak var hiddenView: UISwitch!
+//    @IBOutlet weak var hiddenView: UISwitch!
 
     @IBOutlet weak var deadlineView: UISwitch!
 
@@ -32,18 +43,28 @@ class OptionalSettingsCell: UITableViewCell{
 
             viewModel.meetingSingleChanged(true)
         } else {
+
             viewModel.meetingSingleChanged(false)
         }
     }
 
-    @IBAction func hiddenToggle(_ sender: UISwitch) {
-        if sender.isOn {
+    @IBOutlet weak var uploadSuccessView: UIView!
 
-            viewModel.meetingHiddenChanged(true)
-        } else {
-            viewModel.meetingSingleChanged(false)
-        }
+    @IBOutlet weak var uploadBtnView: UIButton!
+
+    @IBAction func uploadImage(_ sender: Any) {
+
+        showUploadMenu()
+        
     }
+    //    @IBAction func hiddenToggle(_ sender: UISwitch) {
+//        if sender.isOn {
+//
+//            viewModel.meetingHiddenChanged(true)
+//        } else {
+//            viewModel.meetingSingleChanged(false)
+//        }
+//    }
 
     @IBOutlet weak var textView: UITextView!
 
@@ -84,6 +105,10 @@ class OptionalSettingsCell: UITableViewCell{
 
         textView.delegate = self
 
+        imagePicker.delegate = self
+
+        uploadSuccessView.isHidden = true
+
         setLayout()
 
         observation = addSubtract.observe(\.value, options: [.old, .new], changeHandler: { stepper, change in
@@ -104,7 +129,7 @@ class OptionalSettingsCell: UITableViewCell{
     func setCell(model: MeetingViewModel) {
         textView.text = model.meeting.notes
         singleView.isOn = model.meeting.singleMeeting
-        hiddenView.isOn = model.meeting.hiddenMeeting
+//        hiddenView.isOn = model.meeting.hiddenMeeting
         deadlineView.isOn = model.meeting.deadlineMeeting
         deadlineTag = model.meeting.deadlineTag ?? 0
 
@@ -151,5 +176,50 @@ extension OptionalSettingsCell: UITextViewDelegate {
 
             }
 
+    }
+}
+
+extension OptionalSettingsCell: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        var selectedImageFromPicker: UIImage?
+
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+
+            selectedImageFromPicker = pickedImage
+
+            viewModel.uploadImage(with: pickedImage)
+        }
+
+        if let pickedImage = selectedImageFromPicker {
+
+            uploadSuccessView.isHidden = false
+        }
+
+        delegate?.dismissView()
+    }
+
+    func showUploadMenu() {
+        let controller = UIAlertController(title: "Upload an image", message: nil, preferredStyle: .actionSheet)
+
+        let libraryAction = UIAlertAction(title: "Pick from Album", style: .default) { _ in
+
+            self.openAlbum()
+        }
+
+        let cancleAction = UIAlertAction(title: "Cancle", style: .cancel)
+
+        controller.addAction(libraryAction)
+        controller.addAction(cancleAction)
+
+        delegate?.didTapController(controller: controller)
+
+    }
+
+    func openAlbum() {
+
+        imagePicker.sourceType = .savedPhotosAlbum
+        delegate?.didTapImagePicker(imagePicker: imagePicker)
     }
 }

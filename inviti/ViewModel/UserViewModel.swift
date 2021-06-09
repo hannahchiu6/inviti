@@ -8,7 +8,7 @@
 import Foundation
 
 class UserViewModel {
-    let user: User
+    var user: User
 
     init(model user: User) {
         self.user = user
