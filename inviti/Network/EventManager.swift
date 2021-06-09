@@ -17,7 +17,7 @@ class EventManager {
 
     lazy var db = Firestore.firestore()
 
-    var userUID = UserDefaults.standard.value(forKey: "uid")
+    var userUID = UserDefaults.standard.value(forKey: "uid") as? String ?? ""
 
 //    let ownerAppleID: String = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as! String
 
@@ -91,7 +91,7 @@ class EventManager {
     func fetchSubEvents(completion: @escaping (Result<[Event], Error>) -> Void) {
 
         self.db.collection("users")
-            .document(self.userUID as! String)
+            .document(self.userUID)
             .collection("events")
             .order(by: "startTime", descending: false)
             .getDocuments { querySnapshot, error in
@@ -125,7 +125,7 @@ class EventManager {
     func createEvent(event: inout Event, completion: @escaping (Result<String, Error>) -> Void) {
 
         let document = db.collection("users")
-            .document(userUID as! String)
+            .document(userUID)
             .collection("events")
             .document()
             event.id = document.documentID

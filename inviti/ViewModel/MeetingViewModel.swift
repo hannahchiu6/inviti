@@ -80,6 +80,12 @@ class MeetingViewModel {
         }
     }
 
+    var numberForSearch: String {
+        get {
+            return meeting.numberForSearch
+        }
+    }
+
     func onTap() {
         NetworkManager.shared.deleteMeeting(meeting: meeting) { [weak self] result in
 

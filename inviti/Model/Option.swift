@@ -11,7 +11,6 @@ import Foundation
 
 struct Option: Codable {
     var id: String
-//    @DocumentID var id: String?
     var startTime: Int64
     var endTime: Int64
     var optionTime: OptionTime?
@@ -29,22 +28,12 @@ struct Option: Codable {
         case endTime
     }
 
-//    init(startTime: Int, endTime: Int, optionTime: OptionTime, duration: Int) {
-//        self.startTime = 0
-//        self.endTime = 0
-//        self.id = "id"
-//        self.optionTime = OptionTime(year: 2021, month: 10, day: 10)
-//        self.duration = 60
-//        self.selectedOptions = [SelectedOption(isSelected: false, selectedUser: nil)]
-//
-//    }
-
     var toDict: [String: Any] {
         return [
             "id": id as Any,
             "startTime": startTime,
             "endTime": endTime,
-            "duration": duration as Any,
+            "duration": duration,
             "optionTime": optionTime?.toDict as Any,
             "selectedOptions": selectedOptions as Any
 

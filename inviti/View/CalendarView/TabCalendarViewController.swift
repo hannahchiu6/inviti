@@ -27,11 +27,7 @@ class TabCalendarViewController: UIViewController {
 
     var viewModel = CalendarViewModel()
 
-    var eventViewModels: [EventViewModel]? {
-        didSet {
-            self.calendarTableView.calendar.reloadData()
-        }
-    }
+    var eventViewModels: [EventViewModel]?
 
     @IBOutlet weak var calendarTableView: JKCalendarTableView!
 
@@ -114,11 +110,11 @@ extension TabCalendarViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventTableViewCell", for: indexPath) as! EventTableViewCell
 
-        let selectedDays = viewModel.createTimeData(in: eventViewModels ?? [])
+        let theDay = Date.intDateFormatter.string(from: self.selectDay.date)
+
+        let selectedDays = viewModel.createTimeData(in: viewModel.eventViewModels.value)
 
         if selectedDays.contains(selectDay) {
-
-            let theDay = Date.intDateFormatter.string(from: self.selectDay.date)
 
             let eventModel = viewModel.createSelectedData(in: viewModel.eventViewModels.value, selectedDate: theDay)
 
@@ -133,13 +129,18 @@ extension TabCalendarViewController: UITableViewDelegate, UITableViewDataSource 
 extension TabCalendarViewController: JKCalendarDelegate {
 
     func calendar(_ calendar: JKCalendar, didTouch day: JKDay) {
+
         selectDay = day
+
         calendar.focusWeek = day < calendar.month ? 0: day > calendar.month ? calendar.month.weeksCount - 1: day.weekOfMonth - 1
 
         let theDay = Date.intDateFormatter.string(from: self.selectDay.date)
+
         eventViewModels = viewModel.createSelectedData(in: viewModel.eventViewModels.value, selectedDate: theDay)
 
         self.calendarTableView.reloadData()
+
+        calendar.reloadData()
     }
 
 
@@ -165,6 +166,9 @@ extension TabCalendarViewController: JKCalendarDataSource {
 
         let todayColor = UIColor(red: 0.78, green: 0.49, blue: 0.35, alpha: 1.00)
 
+        let optionColor = UIColor(red: 1, green: 0.8353, blue: 0.7882, alpha: 1.0)
+
+
         var marks: [JKCalendarMark] = []
 
         let today = JKDay(date: Date())
@@ -178,9 +182,9 @@ extension TabCalendarViewController: JKCalendarDataSource {
         }
 
         if today == month {
-            marks.append(JKCalendarMark(type: .hollowCircle,
+            marks.append(JKCalendarMark(type: .circle,
                                         day: today,
-                                        color: todayColor))
+                                        color: optionColor))
         }
 
 

@@ -13,7 +13,7 @@ class LoginViewModel {
 
     var userViewModels = Box([UserViewModel]())
 
-    var user: User = User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0)
+    var user: User = User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, numberForSearch: "")
 
     func fetchUser(user: User) {
 

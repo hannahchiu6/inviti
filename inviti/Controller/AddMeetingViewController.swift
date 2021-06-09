@@ -9,6 +9,7 @@ import UIKit
 
 protocol AddMeetingVCDelegate: AnyObject {
     func didtap()
+    func returnToMain()
 }
 
 class AddMeetingViewController: BaseViewController {
@@ -27,13 +28,22 @@ class AddMeetingViewController: BaseViewController {
         let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
            guard let voting = votingVC as? VotingViewController else { return }
 
-        self.viewModel.updateParticipantData()
+        let model = notificationVM.meetingViewModels.value
 
-        voting.meetingInfo = viewModel.meeting
+        if !model.isEmpty {
+
+            voting.meetingInfo = model[0].meeting
+
+            if let meetingID = model[0].id as? String,
+               let ownerID = model[0].ownerAppleID as? String {
+
+                self.viewModel.updateParticipantData(meetingID: meetingID)
+
+                notificationVM.createOwnerNotification(type: TypeName.vote.rawValue, meetingID: meetingID, ownerID: ownerID)
+            }
+        }
 
         delegate?.didtap()
-
-        notificationVM.createOwnerNotification(type: TypeName.vote.rawValue, meetingID: viewModel.meeting.id, ownerID: viewModel.meeting.ownerAppleID)
 
         self.navigationController?.pushViewController(voting, animated: true)
     }
@@ -47,24 +57,35 @@ class AddMeetingViewController: BaseViewController {
 
         if !text.isEmpty {
 
-            if text == viewModel.meeting.id {
+            notificationVM.fetchOneMeeitngData(meetingID: text)
 
-                notificationVM.fetchUserToSelf(userID: viewModel.meeting.ownerAppleID)
+            let model = notificationVM.meetingViewModels.value
 
-                 notificationVM.meeting = viewModel.meeting
+            if !model.isEmpty {
 
-                notificationVM.onSubjectChanged(viewModel.meeting.subject ?? "")
+                if text == model[0].meeting.numberForSearch {
 
-                guard let subject = viewModel.meeting.subject else { return }
+                    notificationVM.fetchUserToSelf(userID: model[0].ownerAppleID)
 
-                searchResultLabel.text = subject
+                    notificationVM.meeting = viewModel.meeting
 
-            } else {
+                    notificationVM.onSubjectChanged(model[0].subject ?? "")
 
-                goVoteBtnView.isHidden = true
+                    notificationVM.onNotiMeetingIDAdded(model[0].id)
 
-                searchResultLabel.text = "查無此活動，請重新輸入。"
+                    notificationVM.onImageChanged(model[0].image ?? "")
 
+                    guard let subject = model[0].subject as? String else { return }
+
+                    searchResultLabel.text = subject
+
+                } else {
+
+                    goVoteBtnView.isHidden = true
+
+                    searchResultLabel.text = "查無此活動，請重新輸入。"
+
+                }
             }
 
         } else {
@@ -95,7 +116,7 @@ class AddMeetingViewController: BaseViewController {
     }
 
     @IBAction func returnButton(_ sender: UIButton) {
-        dismiss(animated: false, completion: nil)
+        delegate?.returnToMain()
     }
 }
 

@@ -179,15 +179,18 @@ extension CTableViewController: JKCalendarDataSource {
 
         let bookingDate = OptionTime(year: selectDay.year, month: selectDay.month, day: selectDay.day)
 
-        let selectedOptions = selectedOptionViewModel.markSelectedDay(in: selectedOptionViewModel.optionViewModels.value, selectedDate: bookingDate)
 
         let today = JKDay(date: Date())
 
         let marksDay = viewModel.createMarksData()
 
+        let selectedOptions = selectedOptionViewModel.markOptionsDay(in: selectedOptionViewModel.optionViewModels.value)
+
         let markColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
 
         let todayColor = UIColor(red: 0.78, green: 0.49, blue: 0.35, alpha: 1.00)
+
+        let optionColor = UIColor(red: 1, green: 0.8353, blue: 0.7882, alpha: 1.0)
 
 
         if selectDay == month {
@@ -200,16 +203,16 @@ extension CTableViewController: JKCalendarDataSource {
         for day in selectedOptions {
 
             if day == month {
-                marks.append(JKCalendarMark(type: .circle,
+                marks.append(JKCalendarMark(type: .hollowCircle,
                                             day: day,
-                                            color: markColor))
+                                            color: optionColor))
             }
         }
 
             if today == month {
-            marks.append(JKCalendarMark(type: .hollowCircle,
+            marks.append(JKCalendarMark(type: .circle,
                                         day: today,
-                                        color: todayColor))
+                                        color: optionColor))
         }
 
 
@@ -220,7 +223,6 @@ extension CTableViewController: JKCalendarDataSource {
                                         day: i,
                                         color: todayColor))
             }
-
         }
             return marks
     }

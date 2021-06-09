@@ -15,7 +15,7 @@ class AddPeopleViewController: UIViewController {
 
     var meetingID: String?
 
-    var userUID = UserDefaults.standard.value(forKey: "uid")
+    var userUID = UserDefaults.standard.value(forKey: "uid") as? String ?? ""
 
     @IBOutlet weak var searchField: UITextField! {
         didSet {
@@ -47,11 +47,13 @@ class AddPeopleViewController: UIViewController {
 
         let type = TypeName.invite.rawValue
 
-        let participantID = notificationVM.userViewModel.id
+        if let participantID = notificationVM.userBox.value.id as? String,
+           let meetingID = meetingID {
 
-        notificationVM.createInviteNotification(type: type, meetingID: meetingID as! String, participantID: participantID as! String)
+            notificationVM.createInviteNotification(type: type, meetingID: meetingID, participantID: participantID)
 
-        viewModel.addSearchParticipants(meetingID: meetingID ?? "", text: participantID)
+            viewModel.addSearchParticipants(meetingID: meetingID, text: participantID)
+        }
     }
 
     @IBAction func returnButton(_ sender: UIButton) {
@@ -68,13 +70,13 @@ class AddPeopleViewController: UIViewController {
 
             notificationVM.fetchUserData(userID: text)
 
-            if text == notificationVM.userViewModel.user.id {
+            if text == notificationVM.userBox.value.numberForSearch {
 
-                resultPersonName.text = notificationVM.userViewModel.user.name
+                resultPersonName.text = notificationVM.userBox.value.name
 
                 sendInviteView.isHidden = false
 
-                guard let url = notificationVM.userViewModel.user.image else { return }
+                guard let url = notificationVM.userBox.value.image else { return }
 
                     notificationVM.onImageChanged(String(url))
 
@@ -102,27 +104,31 @@ class AddPeopleViewController: UIViewController {
 
         let name = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue) as! String
 
-        let meetingSubject = notificationVM.meetingViewModels.value[0].subject
+        if !notificationVM.meetingViewModels.value.isEmpty {
+            let meetingSubject = notificationVM.meetingViewModels.value[0].subject
 
-        let message = "您的好友 \(name) 邀請您參加「\(meetingSubject)」，來 inviti 票選時間吧！打開 APP 輸入活動 ID 即可參與投票 👉🏻 \(meetingID!)"
+            let message = "您的好友 \(name) 邀請您參加「\(meetingSubject)」，來 inviti 票選時間吧！打開 APP 輸入活動 ID 即可參與投票 👉🏻 \(meetingID!)"
 
-       let objectsToShare = [message]
 
-        let ac = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            let objectsToShare = [message]
 
-        ac.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            let ac = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
 
-            if completed {
+            ac.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
 
-                INProgressHUD.showSuccess(text: "發送邀請成功")
 
-            } else {
+                if completed {
 
-                INProgressHUD.showFailure(text: "請稍後再試")
+                    INProgressHUD.showSuccess(text: "發送邀請成功")
+
+                } else {
+
+                    INProgressHUD.showFailure(text: "請稍後再試")
+                }
             }
-        }
 
-        present(ac, animated: true, completion: nil)
+            present(ac, animated: true, completion: nil)
+        }
     }
 
 

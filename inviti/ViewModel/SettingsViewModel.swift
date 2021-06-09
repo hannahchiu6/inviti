@@ -11,7 +11,7 @@ class SettingsViewModel {
 
     var onGranted: (() -> Void)?
 
-    var userViewModel = Box(UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [])))
+    var userViewModel = Box(UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [], numberForSearch: "")))
 
     var refreshView: (() -> Void)?
 
@@ -29,7 +29,7 @@ class SettingsViewModel {
 //        self.updateImage(url: url)
     }
 
-    var user: User = User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0)
+    var user: User = User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, numberForSearch: "")
 
     func onRefresh() {
 

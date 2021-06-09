@@ -113,6 +113,10 @@ class MeetingViewController: BaseViewController {
 }
 
 extension MeetingViewController: AddMeetingVCDelegate {
+    func returnToMain() {
+        addMeetingPopView.isHidden = true
+    }
+
     func didtap() {
 
     let pastVC = storyboard?.instantiateViewController(identifier: "PastVC")
