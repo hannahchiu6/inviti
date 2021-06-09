@@ -229,9 +229,11 @@ extension VotingResultViewController: UITableViewDelegate, UITableViewDataSource
 
         let selectedOption = votingViewModel.optionViewModels.value[indexPath.row]
 
-        guard let info = meetingInfo else { return }
+       if let subject = meetingInfo.subject,
+          let location = meetingInfo.location {
 
-        self.eventViewModel.onInfoChanged(text: info.subject!, location: info.location!, date: Int(selectedOption.optionTime.dateInt()) ?? 0)
+            self.eventViewModel.onInfoChanged(text: subject, location: location, date: Int(selectedOption.optionTime.dateInt()) ?? 0)
+        }
 
         eventViewModel.onTimeChanged(selectedOption.startTime, endTime: selectedOption.endTime)
 

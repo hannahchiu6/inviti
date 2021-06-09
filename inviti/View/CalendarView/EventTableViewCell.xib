@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L9q-yb-KY9">
-                        <rect key="frame" x="8" y="16" width="4" height="55"/>
+                        <rect key="frame" x="16" y="16" width="4" height="55"/>
                         <color key="backgroundColor" red="0.99691563839999997" green="0.2054972947" blue="0.20386651159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="4" id="bve-39-oaj"/>
@@ -37,7 +37,7 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NWr-Hy-5DA" userLabel="Title Stack View">
-                        <rect key="frame" x="24" y="17" width="102" height="53"/>
+                        <rect key="frame" x="32" y="17" width="102" height="53"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="動物園快閃遊" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ky-xV-eN4">
                                 <rect key="frame" x="0.0" y="0.0" width="102" height="25"/>
@@ -84,7 +84,7 @@
                     <constraint firstItem="NWr-Hy-5DA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="Ibz-79-ZcS"/>
                     <constraint firstItem="zBy-lA-4DC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="JnC-bJ-rTR"/>
                     <constraint firstAttribute="bottom" secondItem="NWr-Hy-5DA" secondAttribute="bottom" constant="17" id="SUn-x7-nQL"/>
-                    <constraint firstItem="L9q-yb-KY9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Xyz-Hj-EpU"/>
+                    <constraint firstItem="L9q-yb-KY9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Xyz-Hj-EpU"/>
                     <constraint firstAttribute="trailing" secondItem="zBy-lA-4DC" secondAttribute="trailing" constant="16" id="ax2-dg-RpH"/>
                     <constraint firstAttribute="bottom" secondItem="3fR-VQ-1TH" secondAttribute="bottom" id="eCN-eA-x2X"/>
                     <constraint firstItem="NWr-Hy-5DA" firstAttribute="leading" secondItem="L9q-yb-KY9" secondAttribute="leading" constant="16" id="gYg-e9-2N1"/>

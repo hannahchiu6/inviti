@@ -20,15 +20,27 @@ class UserManager {
 
     lazy var db = Firestore.firestore()
 
-    var userUID = UserDefaults.standard.value(forKey: "uid") as! String
+    var userUID = UserDefaults.standard.value(forKey: "uid") as? String ?? ""
 
-    var user = User(id: "", email: "", name: "inviti User", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0)
+    var number = Int.random(in: 0...9)
+
+    var user = User(id: "", email: "", name: "inviti User", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, numberForSearch: "")
+
+    func randomString(of length: Int) -> String {
+
+        let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        var results = ""
+        for _ in 0 ..< length {
+            results.append(letters.randomElement()!)
+        }
+        return results
+    }
 
     func updateUserData(user: User, completion: @escaping (Result<String, Error>) -> Void) {
         do {
 
             try db.collection("users")
-                .document(userUID as! String)
+                .document(userUID)
                 .setData(from: user)
 
             completion(.success("Successfully updated user data!"))
@@ -41,9 +53,10 @@ class UserManager {
 
     func createUser(user: inout User, completion: @escaping (Result<String, Error>) -> Void) {
 
-        let document = db.collection("users").document(userUID as! String)
-//        document.documentID = userUID as! String
-        user.id = userUID as! String
+        let document = db.collection("users").document(userUID)
+
+        user.id = userUID
+        user.numberForSearch = self.randomString(of: 6)
 
         document.setData(user.toDict) { error in
 
@@ -63,8 +76,9 @@ class UserManager {
     func createNewUser(completion: @escaping (Result<String, Error>) -> Void) {
 
 
-        let document = db.collection("users").document(userUID as! String)
+        let document = db.collection("users").document(userUID)
         user.id = userUID
+        user.numberForSearch = self.randomString(of: 6)
 
         document.setData(user.toDict) { error in
 
@@ -167,42 +181,45 @@ class UserManager {
 
     func fetchOneUser(userID: String, completion: @escaping
                     (Result<User, Error>) -> Void) {
-        let docRef = db.collection("users")
-            .document(userID)
+       db.collection("users")
+        .whereField("numberForSearch", isEqualTo: userID)
+        .getDocuments { querySnapshot, error in
 
-        docRef.getDocument { document, error in
-
-            let result = Result {
-              try document?.data(as: User.self)
-            }
-
-                switch result {
-
-                case .success(let user):
-                    if let user = user {
-
-                        completion(.success(user))
-
-                    } else {
-
-                        print("User does not exist")
-
-                    }
-                case .failure(let error):
-
-                    print("Error decoding city: \(error)")
+                if let error = error {
 
                     completion(.failure(error))
+
+                } else {
+
+                    var users = [User]()
+
+                    for document in querySnapshot!.documents {
+
+                        do {
+                            if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
+                                users.append(user)
+                            }
+
+                        } catch {
+
+                            completion(.failure(error))
+
+                        }
+                    }
+                        if !users.isEmpty {
+                            completion(.success(users[0]))
+
+                        }
                 }
+                    }
             }
-        }
+
 
     func didLoginBefore (completion: @escaping
                     (Result<[User], Error>) -> Void) {
-        let docRef = db.collection("users")
+       db.collection("users")
             .whereField("id", isEqualTo: userUID)
-
-        docRef.getDocuments { querySnapshot, error in
+            .getDocuments { querySnapshot, error in
 
             if let error = error {
 
@@ -244,7 +261,9 @@ class UserManager {
               completion(.failure(error))
              }
              guard let _ = metadata else { return }
+
              imageRef.downloadURL { url, error in
+                
               if let url = url {
                completion(.success(url.absoluteString))
               } else if let error = error {
@@ -289,7 +308,7 @@ class UserManager {
             docRef.updateData([
                 "name": "\(name)",
                 "email": "\(email)",
-                "image": "\(image)",
+                "image": "\(image)"
 
             ]) { err in
 

@@ -11,7 +11,7 @@ class MainViewModel {
 
     var meetingViewModels = Box([MeetingViewModel]())
 
-    var meeting: Meeting = Meeting(id: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
+    var meeting: Meeting = Meeting(id: "",  numberForSearch: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
 
     var refreshView: (() -> Void)?
 

@@ -15,11 +15,11 @@ class UpdateNotificationVM {
 
     var meetingViewModels = Box([MeetingViewModel]())
 
-    var userBox = Box(UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [])))
+    var userBox = Box(UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [], numberForSearch: "")))
 
-    var notificationViewModel = NotificationViewModel(model: Notification(id: "", meetingID: "", eventID: "", participantID: "", createdTime: 0, type: "", image:  ""))
+    var notificationViewModel = NotificationViewModel(model: Notification(id: "", meetingID: "", eventID: "", participantID: "", createdTime: 0, type: "", image: ""))
 
-    var userViewModel = UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: []))
+    var userViewModel = UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [], numberForSearch: ""))
 
     var notification: Notification = Notification(id: "", meetingID: "", eventID: "", participantID: "", createdTime: 0, type: "")
 
@@ -27,7 +27,7 @@ class UpdateNotificationVM {
 
     var optionViewModel = OptionViewModel(model: Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: []))
 
-    var meetingViewModel = MeetingViewModel(model: Meeting(id: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
+    var meetingViewModel = MeetingViewModel(model: Meeting(id: "", numberForSearch: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
 
     var meeting: Meeting?
 
@@ -61,6 +61,10 @@ class UpdateNotificationVM {
 
     func onSubjectChanged(_ subject: String) {
         self.notification.subject = subject
+    }
+
+    func onNameChanged(_ name: String) {
+        self.notification.ownerName = name
     }
 
     func fetchHostedData() {
@@ -124,6 +128,8 @@ class UpdateNotificationVM {
 
                 self?.onImageChanged(user.image ?? "")
 
+                self?.onNameChanged(user.name)
+
             case .failure(let error):
 
                 print("fetchData.failure: \(error)")
@@ -133,7 +139,7 @@ class UpdateNotificationVM {
 
     func fetchOneMeeitngData(meetingID: String) {
 
-        NetworkManager.shared.fetchOneMeeting(meetingID: meetingID) { [weak self] result in
+        NetworkManager.shared.fetchSearchResult(meetingID: meetingID) { [weak self] result in
 
             switch result {
 
@@ -184,7 +190,6 @@ class UpdateNotificationVM {
     // 搜尋 meeting 確定去投票
     func createOwnerNotification(type: String, meetingID: String, ownerID: String) {
 
-        // test meeting id: duYmubjvKzp5PCAcG9Gd
         fetchOneMeeitngData(meetingID: meetingID)
 
         self.notification.type = type

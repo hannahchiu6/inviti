@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
 
     var viewModel = SettingsViewModel()
 
-    var userUID = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as! String
+    var userUID = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? ""
     
     @IBAction func logout(_ sender: Any) {
         let firebaseAuth = Auth.auth()

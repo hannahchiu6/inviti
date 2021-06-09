@@ -54,6 +54,10 @@ class UserViewModel {
         return user.calendarType
     }
 
+    var numberForSearch: String {
+        return user.numberForSearch
+    }
+
 //    var logInOrNot: Bool {
 //        return user.logInOrNot
 //    }

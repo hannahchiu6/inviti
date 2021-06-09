@@ -13,8 +13,8 @@ class CreateMeetingViewModel {
     var meetingViewModels = Box([MeetingViewModel]())
 
     var meetingViewModel = MeetingViewModel(model: Meeting(
-        id: "",
-        ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as! String,
+        id: "", numberForSearch: "",
+        ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? "",
         createdTime: 0,
         subject: "",
         location: "",
@@ -23,15 +23,14 @@ class CreateMeetingViewModel {
         singleMeeting: false,
         hiddenMeeting: false,
         deadlineMeeting: false,
-//        askInfo: AskInfo,
         participants: [],
         numOfParticipants: 0,
         deadlineTag: 0
     ))
 
     var meeting: Meeting = Meeting(
-        id: "",
-        ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as! String,
+        id: "", numberForSearch: "",
+        ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? "",
         createdTime: 0,
         subject: "",
         location: "",
@@ -40,7 +39,6 @@ class CreateMeetingViewModel {
         singleMeeting: false,
         hiddenMeeting: false,
         deadlineMeeting: false,
-//        askInfo: AskInfo,
         participants: [],
         numOfParticipants: 0,
         deadlineTag: 0
@@ -238,34 +236,7 @@ class CreateMeetingViewModel {
 
         return viewModel
     }
-
-//    func onTapCreate() {
-//
-//        if hasUserInMeeting() {
-//            print("has user in meeting...")
-//            create() // MARK: check which function this call is
-//
-//        } else {
-//            print("login...")
-//            UserManager.shared.didLoginBefore { [weak self] result in
-//                // MARK: - put your id into login function
-//                switch result {
-//
-//                case .success(let user):
-//
-//                    print("login success")
-//                    self?.create(with: user) // MARK: check which function this call is
-//
-//                case .failure(let error):
-//
-//                    print("login.failure: \(error)")
-//                }
-//
-//            }
-//        }
-//    }
-
-
+    
     func create(with meeting: inout Meeting) {
         NetworkManager.shared.createMeeting(meeting: &meeting) { result in
 

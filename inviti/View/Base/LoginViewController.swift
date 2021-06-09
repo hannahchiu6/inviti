@@ -21,28 +21,28 @@ class LoginViewController: UIViewController {
 
         performSegue(withIdentifier: "goToMainSegue", sender: nil)
 
-        let testID = "uLkwCQPXM4NrsnFc1mTSmw7GsPu2"
-
-//        let testID = "5gWVjg7xTHElu9p6Jkl1"
-
-//        let testID = "p1zIbghnQIpXfOKreA1q"
-
-//        let testID = "vODZGU4sN9nzXqpGMepy"
-
-//        let testEmail = "moon2021@gmail.com"
-
-//        let testName = "中秋圓圓"
-
-        let userManager = UserManager.shared
-
-        userManager.user.id = testID
-//        userManager.user.email = testEmail
-//        userManager.user.name = testName
-
-         
-        UserDefaults.standard.setValue(testID, forKey: UserDefaults.Keys.uid.rawValue)
-
-        self.viewModel.checkIfLogInBefore()
+//        let testID = "uLkwCQPXM4NrsnFc1mTSmw7GsPu2"
+//
+////        let testID = "5gWVjg7xTHElu9p6Jkl1"
+//
+////        let testID = "p1zIbghnQIpXfOKreA1q"
+//
+////        let testID = "vODZGU4sN9nzXqpGMepy"
+//
+////        let testEmail = "moon2021@gmail.com"
+//
+////        let testName = "中秋圓圓"
+//
+//        let userManager = UserManager.shared
+//
+//        userManager.user.id = testID
+////        userManager.user.email = testEmail
+////        userManager.user.name = testName
+//
+//
+//        UserDefaults.standard.setValue(testID, forKey: UserDefaults.Keys.uid.rawValue)
+//
+//        self.viewModel.checkIfLogInBefore()
     }
     //    @IBOutlet weak var signInWithAppleButton: UIButton!
 
@@ -220,11 +220,11 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 guard let user = Auth.auth().currentUser else { return }
 
 
-//                UserDefaults.standard.setValue(user.uid, forKey: UserDefaults.Keys.uid.rawValue)
-//
-//                UserDefaults.standard.setValue(user.email, forKey: UserDefaults.Keys.email.rawValue)
+                UserDefaults.standard.setValue(user.uid, forKey: UserDefaults.Keys.uid.rawValue)
 
-//                UserDefaults.standard.setValue(user.displayName, forKey: UserDefaults.Keys.displayName.rawValue)
+                UserDefaults.standard.setValue(user.email, forKey: UserDefaults.Keys.email.rawValue)
+
+                UserDefaults.standard.setValue(user.displayName, forKey: UserDefaults.Keys.displayName.rawValue)
 
 
                 let userManager = UserManager.shared

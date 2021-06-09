@@ -22,7 +22,6 @@
 		861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885ED264E31FD0048D9AA /* UITableView+Extension.swift */; };
 		861885F6264E5FD60048D9AA /* OptionEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */; };
 		861885F7264E5FD60048D9AA /* OptionEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861885F5264E5FD60048D9AA /* OptionEventTableViewCell.xib */; };
-		86188602264E76170048D9AA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86188601264E76170048D9AA /* Constants.swift */; };
 		8618860C264E78160048D9AA /* CreateSecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8618860B264E78160048D9AA /* CreateSecondVC.swift */; };
 		86188610264E78730048D9AA /* OptionCollectionViewCell copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */; };
 		861A626C2667AD420002EFD9 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A626B2667AD420002EFD9 /* CreateEventViewModel.swift */; };
@@ -89,9 +88,7 @@
 		8699BB302667BBEB00D71254 /* CloseSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8699BB2F2667BBEA00D71254 /* CloseSuccessVC.swift */; };
 		869F6E80264CE10A004681A2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F6E7F264CE10A004681A2 /* NavigationController.swift */; };
 		869F83F426551ACC00DA1D53 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F83F326551ACC00DA1D53 /* User.swift */; };
-		869F83F82655304A00DA1D53 /* AskInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F83F72655304A00DA1D53 /* AskInfo.swift */; };
 		869F83FD265531EC00DA1D53 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F83FC265531EC00DA1D53 /* Event.swift */; };
-		869F8401265532CA00DA1D53 /* Invite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F8400265532CA00DA1D53 /* Invite.swift */; };
 		869F8405265534A800DA1D53 /* SelectedOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F8404265534A800DA1D53 /* SelectedOption.swift */; };
 		869F840A2655357A00DA1D53 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F84092655357A00DA1D53 /* Meeting.swift */; };
 		869F840E2655363B00DA1D53 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F840D2655363B00DA1D53 /* Option.swift */; };
@@ -153,7 +150,6 @@
 		861885ED264E31FD0048D9AA /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Extension.swift"; path = "inviti/Extension/UITableView+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionEventTableViewCell.swift; sourceTree = "<group>"; };
 		861885F5264E5FD60048D9AA /* OptionEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionEventTableViewCell.xib; sourceTree = "<group>"; };
-		86188601264E76170048D9AA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8618860B264E78160048D9AA /* CreateSecondVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSecondVC.swift; sourceTree = "<group>"; };
 		8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionCollectionViewCell copy.swift"; sourceTree = "<group>"; };
 		861A626B2667AD420002EFD9 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
@@ -221,9 +217,7 @@
 		8699BB2F2667BBEA00D71254 /* CloseSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseSuccessVC.swift; sourceTree = "<group>"; };
 		869F6E7F264CE10A004681A2 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		869F83F326551ACC00DA1D53 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		869F83F72655304A00DA1D53 /* AskInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskInfo.swift; sourceTree = "<group>"; };
 		869F83FC265531EC00DA1D53 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		869F8400265532CA00DA1D53 /* Invite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invite.swift; sourceTree = "<group>"; };
 		869F8404265534A800DA1D53 /* SelectedOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedOption.swift; sourceTree = "<group>"; };
 		869F84092655357A00DA1D53 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 		869F840D2655363B00DA1D53 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
@@ -344,21 +338,6 @@
 				86EBFA74266D3098008E6955 /* AddPeopleViewController.swift */,
 			);
 			path = CreateMainPage;
-			sourceTree = "<group>";
-		};
-		862731C9265B64780068B014 /* FinalModel */ = {
-			isa = PBXGroup;
-			children = (
-				869F840D2655363B00DA1D53 /* Option.swift */,
-				869F8404265534A800DA1D53 /* SelectedOption.swift */,
-				869F83FC265531EC00DA1D53 /* Event.swift */,
-				869F84092655357A00DA1D53 /* Meeting.swift */,
-				869F83F326551ACC00DA1D53 /* User.swift */,
-				860792ED2658E6760085ED7D /* SimpleUser.swift */,
-				8672AB43266CC2A200FB44B4 /* Notification.swift */,
-				8681A64D265E898B007CF61A /* OptionTime.swift */,
-			);
-			path = FinalModel;
 			sourceTree = "<group>";
 		};
 		86406558264D98F1003C756D /* Base */ = {
@@ -606,10 +585,14 @@
 		86C3FA5F264BDDFD00480E4F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				862731C9265B64780068B014 /* FinalModel */,
-				86188601264E76170048D9AA /* Constants.swift */,
-				869F83F72655304A00DA1D53 /* AskInfo.swift */,
-				869F8400265532CA00DA1D53 /* Invite.swift */,
+				869F840D2655363B00DA1D53 /* Option.swift */,
+				869F8404265534A800DA1D53 /* SelectedOption.swift */,
+				869F83FC265531EC00DA1D53 /* Event.swift */,
+				869F84092655357A00DA1D53 /* Meeting.swift */,
+				869F83F326551ACC00DA1D53 /* User.swift */,
+				860792ED2658E6760085ED7D /* SimpleUser.swift */,
+				8672AB43266CC2A200FB44B4 /* Notification.swift */,
+				8681A64D265E898B007CF61A /* OptionTime.swift */,
 				860B3BB22669E0DE008D5267 /* UserDefaultsName.swift */,
 				8671778426692B6200F96535 /* StoryboardName.swift */,
 			);
@@ -637,6 +620,7 @@
 				86B12B3F264A8584006EE7FE /* Frameworks */,
 				86B12B40264A8584006EE7FE /* Resources */,
 				1CFAE37BF67E578749D5C242 /* [CP] Embed Pods Frameworks */,
+				862A82092670FBCD005A5AF6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -727,6 +711,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-inviti/Pods-inviti-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		862A82092670FBCD005A5AF6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		86EDAB55264B93E800491D58 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -830,7 +833,6 @@
 				86824A4F265B50A400BD706D /* BaseViewController.swift in Sources */,
 				863706512654EDC100D0A0AB /* VoteSuccessVC.swift in Sources */,
 				8661E0352666187A00BD23F5 /* InvitesViewController.swift in Sources */,
-				86188602264E76170048D9AA /* Constants.swift in Sources */,
 				86D4F68426582D6E00C00062 /* PaddingableHelper.swift in Sources */,
 				863706502654EDC100D0A0AB /* VotingTableViewCell.swift in Sources */,
 				8640655B264D9910003C756D /* UIStoryboard+Extension.swift in Sources */,
@@ -856,7 +858,6 @@
 				863B083226581C2D007CFBF3 /* ShareSuccessVC.swift in Sources */,
 				869F83FD265531EC00DA1D53 /* Event.swift in Sources */,
 				86C9C670265AA23B0074B2B5 /* ViewController+Extension.swift in Sources */,
-				869F8401265532CA00DA1D53 /* Invite.swift in Sources */,
 				86A6620C2669E68400DBB799 /* LoginViewModel.swift in Sources */,
 				8681A64E265E898B007CF61A /* OptionTime.swift in Sources */,
 				868649FC265B74E700E7040F /* CalendarViewModel.swift in Sources */,
@@ -864,7 +865,6 @@
 				865A00E52653A9AA0061A0E4 /* EditTableViewCell.swift in Sources */,
 				866813E02667389D00659495 /* ResultTableViewCell.swift in Sources */,
 				8653117F264FC39700CFB4F7 /* UIButtonActivity.swift in Sources */,
-				869F83F82655304A00DA1D53 /* AskInfo.swift in Sources */,
 				861885F6264E5FD60048D9AA /* OptionEventTableViewCell.swift in Sources */,
 				86B1497C267098A700ED40E1 /* UpdateProfileVC.swift in Sources */,
 				86504B8C2650088800E42C51 /* NewsEventTableViewCell.swift in Sources */,
@@ -1029,6 +1029,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = inviti/inviti.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5VVRV23ZK6;
 				INFOPLIST_FILE = inviti/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

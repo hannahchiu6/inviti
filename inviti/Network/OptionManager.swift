@@ -141,7 +141,7 @@ class OptionManager {
         db.collection("options")
        //   .order(by: “name “)
 //       .whereField("", arrayContains: UserManager.shared.userID!)
-       .getDocuments { (querySnapshot, error) in
+       .getDocuments { querySnapshot, error in
         if let error = error {
          completion(.failure(error))
         } else {

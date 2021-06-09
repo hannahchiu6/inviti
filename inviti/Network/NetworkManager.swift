@@ -29,6 +29,16 @@ class NetworkManager {
 
     var userUID = UserDefaults.standard.value(forKey: "uid")
 
+    func randomString(of length: Int) -> String {
+
+        let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        var results = ""
+        for _ in 0 ..< length {
+            results.append(letters.randomElement()!)
+        }
+        return results
+    }
+
     func fetchMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
 
         db.collection("meetings")
@@ -90,9 +100,45 @@ class NetworkManager {
         }
     }
 
+    func fetchSearchResult(meetingID: String, completion: @escaping (Result<Meeting, Error>) -> Void) {
+
+        db.collection("meetings")
+            .whereField("numberForSearch", isEqualTo: meetingID)
+            .getDocuments { querySnapshot, error in
+
+                if let error = error {
+
+                    completion(.failure(error))
+
+                } else {
+
+                    var meetings = [Meeting]()
+
+                    for document in querySnapshot!.documents {
+
+                        do {
+                            if let meeting = try document.data(as: Meeting.self, decoder: Firestore.Decoder()) {
+                                meetings.append(meeting)
+                            }
+
+                        } catch {
+
+                            completion(.failure(error))
+                        }
+                    }
+
+                    if !meetings.isEmpty {
+
+                        completion(.success(meetings[0]))
+                    }
+                }
+        }
+    }
+
+
     func fetchHostedMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
 
-       let docRef = db.collection("meetings")
+            db.collection("meetings")
             .whereField("ownerAppleID", isEqualTo: userUID)
 //            .order(by: "createdTime", descending: true)
             .getDocuments { querySnapshot, error in
@@ -160,6 +206,8 @@ class NetworkManager {
         let document = db.collection("meetings").document()
         meeting.id = document.documentID
         meeting.createdTime = Int64(Date().millisecondsSince1970)
+        meeting.numberForSearch = self.randomString(of: 6)
+
         document.setData(meeting.toDict) { error in
 
             if let error = error {

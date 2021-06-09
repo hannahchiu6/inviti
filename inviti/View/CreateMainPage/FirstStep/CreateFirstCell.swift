@@ -16,7 +16,7 @@ class CreateFirstCell: UITableViewCell {
 
     weak var delegate: CreateFirstCellDelegate?
 
-    var viewModel = MeetingViewModel(model: Meeting(id: "", ownerAppleID: "", createdTime: 0, subject: "", location: "", notes: "", image: "", singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
+    var viewModel = MeetingViewModel(model: Meeting(id: "", numberForSearch: "", ownerAppleID: "", createdTime: 0, subject: "", location: "", notes: "", image: "", singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
 
     @IBOutlet weak var subjectTextField: UITextField!
 

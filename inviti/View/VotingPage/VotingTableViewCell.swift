@@ -25,7 +25,7 @@ class VotingTableViewCell: UITableViewCell {
 
     var optionID: String?
 
-    var userUID = UserDefaults.standard.array(forKey: "uid")
+    var userUID = UserDefaults.standard.array(forKey: "uid") as? String ?? ""
 
     override func awakeFromNib() {
         super.awakeFromNib()

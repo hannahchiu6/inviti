@@ -16,8 +16,8 @@ class VoteManager {
 
     lazy var db = Firestore.firestore()
 
-    var userUID = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as! String
-
+    var userUID = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? ""
+    
     func fetchSelectedOptions(optionID: String, meetingID: String, completion: @escaping (Result<[SelectedOption], Error>) -> Void) {
                 db.collection("meetings")
                     .document(meetingID)

@@ -90,6 +90,8 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     let viewModel = CreateMeetingViewModel()
 
+    var userUID = UserDefaults.standard.string(forKey: UserDefaults.Keys.uid.rawValue) ?? ""
+
     var willBorder: Bool = false {
          didSet {
              if (willBorder) {
@@ -103,13 +105,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
                  }
              }
     }
-
-
-//                func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-//                    print("Selected view controller", viewController)
-//                    print("index", tabBarController.selectedIndex )
-//
-//                }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,28 +124,11 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
     }
 
-//    func layoutSubviews() {
-//
-//        let topBorder = UIView()
-//
-//        let borderHeight: CGFloat = 2
-
-//        topBorder.lkBorderWidth = borderHeight
-//        topBorder.lkBorderColor = .green
-//        topBorder.frame = CGRect(x: 0, y: -1, width: view.frame.width, height: borderHeight)
-//
-//        self.tabBar.addSubview(topBorder)
-//    }
-
     public func resetCenterBtn() {
 
         if self.selectedIndex == 2 {
          willBorder = !willBorder
         }
-//        self.selectedIndex == 3 || self.selectedIndex == 1 || self.selectedIndex == 0 || self.selectedIndex == 4 {
-//            willBorder = !willBorder
-//        }
-
     }
 
     func settingButton() {
@@ -170,9 +148,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     }
 
     var onMeetingIDGet: ((String) -> Void)?
-    
-
-//    var onMeetingGet: ((CreateMeetingViewModel) -> Void)?
 
     @objc func showViewController() {
 
@@ -188,17 +163,21 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
         viewModel.create()
 
-        onMeetingIDGet?(viewModel.meeting.id)
+        guard let meetingID = viewModel.meeting.id as? String else { return }
 
-        viewModel.meeting.ownerAppleID = UserDefaults.standard.string(forKey: UserDefaults.Keys.uid.rawValue)!
-//        UserDefaults.standard.setValue(UserDefaults.Keys.meetingID.rawValue, forKey: "viewModel.meeting.id")
+        onMeetingIDGet?(meetingID)
+
+        viewModel.meeting.ownerAppleID = userUID
 
         viewControllers?.forEach { vc in
 
             if let navVC = vc as? UINavigationController,
                let vc = navVC.viewControllers.first as? CreateFirstViewController {
                 vc.meetingID = viewModel.meeting.id
-                vc.createMeetingViewModel = viewModel
+
+                if let viewModel = viewModel as? CreateMeetingViewModel  {
+                    vc.createMeetingViewModel = viewModel }
+
                 vc.isDataEmpty = true
             }
         }
@@ -211,7 +190,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         _ tabBarController: UITabBarController,
         shouldSelect viewController: UIViewController
     ) -> Bool {
-//        resetCenterBtn()
 
         guard let navVC = viewController as? UINavigationController,
               navVC.viewControllers.first is MeetingViewController
