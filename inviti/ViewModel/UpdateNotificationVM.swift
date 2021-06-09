@@ -15,8 +15,7 @@ class UpdateNotificationVM {
 
     var meetingViewModels = Box([MeetingViewModel]())
 
-    var userBox = Box(UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: []))
-)
+    var userBox = Box(UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [])))
 
     var notificationViewModel = NotificationViewModel(model: Notification(id: "", meetingID: "", eventID: "", participantID: "", createdTime: 0, type: "", image:  ""))
 

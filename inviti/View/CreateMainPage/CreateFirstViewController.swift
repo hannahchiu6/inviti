@@ -70,18 +70,18 @@ class CreateFirstViewController: UIViewController {
         UIView.animate(withDuration: 5.0, animations: { () -> Void in
 
             self.successView.isHidden = false
-            self.createMeetingViewModel.updateSecond(meetingID: self.meetingID ?? "")
+            self.createMeetingViewModel.updateDetails(meetingID: self.meetingID ?? "")
 
         })} else {
 
-//            createMeetingViewModel.update(with: createMeetingViewModel.meeting)
-
-            createMeetingViewModel.updateSecond(meetingID: meetingID ?? "")
+            createMeetingViewModel.updateDetails(meetingID: meetingID ?? "")
             performSegue(withIdentifier: "editSuccessSegue", sender: self)
 
 
         }
     }
+
+    @IBOutlet weak var calendarIconView: UIButton!
 
     @IBAction func invitePeopleButton(_ sender: Any) {
 
@@ -91,7 +91,6 @@ class CreateFirstViewController: UIViewController {
     @IBAction func goCalendar(_ sender: Any) {
         nextPage()
     }
-
 
     override func viewWillAppear(_ animated: Bool) {
 
@@ -232,23 +231,20 @@ class CreateFirstViewController: UIViewController {
         }
     }
 
-//    func addParticipants() {
-//
-//        guard let currentUserID = UserDefaults.standard.value(forKey: "userID") as? String else { return }
-//        guard let currentUserName = UserDefaults.standard.value(forKey: "userName") as? String else { return }
-//        guard let currentUserImage = UserDefaults.standard.value(forKey: "userPhoto") as? String else { return }
-//
-//        self.meetingInfo.participantID.append(participantID)
-//        self.meetingInfo.participantName.append(participantName)
-//        self.meetingInfo.participantImage.append(participantImage)
-//    }
-
     func nextPage() {
 
         let secondVC = storyboard?.instantiateViewController(identifier: "CMeetingVC")
            guard let second = secondVC as? CTableViewController else { return }
 
-        createMeetingViewModel.updateSecond(meetingID: meetingID ?? "")
+        if meetingInfo != nil {
+
+            second.meetingID = meetingID ?? ""
+
+            second.selectedOptionViewModel = selectOptionViewModel
+
+        }
+        
+        createMeetingViewModel.updateDetails(meetingID: meetingID ?? "")
 
         second.selectedOptionViewModel = selectOptionViewModel
 
@@ -319,6 +315,8 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionalSettingsCell", for: indexPath) as! OptionalSettingsCell
 
+            cell.delegate = self
+            
             if createMeetingViewModel.meetingViewModels.value.isEmpty {
 
                 cell.setCell(model: createMeetingViewModel.meetingViewModel)
@@ -446,4 +444,20 @@ extension CreateFirstViewController: EditSuccessVCDelegate {
 
         self.navigationController?.popViewController(animated: true)
     }
+}
+
+extension CreateFirstViewController: OptionalSettingsCellDelegate {
+    func dismissView() {
+        dismiss(animated: true, completion: nil)
+    }
+
+    func didTapController(controller: UIAlertController) {
+        present(controller, animated: true)
+    }
+
+    func didTapImagePicker(imagePicker: UIImagePickerController) {
+        present(imagePicker, animated: true)
+    }
+
+
 }

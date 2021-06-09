@@ -15,7 +15,9 @@ import EasyRefresher
 class TabCalendarViewController: UIViewController {
 
     let lightGrayColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+
     let lightColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0)
+
     var selectDay: JKDay = JKDay(date: Date()) {
         didSet {
             self.calendarTableView.reloadData()
@@ -125,11 +127,6 @@ extension TabCalendarViewController: UITableViewDelegate, UITableViewDataSource 
 
         return cell
     }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-    }
-
 }
 
 

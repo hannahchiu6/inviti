@@ -20,6 +20,6 @@ target 'inviti' do
   pod 'Firebase/Auth'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Firestore'
-
+  pod 'Crashlytics'
 
 end

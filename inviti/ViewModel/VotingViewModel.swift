@@ -40,9 +40,9 @@ class VotingViewModel {
     var scrollToTop: (() -> Void)?
 
     var getSelectedOptionData: (() -> Void)?
-//
+
     var onSelectedOptionCreated: (() -> Void)?
-//
+
     var onSelectedOptionUpdated: (() -> Void)?
 
     func onVotingChanged(_ bool: Bool) {

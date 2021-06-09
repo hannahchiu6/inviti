@@ -9,6 +9,9 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseStorage
+import FirebaseDatabase
+import FirebaseAuth
 
 enum FirebaseError: Error {
     case documentError
@@ -236,6 +239,30 @@ class NetworkManager {
     }
 
 
+    func updateMeetingImageURL(meeting: Meeting, completion: @escaping (Result<Meeting, Error>) -> Void) {
+
+        let docRef = db.collection("meetings").document(meeting.id)
+
+        if let url = meeting.image {
+
+            docRef.updateData([
+                "image": "\(url)"
+            ]) { err in
+
+                if let err = err {
+
+                    completion(.failure(err))
+
+                } else {
+
+                    completion(.success(meeting))
+
+                }
+            }
+        }
+    }
+
+
     func updateMeetingClose(meetingID: String, option: Option) {
 
         let docRef = db.collection("meetings").document(meetingID)
@@ -258,6 +285,45 @@ class NetworkManager {
                 }
             }
     }
+
+    func uploadImage(selectedImage: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
+            let uuid = UUID().uuidString
+
+            guard let image = selectedImage.jpegData(compressionQuality: 0.5) else { return }
+
+            let storageRef = Storage.storage().reference()
+
+            let imageRef = storageRef.child("MeetingImages").child("\(uuid).jpg")
+
+            imageRef.putData(image, metadata: nil) { metadata, error in
+             if let error = error {
+              completion(.failure(error))
+             }
+             guard let _ = metadata else { return }
+             imageRef.downloadURL { url, error in
+              if let url = url {
+               completion(.success(url.absoluteString))
+              } else if let error = error {
+               completion(.failure(error))
+          }
+         }
+        }
+       }
+
+//        func saveProfileImageUrlInUserDetails(url: URL) {
+//
+//            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+//
+//            changeRequest?.photoURL = url
+//
+//            changeRequest?.commitChanges(completion: { error in
+//                if error == nil {
+//                    //saved
+//                } else {
+//                    print(error?.localizedDescription)
+//                }
+//            })
+//        }
 
 
     // Fetch Meetings & Options
