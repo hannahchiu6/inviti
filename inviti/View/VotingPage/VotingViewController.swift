@@ -69,9 +69,9 @@ class VotingViewController: BaseViewController {
 
         hasVotedView.isHidden = true
 
-        checkData()
-
-        setUpView()
+//        checkData()
+//
+//        setUpView()
 
         self.navigationController?.navigationBar.tintColor = UIColor.gray
         self.navigationController?.navigationBar.backgroundColor = UIColor.clear
@@ -121,7 +121,7 @@ class VotingViewController: BaseViewController {
 
     func checkData() {
 
-        let optionIDs = votingViewModel.getOptionsIDs(optionVMs: votingViewModel.optionViewModels.value)
+        guard let optionIDs = votingViewModel.getOptionsIDs(optionVMs: votingViewModel.optionViewModels.value) as? [String] else { return }
 
         votingViewModel.checkIfVoted(meetingID: meetingInfo.id, optionIDs: optionIDs)
 

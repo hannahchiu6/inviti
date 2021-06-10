@@ -72,8 +72,9 @@ class NetworkManager {
 
     func fetchOneMeeting(meetingID: String, completion: @escaping (Result<Meeting, Error>) -> Void) {
 
-        let docRef = db.collection("meetings").document(meetingID)
-            docRef.getDocument { document, error in
+        db.collection("meetings")
+            .document(meetingID)
+            .getDocument { document, error in
 
         let result = Result {
           try document?.data(as: Meeting.self)

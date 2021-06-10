@@ -12,21 +12,21 @@ class CreateMeetingViewModel {
 
     var meetingViewModels = Box([MeetingViewModel]())
 
-    var meetingViewModel = MeetingViewModel(model: Meeting(
-        id: "", numberForSearch: "",
-        ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? "",
-        createdTime: 0,
-        subject: "",
-        location: "",
-        notes: "",
-        image: "https://500px.com/static/media/editors8@1x.126c6fb9.png",
-        singleMeeting: false,
-        hiddenMeeting: false,
-        deadlineMeeting: false,
-        participants: [],
-        numOfParticipants: 0,
-        deadlineTag: 0
-    ))
+//    var meetingViewModel = MeetingViewModel(model: Meeting(
+//        id: "", numberForSearch: "",
+//        ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? "",
+//        createdTime: 0,
+//        subject: "",
+//        location: "",
+//        notes: "",
+//        image: "https://500px.com/static/media/editors8@1x.126c6fb9.png",
+//        singleMeeting: false,
+//        hiddenMeeting: false,
+//        deadlineMeeting: false,
+//        participants: [],
+//        numOfParticipants: 0,
+//        deadlineTag: 0
+//    ))
 
     var meeting: Meeting = Meeting(
         id: "", numberForSearch: "",
@@ -51,37 +51,47 @@ class CreateMeetingViewModel {
     }
 
     func onSubjectChanged(text subject: String) {
-        self.meetingViewModel.meeting.subject = subject
+//        self.meetingViewModel.meeting.subject = subject
+        self.meeting.subject = subject
         self.onSubjectAdded?(subject)
     }
 
     func onNotesChanged(text notes: String) {
-        self.meetingViewModel.meeting.notes = notes
+//        self.meetingViewModel.meeting.notes = notes
+        self.meeting.notes = notes
     }
 
     func onImageUploaded(url: String) {
-        self.meetingViewModel.meeting.image = url
-        self.updateImage(with: self.meetingViewModel.meeting)
+//        self.meetingViewModel.meeting.image = url
+//        self.updateImage(with: self.meetingViewModel.meeting)
+        self.meeting.image = url
+        self.updateImage(with: self.meeting)
     }
+    
 
     func onLocationChanged(text location: String) {
-        self.meetingViewModel.meeting.location = location
+        self.meeting.location = location
+//        self.meetingViewModel.meeting.location = location
     }
 
     func meetingDeadlineChanged(_ bool: Bool) {
-        self.meetingViewModel.meeting.deadlineMeeting = bool
+//        self.meetingViewModel.meeting.deadlineMeeting = bool
+        self.meeting.deadlineMeeting = bool
     }
 
     func meetingSingleChanged(_ bool: Bool) {
-        self.meetingViewModel.meeting.singleMeeting = bool
+//        self.meetingViewModel.meeting.singleMeeting = bool
+        self.meeting.singleMeeting = bool
     }
 
     func meetingHiddenChanged(_ bool: Bool) {
-        self.meetingViewModel.meeting.hiddenMeeting = bool
+        self.meeting.hiddenMeeting = bool
+//        self.meetingViewModel.meeting.hiddenMeeting = bool
     }
 
     func onDeadlineTagChanged(_ day: Int) {
-        self.meetingViewModel.meeting.deadlineTag = day
+//        self.meetingViewModel.meeting.deadlineTag = day
+        self.meeting.deadlineTag = day
     }
 
     var onMeetingCreated: (() -> Void)?
@@ -201,7 +211,9 @@ class CreateMeetingViewModel {
 
     func updateDetails(meetingID: String) {
 
-        NetworkManager.shared.updateMeeting(meetingID: meetingID, meeting: self.meetingViewModel.meeting) { result in
+//        NetworkManager.shared.updateMeeting(meetingID: meetingID, meeting: self.meetingViewModel.meeting) { result in
+
+            NetworkManager.shared.updateMeeting(meetingID: meetingID, meeting: self.meeting) { result in
 
             switch result {
 

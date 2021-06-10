@@ -34,11 +34,14 @@ class CloseSuccessVC: BaseViewController {
 
         notificationVM.onImageChanged(notificationVM.userViewModel.user.image ?? "")
 
-        notificationVM.createParticipantsNotification(type: TypeName.calendar.rawValue, peopleID: participants, event: viewModel.event)
+        guard let ownerImage = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue) as? String else { return }
+        
+        notificationVM.createParticipantsNotification(type: TypeName.calendar.rawValue, peopleID: participants, event: viewModel.event, image: ownerImage)
     }
  
     override func viewDidLoad() {
         super.viewDidLoad()
+
 
     }
 

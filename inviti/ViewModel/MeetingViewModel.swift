@@ -29,15 +29,21 @@ class MeetingViewModel {
         }
     }
 
-    var subject: String {
+    var subject: String? {
         get {
-            return meeting.subject ?? ""
+            return meeting.subject
         }
     }
 
-    var numOfParticipants: Int {
+    var location: String? {
         get {
-            return meeting.numOfParticipants ?? 0
+            return meeting.location
+        }
+    }
+
+    var numOfParticipants: Int? {
+        get {
+            return meeting.numOfParticipants
         }
     }
 
@@ -68,9 +74,9 @@ class MeetingViewModel {
         }
     }
 
-    var participants: [String] {
+    var participants: [String]? {
         get {
-            return meeting.participants ?? []
+            return meeting.participants
         }
     }
 

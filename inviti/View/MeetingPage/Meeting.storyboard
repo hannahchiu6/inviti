@@ -685,6 +685,99 @@
             </objects>
             <point key="canvasLocation" x="1462" y="-738"/>
         </scene>
+        <!--Has VotedVC-->
+        <scene sceneID="aCQ-Up-Fde">
+            <objects>
+                <viewController storyboardIdentifier="HasVotedVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="Npd-CD-ycQ" customClass="HasVotedVC" customModule="inviti" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EMf-GP-jGn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLY-0a-QKW">
+                                <rect key="frame" x="57" y="189" width="300" height="350"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xS2-6S-CYS">
+                                        <rect key="frame" x="24" y="36" width="252" height="71.5"/>
+                                        <string key="text">Oops，此活動已被刪除
+或投票已結束囉～
+</string>
+                                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="characterSpacing">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srP-RZ-ikl">
+                                        <rect key="frame" x="24" y="260" width="252" height="45"/>
+                                        <color key="backgroundColor" red="0.99698072670000004" green="0.30764731760000003" blue="0.25877618790000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="6US-3l-QNH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PingFangTC-Medium" family="PingFang TC" pointSize="18"/>
+                                        <state key="normal" title="回 首 頁">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="lkCornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="returnMain:" destination="Npd-CD-ycQ" eventType="touchUpInside" id="pPo-hp-MIm"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lrk-54-uNM">
+                                        <rect key="frame" x="70" y="119.5" width="206" height="128.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="06p-YQ-CRi"/>
+                                    <constraint firstItem="xS2-6S-CYS" firstAttribute="top" secondItem="mLY-0a-QKW" secondAttribute="top" constant="36" id="2g7-E0-tzj"/>
+                                    <constraint firstAttribute="trailing" secondItem="srP-RZ-ikl" secondAttribute="trailing" constant="24" id="2nw-jg-EHi"/>
+                                    <constraint firstAttribute="bottom" secondItem="srP-RZ-ikl" secondAttribute="bottom" constant="45" id="B6D-ZE-L4v"/>
+                                    <constraint firstAttribute="width" constant="300" id="Br3-Mn-whH"/>
+                                    <constraint firstItem="srP-RZ-ikl" firstAttribute="top" secondItem="Lrk-54-uNM" secondAttribute="bottom" constant="12" id="Xo0-0n-gA4"/>
+                                    <constraint firstItem="srP-RZ-ikl" firstAttribute="leading" secondItem="mLY-0a-QKW" secondAttribute="leading" constant="24" id="Xvm-3t-KNC"/>
+                                    <constraint firstAttribute="trailing" secondItem="xS2-6S-CYS" secondAttribute="trailing" constant="24" id="aZS-gx-n2h"/>
+                                    <constraint firstItem="Lrk-54-uNM" firstAttribute="top" secondItem="xS2-6S-CYS" secondAttribute="bottom" constant="12" id="bUN-hc-2El"/>
+                                    <constraint firstItem="Lrk-54-uNM" firstAttribute="leading" secondItem="mLY-0a-QKW" secondAttribute="leading" constant="70" id="dRX-Ok-x5M"/>
+                                    <constraint firstItem="xS2-6S-CYS" firstAttribute="leading" secondItem="mLY-0a-QKW" secondAttribute="leading" constant="24" id="iIG-cQ-mNn"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lrk-54-uNM" secondAttribute="trailing" constant="24" id="jVX-Qs-pRj"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lkBorderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="lkBorderColor">
+                                        <color key="value" systemColor="systemGray6Color"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lkCornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3mV-Tt-dcz"/>
+                        <color key="backgroundColor" red="0.37710404669999997" green="0.35861855419999999" blue="0.35861855419999999" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="mLY-0a-QKW" firstAttribute="centerX" secondItem="EMf-GP-jGn" secondAttribute="centerX" id="ArZ-Wo-2BR"/>
+                            <constraint firstItem="mLY-0a-QKW" firstAttribute="top" secondItem="3mV-Tt-dcz" secondAttribute="top" constant="145" id="eHx-9c-JqO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="animationView" destination="Lrk-54-uNM" id="eBT-Of-13O"/>
+                        <outlet property="returnBtnView" destination="srP-RZ-ikl" id="yxo-Fr-WyX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0w4-Ov-msC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1377" y="-347"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="ayh-kF-MHr">

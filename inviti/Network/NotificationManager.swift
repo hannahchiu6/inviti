@@ -87,7 +87,7 @@ class NotificationManager {
             notification.id = document.documentID
             notification.createdTime = Int64(Date().millisecondsSince1970)
             notification.ownerName = userName as? String
-            notification.participantID = userUID
+            notification.participantID = owenerID
             document.setData(notification.toDict) { error in
 
             if let error = error {
