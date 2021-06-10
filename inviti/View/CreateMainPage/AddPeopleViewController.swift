@@ -13,6 +13,8 @@ class AddPeopleViewController: UIViewController {
 
     var viewModel = AddViewModel()
 
+    var meeting: Meeting?
+
     var meetingID: String?
 
     var userUID = UserDefaults.standard.value(forKey: "uid") as? String ?? ""
@@ -23,14 +25,20 @@ class AddPeopleViewController: UIViewController {
         }
     }
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        notificationVM.fetchOneMeeitngData(meetingID: meetingID ?? "")
 
         searchResultView.isHidden = true
 
         resultPersonImage.layer.cornerRadius = resultPersonImage.bounds.width / 2
+
+        notificationVM.fetchSingleMeeitngData(meetingID: meetingID ?? "")
+
+        viewModel.userViewModels.bind { [weak self] users in
+
+        }
+
 
     }
 
@@ -47,12 +55,19 @@ class AddPeopleViewController: UIViewController {
 
         let type = TypeName.invite.rawValue
 
+        guard let owner = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue) as? String else { return }
+
+        if !notificationVM.meetingViewModels.value.isEmpty {
+
+            let meetingSubject = notificationVM.meetingViewModels.value[0].subject
+
         if let participantID = notificationVM.userBox.value.id as? String,
            let meetingID = meetingID {
 
-            notificationVM.createInviteNotification(type: type, meetingID: meetingID, participantID: participantID)
+            notificationVM.createInviteNotification(type: type, meetingID: meetingID, participantID: participantID, name: owner, subject: meetingSubject ?? "")
 
             viewModel.addSearchParticipants(meetingID: meetingID, text: participantID)
+            }
         }
     }
 
@@ -102,12 +117,14 @@ class AddPeopleViewController: UIViewController {
 
     @IBAction func goToShare(_ sender: Any) {
 
-        let name = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue) as! String
+        guard let name = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue) as? String else { return }
 
         if !notificationVM.meetingViewModels.value.isEmpty {
-            let meetingSubject = notificationVM.meetingViewModels.value[0].subject
 
-            let message = "您的好友 \(name) 邀請您參加「\(meetingSubject)」，來 inviti 票選時間吧！打開 APP 輸入活動 ID 即可參與投票 👉🏻 \(meetingID!)"
+            let meetingSubject = notificationVM.meetingViewModels.value[0].subject
+            let searchID = notificationVM.meetingViewModels.value[0].numberForSearch
+
+            let message = "您的好友 \(String(describing: name)) 邀請您參加「\(meetingSubject)」，來 inviti 票選時間吧！打開 APP 輸入活動 ID 即可參與投票 👉🏻 \(searchID)"
 
 
             let objectsToShare = [message]

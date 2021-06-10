@@ -22,6 +22,8 @@ class OptionalSettingsCell: UITableViewCell{
 
     var viewModel = CreateMeetingViewModel()
 
+//    var viewModel: MeetingViewModel?
+
     var imagePicker = UIImagePickerController()
 
     var deadlineTag: Int = 0

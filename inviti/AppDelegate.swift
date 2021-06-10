@@ -46,6 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.makeKeyAndVisible()
         }
 
+        if #available(iOS 13, *) {
+            window?.overrideUserInterfaceStyle = .light
+        }
+
     return true
 
   }

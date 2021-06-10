@@ -71,14 +71,30 @@ class MeetingTableViewCell: UITableViewCell {
 
     func layoutCell() {
         
-        meeting = viewModel?.meeting
-        meetingSubject.text = viewModel?.subject
-        meetingTimeLabel.text = "投票建立時間：\(Date.pointFormatter.string(from: Date.init(millis: viewModel!.createdTime)))"
-        participanCountLabel.text = "和其他 \(String(describing: viewModel!.participants.count)) 位參與者"
+        guard let meeting = viewModel?.meeting else { return }
 
-        guard let url = viewModel?.image else { return }
-            let imageUrl = URL(string: String(url))
-        hostImage.kf.setImage(with: imageUrl, placeholder: UIImage(systemName: "moon.circle.fill"))
+        if meeting.isClosed {
+
+            editIcon.isEnabled = false
+
+            editIcon.tintColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
+
+
+        } else {
+            editIcon.isEnabled = true
+
+            editIcon.tintColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+        }
+
+        guard let participants = viewModel?.participants else { return }
+            meetingSubject.text = viewModel?.subject
+            meetingTimeLabel.text = "投票建立時間：\(Date.pointFormatter.string(from: Date.init(millis: viewModel!.createdTime)))"
+        participanCountLabel.text = "和其他 \(String(describing: participants.count)) 位參與者"
+
+            guard let url = viewModel?.image else { return }
+                let imageUrl = URL(string: String(url))
+            hostImage.kf.setImage(with: imageUrl, placeholder: UIImage(systemName: "moon.circle.fill"))
+
     }
 
     func setupParticipatedCell() {

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>inviti 想要使用您的照片</string>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>inviti 想要使用您的相機</string>
 	<key>CLIENT_ID</key>
 	<string>708480873305-oadq4kulb68bjgksan832bgubl1409ib.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>

@@ -11,6 +11,8 @@ import FirebaseFirestoreSwift
 
 class AddViewModel {
 
+    var userViewModels = Box([UserViewModel]())
+
     var meetingViewModel: MeetingViewModel?
 
     var userUID = UserDefaults.standard.value(forKey: "uid") as? String ?? ""

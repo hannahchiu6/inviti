@@ -15,6 +15,14 @@ class FurtureTableViewController: UITableViewController {
 
     var selectedIndex: Int?
 
+
+    override func viewWillAppear(_ animated: Bool) {
+             super.viewWillAppear(animated)
+
+        viewModel.fetchHostedData()
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,6 +61,8 @@ class FurtureTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MeetingTableViewCell.self), for: indexPath) as! MeetingTableViewCell
 
+        cell.editIcon.tag = indexPath.row
+        
         cell.delegate = self
 
         cell.index = indexPath.row
@@ -96,19 +106,25 @@ extension FurtureTableViewController: MeetingTableCellDelegate {
     }
 
     func editButtonPressed(_ sender: MeetingTableViewCell) {
+
         let storyboard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
+
         let editVC = storyboard.instantiateViewController(identifier: "CreateFirstPageVC")
            guard let edit = editVC as? CreateFirstViewController else { return }
 
         guard self.tableView.indexPath(for: sender) != nil else { return }
 
-        edit.meetingInfo = sender.meeting
+        guard let myViewModel = sender.viewModel else { return }
 
-        edit.meetingID = sender.meeting?.id
+        edit.meetingInfo = myViewModel.meeting
 
-        edit.createMeetingViewModel.meetingViewModel = sender.viewModel!
+        edit.meetingID = myViewModel.meeting.id
+
+//        edit.createMeetingViewModel.meeting = myViewModel.meeting
+        edit.createMeetingViewModel.meeting = myViewModel.meeting
 
         navigationController?.pushViewController(edit, animated: true)
+
     }
 
     func goButtonPressed(_ sender: MeetingTableViewCell) {
@@ -118,7 +134,9 @@ extension FurtureTableViewController: MeetingTableCellDelegate {
 
         guard self.tableView.indexPath(for: sender) != nil else { return }
 
-        voting.meetingInfo = sender.meeting
+        guard let myViewModel = sender.viewModel else { return }
+
+        voting.meetingInfo = myViewModel.meeting
 
         navigationController?.pushViewController(voting, animated: true)
 

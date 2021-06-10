@@ -42,13 +42,31 @@ class CreateFirstViewController: UIViewController {
 
         if isDataEmpty {
 
-            self.createMeetingViewModel.onTap(withIndex: sender.tag)
+            let controller = UIAlertController(title: "確定要刪除此投票活動？", message: "按下確認後就救不回來了喔！", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "趕緊刪除", style: .default) { (_) in
+                self.createMeetingViewModel.onTap(withIndex: sender.tag)
 
-            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let meetingVC = storyboard.instantiateViewController(identifier: "TabBarVC")
-            guard let vc = meetingVC as? TabBarViewController else { return }
-            
-            self.navigationController?.pushViewController(vc, animated: true)
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let meetingVC = storyboard.instantiateViewController(identifier: "TabBarVC")
+                guard let vc = meetingVC as? TabBarViewController else { return }
+
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+
+            controller.addAction(okAction)
+
+            let cancelAction = UIAlertAction(title: "純回首頁", style: .cancel) { (_) in
+
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let meetingVC = storyboard.instantiateViewController(identifier: "TabBarVC")
+                guard let vc = meetingVC as? TabBarViewController else { return }
+
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+
+            controller.addAction(cancelAction)
+
+            present(controller, animated: true, completion: nil)
 
         } else {
 
@@ -294,17 +312,19 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
 
             if createMeetingViewModel.meetingViewModels.value.isEmpty {
 
-                cell.setCell(model: createMeetingViewModel.meetingViewModel)
+//                cell.setCell(model: createMeetingViewModel.meetingViewModels.value[indexPath.row])
 
-                cell.viewModel = self.createMeetingViewModel.meetingViewModel
+//                cell.viewModel = createMeetingViewModel.meetingViewModels.value[indexPath.row]
 
             } else {
 
-                let data = createMeetingViewModel.meetingViewModels.value[indexPath.row]
+                let model = createMeetingViewModel.meetingViewModels.value[indexPath.row]
 
-                cell.viewModel = createMeetingViewModel.meetingViewModel
+                cell.viewModel = model
 
-                cell.setCell(model: data)
+                cell.setup(viewModel: model)
+
+//                cell.setCell(model: data)
 
 //                cell.viewModel = data
 
@@ -319,11 +339,11 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
             
             if createMeetingViewModel.meetingViewModels.value.isEmpty {
 
-                cell.setCell(model: createMeetingViewModel.meetingViewModel)
+//                cell.setCell(model: createMeetingViewModel.meetingViewModel)
 
                 cell.viewModel = self.createMeetingViewModel
 
-                cell.addSubtract.value = Double(createMeetingViewModel.meetingViewModel.meeting.deadlineTag ?? 0)
+                cell.addSubtract.value = Double(createMeetingViewModel.meeting.deadlineTag ?? 0)
 
                     cell.observation = cell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { (stepper, change) in
                         if change.newValue! == 0.0 {
@@ -333,7 +353,7 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
                                 cell.addSubtract.value = -1
                             }
                         }
-                        self.createMeetingViewModel.meetingViewModel.meeting.deadlineTag = Int(cell.addSubtract.value)
+                        self.createMeetingViewModel.meeting.deadlineTag = Int(cell.addSubtract.value)
                     })
                 return cell
                 
@@ -458,6 +478,5 @@ extension CreateFirstViewController: OptionalSettingsCellDelegate {
     func didTapImagePicker(imagePicker: UIImagePickerController) {
         present(imagePicker, animated: true)
     }
-
 
 }

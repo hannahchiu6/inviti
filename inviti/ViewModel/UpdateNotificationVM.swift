@@ -37,7 +37,13 @@ class UpdateNotificationVM {
 
     var scrollToTop: (() -> Void)?
 
+    var onMeetingFetched: (() -> Void)?
+
     var user: User?
+
+    func onMeetingFetched(with meeting: Meeting) {
+        self.meetingViewModel.meeting = meeting
+    }
 
     func onNotiTypeChanged(with type: String) {
         self.notification.type = type
@@ -154,6 +160,23 @@ class UpdateNotificationVM {
         }
     }
 
+    func fetchSingleMeeitngData(meetingID: String) {
+
+        NetworkManager.shared.fetchOneMeeting(meetingID: meetingID) { [weak self] result in
+
+            switch result {
+
+            case .success(let meeting):
+
+                self?.setMeeting(meeting)
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
 
     func convertUserToViewModel(from user: User) -> UserViewModel {
 
@@ -200,9 +223,22 @@ class UpdateNotificationVM {
     }
 
 
-    // test ID: uRmovxOus1T7jRcUO1GD
+    // 2021.06.10 修改前是存在 participantID
 
-    func createInviteNotification(type: String, meetingID: String, participantID: String) {
+//    func createInviteNotification(type: String, meetingID: String, participantID: String) {
+//
+//        fetchOneMeeitngData(meetingID: meetingID)
+//
+//        self.notification.type = type
+//
+//        self.notification.meetingID = meetingID
+//
+//        self.notification.subject = self.meeting?.subject
+//
+//        create(with: participantID, notification: &notification)
+//    }
+
+    func createInviteNotification(type: String, meetingID: String, participantID: String, name: String, subject: String) {
 
         fetchOneMeeitngData(meetingID: meetingID)
 
@@ -210,18 +246,24 @@ class UpdateNotificationVM {
 
         self.notification.meetingID = meetingID
 
-        self.notification.subject = self.meeting?.subject
+        self.notification.subject = subject
+
+        self.notification.ownerName = name
+
+        self.notification.participantID = participantID
 
         create(with: participantID, notification: &notification)
     }
 
-    func createParticipantsNotification(type: String, peopleID: [String], event: Event) {
+    func createParticipantsNotification(type: String, peopleID: [String], event: Event, image: String) {
 
         self.notification.type = type
 
         self.notification.eventID = event.id
 
         self.notification.subject = event.subject
+
+        self.notification.image = image
 
         create(with: peopleID, notification: &notification)
     }
@@ -328,7 +370,6 @@ class UpdateNotificationVM {
             }
         }
     }
-
 
     func onEmptyTap(_ optionID: String, meetingID: String, selectedOptionID: String) {
         VoteManager.shared.deleteEmptySelectedOption(selectedOptionID: selectedOptionID, optionID: optionID, meetingID: meetingID){ [weak self] result in

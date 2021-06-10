@@ -89,9 +89,12 @@ class InvitesTableViewCell: UITableViewCell {
 
 
     func setupInviteCell(model: NotificationViewModel) {
+
+        // whoSend = 活動主辦人
         if let whoSend = model.notification.ownerName,
            let subject = model.notification.subject {
-            invitesLabel.text = "\(whoSend) 邀請您參加「\(subject)」活動，您可以直接前往投票，選出適合的時間。"
+
+        invitesLabel.text = "\(whoSend) 邀請您參加「\(subject)」活動，您可以直接前往投票，選出適合的時間。"
         }
 
 //        voteBtnView.setTitle("去投票", for: .normal)
