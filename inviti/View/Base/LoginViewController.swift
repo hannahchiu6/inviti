@@ -21,28 +21,6 @@ class LoginViewController: UIViewController {
 
         performSegue(withIdentifier: "goToMainSegue", sender: nil)
 
-//        let testID = "uLkwCQPXM4NrsnFc1mTSmw7GsPu2"
-//
-////        let testID = "5gWVjg7xTHElu9p6Jkl1"
-//
-////        let testID = "p1zIbghnQIpXfOKreA1q"
-//
-////        let testID = "vODZGU4sN9nzXqpGMepy"
-//
-////        let testEmail = "moon2021@gmail.com"
-//
-////        let testName = "中秋圓圓"
-//
-//        let userManager = UserManager.shared
-//
-//        userManager.user.id = testID
-////        userManager.user.email = testEmail
-////        userManager.user.name = testName
-//
-//
-//        UserDefaults.standard.setValue(testID, forKey: UserDefaults.Keys.uid.rawValue)
-//
-//        self.viewModel.checkIfLogInBefore()
     }
     //    @IBOutlet weak var signInWithAppleButton: UIButton!
 
@@ -65,6 +43,8 @@ class LoginViewController: UIViewController {
 
     }
 
+    @IBOutlet weak var policyLabel: UILabel!
+
     func setUpButton() {
 
         let button = ASAuthorizationAppleIDButton(type: .continue, style: .black)
@@ -81,8 +61,8 @@ class LoginViewController: UIViewController {
         view.addSubview(button)
 
         NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalTo: animationView.bottomAnchor, constant: 160),
-//            button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 165),
+//            button.topAnchor.constraint(equalTo: animationView.bottomAnchor, constant: 160),
+            button.topAnchor.constraint(equalTo: policyLabel.topAnchor, constant: -65),
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.heightAnchor.constraint(equalToConstant: 45),
             button.widthAnchor.constraint(equalToConstant: 280)

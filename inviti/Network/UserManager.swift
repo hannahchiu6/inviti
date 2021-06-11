@@ -285,7 +285,6 @@ class UserManager {
         if let url = url as? String {
 
             docRef.updateData([
-
                 "image": "\(url)"
             ]) { err in
                 if let err = err {

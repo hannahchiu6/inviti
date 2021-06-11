@@ -19,6 +19,8 @@ class MeetingViewController: BaseViewController {
         pastView.isHidden = false
     }
 
+    @IBOutlet weak var indicatorView: UIView!
+
     @IBAction func futureBtn(_ sender: UIButton) {
         sender.isSelected = true
         moveIndicatorView(reference: sender)
@@ -32,7 +34,7 @@ class MeetingViewController: BaseViewController {
         willPopup = !willPopup
 
     }
-
+    @IBOutlet weak var IntroView: UIView!
     @IBOutlet weak var futureView: UIView!
     @IBOutlet weak var pastView: UIView!
     @IBOutlet weak var indicatorCenterXConstraint: NSLayoutConstraint!
@@ -42,6 +44,8 @@ class MeetingViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        IntroView.isHidden = true
 
         addMeetingPopView.isHidden = true
 
@@ -54,6 +58,9 @@ class MeetingViewController: BaseViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
 
         self.tabBarController?.tabBar.isHidden = false
+
+//        addcoustmeView()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,12 +68,25 @@ class MeetingViewController: BaseViewController {
 
         self.tabBarController?.tabBar.isHidden = false
 
-         }
+    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(false)
     }
+
+
+//    private func addcoustmeView() {
+//
+//        indicatorView.layer.shadowColor = UIColor.black.cgColor
+//        indicatorView.layer.shadowOffset = CGSize(width: 0, height: 6)
+//        indicatorView.layer.shadowRadius = 10
+//        indicatorView.layer.shadowOpacity = 0.2
+//        indicatorView.layer.masksToBounds = false
+//
+//    }
+
+    let viewModel = MainViewModel()
 
     private var willPopup = false {
         didSet {

@@ -11,6 +11,8 @@ class MainViewModel {
 
     var meetingViewModels = Box([MeetingViewModel]())
 
+    var hostMeetingViewModels = Box([MeetingViewModel]())
+
     var meeting: Meeting = Meeting(id: "",  numberForSearch: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
 
     var refreshView: (() -> Void)?
@@ -47,6 +49,23 @@ class MainViewModel {
             case .success(let meetings):
 
                 self?.setMeetings(meetings)
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
+    func fetchMyData() {
+
+        NetworkManager.shared.fetchHostedMeetings { [weak self] result in
+
+            switch result {
+
+            case .success(let meetings):
+
+                self?.setHostMeetings(meetings)
 
             case .failure(let error):
 
@@ -141,6 +160,10 @@ class MainViewModel {
     func setMeetings(_ meetings: [Meeting]) {
         meetingViewModels.value = convertMeetingsToViewModels(from: meetings)
     }
+
+    func setHostMeetings(_ meetings: [Meeting]) {
+        hostMeetingViewModels.value = convertMeetingsToViewModels(from: meetings)
+    }
 //
 //    func onTapCreate() {
 //
@@ -186,19 +209,5 @@ class MainViewModel {
             }
         }
     }
-
-//    func create(with user: User = nil) {
-//
-//        if let user = user {
-//            meeting.owner = user
-//        }
-//
-//        create(with: &meeting)
-//    }
-//
-//    func hasUserInMeeting() -> Bool {
-//        return meeting.ownerAppleID != nil
-//    }
-
 
 }

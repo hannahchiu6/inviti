@@ -136,12 +136,10 @@ class NetworkManager {
         }
     }
 
-
     func fetchHostedMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
 
             db.collection("meetings")
             .whereField("ownerAppleID", isEqualTo: userUID)
-//            .order(by: "createdTime", descending: true)
             .getDocuments { querySnapshot, error in
 
                 if let error = error {
@@ -287,10 +285,64 @@ class NetworkManager {
         }
     }
 
+    func updateSubject(meetingID: String, subject: String, completion: @escaping (Result<String, Error>) -> Void) {
+
+        let docRef =
+            db.collection("meetings")
+            .document(meetingID)
+
+        if let subject = subject as? String {
+
+            docRef.updateData([
+                "subject": "\(subject)"
+
+            ]) { err in
+
+                if let err = err {
+
+                    completion(.failure(err))
+
+                } else {
+
+                    completion(.success(subject))
+
+                }
+            }
+        }
+    }
+
+    func updateLocation(meetingID: String, location: String, completion: @escaping (Result<String, Error>) -> Void) {
+
+        let docRef =
+            db.collection("meetings")
+            .document(meetingID)
+
+        if let location = location as? String {
+
+            docRef.updateData([
+
+                "location": "\(location)"
+
+            ]) { err in
+
+                if let err = err {
+
+                    completion(.failure(err))
+
+                } else {
+
+                    completion(.success(location))
+
+                }
+            }
+        }
+    }
+
 
     func updateMeetingImageURL(meeting: Meeting, completion: @escaping (Result<Meeting, Error>) -> Void) {
 
-        let docRef = db.collection("meetings").document(meeting.id)
+        let docRef = db.collection("meetings")
+            .document(meeting.id)
 
         if let url = meeting.image {
 

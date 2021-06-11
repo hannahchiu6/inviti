@@ -27,6 +27,7 @@ class CreateFirstViewController: UIViewController {
     var isSwitchOn: Bool = false
 
     var meetingSubject: String? {
+
         didSet {
             meetingSubject = createMeetingViewModel.meeting.subject
         }
@@ -99,6 +100,8 @@ class CreateFirstViewController: UIViewController {
         }
     }
 
+    @IBOutlet weak var confrimButtonView: UIView!
+
     @IBOutlet weak var calendarIconView: UIButton!
 
     @IBAction func invitePeopleButton(_ sender: Any) {
@@ -155,7 +158,6 @@ class CreateFirstViewController: UIViewController {
         enableShareBtn()
         
         showButtonView.isEnabled = false
-
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -234,6 +236,7 @@ class CreateFirstViewController: UIViewController {
 
         } else {
 
+            isDataEmpty = false
             selectOptionViewModel.fetchData(meetingID: meetingInfo.id)
             inviteBtnView.isHidden = false
         }
@@ -243,6 +246,7 @@ class CreateFirstViewController: UIViewController {
             inviteBtnView.isHidden = false
             showButtonView.setTitle("更新活動內容", for: .normal)
             self.navigationController?.isNavigationBarHidden = true
+
 
             isDataEmpty = !isDataEmpty
 
@@ -274,14 +278,16 @@ class CreateFirstViewController: UIViewController {
 
 extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section  {
+
+        switch section {
         case 0:
             return 1
+
         case 2:
           return 1
 
         default:
-            if isDataEmpty {
+            if selectOptionViewModel.optionViewModels.value.isEmpty {
                 return 1
             } else {
                 return selectOptionViewModel.optionViewModels.value.count
@@ -305,13 +311,15 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         switch indexPath.section {
+
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFirstTableViewCell", for: indexPath) as! CreateFirstCell
 
-                cell.delegate = self
+//                cell.delegate = self
 
             if createMeetingViewModel.meetingViewModels.value.isEmpty {
 
+                cell.createViewModel = createMeetingViewModel
 //                cell.setCell(model: createMeetingViewModel.meetingViewModels.value[indexPath.row])
 
 //                cell.viewModel = createMeetingViewModel.meetingViewModels.value[indexPath.row]
@@ -321,6 +329,8 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
                 let model = createMeetingViewModel.meetingViewModels.value[indexPath.row]
 
                 cell.viewModel = model
+
+                cell.createViewModel = createMeetingViewModel
 
                 cell.setup(viewModel: model)
 
@@ -390,7 +400,7 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
 
             cell.meetingInfo = self.meetingInfo
 
-            if isDataEmpty {
+            if selectOptionViewModel.optionViewModels.value.isEmpty {
 
                 cell.setupEmptyDataCell()
 
@@ -412,17 +422,22 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
     }
 }
 
-extension CreateFirstViewController: CreateFirstCellDelegate {
-
-    func getSubjectData(_ subject: String) {
-        createMeetingViewModel.onSubjectChanged(text: subject)
-
-    }
-
-    func getLocationData(_ location: String) {
-        createMeetingViewModel.onLocationChanged(text: location)
-    }
-}
+//extension CreateFirstViewController: CreateFirstCellDelegate {
+//
+//    func getSubjectData(_ subject: String) {
+//
+//        guard let meetingID = meetingID else { return }
+//        createMeetingViewModel.updateSubject(with: meetingID, subject: subject)
+////        onSubjectChanged(text: subject)
+//
+//    }
+//
+//    func getLocationData(_ location: String) {
+//        guard let meetingID = meetingID else { return }
+//        createMeetingViewModel.updateLocation(with: meetingID, location: location)
+//
+//    }
+//}
 
 extension CreateFirstViewController: CTableViewDelegate {
     func optionDidSelect(getData: Bool) {

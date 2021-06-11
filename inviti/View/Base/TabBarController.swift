@@ -113,6 +113,8 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
         settingButton()
 
+        addcoustmeTabBarView()
+
         viewModel.meetingViewModels.bind { [weak self] meetings in
             self?.viewModel.onRefresh()
         }
@@ -175,7 +177,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
                let vc = navVC.viewControllers.first as? CreateFirstViewController {
                 vc.meetingID = viewModel.meeting.id
 
-                if let viewModel = viewModel as? CreateMeetingViewModel  {
+                if let viewModel = viewModel as? CreateMeetingViewModel {
                     vc.createMeetingViewModel = viewModel }
 
                 vc.isDataEmpty = true
@@ -204,4 +206,15 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
         return true
     }
+
+    private func addcoustmeTabBarView() {
+
+        tabBar.layer.shadowColor = UIColor.black.cgColor
+        tabBar.layer.shadowOffset = CGSize(width: 0.0, height: 6.0)
+        tabBar.layer.shadowRadius = 10
+        tabBar.layer.shadowOpacity = 0.2
+        tabBar.layer.masksToBounds = false
+
+    }
+
 }
