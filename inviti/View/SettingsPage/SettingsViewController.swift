@@ -27,6 +27,14 @@ class SettingsViewController: UIViewController {
           print("Error signing out: %@", signOutError)
         }
 
+        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let loginVC = storyboard.instantiateViewController(identifier: "LoginVC")
+
+        guard let vc = loginVC as? LoginViewController else { return }
+
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+
     }
 
     @IBOutlet weak var settingsTableView: UITableView!
@@ -48,13 +56,15 @@ class SettingsViewController: UIViewController {
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
 
+        viewModel.fetchUserData()
+
         viewModel.refreshView = { [weak self] () in
             DispatchQueue.main.async {
                 self?.settingsTableView.reloadData()
             }
         }
 
-        viewModel.userViewModel.bind { [weak self] user in
+        viewModel.userViewModels.bind { [weak self] users in
             self?.viewModel.onRefresh()
             self?.setupUpperView()
         }
@@ -63,19 +73,26 @@ class SettingsViewController: UIViewController {
 
     func setupUpperView() {
 
-        nameLabel.text = viewModel.userViewModel.value.name
+        let model = viewModel.userViewModels.value
 
-        emailLabel.text = viewModel.userViewModel.value.email 
+        if !model.isEmpty {
 
-        guard let url = viewModel.userViewModel.value.image else { return }
+            nameLabel.text = model[0].name
 
-            let imageUrl = URL(string: String(url))
+            emailLabel.text = model[0].email
+
+            guard let url = model[0].image else { return }
+
+                let imageUrl = URL(string: String(url))
 
             profilePhoto.kf.setImage(with: imageUrl, placeholder: UIImage(systemName: "moon.circle.fill"))
+            
+        }
 
         profilePhoto.tintColor = UIColor.lightGray
 
         profilePhoto.layer.cornerRadius = profilePhoto.bounds.width / 2
+
     }
 }
 
@@ -100,7 +117,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             destinationVC.viewModel = viewModel
 
             self.navigationController?.pushViewController(destinationVC, animated: true)
-              }
+
+        }
     }
 
 }

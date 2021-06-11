@@ -18,6 +18,7 @@
 		860B5C922652297200171ED3 /* CreateFirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860B5C912652297200171ED3 /* CreateFirstCell.swift */; };
 		86102767266CA68C008DEFD0 /* InvitesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86102765266CA68C008DEFD0 /* InvitesTableViewCell.swift */; };
 		86102768266CA68C008DEFD0 /* InvitesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86102766266CA68C008DEFD0 /* InvitesTableViewCell.xib */; };
+		8610312426726B6200BEC58B /* FinalOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8610312326726B6200BEC58B /* FinalOption.swift */; };
 		8614DE9C2652A56200DC0A9D /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614DE9B2652A56100DC0A9D /* UIButton+Extension.swift */; };
 		861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885ED264E31FD0048D9AA /* UITableView+Extension.swift */; };
 		861885F6264E5FD60048D9AA /* OptionEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */; };
@@ -129,6 +130,19 @@
 		A3090504881DDDF486642645 /* Pods_inviti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE1AD6A8960FEB195B049AE /* Pods_inviti.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8610313D2672EE9200BEC58B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		860792ED2658E6760085ED7D /* SimpleUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleUser.swift; sourceTree = "<group>"; };
 		860A035C265BA31100067F23 /* CalendarNibCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNibCell.swift; sourceTree = "<group>"; };
@@ -141,6 +155,13 @@
 		860B5C912652297200171ED3 /* CreateFirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstCell.swift; sourceTree = "<group>"; };
 		86102765266CA68C008DEFD0 /* InvitesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesTableViewCell.swift; sourceTree = "<group>"; };
 		86102766266CA68C008DEFD0 /* InvitesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvitesTableViewCell.xib; sourceTree = "<group>"; };
+		8610312326726B6200BEC58B /* FinalOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalOption.swift; sourceTree = "<group>"; };
+		8610312C2672EE9100BEC58B /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		8610312E2672EE9100BEC58B /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		861031312672EE9200BEC58B /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		861031342672EE9200BEC58B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		861031362672EE9200BEC58B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		861031412672F92C00BEC58B /* invitiRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = invitiRelease.entitlements; sourceTree = "<group>"; };
 		8614DE9B2652A56100DC0A9D /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		861885ED264E31FD0048D9AA /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Extension.swift"; path = "inviti/Extension/UITableView+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionEventTableViewCell.swift; sourceTree = "<group>"; };
@@ -286,6 +307,16 @@
 				860B3BAC266937FF008D5267 /* 60377-letter.json */,
 			);
 			path = Lotties;
+			sourceTree = "<group>";
+		};
+		861031302672EE9200BEC58B /* notification */ = {
+			isa = PBXGroup;
+			children = (
+				861031312672EE9200BEC58B /* NotificationViewController.swift */,
+				861031332672EE9200BEC58B /* MainInterface.storyboard */,
+				861031362672EE9200BEC58B /* Info.plist */,
+			);
+			path = notification;
 			sourceTree = "<group>";
 		};
 		861F65DE264D1F6400A54C00 /* CalendarView */ = {
@@ -455,6 +486,7 @@
 			isa = PBXGroup;
 			children = (
 				86B12B44264A8584006EE7FE /* inviti */,
+				861031302672EE9200BEC58B /* notification */,
 				86B12B43264A8584006EE7FE /* Products */,
 				1C94417FB07E2A206AEFB117 /* Pods */,
 				F5362E2D7C7ED93E2FF7A606 /* Frameworks */,
@@ -472,6 +504,7 @@
 		86B12B44264A8584006EE7FE /* inviti */ = {
 			isa = PBXGroup;
 			children = (
+				861031412672F92C00BEC58B /* invitiRelease.entitlements */,
 				8632C76D2668E5FB004D5D3A /* inviti.entitlements */,
 				868649FF265B768100E7040F /* 處理中 */,
 				866C974426563BE600687386 /* Helper */,
@@ -563,6 +596,7 @@
 			isa = PBXGroup;
 			children = (
 				869F840D2655363B00DA1D53 /* Option.swift */,
+				8610312326726B6200BEC58B /* FinalOption.swift */,
 				869F8404265534A800DA1D53 /* SelectedOption.swift */,
 				869F83FC265531EC00DA1D53 /* Event.swift */,
 				869F84092655357A00DA1D53 /* Meeting.swift */,
@@ -580,6 +614,8 @@
 			isa = PBXGroup;
 			children = (
 				FDE1AD6A8960FEB195B049AE /* Pods_inviti.framework */,
+				8610312C2672EE9100BEC58B /* UserNotifications.framework */,
+				8610312E2672EE9100BEC58B /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -598,6 +634,7 @@
 				86B12B40264A8584006EE7FE /* Resources */,
 				1CFAE37BF67E578749D5C242 /* [CP] Embed Pods Frameworks */,
 				862A82092670FBCD005A5AF6 /* ShellScript */,
+				8610313D2672EE9200BEC58B /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -790,6 +827,7 @@
 				86D772E5266FBC4C0028158C /* HasVotedVC.swift in Sources */,
 				865A00F22654297A0061A0E4 /* PastTableViewController.swift in Sources */,
 				861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */,
+				8610312426726B6200BEC58B /* FinalOption.swift in Sources */,
 				861F661D264D38EA00A54C00 /* SettingsTableViewCell.swift in Sources */,
 				8661E04426661E1F00BD23F5 /* ResultsTableViewCell.swift in Sources */,
 				86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */,
@@ -858,6 +896,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		861031332672EE9200BEC58B /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				861031342672EE9200BEC58B /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		86B12B4B264A8584006EE7FE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -997,10 +1043,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E5BBABC6525C243DBE8B8AC6 /* Pods-inviti.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = inviti/inviti.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5VVRV23ZK6;
 				INFOPLIST_FILE = inviti/Info.plist;
@@ -1009,6 +1057,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = moonland.inviti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1020,10 +1069,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A41EA7A3E1004FFDF363D424 /* Pods-inviti.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = inviti/inviti.entitlements;
+				CODE_SIGN_ENTITLEMENTS = inviti/invitiRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5VVRV23ZK6;
 				INFOPLIST_FILE = inviti/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1031,6 +1082,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = moonland.inviti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

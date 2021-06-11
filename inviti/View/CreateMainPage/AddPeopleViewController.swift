@@ -121,8 +121,8 @@ class AddPeopleViewController: UIViewController {
 
         if !notificationVM.meetingViewModels.value.isEmpty {
 
-            let meetingSubject = notificationVM.meetingViewModels.value[0].subject
-            let searchID = notificationVM.meetingViewModels.value[0].numberForSearch
+            if let meetingSubject = notificationVM.meetingViewModels.value[0].subject as? String,
+               let searchID = notificationVM.meetingViewModels.value[0].numberForSearch as? String {
 
             let message = "您的好友 \(String(describing: name)) 邀請您參加「\(meetingSubject)」，來 inviti 票選時間吧！打開 APP 輸入活動 ID 即可參與投票 👉🏻 \(searchID)"
 
@@ -145,6 +145,7 @@ class AddPeopleViewController: UIViewController {
             }
 
             present(ac, animated: true, completion: nil)
+            }
         }
     }
 

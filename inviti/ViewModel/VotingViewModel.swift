@@ -23,7 +23,21 @@ class VotingViewModel {
 
     var optionViewModel = OptionViewModel(model: Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: []))
 
-    var meetingViewModel = MeetingViewModel(model: Meeting(id: "", numberForSearch: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
+    var meeting: Meeting = Meeting(
+        id: "", numberForSearch: "",
+        ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? "",
+        createdTime: 0,
+        subject: "",
+        location: "",
+        notes: "",
+        image: "https://500px.com/static/media/editors8@1x.126c6fb9.png",
+        singleMeeting: false,
+        hiddenMeeting: false,
+        deadlineMeeting: false,
+        participants: [],
+        numOfParticipants: 0,
+        deadlineTag: 0
+    )
 
     var option: Option = Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: [])
 
@@ -53,8 +67,8 @@ class VotingViewModel {
         self.selectedOption.selectedUser = selectedUser
     }
 
-    func onMeetingOptionChanged(_ option: Option) {
-        self.meetingViewModel.meeting.finalOption = option
+    func onMeetingOptionChanged(_ option: FinalOption) {
+        self.meeting.finalOption = option
     }
 
     func fetchUserData(userID: String) {
@@ -242,7 +256,8 @@ class VotingViewModel {
 
     func updateCloseStatus(with meetingID: String) {
 
-        NetworkManager.shared.updateMeetingClose(meetingID: meetingID, option: self.meetingViewModel.meeting.finalOption ?? option)
+        guard let finalOption = self.meeting.finalOption else { return }
+        NetworkManager.shared.updateMeetingClose(meetingID: meetingID, finalOption: finalOption)
     }
 
     func onRefresh() {

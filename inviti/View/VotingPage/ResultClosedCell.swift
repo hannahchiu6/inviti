@@ -36,7 +36,7 @@ class ResultClosedCell: UITableViewCell {
     }
 
 
-    func setupCell(option: Option) {
+    func setupCell(option: FinalOption) {
 
         let startTime = option.startTimeToTime()
 

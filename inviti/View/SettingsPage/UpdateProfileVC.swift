@@ -67,7 +67,7 @@ class UpdateProfileVC: UIViewController {
             }
         }
 
-        viewModel.userViewModel.bind { [weak self] user in
+        viewModel.userViewModels.bind { [weak self] users in
             self?.viewModel.onRefresh()
         }
         
@@ -103,9 +103,9 @@ extension UpdateProfileVC: UITextFieldDelegate {
 
     func placeHolderText() {
 
-        let oldName = viewModel.userViewModel.value.name
+        let oldName = viewModel.user.name
 
-        let oldEmail = viewModel.userViewModel.value.email
+        let oldEmail = viewModel.user.email
 
         let colorNew = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
 
