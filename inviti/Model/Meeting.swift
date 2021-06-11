@@ -27,7 +27,8 @@ struct Meeting: Codable {
     var numOfParticipants: Int?
     var deadlineTag: Int?
     var isClosed: Bool = false
-    var finalOption: Option?
+//    var finalOption: Option?
+    var finalOption: FinalOption? // startTime
 //    @Document var id: String?
     //    let askInfo: AskInfo
     //    var invitation: [String]?

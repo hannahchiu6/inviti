@@ -51,4 +51,27 @@ struct OptionTime: Equatable, Codable {
 
         }
     }
+
+    func dateToInt() -> Int {
+
+        if month < 10 {
+
+            if day < 10 {
+
+                return Int("\(year)0\(month)0\(day)") ?? 0
+            }
+
+                return Int("\(year)0\(month)\(day)") ?? 0
+
+        } else {
+
+            if day < 10 {
+
+                return Int("\(year)\(month)0\(day)") ?? 0
+            }
+
+                return Int("\(year)\(month)\(day)") ?? 0
+
+        }
+    }
 }

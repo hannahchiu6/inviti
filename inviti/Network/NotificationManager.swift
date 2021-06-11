@@ -21,6 +21,8 @@ class NotificationManager {
 
     var userName = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue)
 
+    var userImage = UserDefaults.standard.value(forKey: UserDefaults.Keys.image.rawValue) as? String ?? ""
+
     func fetchNotifications(completion: @escaping (Result<[Notification], Error>) -> Void) {
 
         self.db.collection("users")
@@ -100,6 +102,31 @@ class NotificationManager {
             }
         }
     }
+
+    func createNotificationforInvite(owenerID: String, notification: inout Notification, completion: @escaping (Result<String, Error>) -> Void) {
+
+        let document = db.collection("users")
+            .document(owenerID)
+            .collection("notifications")
+            .document()
+            notification.id = document.documentID
+            notification.createdTime = Int64(Date().millisecondsSince1970)
+            notification.ownerName = userName as? String
+            notification.participantID = owenerID
+            notification.image = userImage
+            document.setData(notification.toDict) { error in
+
+            if let error = error {
+
+                completion(.failure(error))
+
+            } else {
+
+                completion(.success(document.documentID))
+            }
+        }
+    }
+
 
 //    func createParticipantsNotification(peopleID: [String], event: inout Event, completion: @escaping (Result<String, Error>) -> Void) {
 //

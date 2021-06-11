@@ -11,25 +11,27 @@ class SettingsViewModel {
 
     var onGranted: (() -> Void)?
 
-    var userViewModel = Box(UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [], numberForSearch: "")))
+    var userViewModels = Box([UserViewModel]())
+
+//    var userViewModel = Box(UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [], numberForSearch: "")))
+
+    var user: User = User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [], numberForSearch: "")
 
     var refreshView: (() -> Void)?
 
     func onNameChanged(text name: String) {
-        self.userViewModel.value.user.name = name
+        self.user.name = name
 
     }
 
     func onEmailChanged(text email: String) {
-        self.userViewModel.value.user.email = email
+        self.user.email = email
     }
 
     func onImageUploaded(url: String) {
-        self.userViewModel.value.user.image = url
-//        self.updateImage(url: url)
+        self.user.image = url
+        self.updateImage(url: url)
     }
-
-    var user: User = User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, numberForSearch: "")
 
     func onRefresh() {
 
@@ -55,8 +57,9 @@ class SettingsViewModel {
 
 
     func updateUserProfile() {
-        let newUserData = self.userViewModel.value.user
-        UserManager.shared.updateUserDetails(user: newUserData) { result in
+
+
+        UserManager.shared.updateUserDetails(user: user) { result in
             switch result {
 
             case .success(let user):
@@ -146,15 +149,17 @@ class SettingsViewModel {
         })
     }
 
-    func convertUserToViewModel(from user: User) -> UserViewModel {
+    func convertUserToViewModels(from user: User) -> [UserViewModel] {
 
+        var viewModels = [UserViewModel]()
         let viewModel = UserViewModel(model: user)
+        viewModels.append(viewModel)
 
-        return viewModel
+        return viewModels
     }
 
     func setUser(_ user: User) {
-        userViewModel.value = convertUserToViewModel(from: user)
+        userViewModels.value = convertUserToViewModels(from: user)
     }
 
     func create(with user: inout User) {

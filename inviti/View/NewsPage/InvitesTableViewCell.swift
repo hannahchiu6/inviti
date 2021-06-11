@@ -63,6 +63,8 @@ class InvitesTableViewCell: UITableViewCell {
         rejectBtnView.isHidden = true
 
         ownerImage.isHidden = true
+
+        deleteBtnView.isHidden = true
     }
 
     func setupVoteCell(model: NotificationViewModel) {
@@ -119,7 +121,7 @@ class InvitesTableViewCell: UITableViewCell {
 
             let time = model.notification.timeToDate()
 
-            invitesLabel.text = "「\(subject)」投票已結束，\(whoSend) 已將最終票選時間 \(time) 加入您的行事曆囉！"
+            invitesLabel.text = "「\(subject)」投票已結束，\(whoSend) 已將最終票選時間加入您的行事曆囉！"
         }
 
         ownerImage.isHidden = false

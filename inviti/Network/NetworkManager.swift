@@ -312,14 +312,14 @@ class NetworkManager {
     }
 
 
-    func updateMeetingClose(meetingID: String, option: Option) {
+    func updateMeetingClose(meetingID: String, finalOption: FinalOption) {
 
         let docRef = db.collection("meetings").document(meetingID)
 
             docRef.updateData([
 
                 "isClosed": true,
-                "finalOption": option.toDict
+                "finalOption": finalOption.toDict
 
             ]) { err in
 

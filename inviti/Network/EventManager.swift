@@ -128,9 +128,9 @@ class EventManager {
             .document(userUID)
             .collection("events")
             .document()
+        
             event.id = document.documentID
-
-        document.setData(event.toDict) { error in
+            document.setData(event.toDict) { error in
 
             if let error = error {
 

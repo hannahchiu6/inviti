@@ -55,8 +55,8 @@ class VotingResultViewController: UIViewController {
         UIView.animate(withDuration: 1) {
             self.popupView.isHidden = false
             self.popupView.transform = .identity
-
-            self.eventViewModel.create()
+            
+             self.eventViewModel.create()
 
             self.votingViewModel.updateCloseStatus(with: self.meetingInfo.id)
 
@@ -71,7 +71,11 @@ class VotingResultViewController: UIViewController {
 
             controller.participants = meetingInfo.participants ?? []
 
+//            controller.eventID = eventViewModel.event.id
+
             controller.viewModel = eventViewModel
+
+            controller.eventSubject = meetingInfo.subject
 
             controller.notificationVM = notificationVM
 
@@ -89,7 +93,6 @@ class VotingResultViewController: UIViewController {
         votingViewModel.fetchVotedData(meetingID: meetingInfo.id)
 
         votingViewModel.fetchOneMeeitngData(meetingID: meetingInfo.id)
-
 
         votingViewModel.fetchUserData(userID: meetingInfo.ownerAppleID)
 
@@ -227,20 +230,24 @@ extension VotingResultViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let selectedOption = votingViewModel.optionViewModels.value[indexPath.row]
+        guard let option = votingViewModel.optionViewModels.value[indexPath.row].option as? Option else { return }
 
-       if let subject = meetingInfo.subject,
-          let location = meetingInfo.location {
+        let selectedOption = FinalOption(
+            startTime: option.startTime,
+            endTime: option.endTime,
+            optionTime: option.optionTime)
 
-            self.eventViewModel.onInfoChanged(text: subject, location: location, date: Int(selectedOption.optionTime.dateInt()) ?? 0)
-        }
+        guard let optionTime = option.optionTime else { return }
 
-        eventViewModel.onTimeChanged(selectedOption.startTime, endTime: selectedOption.endTime)
+            eventViewModel.onTimeChanged(option.startTime, endTime: option.endTime, option: optionTime)
 
-        votingViewModel.onMeetingOptionChanged(selectedOption.option)
+            eventViewModel.onInfoChanged(meeting: meetingInfo)
 
-        isSelected = true
+            votingViewModel.onMeetingOptionChanged(selectedOption)
 
-        enableButton()
+            isSelected = true
+
+            enableButton()
+
     }
 }

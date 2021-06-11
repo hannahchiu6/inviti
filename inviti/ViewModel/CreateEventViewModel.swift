@@ -16,15 +16,20 @@ class CreateEventViewModel {
 
     var event: Event = Event(id: "", startTime: 0, endTime: 0, date: 0, subject: "", location: "")
 
-    func onInfoChanged(text subject: String, location: String, date: Int) {
-        self.event.subject = subject
-        self.event.location = location
-        self.event.date = date
+    func onInfoChanged(meeting: Meeting) {
+
+        if let subject = meeting.subject,
+           let location = meeting.location {
+            self.event.subject = subject
+            self.event.location = location
+        }
+    //        self.event.date = date
     }
 
-    func onTimeChanged(_ startTime: Int64, endTime: Int64) {
+    func onTimeChanged(_ startTime: Int64, endTime: Int64, option: OptionTime) {
         self.event.startTime = startTime
         self.event.endTime = endTime
+        self.event.date = option.dateToInt()
     }
 
     var refreshView: (() -> Void)?

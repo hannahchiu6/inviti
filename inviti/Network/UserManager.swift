@@ -278,11 +278,14 @@ class UserManager {
 
     func updateUserImageURL(url: String, completion: @escaping (Result<String, Error>) -> Void) {
 
-        let docRef = db.collection("users").document(userUID)
+        let docRef =
+            db.collection("users")
+            .document(userUID)
 
-        if let url = user.image {
+        if let url = url as? String {
 
             docRef.updateData([
+
                 "image": "\(url)"
             ]) { err in
                 if let err = err {

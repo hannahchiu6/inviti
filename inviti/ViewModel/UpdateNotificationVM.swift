@@ -255,13 +255,13 @@ class UpdateNotificationVM {
         create(with: participantID, notification: &notification)
     }
 
-    func createParticipantsNotification(type: String, peopleID: [String], event: Event, image: String) {
+    func createEventNotification(type: String, peopleID: [String], eventID: String, subject: String, image: String) {
 
         self.notification.type = type
 
-        self.notification.eventID = event.id
+        self.notification.eventID = eventID
 
-        self.notification.subject = event.subject
+        self.notification.subject = subject
 
         self.notification.image = image
 
@@ -287,7 +287,7 @@ class UpdateNotificationVM {
 
 
     func create(with ownerID: String, notification: inout Notification) {
-        NotificationManager.shared.createNotificationforOwner(owenerID: ownerID, notification: &notification) { result in
+        NotificationManager.shared.createNotificationforInvite(owenerID: ownerID, notification: &notification) { result in
 
             switch result {
 
