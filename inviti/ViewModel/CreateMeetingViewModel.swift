@@ -57,40 +57,37 @@ class CreateMeetingViewModel {
     }
 
     func onNotesChanged(text notes: String) {
-//        self.meetingViewModel.meeting.notes = notes
+
         self.meeting.notes = notes
     }
 
     func onImageUploaded(url: String) {
-//        self.meetingViewModel.meeting.image = url
-//        self.updateImage(with: self.meetingViewModel.meeting)
         self.meeting.image = url
-        self.updateImage(with: self.meeting)
+        self.updateImage(meeting: self.meeting)
     }
     
 
     func onLocationChanged(text location: String) {
         self.meeting.location = location
-//        self.meetingViewModel.meeting.location = location
+
     }
 
     func meetingDeadlineChanged(_ bool: Bool) {
-//        self.meetingViewModel.meeting.deadlineMeeting = bool
+
         self.meeting.deadlineMeeting = bool
     }
 
     func meetingSingleChanged(_ bool: Bool) {
-//        self.meetingViewModel.meeting.singleMeeting = bool
+
         self.meeting.singleMeeting = bool
     }
 
     func meetingHiddenChanged(_ bool: Bool) {
         self.meeting.hiddenMeeting = bool
-//        self.meetingViewModel.meeting.hiddenMeeting = bool
     }
 
     func onDeadlineTagChanged(_ day: Int) {
-//        self.meetingViewModel.meeting.deadlineTag = day
+
         self.meeting.deadlineTag = day
     }
 
@@ -149,7 +146,7 @@ class CreateMeetingViewModel {
 
             case .failure(let error):
 
-                print("publishMeeting.failure: \(error)")
+                print("publish Meeting.failure: \(error)")
             }
         }
     }
@@ -173,15 +170,52 @@ class CreateMeetingViewModel {
         }
     }
 
-    func updateImage(with meeting: Meeting) {
+    func updateImage(meeting: Meeting) {
 
         NetworkManager.shared.updateMeetingImageURL(meeting: meeting) { result in
 
             switch result {
 
-            case .success(_ ):
+            case .success( _):
 
                 print("Publish Image Succeeded")
+
+            case .failure(let error):
+
+                print("publishArticle.failure: \(error)")
+
+            }
+        }
+    }
+
+    func updateLocation(with meetingID: String, location: String) {
+
+        NetworkManager.shared.updateLocation(meetingID: meetingID, location: location) { result in
+
+            switch result {
+
+            case .success(_ ):
+
+                print("Publish Location Succeeded")
+
+            case .failure(let error):
+
+                print("publishArticle.failure: \(error)")
+
+            }
+        }
+    }
+
+
+    func updateSubject(with meetingID: String, subject: String) {
+
+        NetworkManager.shared.updateSubject(meetingID: meetingID, subject: subject) { result in
+
+            switch result {
+
+            case .success(_ ):
+
+                print("Publish Subject Succeeded")
 
             case .failure(let error):
 

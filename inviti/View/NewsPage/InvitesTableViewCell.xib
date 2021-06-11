@@ -55,7 +55,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="5HA-UA-Paq">
                         <rect key="frame" x="243" y="79" width="155" height="20"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWn-ai-lMT" customClass="UIButtonActivity" customModule="inviti" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWn-ai-lMT" customClass="UIButtonActivity" customModule="inviti" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="65.5" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -63,7 +63,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
                                 <state key="normal" title="先不要">
-                                    <color key="titleColor" systemColor="linkColor"/>
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
@@ -74,7 +74,7 @@
                                     <action selector="rejectButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bgq-tW-ytz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rb8-vS-T5l" customClass="UIButtonActivity" customModule="inviti" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rb8-vS-T5l" customClass="UIButtonActivity" customModule="inviti" customModuleProvider="target">
                                 <rect key="frame" x="89.5" y="0.0" width="65.5" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -82,7 +82,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
                                 <state key="normal" title="去投票">
-                                    <color key="titleColor" systemColor="linkColor"/>
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
@@ -134,9 +134,6 @@
     <resources>
         <image name="profile_photo" width="200" height="133"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

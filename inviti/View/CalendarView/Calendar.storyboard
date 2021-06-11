@@ -39,7 +39,7 @@
                         <viewLayoutGuide key="safeArea" id="p2C-sS-3N4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="p2C-sS-3N4" firstAttribute="bottom" secondItem="gab-oN-SkN" secondAttribute="bottom" id="39s-za-3LH"/>
+                            <constraint firstAttribute="bottom" secondItem="gab-oN-SkN" secondAttribute="bottom" constant="34" id="39s-za-3LH"/>
                             <constraint firstItem="p2C-sS-3N4" firstAttribute="trailing" secondItem="gab-oN-SkN" secondAttribute="trailing" id="BwN-Rf-Q8T"/>
                             <constraint firstItem="bje-vp-lUt" firstAttribute="leading" secondItem="JQx-uC-9zO" secondAttribute="leading" id="GzN-su-ygq"/>
                             <constraint firstItem="gab-oN-SkN" firstAttribute="leading" secondItem="p2C-sS-3N4" secondAttribute="leading" id="Nb7-VU-8gT"/>

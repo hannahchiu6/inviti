@@ -345,7 +345,7 @@ class VotingViewModel {
 
     func sortVotes(vms: [OptionViewModel]) -> [OptionViewModel] {
 
-        let sorted = vms.sorted { $0.selectedOptions!.count > $1.selectedOptions!.count }
+        let sorted = vms.sorted { $0.selectedOptions?.count ?? 0 > $1.selectedOptions?.count ?? 0 }
 
         return sorted
     }

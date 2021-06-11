@@ -18,6 +18,8 @@ class VotingResultViewController: UIViewController {
 
     var isSelected: Bool = false
 
+    var hasVoted: Bool = false
+
     let eventViewModel = CreateEventViewModel()
 
     let votingViewModel = VotingViewModel()
@@ -52,15 +54,44 @@ class VotingResultViewController: UIViewController {
     }
 
     @IBAction func sendMeeting(_ sender: Any) {
-        UIView.animate(withDuration: 1) {
-            self.popupView.isHidden = false
-            self.popupView.transform = .identity
+
+        if hasVoted {
+            UIView.animate(withDuration: 1) {
+                self.popupView.isHidden = false
+                self.popupView.transform = .identity
+
+                self.eventViewModel.create()
+
+                self.votingViewModel.updateCloseStatus(with: self.meetingInfo.id)
+            }
+        } else {
+
+            let controller = UIAlertController(title: "您的活動尚未有人投票", message: "確定要結束投票並自訂結果嗎？", preferredStyle: .alert)
             
-             self.eventViewModel.create()
+            let okAction = UIAlertAction(title: "我確定", style: .default) {(_ ) in
 
-            self.votingViewModel.updateCloseStatus(with: self.meetingInfo.id)
+                self.popupView.isHidden = false
 
+                self.popupView.transform = .identity
+
+                self.eventViewModel.create()
+
+                self.votingViewModel.updateCloseStatus(with: self.meetingInfo.id)
+
+            }
+
+            controller.addAction(okAction)
+
+            let closeAction = UIAlertAction(title: "再等等", style: .cancel) { (_) in
+
+                controller.dismiss(animated: true, completion: nil)
+            }
+
+            controller.addAction(closeAction)
+
+            present(controller, animated: true, completion: nil)
         }
+
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -128,6 +159,20 @@ class VotingResultViewController: UIViewController {
         enableButton()
 
         setUpView()
+
+        checkVoted()
+    }
+
+    func checkVoted() {
+
+        if votingViewModel.voteViewModels.value.isEmpty {
+
+            hasVoted = false
+
+        } else {
+
+            hasVoted = true
+        }
     }
 
     func setUpView() {
@@ -167,10 +212,10 @@ class VotingResultViewController: UIViewController {
         if meetingInfo.isClosed {
 
             self.confirmBtnView.isHidden = true
-
             self.bottomView.isHidden = true
 
         } else {
+
             if isSelected {
 
                self.confirmBtnView.isEnabled = true

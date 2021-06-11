@@ -96,11 +96,11 @@ class ResultTableViewCell: UITableViewCell {
 
                 self.checkCircle.isHidden = false
 
-                self.checkCircle.tintColor =  UIColor.gray
+                self.checkCircle.tintColor = UIColor.gray
 
             } else {
 
-                self.voteCountLabel.text = ""
+                self.voteCountLabel.text = "0"
 
                 self.voteCountLabel.textColor = UIColor.gray
 
