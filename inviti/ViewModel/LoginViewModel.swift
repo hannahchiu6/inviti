@@ -76,14 +76,19 @@ class LoginViewModel {
 
     func setupUserDefault(user: User) {
 
-        UserDefaults.standard.setValue(user.image, forKey: UserDefaults.Keys.image.rawValue)
+        if let image = user.image,
+           let name = user.name as? String,
+           let email = user.email as? String {
 
-        UserDefaults.standard.setValue(user.name, forKey: UserDefaults.Keys.displayName.rawValue)
+            UserDefaults.standard.setValue(image, forKey: UserDefaults.Keys.image.rawValue)
 
-//        UserDefaults.standard.setValue(user.id, forKey: UserDefaults.Keys.uid.rawValue)
+            UserDefaults.standard.setValue(name, forKey: UserDefaults.Keys.displayName.rawValue)
 
-        UserDefaults.standard.setValue(user.email, forKey: UserDefaults.Keys.email.rawValue)
+    //        UserDefaults.standard.setValue(user.id, forKey: UserDefaults.Keys.uid.rawValue)
 
+            UserDefaults.standard.setValue(email, forKey: UserDefaults.Keys.email.rawValue)
+
+        }
     }
 
     func createUser() {

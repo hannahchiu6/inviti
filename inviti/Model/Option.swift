@@ -15,7 +15,8 @@ struct Option: Codable {
     var endTime: Int64
     var optionTime: OptionTime?
     var duration: Int
-    var selectedOptions: [SelectedOption]?
+    var selectedOptions: [String]?
+//    var selectedOptions: [SelectedOption]?
 
 
     enum CodingKeys: String, CodingKey {
