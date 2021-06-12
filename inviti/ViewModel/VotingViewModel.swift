@@ -11,7 +11,7 @@ import Firebase
 
 class VotingViewModel {
 
-    var voteViewModels = Box([VoteViewModel]())
+//    var voteViewModels = Box([VoteViewModel]())
 
     var optionViewModels = Box([OptionViewModel]())
 
@@ -21,7 +21,7 @@ class VotingViewModel {
 
     var voteViewModel = VoteViewModel(model: SelectedOption(isSelected: false, selectedUser: ""))
 
-    var optionViewModel = OptionViewModel(model: Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: []))
+//    var optionViewModel = OptionViewModel(model: Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: []))
 
     var meeting: Meeting = Meeting(
         id: "", numberForSearch: "",
@@ -41,9 +41,13 @@ class VotingViewModel {
 
     var option: Option = Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: [])
 
-    var selectedOption: SelectedOption = SelectedOption(isSelected: false, selectedUser: "")
+    var options: [Option] = [Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: [])]
+
+//    var selectedOption: SelectedOption = SelectedOption(isSelected: false, selectedUser: "")
 
     var refreshView: (() -> Void)?
+
+    var userUID = UserDefaults.standard.value(forKey: "uid") as? String ?? ""
 
     var onDead: (() -> Void)?
 
@@ -53,18 +57,48 @@ class VotingViewModel {
 
     var scrollToTop: (() -> Void)?
 
+    var multipleOptions: (() -> Void)?
+
     var getSelectedOptionData: (() -> Void)?
 
     var onSelectedOptionCreated: (() -> Void)?
 
     var onSelectedOptionUpdated: (() -> Void)?
 
-    func onVotingChanged(_ bool: Bool) {
-        self.selectedOption.isSelected = bool
+//    func onVotingChanged(_ bool: Bool) {
+//        self.selectedOption.isSelected = bool
+//    }
+//
+//    func onSelectedUserAdded(_ selectedUser: String) {
+//        self.selectedOption.selectedUser = selectedUser
+//    }
+    func onselectedOptionChanged(_ selectedOptions: [String]?, index: Int) {
+
+        self.options[index].selectedOptions = selectedOptions
     }
 
-    func onSelectedUserAdded(_ selectedUser: String) {
-        self.selectedOption.selectedUser = selectedUser
+
+    func onVotedTapped(index: Int) -> [Option] {
+
+        var newOptions = [Option]()
+
+        if var newOption = options[index] as? Option {
+
+//            if var newSelectedOptions = newOption.selectedOptions {
+
+            if ((newOption.selectedOptions?.contains(userUID)) != nil) {
+
+                newOption.selectedOptions?.filter({ $0 != userUID })
+
+                } else {
+
+                    newOption.selectedOptions?.append(userUID)
+                }
+
+                newOptions.append(newOption)
+            }
+
+        return newOptions
     }
 
     func onMeetingOptionChanged(_ option: FinalOption) {
@@ -113,6 +147,7 @@ class VotingViewModel {
             case .success(let options):
 
                 self?.setOptions(options)
+                self?.options = options
 
             case .failure(let error):
 
@@ -121,21 +156,21 @@ class VotingViewModel {
         }
     }
 
-    func fetchVotedData(meetingID: String) {
-        VoteManager.shared.fetchVotedData(meetingID: meetingID) { [weak self] result in
-
-            switch result {
-
-            case .success(let options):
-
-                self?.setOptions(options)
-
-            case .failure(let error):
-
-                print("fetchData.failure: \(error)")
-            }
-        }
-    }
+//    func fetchVotedData(meetingID: String) {
+//        VoteManager.shared.fetchVotedData(meetingID: meetingID) { [weak self] result in
+//
+//            switch result {
+//
+//            case .success(let options):
+//
+//                self?.setOptions(options)
+//
+//            case .failure(let error):
+//
+//                print("fetchData.failure: \(error)")
+//            }
+//        }
+//    }
 
     func getOptionsIDs(optionVMs: [OptionViewModel]) -> [String] {
 
@@ -146,9 +181,9 @@ class VotingViewModel {
         return optionIDs
     }
 
-    func checkIfVoted(meetingID: String, optionIDs: [String]) {
+    func checkIfVoted(meetingID: String) {
 
-        VoteManager.shared.checkIfVoted(optionIDs: optionIDs, meetingID: meetingID) { [weak self] result in
+        VoteManager.shared.checkIfVoted(meetingID: meetingID) { [weak self] result in
 
             switch result {
 
@@ -158,9 +193,12 @@ class VotingViewModel {
 
                     self?.isVoted = false
 
-                }
+                } else {
 
-                self?.setSelectedOptions(selectedOptions)
+                    self?.isVoted = true
+//                    self?.setSelectedOptions(selectedOptions)
+
+                }
 
             case .failure(let error):
 
@@ -168,8 +206,26 @@ class VotingViewModel {
             }
 
         }
+    }
 
+    func checkSingleVote(meeting: Meeting) {
+        if meeting.singleMeeting {
+            self.onMultipleOptions()
+        }
+    }
 
+    func whoVoted(selectedOptions: [VoteViewModel]) -> Bool {
+        let results = selectedOptions.filter({ $0.selectedUser == " \(userUID)" })
+
+        if results.isEmpty {
+            // 尚未投票
+            return false
+
+        } else {
+
+            // 已經投票
+            return true
+        }
     }
 
     func isVoted(_ selectedOptions: [VoteViewModel]) -> Bool {
@@ -222,35 +278,22 @@ class VotingViewModel {
         optionViewModels.value = convertOptionsToViewModels(from: options)
     }
 
-    func convertMeetingsToViewModels(from meetings: [Meeting]) -> [MeetingViewModel] {
-        var viewModels = [MeetingViewModel]()
-        for meeting in meetings {
-            let viewModel = MeetingViewModel(model: meeting)
-            viewModels.append(viewModel)
-        }
-        return viewModels
-    }
-
-    func setMeetings(_ meetings: [Meeting]) {
-        meetingViewModels.value = convertMeetingsToViewModels(from: meetings)
-    }
-
-    func fetchData(optionID: String, meetingID: String) {
-
-        VoteManager.shared.fetchSelectedOptions(optionID: optionID, meetingID: meetingID) { [weak self] result in
-
-            switch result {
-
-            case .success(let selectedOptions):
-
-                self?.setSelectedOptions(selectedOptions)
-
-            case .failure(let error):
-
-                print("fetchData.failure: \(error)")
-            }
-        }
-    }
+//    func fetchData(optionID: String, meetingID: String) {
+//
+//        VoteManager.shared.fetchSelectedOptions(optionID: optionID, meetingID: meetingID) { [weak self] result in
+//
+//            switch result {
+//
+//            case .success(let selectedOptions):
+//
+//                self?.setSelectedOptions(selectedOptions)
+//
+//            case .failure(let error):
+//
+//                print("fetchData.failure: \(error)")
+//            }
+//        }
+//    }
 
     var onMeetingUpdated: (() -> Void)?
 
@@ -262,6 +305,10 @@ class VotingViewModel {
 
     func onRefresh() {
         self.refreshView?()
+    }
+
+    func onMultipleOptions() {
+        self.multipleOptions?()
     }
 
     func onScrollToTop() {
@@ -287,11 +334,50 @@ class VotingViewModel {
         }
     }
 
+    func createVotedData(with options: [Option], meeting: Meeting, selectedOption: inout SelectedOption) {
+
+        for option in options {
+            VoteManager.shared.createSelectedOption(selectedOption: &selectedOption, meeting: meeting, option: option) { result in
+                switch result {
+                case .success:
+                    print("onTapCreate option, success")
+                    self.onSelectedOptionCreated?()
+
+                case .failure(let error):
+
+                    print("createOption.failure: \(error)")
+                }
+            }
+        }
+    }
+
+    func updateVotedOption(with meetingID: String, optionIndex: [Int]) {
+
+        if let index = optionIndex as? [Int] {
+
+            for i in index {
+
+                OptionManager.shared.updateVotedOption(option: options[i], meetingID: meetingID) { result in
+
+                    switch result {
+
+                    case .success:
+
+                        print("onTapCreate option, success")
+
+                    case .failure(let error):
+
+                        print("createOption.failure: \(error)")
+                    }
+                }
+            }
+        }
+    }
+
     func createWithEmptyData(with optionID: String, meetingID: String, selectedOption: inout SelectedOption) {
 
         VoteManager.shared.createEmptySelectedOption(selectedOption: &selectedOption, meetingID: meetingID, optionID: optionID) { result in
             switch result {
-
             case .success:
                 print("onTapCreate option, success")
                 self.onSelectedOptionCreated?()
@@ -302,10 +388,9 @@ class VotingViewModel {
             }
         }
     }
-
-    func onTap(with index: Int, option: Option, meeting: Meeting) {
-        voteViewModels.value[index].onTap(option: option, meeting: meeting)
-    }
+//    func onTap(with index: Int, option: Option, meeting: Meeting) {
+//        voteViewModels.value[index].onTap(option: option, meeting: meeting)
+//    }
 
     func onEmptyTap(_ optionID: String, meetingID: String, selectedOptionID: String) {
         VoteManager.shared.deleteEmptySelectedOption(selectedOptionID: selectedOptionID, optionID: optionID, meetingID: meetingID){ [weak self] result in
@@ -321,20 +406,6 @@ class VotingViewModel {
                 print("deleteData.failure: \(error)")
             }
         }
-    }
-
-    func convertSelectedOptionsToViewModels(from selectedOptions: [SelectedOption]) -> [VoteViewModel] {
-
-        var viewModels = [VoteViewModel]()
-        for selectedOption in selectedOptions {
-            let viewModel = VoteViewModel(model: selectedOption)
-            viewModels.append(viewModel)
-        }
-        return viewModels
-    }
-
-    func setSelectedOptions(_ selectedOptions: [SelectedOption]) {
-        voteViewModels.value = convertSelectedOptionsToViewModels(from: selectedOptions)
     }
 
     func onTimeChanged(_ time: Int64) -> String {
@@ -359,15 +430,19 @@ class VotingViewModel {
             case .success(let meeting):
 
                 self?.setMeeting(meeting)
-
+                self?.checkSingleVote(meeting: meeting)
             case .failure(let error):
 
-                print("fetchData.failure: \(error)")
+                print("fetch one meeting data failure: \(error)")
             }
         }
     }
 
-    func convertMeetingToViewModels(from meeting: Meeting) -> [MeetingViewModel] {
+    func setMeetings(_ meetings: [Meeting]) {
+        meetingViewModels.value = convertMeetingsToViewModels(from: meetings)
+    }
+
+    func convertMeetingsToViewModels(from meetings: [Meeting]) -> [MeetingViewModel] {
         var viewModels = [MeetingViewModel]()
         let viewModel = MeetingViewModel(model: meeting)
         viewModels.append(viewModel)
@@ -376,7 +451,16 @@ class VotingViewModel {
     }
 
     func setMeeting(_ meeting: Meeting) {
-        meetingViewModels.value = convertMeetingToViewModels(from: meeting)
+
+        if !meetingViewModels.value.isEmpty {
+            meetingViewModels.value[0] = convertMeetingToViewModel(meeting)
+        }
+    }
+
+    func convertMeetingToViewModel(_ meeting: Meeting) -> MeetingViewModel {
+
+        let viewModel = MeetingViewModel(model: meeting)
+        return viewModel
     }
 
     func convertUserToViewModel(from user: User) -> UserViewModel {
@@ -389,6 +473,4 @@ class VotingViewModel {
     func setUser(_ user: User) {
         userBox.value = convertUserToViewModel(from: user)
     }
-
-
 }

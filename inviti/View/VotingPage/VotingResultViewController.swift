@@ -98,11 +98,7 @@ class VotingResultViewController: UIViewController {
         if segue.identifier == "addToCalendarSegue" {
             let controller = segue.destination as! CloseSuccessVC
 
-//            notificationVM.fetchUserData(userID: meetingInfo.ownerAppleID)
-
             controller.participants = meetingInfo.participants ?? []
-
-//            controller.eventID = eventViewModel.event.id
 
             controller.viewModel = eventViewModel
 
@@ -121,22 +117,20 @@ class VotingResultViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.gray
         self.navigationController?.navigationBar.backgroundColor = UIColor.clear
 
-        votingViewModel.fetchVotedData(meetingID: meetingInfo.id)
-
         votingViewModel.fetchOneMeeitngData(meetingID: meetingInfo.id)
+
+        votingViewModel.fetchOptionData(meetingID: meetingInfo.id)
 
         votingViewModel.fetchUserData(userID: meetingInfo.ownerAppleID)
 
 
         votingViewModel.optionViewModels.bind { [weak self] options in
-
             self?.votingViewModel.onRefresh()
 
         }
 
         votingViewModel.meetingViewModels.bind { [weak self] meetings in
-
-            self?.votingViewModel.onRefresh()
+            self?.checkVoted()
 
         }
 
@@ -165,7 +159,9 @@ class VotingResultViewController: UIViewController {
 
     func checkVoted() {
 
-        if votingViewModel.voteViewModels.value.isEmpty {
+        votingViewModel.checkIfVoted(meetingID: meetingInfo.id)
+
+        if votingViewModel.isVoted {
 
             hasVoted = false
 
@@ -247,6 +243,10 @@ extension VotingResultViewController: UITableViewDelegate, UITableViewDataSource
 
         let index = indexPath.row
 
+        let filterOptions = votingViewModel.optionViewModels.value[index]
+
+//        let voteForYesArray = filterOptions?.filter({ $0 != "" })
+
         if meetingInfo.isClosed {
             let cell = tableView.dequeueReusableCell(withIdentifier: "resultClosedCell", for: indexPath) as! ResultClosedCell
 
@@ -257,17 +257,20 @@ extension VotingResultViewController: UITableViewDelegate, UITableViewDataSource
 
         } else {
 
-            let filterOptions = votingViewModel.optionViewModels.value[index].selectedOptions
-
-            let voteForYesArray = filterOptions?.filter({ $0.isSelected == true })
-
                 let cell = tableView.dequeueReusableCell(withIdentifier: "resultTableViewCell", for: indexPath) as! ResultTableViewCell
 
                 cell.votingViewModel = self.votingViewModel
 
                 cell.meetingID = self.meetingInfo.id
 
-                cell.setupYesCell(model: votingViewModel.optionViewModels.value[index], index: index)
+            if filterOptions.selectedOptions != nil {
+
+                cell.setupYesCell(model: filterOptions, index: index)
+
+            } else {
+
+                cell.setupNoCell(model: filterOptions, index: index)
+            }
 
             return cell
         }

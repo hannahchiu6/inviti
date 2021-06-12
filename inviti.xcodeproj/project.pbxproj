@@ -359,6 +359,8 @@
 				8618860F264E78730048D9AA /* OptionCollectionViewCell copy.swift */,
 				86A67D022667C58400E2F174 /* EditSuccessVC.swift */,
 				861F6626264D5D9800A54C00 /* OptionCollectionViewCell.xib */,
+				860A035C265BA31100067F23 /* CalendarNibCell.swift */,
+				860A035D265BA31100067F23 /* CalendarNibCell.xib */,
 				861885F4264E5FD60048D9AA /* OptionEventTableViewCell.swift */,
 				861885F5264E5FD60048D9AA /* OptionEventTableViewCell.xib */,
 				86C3FA64264BE22900480E4F /* Create.storyboard */,
@@ -381,6 +383,7 @@
 		86406559264D9901003C756D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				866C974426563BE600687386 /* Helper */,
 				861885ED264E31FD0048D9AA /* UITableView+Extension.swift */,
 				8640655A264D9910003C756D /* UIStoryboard+Extension.swift */,
 				86504B8F2650095800E42C51 /* UIView+Extension.swift */,
@@ -459,15 +462,6 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		868649FF265B768100E7040F /* 處理中 */ = {
-			isa = PBXGroup;
-			children = (
-				860A035C265BA31100067F23 /* CalendarNibCell.swift */,
-				860A035D265BA31100067F23 /* CalendarNibCell.xib */,
-			);
-			path = "處理中";
-			sourceTree = "<group>";
-		};
 		869F842426560C4D00DA1D53 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -514,8 +508,6 @@
 			children = (
 				861031412672F92C00BEC58B /* invitiRelease.entitlements */,
 				8632C76D2668E5FB004D5D3A /* inviti.entitlements */,
-				868649FF265B768100E7040F /* 處理中 */,
-				866C974426563BE600687386 /* Helper */,
 				869F842D2656139800DA1D53 /* Util */,
 				869F842426560C4D00DA1D53 /* Network */,
 				86406559264D9901003C756D /* Extension */,
@@ -1060,7 +1052,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = inviti/inviti.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5VVRV23ZK6;
 				INFOPLIST_FILE = inviti/Info.plist;
@@ -1086,7 +1078,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = inviti/invitiRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 5VVRV23ZK6;
 				INFOPLIST_FILE = inviti/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

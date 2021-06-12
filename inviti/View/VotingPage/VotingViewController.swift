@@ -24,6 +24,10 @@ class VotingViewController: BaseViewController {
     var notificationviewModel = UpdateNotificationVM()
 
     var meetingDataHandler: ( (Meeting) -> Void)?
+
+    var selectedIndex = [Int]()
+
+    var isVoted: Bool = false
     
     @IBOutlet weak var tableview: UITableView!
 
@@ -48,7 +52,7 @@ class VotingViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
     }
 
-    @IBAction func sendMeeting(_ sender: Any) {
+    @IBAction func sendMeeting(_ sender: UIButton) {
         UIView.animate(withDuration: 1) {
 
             self.popupView.isHidden = false
@@ -58,6 +62,7 @@ class VotingViewController: BaseViewController {
 
         notificationviewModel.createOneNotification(type: TypeName.vote.rawValue, meetingID: self.meetingInfo.id)
 
+        votingViewModel.updateVotedOption(with: meetingInfo.id, optionIndex: selectedIndex)
     }
 
     override func viewDidLoad() {
@@ -68,11 +73,7 @@ class VotingViewController: BaseViewController {
         popupView.isHidden = true
 
         hasVotedView.isHidden = true
-
-//        checkData()
-//
-//        setUpView()
-
+        
         self.navigationController?.navigationBar.tintColor = UIColor.gray
         self.navigationController?.navigationBar.backgroundColor = UIColor.clear
 
@@ -80,16 +81,16 @@ class VotingViewController: BaseViewController {
 
         votingViewModel.fetchOptionData(meetingID: meetingInfo.id)
 
-        votingViewModel.fetchVotedData(meetingID: meetingInfo.id)
-
         votingViewModel.fetchUserData(userID: meetingInfo.ownerAppleID)
+
+//        checkSingleVote()
+
+        votingViewModel.checkIfVoted(meetingID: meetingInfo.id)
 
         votingViewModel.optionViewModels.bind { [weak self] options in
 
             self?.tableview.reloadData()
-
             self?.checkData()
-
             self?.disableBtnIfVoted()
 
         }
@@ -98,12 +99,6 @@ class VotingViewController: BaseViewController {
 
             self?.tableview.reloadData()
             self?.setUpView()
-
-        }
-
-        votingViewModel.voteViewModels.bind { [weak self] selectedOptions in
-
-            self?.tableview.reloadData()
 
         }
         
@@ -119,11 +114,16 @@ class VotingViewController: BaseViewController {
         }
     }
 
+    func checkSingleVote() {
+
+        if meetingInfo.singleMeeting {
+            self.tableview.allowsMultipleSelection = false
+        }
+    }
+
     func checkData() {
 
         guard let optionIDs = votingViewModel.getOptionsIDs(optionVMs: votingViewModel.optionViewModels.value) as? [String] else { return }
-
-        votingViewModel.checkIfVoted(meetingID: meetingInfo.id, optionIDs: optionIDs)
 
     }
 
@@ -147,11 +147,13 @@ class VotingViewController: BaseViewController {
         if userSelected {
 
             confirmVoteBtnView.isEnabled = true
+
             confirmVoteBtnView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
 
         } else {
 
             confirmVoteBtnView.isEnabled = false
+
             confirmVoteBtnView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
 
         }
@@ -161,6 +163,7 @@ class VotingViewController: BaseViewController {
     func setUpView() {
         guard let url = meetingInfo.image else { return }
             let imageUrl = URL(string: String(url))
+
         eventImageBg.kf.setImage(with: imageUrl)
         meetingSubject.text = meetingInfo.subject
         locationLabel.text = meetingInfo.location
@@ -171,12 +174,14 @@ class VotingViewController: BaseViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+
        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
        self.navigationController?.navigationBar.shadowImage = UIImage()
        self.navigationController?.navigationBar.isTranslucent = true
        }
 
    override func viewWillDisappear(_ animated: Bool) {
+
        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
        self.navigationController?.navigationBar.shadowImage = UIImage()
        self.navigationController?.navigationBar.isTranslucent = false
@@ -184,6 +189,7 @@ class VotingViewController: BaseViewController {
 }
 
 extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return votingViewModel.optionViewModels.value.count
     }
@@ -208,6 +214,35 @@ extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
 
             return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let cell = tableView.cellForRow(at: indexPath) as! VotingTableViewCell
+
+        cell.votedYesCell()
+
+        self.enableButton(userSelected: true)
+
+        let index = indexPath.row
+        if !selectedIndex.contains(index) {
+            selectedIndex.append(indexPath.row)
+        }
+
+
+    }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+
+        let cell = tableView.cellForRow(at: indexPath) as! VotingTableViewCell
+
+        cell.votedNoCell()
+
+        self.enableButton(userSelected: false)
+        
+        if let index = selectedIndex.index(of: indexPath.row) {
+            selectedIndex.remove(at: index)
+        }
+    }
 }
 
 extension VotingViewController: VotingTableViewCellDelegate {
@@ -225,3 +260,10 @@ extension VotingViewController: HasVotedVCDelegate {
 
     }
 }
+
+extension Array where Element: Equatable {
+mutating func removeIf(object: Element)  {
+    if let index = firstIndex(of: object) {
+        remove(at: index)
+    }
+}}

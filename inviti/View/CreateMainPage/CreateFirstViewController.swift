@@ -143,13 +143,11 @@ class CreateFirstViewController: UIViewController {
         tableView.tableFooterView = nil
 
         selectOptionViewModel.optionViewModels.bind { [weak self] options in
-            self?.selectOptionViewModel.onRefresh()
             self?.tableView.reloadData()
             self?.enableButton()
         }
 
         createMeetingViewModel.meetingViewModels.bind { [weak self] meetings in
-            self?.createMeetingViewModel.onRefresh()
             self?.tableView.reloadData()
         }
 
@@ -375,7 +373,7 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
 
                 cell.viewModel = createMeetingViewModel
                 cell.addSubtract.value = Double(data.meeting.deadlineTag ?? 0)
-                    cell.observation = cell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { (stepper, change) in
+                    cell.observation = cell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { stepper, change in
                         if change.newValue! == 0.0 {
                             if change.newValue! > change.oldValue! {
                                 cell.addSubtract.value = 1

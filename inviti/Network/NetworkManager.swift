@@ -486,104 +486,104 @@ class NetworkManager {
         }
     }
 
-    // Fetch Meetings & Options & SelectedOptions
-    func fetchFullPackage(completion: @escaping (Result<[Meeting], Error>) -> Void) {
-       db.collection("meetings")
-        //   .order(by: “name “)
-   //     .whereField(“teachers”, arrayContains: UserManager.shared.userID!)
-        .getDocuments { querySnapshot, error in
-
-         if let error = error {
-
-            completion(.failure(error))
-
-         } else {
-
-            var meeitngs = [Meeting]()
-
-            for document in querySnapshot!.documents {
-
-                do {
-                        if var meeting = try document.data(as: Meeting.self, decoder: Firestore.Decoder()) {
-
-                        self.db.collection("meetings")
-                            .document("\(meeting.id)")
-                            .collection("options")
-   //           .order(by: “number”, descending: false)
-                            .getDocuments { querySnapshot, error in
-
-                                if let error = error {
-
-                                    completion(.failure(error))
-
-                                } else {
-
-                                    var options = [Option]()
-
-                                    for document in querySnapshot!.documents {
-
-                                        do {
-                                            if var option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
-
-                                            self.db.collection("meetings")
-                                                .document("\(meeting.id)")
-                                                .collection("options")
-                                                .document("\(option.id)")
-                                                .collection("selectedOptions")
-                       //           .order(by: “number”, descending: false)
-                                                .getDocuments { querySnapshot, error in
-
-                                                    if let error = error {
-
-                                                        completion(.failure(error))
-
-                                                    } else {
-
-                                                        var selectedOptions = [SelectedOption]()
-
-                                                        for document in querySnapshot!.documents {
-
-                                                            do {
-                                                                 if let selectedOption = try document.data(as: SelectedOption.self, decoder: Firestore.Decoder()) {
-
-                                                                    selectedOptions.append(selectedOption)
-
-                                                                    }
-                                                            } catch {
-
-                                                                    completion(.failure(error))
-                                                            }
-
-                                                    }
-                                                        option.selectedOptions = selectedOptions
-                                                        options.append(option)
-                                                }
-
-
-                                            }
-
-                                        }
-
-                                        } catch {
-
-                                            completion(.failure(error))
-                                        }
-                                    }
-
-                                    meeting.options = options
-                                    meeitngs.append(meeting)
-                                    completion(.success(meeitngs))
-
-                                }
-                            }
-                    }
-                } catch {
-
-                    completion(.failure(error))
-                }
-            }
-          }
-        }
-    }
+//    // Fetch Meetings & Options & SelectedOptions
+//    func fetchFullPackage(completion: @escaping (Result<[Meeting], Error>) -> Void) {
+//       db.collection("meetings")
+//        //   .order(by: “name “)
+//   //     .whereField(“teachers”, arrayContains: UserManager.shared.userID!)
+//        .getDocuments { querySnapshot, error in
+//
+//         if let error = error {
+//
+//            completion(.failure(error))
+//
+//         } else {
+//
+//            var meeitngs = [Meeting]()
+//
+//            for document in querySnapshot!.documents {
+//
+//                do {
+//                        if var meeting = try document.data(as: Meeting.self, decoder: Firestore.Decoder()) {
+//
+//                        self.db.collection("meetings")
+//                            .document("\(meeting.id)")
+//                            .collection("options")
+//   //           .order(by: “number”, descending: false)
+//                            .getDocuments { querySnapshot, error in
+//
+//                                if let error = error {
+//
+//                                    completion(.failure(error))
+//
+//                                } else {
+//
+//                                    var options = [Option]()
+//
+//                                    for document in querySnapshot!.documents {
+//
+//                                        do {
+//                                            if var option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
+//
+//                                            self.db.collection("meetings")
+//                                                .document("\(meeting.id)")
+//                                                .collection("options")
+//                                                .document("\(option.id)")
+//                                                .collection("selectedOptions")
+//                       //           .order(by: “number”, descending: false)
+//                                                .getDocuments { querySnapshot, error in
+//
+//                                                    if let error = error {
+//
+//                                                        completion(.failure(error))
+//
+//                                                    } else {
+//
+//                                                        var selectedOptions = [SelectedOption]()
+//
+//                                                        for document in querySnapshot!.documents {
+//
+//                                                            do {
+//                                                                 if let selectedOption = try document.data(as: SelectedOption.self, decoder: Firestore.Decoder()) {
+//
+//                                                                    selectedOptions.append(selectedOption)
+//
+//                                                                    }
+//                                                            } catch {
+//
+//                                                                    completion(.failure(error))
+//                                                            }
+//
+//                                                    }
+//                                                        option.selectedOptions = selectedOptions
+//                                                        options.append(option)
+//                                                }
+//
+//
+//                                            }
+//
+//                                        }
+//
+//                                        } catch {
+//
+//                                            completion(.failure(error))
+//                                        }
+//                                    }
+//
+//                                    meeting.options = options
+//                                    meeitngs.append(meeting)
+//                                    completion(.success(meeitngs))
+//
+//                                }
+//                            }
+//                    }
+//                } catch {
+//
+//                    completion(.failure(error))
+//                }
+//            }
+//          }
+//        }
+//    }
 
 }

@@ -21,9 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
-	<string>inviti 想要共用您的行事曆</string>
+	<string>為了更好的用戶體驗，inviti 想要共用您的行事曆</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>inviti 想要使用您的照片</string>
+	<string>為了更好的用戶體驗，inviti 想要使用您的照片</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

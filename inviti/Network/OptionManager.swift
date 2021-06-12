@@ -16,6 +16,8 @@ class OptionManager {
 
     lazy var db = Firestore.firestore()
 
+    var userUID = UserDefaults.standard.value(forKey: "uid") as? String ?? ""
+
     func fetchOptions(meetingID: String, completion: @escaping (Result<[Option], Error>) -> Void) {
         db.collection("meetings")
         .document(meetingID)
@@ -93,6 +95,34 @@ class OptionManager {
             }
         }
     }
+
+    func updateVotedOption(option: Option, meetingID: String, completion: @escaping (Result<Option, Error>) -> Void) {
+
+        let docRef =
+            db.collection("meetings")
+            .document(meetingID)
+            .collection("options")
+            .document(option.id)
+
+            docRef.updateData([
+                "selectedOptions": FieldValue.arrayUnion([userUID])
+
+            ]) { err in
+
+                if let err = err {
+
+                    completion(.failure(err))
+
+                } else {
+
+                    completion(.success(option))
+
+                }
+        }
+
+
+    }
+
 
     func deleteOption(option: Option, meeting: Meeting, completion: @escaping (Result<String, Error>) -> Void) {
 
