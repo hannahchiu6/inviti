@@ -92,7 +92,7 @@ class UpdateNotificationVM {
 
     func fetchData() {
 
-        NotificationManager.shared.fetchNotifications { [weak self] result in
+        NotificationManager.shared.addSnapshotNotifications { [weak self] result in
 
             switch result {
 
@@ -207,6 +207,8 @@ class UpdateNotificationVM {
 
         self.notification.meetingID = meetingID
 
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newsUpdated"), object: nil)
+
         create(with: &notification)
     }
 
@@ -219,24 +221,11 @@ class UpdateNotificationVM {
 
         self.notification.meetingID = self.meeting?.id
 
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newsUpdated"), object: nil)
+
         create(with: ownerID, notification: &notification)
+
     }
-
-
-    // 2021.06.10 修改前是存在 participantID
-
-//    func createInviteNotification(type: String, meetingID: String, participantID: String) {
-//
-//        fetchOneMeeitngData(meetingID: meetingID)
-//
-//        self.notification.type = type
-//
-//        self.notification.meetingID = meetingID
-//
-//        self.notification.subject = self.meeting?.subject
-//
-//        create(with: participantID, notification: &notification)
-//    }
 
     func createInviteNotification(type: String, meetingID: String, participantID: String, name: String, subject: String) {
 
@@ -251,6 +240,8 @@ class UpdateNotificationVM {
         self.notification.ownerName = name
 
         self.notification.participantID = participantID
+
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newsUpdated"), object: nil)
 
         create(with: participantID, notification: &notification)
     }

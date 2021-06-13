@@ -61,6 +61,12 @@ class MeetingViewController: BaseViewController {
 
 //        addcoustmeView()
         
+        notiViewModel.fetchData()
+        
+        notiViewModel.notificationViewModels.bind { [weak self] notifications in
+            self?.refreshTabBar()
+        }
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -85,8 +91,26 @@ class MeetingViewController: BaseViewController {
 //        indicatorView.layer.masksToBounds = false
 //
 //    }
+    func refreshTabBar() {
+
+        if let items = self.tabBarController?.tabBar.items as NSArray? {
+
+            let tabItem = items.object(at: 1) as! UITabBarItem
+
+            guard let number = notiViewModel.notificationViewModels.value.count as? Int else { return }
+
+            if number > 0 {
+                tabItem.badgeValue = "\(number)"
+            } else {
+                tabItem.badgeValue = nil
+            }
+        }
+    }
+
 
     let viewModel = MainViewModel()
+
+    var notiViewModel = UpdateNotificationVM()
 
     private var willPopup = false {
         didSet {

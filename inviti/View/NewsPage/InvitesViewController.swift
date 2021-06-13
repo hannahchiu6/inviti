@@ -28,15 +28,31 @@ class InvitesViewController: UIViewController {
 
         viewModel.notificationViewModels.bind { [weak self] notifications in
 
-            self?.viewModel.onRefresh()
+            self?.refreshTabBar()
             self?.tableView.reloadData()
         }
 
         viewModel.fetchData()
 
         setupRefresher()
+
     }
 
+    func refreshTabBar() {
+
+        if let items = self.tabBarController?.tabBar.items as NSArray? {
+
+            let tabItem = items.object(at: 1) as! UITabBarItem
+
+            guard let number = viewModel.notificationViewModels.value.count as? Int else { return }
+
+            if number > 0 {
+                tabItem.badgeValue = "\(number)"
+            } else {
+                tabItem.badgeValue = nil
+            }
+        }
+    }
 
     func setupRefresher() {
         self.tableView.refresh.header = RefreshHeader(delegate: self)
@@ -139,11 +155,6 @@ extension InvitesViewController: UITableViewDataSource, UITableViewDelegate {
         navigationController?.pushViewController(voting, animated: true)
 
     }
-
-    //    @objc func removeFromCalendar() {
-    //
-    //    }
-
 
 }
 
