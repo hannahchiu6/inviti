@@ -16,6 +16,8 @@ class VoteManager {
 
     lazy var db = Firestore.firestore()
 
+    var userUID = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? ""
+    
     func fetchSelectedOptions(optionID: String, meetingID: String, completion: @escaping (Result<[SelectedOption], Error>) -> Void) {
                 db.collection("meetings")
                     .document(meetingID)
@@ -41,7 +43,7 @@ class VoteManager {
                         } catch {
 
                             completion(.failure(error))
-//                            completion(.failure(FirebaseError.documentError))
+
                         }
                     }
 
@@ -50,6 +52,76 @@ class VoteManager {
                     }
     }
 
+    func checkIfVoted(meetingID: String, completion: @escaping (Result<[Option], Error>) -> Void) {
+
+            db.collection("meetings")
+                .document(meetingID)
+                .collection("options")
+                .whereField("selectedOptions", arrayContains: userUID)
+                .getDocuments { querySnapshot, error in
+
+            if let error = error {
+
+                completion(.failure(error))
+
+            } else {
+
+                var options = [Option]()
+                
+                for document in querySnapshot!.documents {
+
+                    do {
+                        if let option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
+                            options.append(option)
+                        }
+
+                    } catch {
+
+                        completion(.failure(error))
+
+                    }
+                }
+
+                completion(.success(options))
+            }
+
+        }
+    }
+
+    // options
+    func checkIfOptionVoted(options: [Option], completion: @escaping (Result<[Option], Error>) -> Void) {
+
+            db.collection("options")
+                .whereField("selectedOptions", arrayContains: userUID)
+                .getDocuments { querySnapshot, error in
+
+            if let error = error {
+
+                completion(.failure(error))
+
+            } else {
+
+                var options = [Option]()
+
+                for document in querySnapshot!.documents {
+
+                    do {
+                        if let option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
+                            options.append(option)
+                        }
+
+                    } catch {
+
+                        completion(.failure(error))
+
+                    }
+                }
+
+                completion(.success(options))
+            }
+
+        }
+    }
 
     func createSelectedOption(selectedOption: inout SelectedOption, meeting: Meeting, option: Option, completion: @escaping (Result<String, Error>) -> Void) {
 
@@ -61,6 +133,7 @@ class VoteManager {
             .document()
 
         selectedOption.id = document.documentID
+        selectedOption.selectedUser = userUID as? String
 
         document.setData(selectedOption.toDict) { error in
 
@@ -84,6 +157,7 @@ class VoteManager {
             .collection("selectedOptions")
             .document()
             selectedOption.id = document.documentID
+            selectedOption.selectedUser = userUID as? String
 
         document.setData(selectedOption.toDict) { error in
 
@@ -137,85 +211,71 @@ class VoteManager {
             }
         }
     }
-//        if !UserManager.shared.isLogin() {
-//            print("who r u?")
-//            return
-//        }
 
-//        if let user = meeting.owner {
-//            if user.id == "5gWVjg7xTHElu9p6Jkl1"
-//                && meeting.category.lowercased() != "test"
-//                && !meeting.category.trimmingCharacters(in: .whitespaces).isEmpty
-//        {
-//                completion(.failure(MasterError.youKnowNothingError("You know nothing!! \(user.id)")))
-//                return
-//            }
-//        }
-
-    // Fetch Options & SelectedOptions
-    func fetchVotedData(meetingID: String, completion: @escaping (Result<[Option], Error>) -> Void) {
-
-            db.collection("meetings")
-                .document(meetingID)
-                .collection("options")
-                .getDocuments { querySnapshot, error in
-
-                    if let error = error {
-
-                        completion(.failure(error))
-
-                    } else {
-
-                        var options = [Option]()
-
-                        for document in querySnapshot!.documents {
-
-                            do {
-                                if var option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
-
-                                self.db.collection("meetings")
-                                    .document(meetingID)
-                                    .collection("options")
-                                    .document("\(option.id)")
-                                    .collection("selectedOptions")
-                                    .getDocuments { querySnapshot, error in
-
-                                        if let error = error {
-
-                                            completion(.failure(error))
-
-                                        } else {
-
-                                            var selectedOptions = [SelectedOption]()
-
-                                            for document in querySnapshot!.documents {
-
-                                                do {
-                                                     if let selectedOption = try document.data(as: SelectedOption.self, decoder: Firestore.Decoder()) {
-
-                                                        selectedOptions.append(selectedOption)
-
-                                                        }
-                                                } catch {
-
-                                                        completion(.failure(error))
-                                                }
-
-                                        }
-                                            option.selectedOptions = selectedOptions
-                                            options.append(option)
-                                            completion(.success(options))
-                                    }
-                                }
-                            }
-
-                            } catch {
-
-                                completion(.failure(error))
-                            }
-                        }
-
-                    }
-                }
-    }
+//    // Fetch Options & SelectedOptions
+//    func fetchVotedData(meetingID: String, completion: @escaping (Result<[Option], Error>) -> Void) {
+//
+//            db.collection("meetings")
+//                .document(meetingID)
+//                .collection("options")
+//                .getDocuments { querySnapshot, error in
+//
+//                    if let error = error {
+//
+//                        completion(.failure(error))
+//
+//                    } else {
+//
+//                        var options = [Option]()
+//
+//                        for document in querySnapshot!.documents {
+//
+//                            do {
+//                                if var option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
+//
+//                                self.db.collection("meetings")
+//                                    .document(meetingID)
+//                                    .collection("options")
+//                                    .document("\(option.id)")
+//                                    .collection("selectedOptions")
+//                                    .getDocuments { querySnapshot, error in
+//
+//                                        if let error = error {
+//
+//                                            completion(.failure(error))
+//
+//                                        } else {
+//
+//                                            var selectedOptions = [SelectedOption]()
+//
+//                                            for document in querySnapshot!.documents {
+//
+//                                                do {
+//                                                     if let selectedOption = try document.data(as: SelectedOption.self, decoder: Firestore.Decoder()) {
+//
+//                                                        selectedOptions.append(selectedOption)
+//
+//                                                        }
+//                                                } catch {
+//
+//                                                        completion(.failure(error))
+//                                                }
+//
+//                                        }
+//                                            option.selectedOptions = selectedOptions
+//                                            options.append(option)
+//                                            completion(.success(options))
+//                                    }
+//                                }
+//                            }
+//
+//                            } catch {
+//
+//                                completion(.failure(error))
+//                            }
+//                        }
+//
+//                    }
+//                }
+//    }
 }

@@ -8,9 +8,9 @@
 import Foundation
 
 class UserViewModel {
-    let user: User
+    var user: User
 
-    init(user: User) {
+    init(model user: User) {
         self.user = user
     }
 
@@ -52,6 +52,10 @@ class UserViewModel {
 
     var calendarType: String? {
         return user.calendarType
+    }
+
+    var numberForSearch: String {
+        return user.numberForSearch
     }
 
 //    var logInOrNot: Bool {

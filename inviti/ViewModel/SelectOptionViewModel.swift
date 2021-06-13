@@ -135,15 +135,26 @@ class SelectOptionViewModel {
     }
 
     func markSelectedDay(in viewModels: [OptionViewModel], selectedDate: OptionTime) -> [JKDay] {
-        let newViewModels = viewModels.filter({ $0.option.optionTime == selectedDate})
-        let marksDates = newViewModels.map ({
+
+        let newViewModels = viewModels.filter({ $0.option.optionTime == selectedDate })
+
+        let marksDates = newViewModels.map({ Date.init(millis: $0.option.startTime) })
+
+        let JDays = marksDates.map({ JKDay(date: $0) })
+
+        return JDays
+    }
+
+    func markOptionsDay(in viewModels: [OptionViewModel]) -> [JKDay] {
+
+        let marksDates = viewModels.map({
             Date.init(millis: $0.option.startTime)
         })
 
-        let JDay = marksDates.map({
+        let JDays = marksDates.map({
             JKDay(date: $0)
         })
-        return JDay
+        return JDays
     }
 
     func getOptionID(in viewModels: [OptionViewModel], index: Int) -> String {

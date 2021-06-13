@@ -11,13 +11,13 @@ import FirebaseFirestoreSwift
 
 class AddViewModel {
 
+    var userViewModels = Box([UserViewModel]())
+
     var meetingViewModel: MeetingViewModel?
 
-    var userUID = UserDefaults.standard.value(forKey: "uid") as! String
+    var userUID = UserDefaults.standard.value(forKey: "uid") as? String ?? ""
 
-    var meeting: Meeting = Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
-
-    var meetingInfo: Meeting = Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
+    var meeting: Meeting = Meeting(id: "", numberForSearch: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
 
     var refreshView: (() -> Void)?
 
@@ -31,7 +31,7 @@ class AddViewModel {
 
             case .success(let meeting):
 
-                self?.meetingInfo = meeting
+                self?.meeting = meeting
 
             case .failure(let error):
 
@@ -41,12 +41,12 @@ class AddViewModel {
     }
 
 
-    func updateParticipants() {
+    func updateParticipantData(meetingID: String) {
 
         let db = Firestore.firestore()
 
             db.collection("meetings")
-                .document(meetingInfo.id)
+                .document(meetingID)
                 .updateData([
                     "participants": FieldValue.arrayUnion([userUID])
                 ]) { err in
@@ -60,6 +60,25 @@ class AddViewModel {
 
     }
 
+    func addSearchParticipants(meetingID: String, text: String) {
+
+        let db = Firestore.firestore()
+
+            db.collection("meetings")
+                .document(meetingID)
+                .updateData([
+                    "participants": FieldValue.arrayUnion([text])
+                ]) { err in
+
+                if let err = err {
+                    print("Failed to update participants")
+
+                } else {
+                    print("Participant ID has been updated!")
+                }
+        }
+
+    }
 
     func onRefresh() {
        

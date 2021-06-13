@@ -23,7 +23,6 @@ class ResultTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-//        selectionStyle = .none
         selectedBackgroundView = UIView()
         selectedBackgroundView?.backgroundColor = UIColor(red: 1, green: 0.9373, blue: 0.9294, alpha: 1.0)
         backgroundView = UIView()
@@ -58,7 +57,28 @@ class ResultTableViewCell: UITableViewCell {
         valueLabel.text = "\(startTime) - \(endTime)"
 
     }
-    
+
+    func setupNoCell(model: OptionViewModel, index: Int) {
+
+        let startTime = model.option.startTimeToTime()
+
+        let endTime = model.option.endTimeToTime()
+
+        titleLabel.text = model.option.optionTime?.dateString()
+
+        valueLabel.text = "\(startTime) - \(endTime)"
+
+        self.voteCountLabel.text = "0"
+
+        self.voteCountLabel.textColor = UIColor.gray
+
+        self.checkCircle.isHidden = true
+
+        self.emptyCircle.isHidden = false
+
+
+    }
+
     func setupYesCell(model: OptionViewModel, index: Int) {
         
         let startTime = model.option.startTimeToTime()
@@ -69,68 +89,39 @@ class ResultTableViewCell: UITableViewCell {
 
         valueLabel.text = "\(startTime) - \(endTime)"
 
-        if let yesCount = model.selectedOptions?.count {
+        guard let count = model.selectedOptions?.count else { return }
 
-            if yesCount > 0 && index == 0 {
+            if index == 0 {
 
-                let redColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+                    let redColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
 
-                voteCountLabel.text = "\(yesCount)"
+                    voteCountLabel.text = String(describing: count)
 
-                voteCountLabel.textColor = redColor
+                    voteCountLabel.textColor = redColor
 
-                self.emptyCircle.isHidden = true
+                    self.emptyCircle.isHidden = true
 
-                self.checkCircle.isHidden = false
+                    self.checkCircle.isHidden = false
 
-                titleLabel.textColor = redColor
+                    titleLabel.textColor = redColor
 
-                valueLabel.textColor = redColor
+                    valueLabel.textColor = redColor
 
-            } else if yesCount > 0 {
+                } else {
 
-                self.voteCountLabel.text = "\(yesCount)"
+                    self.voteCountLabel.text = String(describing: count)
 
-                self.voteCountLabel.textColor = UIColor.gray
+                    self.voteCountLabel.textColor = UIColor.gray
 
-                self.emptyCircle.isHidden = true
+                    self.emptyCircle.isHidden = true
 
-                self.checkCircle.isHidden = false
+                    self.checkCircle.isHidden = false
 
-                self.checkCircle.tintColor =  UIColor.gray
+                    self.checkCircle.tintColor = UIColor.gray
 
-            } else {
-
-                self.voteCountLabel.text = ""
-
-                self.voteCountLabel.textColor = UIColor.gray
-
-                self.checkCircle.isHidden = true
-
-                self.emptyCircle.isHidden = false
 
             }
-        }
 
     }
-
-//    func setupFirstYesCell(model: OptionViewModel) {
-//
-//        if let yesCount = model.selectedOptions?.count {
-//
-//            let redColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
-//
-//            voteCountLabel.text = "\(yesCount)"
-//
-//            voteCountLabel.textColor = redColor
-//
-//            checkBoxView.image(for: .selected)
-//
-//            titleLabel.textColor = redColor
-//
-//            valueLabel.textColor = redColor
-//        }
-//    }
-
 
 }

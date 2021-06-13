@@ -6,7 +6,6 @@ target 'inviti' do
 
   pod 'SwiftHEXColors'
   pod 'IQKeyboardManagerSwift'
-  pod 'SwiftyMenu', '~> 0.6.5'
   pod 'EasyRefresher'
   pod 'Kingfisher'
   pod 'JKCalendar'
@@ -20,6 +19,7 @@ target 'inviti' do
   pod 'Firebase/Auth'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Firestore'
-
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Analytics'
 
 end
