@@ -17,14 +17,49 @@ class HasVotedVC: BaseViewController {
 
     @IBOutlet weak var animationView: UIView!
 
-    var meetingSubject: String?
+    var meeting: Meeting?
+
+    var isVoted: Bool = false
+
+    @IBOutlet weak var alertMessage: UILabel!
 
     weak var delegate: HasVotedVCDelegate?
+
+    var userUID = UserDefaults.standard.value(forKey: "uid") as? String ?? ""
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        changedMessage()
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpAnimation()
+
+    }
+
+    func changedMessage() {
+//        guard let options = options as? [Option] else { return }
+//
+//        let selectedOptions = options.filter({ (($0.selectedOptions?.contains(userUID)) ?? false)})
+
+        guard let meeting = meeting as? Meeting else { return }
+        
+        if meeting.isClosed {
+
+            alertMessage.text = "投票活動已結束囉！"
+
+        } else if isVoted {
+
+            alertMessage.text = "您已經投票過囉！"
+
+        } else {
+            
+            alertMessage.text = "Oops，投票活動已經被刪除了。"
+        }
     }
 
     func setUpAnimation() {

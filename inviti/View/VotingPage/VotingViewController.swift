@@ -28,6 +28,8 @@ class VotingViewController: BaseViewController {
     var selectedIndex = [Int]()
 
     var isVoted: Bool = false
+
+    var onEnableView: (() -> Void)?
     
     @IBOutlet weak var tableview: UITableView!
 
@@ -85,13 +87,17 @@ class VotingViewController: BaseViewController {
 
 //        checkSingleVote()
 
-        votingViewModel.checkIfVoted(meetingID: meetingInfo.id)
+//        checkIfVoted()
+
+        disableBtnIfVoted()
 
         votingViewModel.optionViewModels.bind { [weak self] options in
 
             self?.tableview.reloadData()
             self?.checkData()
-            self?.disableBtnIfVoted()
+
+//            self?.votingViewModel.checkIfVoted(meetingID: self?.meetingInfo.id ?? "")
+
 
         }
 
@@ -104,6 +110,12 @@ class VotingViewController: BaseViewController {
         
         self.tabBarController?.tabBar.isHidden = true
 
+        self.onEnableView = { [weak self] () in
+
+            self?.hasVotedView.isHidden = false
+
+        }
+
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,6 +123,17 @@ class VotingViewController: BaseViewController {
         if segue.identifier == "hasVotedSegue" {
             let vc = segue.destination as! HasVotedVC
             vc.delegate = self
+
+            vc.meeting = meetingInfo
+
+            vc.isVoted = isVoted
+
+//            disableBtnIfVoted()
+
+//            votingViewModel.onVoted = { [weak self] () in
+//
+//                vc.alertMessage.text = "您已經投票過囉！"
+//            }
         }
     }
 
@@ -121,6 +144,13 @@ class VotingViewController: BaseViewController {
         }
     }
 
+    func checkIfVoted() {
+
+        if isVoted {
+            hasVotedView.isHidden = false
+        }
+    }
+
     func checkData() {
 
         guard let optionIDs = votingViewModel.getOptionsIDs(optionVMs: votingViewModel.optionViewModels.value) as? [String] else { return }
@@ -128,16 +158,16 @@ class VotingViewController: BaseViewController {
     }
 
     func disableBtnIfVoted() {
-        
-        if votingViewModel.isVoted || !meetingInfo.isClosed {
 
-            confirmVoteBtnView.isHidden = false
+        if meetingInfo.isClosed || isVoted {
+
+            confirmVoteBtnView.isHidden = true
+            hasVotedView.isHidden = false
 
         } else {
-            
-            confirmVoteBtnView.isHidden = true
 
-            hasVotedView.isHidden = false
+            confirmVoteBtnView.isHidden = false
+            hasVotedView.isHidden = true
 
         }
     }
@@ -233,14 +263,16 @@ extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
 
-        let cell = tableView.cellForRow(at: indexPath) as! VotingTableViewCell
 
-        cell.votedNoCell()
+            let cell = tableView.cellForRow(at: indexPath) as! VotingTableViewCell
 
-        self.enableButton(userSelected: false)
-        
-        if let index = selectedIndex.index(of: indexPath.row) {
-            selectedIndex.remove(at: index)
+            cell.votedNoCell()
+
+            self.enableButton(userSelected: false)
+
+            if let index = selectedIndex.index(of: indexPath.row) {
+                selectedIndex.remove(at: index)
+
         }
     }
 }
@@ -254,16 +286,7 @@ extension VotingViewController: VotingTableViewCellDelegate {
 extension VotingViewController: HasVotedVCDelegate {
     func didTap() {
 
-        dismiss(animated: false, completion: nil)
-
         navigationController?.popViewController(animated: true)
 
     }
 }
-
-extension Array where Element: Equatable {
-mutating func removeIf(object: Element)  {
-    if let index = firstIndex(of: object) {
-        remove(at: index)
-    }
-}}

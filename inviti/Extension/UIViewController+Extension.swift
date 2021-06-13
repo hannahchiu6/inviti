@@ -1,5 +1,5 @@
 //
-//  ViewController+Extension.swift
+//  UIViewController+Extension.swift
 //  inviti
 //
 //  Created by Hannah.C on 23.05.21.

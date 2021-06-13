@@ -169,8 +169,7 @@ class OptionManager {
 //        }
     func fetchVotes(completion: @escaping (Result<[Option], Error>) -> Void) {
         db.collection("options")
-       //   .order(by: “name “)
-//       .whereField("", arrayContains: UserManager.shared.userID!)
+
        .getDocuments { querySnapshot, error in
         if let error = error {
          completion(.failure(error))

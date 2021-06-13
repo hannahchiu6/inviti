@@ -185,19 +185,45 @@ class NetworkManager {
                     for document in querySnapshot!.documents {
 
                         do {
-                            if let meeting = try document.data(as: Meeting.self, decoder: Firestore.Decoder()) {
-                                meetings.append(meeting)
-                            }
+                            if var meeting = try document.data(as: Meeting.self, decoder: Firestore.Decoder()) {
+                                self.db.collection("meetings")
+                                    .document("\(meeting.id)")
+                                    .collection("options")
+                                    .getDocuments { querySnapshot, error in
 
+                                        if let error = error {
+
+                                            completion(.failure(error))
+
+                                        } else {
+
+                                            var options = [Option]()
+
+                                            for document in querySnapshot!.documents {
+
+                                                do {
+                                                    if let option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
+                                                        options.append(option)
+                                                    }
+                                                } catch {
+                                                    completion(.failure(error))
+                                                }
+                                            }
+
+                                            meeting.options = options
+                                            meetings.append(meeting)
+                                            completion(.success(meetings))
+
+                                        }
+                                    }
+                            }
                         } catch {
 
                             completion(.failure(error))
                         }
                     }
-
-                    completion(.success(meetings))
-                }
             }
+        }
     }
 
     func createMeeting(meeting: inout Meeting, completion: @escaping (Result<String, Error>) -> Void) {
@@ -374,7 +400,6 @@ class NetworkManager {
                 "finalOption": finalOption.toDict
 
             ]) { err in
-
                 if err != nil {
 
                     print("Error in updating time capsule status")
@@ -437,6 +462,7 @@ class NetworkManager {
          if let error = error {
 
             completion(.failure(error))
+
          } else {
 
             var meeitngs = [Meeting]()

@@ -37,7 +37,6 @@ class FurtureTableViewController: UITableViewController {
 
         viewModel.meetingViewModels.bind { [weak self] meetings in
             self?.viewModel.onRefresh()
-//            self?.tableView.reloadData()
         }
 
         viewModel.fetchHostedData()
@@ -66,6 +65,8 @@ class FurtureTableViewController: UITableViewController {
         cell.delegate = self
 
         cell.index = indexPath.row
+
+        cell.mainViewModel = viewModel
 
         cell.completionHandler = { index in
             self.selectedIndex = index

@@ -68,8 +68,6 @@ class VotingTableViewCell: UITableViewCell {
         
         valueLabel.text = "\(startTime) - \(endTime)"
 
-//        selectionStyle = UITableViewCell.SelectionStyle.none
-
         checkBoxView.tag = index
 
     }

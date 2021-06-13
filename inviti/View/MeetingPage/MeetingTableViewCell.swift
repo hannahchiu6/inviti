@@ -58,6 +58,8 @@ class MeetingTableViewCell: UITableViewCell {
 
     var viewModel: MeetingViewModel?
 
+    var mainViewModel = MainViewModel()
+
     var index: Int?
 
     var meeting: Meeting?
@@ -70,6 +72,15 @@ class MeetingTableViewCell: UITableViewCell {
     }
 
     func layoutCell() {
+
+        if mainViewModel.isVoted {
+
+            voteIcon.isEnabled = false
+
+        } else {
+
+            voteIcon.isEnabled = true
+        }
         
         guard let meeting = viewModel?.meeting else { return }
 
@@ -77,10 +88,12 @@ class MeetingTableViewCell: UITableViewCell {
 
             editIcon.isEnabled = false
 
+            voteIcon.isEnabled = false
+
             editIcon.tintColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
 
-
         } else {
+
             editIcon.isEnabled = true
 
             editIcon.tintColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
