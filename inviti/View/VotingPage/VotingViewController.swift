@@ -85,8 +85,6 @@ class VotingViewController: BaseViewController {
 
         votingViewModel.fetchUserData(userID: meetingInfo.ownerAppleID)
 
-//        checkSingleVote()
-
 //        checkIfVoted()
 
         disableBtnIfVoted()
@@ -137,17 +135,15 @@ class VotingViewController: BaseViewController {
         }
     }
 
-    func checkSingleVote() {
-
-        if meetingInfo.singleMeeting {
-            self.tableview.allowsMultipleSelection = false
-        }
-    }
-
     func checkIfVoted() {
 
         if isVoted {
+
             hasVotedView.isHidden = false
+
+        } else {
+
+
         }
     }
 
@@ -165,6 +161,10 @@ class VotingViewController: BaseViewController {
             hasVotedView.isHidden = false
 
         } else {
+
+            if meetingInfo.singleMeeting {
+                self.tableview.allowsMultipleSelection = false
+            }
 
             confirmVoteBtnView.isHidden = false
             hasVotedView.isHidden = true
