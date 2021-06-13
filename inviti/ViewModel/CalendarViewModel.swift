@@ -96,10 +96,10 @@ class CalendarViewModel {
             Date.init(millis: $0.event.startTime)
         })
 
-        let JDay = marksDates.map({
+        let JDays = marksDates.map({
             JKDay(date: $0)
         })
-        return JDay
+        return JDays
     }
     func createTimeData(in viewModels: [EventViewModel]) -> [JKDay] {
         let eventDates = viewModels.map({

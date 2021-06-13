@@ -13,6 +13,10 @@ class CloseSuccessVC: BaseViewController {
 
     var notificationVM = UpdateNotificationVM()
 
+    var eventID: String? = ""
+
+    var eventSubject: String? = ""
+    
     var participants: [String] = []
     
     @IBOutlet weak var returnBtnView: UIButton!
@@ -32,11 +36,20 @@ class CloseSuccessVC: BaseViewController {
 
         viewModel.createForParticipants(peopleID: participants)
 
-        notificationVM.createParticipantsNotification(type: TypeName.calendar.rawValue, peopleID: participants, event: viewModel.event)
+        notificationVM.onImageChanged(notificationVM.userViewModel.user.image ?? "")
+
+        guard let ownerImage = UserDefaults.standard.value(forKey: UserDefaults.Keys.image.rawValue) as? String else { return }
+
+        if let subject = eventSubject,
+           let eventID = viewModel.event.id as? String {
+        notificationVM.createEventNotification(type: TypeName.calendar.rawValue, peopleID: participants, eventID: eventID, subject: subject, image: ownerImage)
+        }
+
     }
  
     override func viewDidLoad() {
         super.viewDidLoad()
+
 
     }
 

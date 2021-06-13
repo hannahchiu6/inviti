@@ -13,6 +13,8 @@ protocol VotingTableViewCellDelegate: AnyObject {
 
 class VotingTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var voteImage: UIImageView!
+
     weak var delegate: VotingTableViewCellDelegate?
 
     var optionViewModels = SelectOptionViewModel()
@@ -23,9 +25,11 @@ class VotingTableViewCell: UITableViewCell {
 
     var user: User?
 
+    var isVoted: Bool = false
+
     var optionID: String?
 
-    var userUID = UserDefaults.standard.array(forKey: "uid")
+    var userUID = UserDefaults.standard.array(forKey: "uid") as? String ?? ""
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,28 +43,7 @@ class VotingTableViewCell: UITableViewCell {
     @IBOutlet weak var checkBoxView: CheckBoxButton!
     
     @IBAction func checkBox(_ sender: UIButton) {
-        
-        if sender.isSelected {
 
-            votingViewModel?.onVotingChanged(false)
-
-        } else {
-
-            votingViewModel?.onVotingChanged(true)
-
-        }
-
-        if votingViewModel?.optionViewModels.value[sender.tag].selectedOptions != nil {
-            delegate?.didVote(true)
-
-        } else {
-            
-            delegate?.didVote(false)
-        }
-
-        votingViewModel?.onSelectedUserAdded(String(describing: userUID))
-
-        votingViewModel?.createWithEmptyData(with: optionID!, meetingID: meetingID!, selectedOption: &votingViewModel!.selectedOption)
     }
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -69,6 +52,11 @@ class VotingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cellBackgroundView: UIView!
 
+
+    func setupIfVoted() {
+        
+        checkBoxView.isHidden = true
+    }
 
     func setupVotingCell(model: OptionViewModel, index: Int) {
 
@@ -80,9 +68,19 @@ class VotingTableViewCell: UITableViewCell {
         
         valueLabel.text = "\(startTime) - \(endTime)"
 
-        selectionStyle = UITableViewCell.SelectionStyle.none
-
         checkBoxView.tag = index
+
+    }
+
+    func votedYesCell() {
+
+        checkBoxView.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+
+    }
+
+    func votedNoCell() {
+
+        checkBoxView.setImage(UIImage(systemName: "poweroff"), for: .normal)
 
     }
 

@@ -15,7 +15,11 @@ class UpdateNotificationVM {
 
     var meetingViewModels = Box([MeetingViewModel]())
 
-    var notificationViewModel = NotificationViewModel(model: Notification(id: "", meetingID: "", eventID: "", participantID: "", createdTime: 0, type: ""))
+    var userBox = Box(UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [], numberForSearch: "")))
+
+    var notificationViewModel = NotificationViewModel(model: Notification(id: "", meetingID: "", eventID: "", participantID: "", createdTime: 0, type: "", image: ""))
+
+    var userViewModel = UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [], numberForSearch: ""))
 
     var notification: Notification = Notification(id: "", meetingID: "", eventID: "", participantID: "", createdTime: 0, type: "")
 
@@ -23,13 +27,23 @@ class UpdateNotificationVM {
 
     var optionViewModel = OptionViewModel(model: Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: []))
 
-    var meetingViewModel = MeetingViewModel(model: Meeting(id: "", owner: SimpleUser(id: "", email: "", image: ""), ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
+    var meetingViewModel = MeetingViewModel(model: Meeting(id: "", numberForSearch: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
+
+    var meeting: Meeting?
 
     var refreshView: (() -> Void)?
 
     var onDead: (() -> Void)?
 
     var scrollToTop: (() -> Void)?
+
+    var onMeetingFetched: (() -> Void)?
+
+    var user: User?
+
+    func onMeetingFetched(with meeting: Meeting) {
+        self.meetingViewModel.meeting = meeting
+    }
 
     func onNotiTypeChanged(with type: String) {
         self.notification.type = type
@@ -39,12 +53,24 @@ class UpdateNotificationVM {
         self.notification.meetingID = meetingID
     }
 
+    func onImageChanged(_ image: String) {
+        self.notification.image = image
+    }
+
     func onNotiEventIDAdded(_ eventID: String) {
         self.notification.eventID = eventID
     }
 
     func onNotiParticipantIDAdded(_ participantID: String) {
         self.notification.participantID = participantID
+    }
+
+    func onSubjectChanged(_ subject: String) {
+        self.notification.subject = subject
+    }
+
+    func onNameChanged(_ name: String) {
+        self.notification.ownerName = name
     }
 
     func fetchHostedData() {
@@ -81,6 +107,88 @@ class UpdateNotificationVM {
         }
     }
 
+    func fetchUserData(userID: String) {
+
+        UserManager.shared.fetchOneUser(userID: userID) { [weak self] result in
+
+            switch result {
+
+            case .success(let user):
+
+                self?.setUser(user)
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
+    func fetchUserToSelf(userID: String) {
+
+        UserManager.shared.fetchOneUser(userID: userID) { [weak self] result in
+
+            switch result {
+
+            case .success(let user):
+
+                self?.onImageChanged(user.image ?? "")
+
+                self?.onNameChanged(user.name)
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
+    func fetchOneMeeitngData(meetingID: String) {
+
+        NetworkManager.shared.fetchSearchResult(meetingID: meetingID) { [weak self] result in
+
+            switch result {
+
+            case .success(let meeting):
+
+                self?.setMeeting(meeting)
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
+    func fetchSingleMeeitngData(meetingID: String) {
+
+        NetworkManager.shared.fetchOneMeeting(meetingID: meetingID) { [weak self] result in
+
+            switch result {
+
+            case .success(let meeting):
+
+                self?.setMeeting(meeting)
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
+
+    func convertUserToViewModel(from user: User) -> UserViewModel {
+
+        let viewModel = UserViewModel(model: user)
+
+        return viewModel
+    }
+
+    func setUser(_ user: User) {
+        userBox.value = convertUserToViewModel(from: user)
+    }
+
     func convertNotificationsToViewModels(from notifications: [Notification]) -> [NotificationViewModel] {
         var viewModels = [NotificationViewModel]()
         for notification in notifications {
@@ -102,20 +210,60 @@ class UpdateNotificationVM {
         create(with: &notification)
     }
 
+    // 搜尋 meeting 確定去投票
     func createOwnerNotification(type: String, meetingID: String, ownerID: String) {
+
+        fetchOneMeeitngData(meetingID: meetingID)
+
+        self.notification.type = type
+
+        self.notification.meetingID = self.meeting?.id
+
+        create(with: ownerID, notification: &notification)
+    }
+
+
+    // 2021.06.10 修改前是存在 participantID
+
+//    func createInviteNotification(type: String, meetingID: String, participantID: String) {
+//
+//        fetchOneMeeitngData(meetingID: meetingID)
+//
+//        self.notification.type = type
+//
+//        self.notification.meetingID = meetingID
+//
+//        self.notification.subject = self.meeting?.subject
+//
+//        create(with: participantID, notification: &notification)
+//    }
+
+    func createInviteNotification(type: String, meetingID: String, participantID: String, name: String, subject: String) {
+
+        fetchOneMeeitngData(meetingID: meetingID)
 
         self.notification.type = type
 
         self.notification.meetingID = meetingID
 
-        create(with: ownerID, notification: &notification)
+        self.notification.subject = subject
+
+        self.notification.ownerName = name
+
+        self.notification.participantID = participantID
+
+        create(with: participantID, notification: &notification)
     }
 
-    func createParticipantsNotification(type: String, peopleID: [String], event: Event) {
+    func createEventNotification(type: String, peopleID: [String], eventID: String, subject: String, image: String) {
 
         self.notification.type = type
 
-        self.notification.eventID = event.id
+        self.notification.eventID = eventID
+
+        self.notification.subject = subject
+
+        self.notification.image = image
 
         create(with: peopleID, notification: &notification)
     }
@@ -139,17 +287,19 @@ class UpdateNotificationVM {
 
 
     func create(with ownerID: String, notification: inout Notification) {
-        NotificationManager.shared.createNotificationforOwner(owenerID: ownerID, notification: &notification) { result in
+        NotificationManager.shared.createNotificationforInvite(owenerID: ownerID, notification: &notification) { result in
 
             switch result {
 
             case .success:
 
                 print("onTapCreate notification, success")
+                INProgressHUD.showSuccess(text: "送出邀請成功")
 
             case .failure(let error):
 
                 print("create notification.failure: \(error)")
+                INProgressHUD.showFailure(text: "請稍後再試")
             }
         }
     }
@@ -175,62 +325,10 @@ class UpdateNotificationVM {
         }
     }
 
+    func onTap(withIndex index: Int) {
 
-//    func createParticipantAdded(with meetingID: String, person: String, notification: inout Notification) {
-//
-//        NotificationManager.shared.cr (selectedOption: &selectedOption, meeting: meeting, option: option) { result in
-//
-//            switch result {
-//
-//            case .success:
-//
-//                print("onTapCreate option, success")
-////                self.onSelectedOptionCreated?()
-//
-//            case .failure(let error):
-//
-//                print("createOption.failure: \(error)")
-//            }
-//        }
-//    }
-
-//    func fetchVoteForYes(meetingID: String) {
-//        VoteManager.shared.fetchVoteForYes(meetingID: meetingID) { [weak self] result in
-//
-//            switch result {
-//
-//            case .success(let options):
-//
-//                self?.setOptions(options)
-//
-//            case .failure(let error):
-//
-//                print("fetchData.failure: \(error)")
-//            }
-//        }
-//    }
-
-
-//    func convertOptionsToViewModels(from options: [Option]) -> [OptionViewModel] {
-//
-//        var viewModels = [OptionViewModel]()
-//        for option in options {
-//            let viewModel = OptionViewModel(model: option)
-//            viewModels.append(viewModel)
-//        }
-//        if option.selectedOptions != nil {
-//
-//            let newViewModels = self.sortVotes(vms: viewModels)
-//
-//            return newViewModels
-//        }
-//
-//        return viewModels
-//    }
-//
-//    func setOptions(_ options: [Option]) {
-//        optionViewModels.value = convertOptionsToViewModels(from: options)
-//    }
+        notificationViewModels.value[index].onTap()
+    }
 
     func convertMeetingsToViewModels(from meetings: [Meeting]) -> [MeetingViewModel] {
         var viewModels = [MeetingViewModel]()
@@ -244,23 +342,6 @@ class UpdateNotificationVM {
     func setMeetings(_ meetings: [Meeting]) {
         meetingViewModels.value = convertMeetingsToViewModels(from: meetings)
     }
-
-//    func fetchData(optionID: String, meetingID: String) {
-//
-//        VoteManager.shared.fetchSelectedOptions(optionID: optionID, meetingID: meetingID) { [weak self] result in
-//
-//            switch result {
-//
-//            case .success(let selectedOptions):
-//
-//                self?.setSelectedOptions(selectedOptions)
-//
-//            case .failure(let error):
-//
-//                print("fetchData.failure: \(error)")
-//            }
-//        }
-//    }
 
     func onRefresh() {
         // maybe do something
@@ -289,7 +370,6 @@ class UpdateNotificationVM {
             }
         }
     }
-
 
     func onEmptyTap(_ optionID: String, meetingID: String, selectedOptionID: String) {
         VoteManager.shared.deleteEmptySelectedOption(selectedOptionID: selectedOptionID, optionID: optionID, meetingID: meetingID){ [weak self] result in
@@ -321,23 +401,6 @@ class UpdateNotificationVM {
         return sorted
     }
 
-    func fetchOneMeeitngData(meetingID: String) {
-
-        NetworkManager.shared.fetchOneMeeting(meetingID: meetingID) { [weak self] result in
-
-            switch result {
-
-            case .success(let meeting):
-
-                self?.setMeeting(meeting)
-
-            case .failure(let error):
-
-                print("fetchData.failure: \(error)")
-            }
-        }
-    }
-
     func convertMeetingToViewModels(from meeting: Meeting) -> [MeetingViewModel] {
         var viewModels = [MeetingViewModel]()
         let viewModel = MeetingViewModel(model: meeting)
@@ -349,6 +412,4 @@ class UpdateNotificationVM {
     func setMeeting(_ meeting: Meeting) {
         meetingViewModels.value = convertMeetingToViewModels(from: meeting)
     }
-
-
 }

@@ -12,28 +12,25 @@ class CreateMeetingViewModel {
 
     var meetingViewModels = Box([MeetingViewModel]())
 
-    var meetingViewModel = MeetingViewModel(model: Meeting(
-        id: "",
-//        owner: (UserManager.shared.user?.id)!,
-        owner: SimpleUser(id: "5gWVjg7xTHElu9p6Jkl1", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"), ownerAppleID: "",
-        createdTime: 0,
-        subject: "",
-        location: "",
-        notes: "",
-        image: "https://500px.com/static/media/editors8@1x.126c6fb9.png",
-        singleMeeting: false,
-        hiddenMeeting: false,
-        deadlineMeeting: false,
-//        askInfo: AskInfo,
-        participants: ["aaa"],
-        numOfParticipants: 0,
-        deadlineTag: 0
-    ))
+//    var meetingViewModel = MeetingViewModel(model: Meeting(
+//        id: "", numberForSearch: "",
+//        ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? "",
+//        createdTime: 0,
+//        subject: "",
+//        location: "",
+//        notes: "",
+//        image: "https://500px.com/static/media/editors8@1x.126c6fb9.png",
+//        singleMeeting: false,
+//        hiddenMeeting: false,
+//        deadlineMeeting: false,
+//        participants: [],
+//        numOfParticipants: 0,
+//        deadlineTag: 0
+//    ))
 
     var meeting: Meeting = Meeting(
-        id: "",
-//        owner: (UserManager.shared.user?.id)!,
-        owner: SimpleUser(id: "5gWVjg7xTHElu9p6Jkl1", email: "moon2021@gmail.com", image: "https://lh3.googleusercontent.com/proxy/u2icusi6aMz0vKbu8L5F3tEEadtx3DVcJD_Ya_lubYz6MH4A9a6KL0CFvAeeaDWJ9sIr44RQz8Qy3zJE72Cq1rPUZeZr4FLxXGRkLdNBs2-VxhpIVSY6JnPnjYzLp0Q"), ownerAppleID: "",
+        id: "", numberForSearch: "",
+        ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? "",
         createdTime: 0,
         subject: "",
         location: "",
@@ -42,8 +39,7 @@ class CreateMeetingViewModel {
         singleMeeting: false,
         hiddenMeeting: false,
         deadlineMeeting: false,
-//        askInfo: AskInfo,
-        participants: ["aaa"],
+        participants: [],
         numOfParticipants: 0,
         deadlineTag: 0
     )
@@ -55,23 +51,34 @@ class CreateMeetingViewModel {
     }
 
     func onSubjectChanged(text subject: String) {
+//        self.meetingViewModel.meeting.subject = subject
         self.meeting.subject = subject
         self.onSubjectAdded?(subject)
     }
 
     func onNotesChanged(text notes: String) {
+
         self.meeting.notes = notes
     }
 
+    func onImageUploaded(url: String) {
+        self.meeting.image = url
+        self.updateImage(meeting: self.meeting)
+    }
+    
+
     func onLocationChanged(text location: String) {
         self.meeting.location = location
+
     }
 
     func meetingDeadlineChanged(_ bool: Bool) {
+
         self.meeting.deadlineMeeting = bool
     }
 
     func meetingSingleChanged(_ bool: Bool) {
+
         self.meeting.singleMeeting = bool
     }
 
@@ -80,6 +87,7 @@ class CreateMeetingViewModel {
     }
 
     func onDeadlineTagChanged(_ day: Int) {
+
         self.meeting.deadlineTag = day
     }
 
@@ -138,23 +146,114 @@ class CreateMeetingViewModel {
 
             case .failure(let error):
 
-                print("publishMeeting.failure: \(error)")
+                print("publish Meeting.failure: \(error)")
             }
         }
     }
 
-    var onMeetingUpdated: (() -> Void)?
+    func uploadImage(with image: UIImage) {
+
+        NetworkManager.shared.uploadImage(selectedImage: image) { result in
+            switch result {
+            
+            case .success(let imageUrl):
+
+                self.onImageUploaded(url: imageUrl)
+
+                print("Publish Image Succeeded")
+
+            case .failure(let error):
+
+                print("publishArticle.failure: \(error)")
+
+            }
+        }
+    }
+
+    func updateImage(meeting: Meeting) {
+
+        NetworkManager.shared.updateMeetingImageURL(meeting: meeting) { result in
+
+            switch result {
+
+            case .success( _):
+
+                print("Publish Image Succeeded")
+
+            case .failure(let error):
+
+                print("publishArticle.failure: \(error)")
+
+            }
+        }
+    }
+
+    func updateLocation(with meetingID: String, location: String) {
+
+        NetworkManager.shared.updateLocation(meetingID: meetingID, location: location) { result in
+
+            switch result {
+
+            case .success(_ ):
+
+                print("Publish Location Succeeded")
+
+            case .failure(let error):
+
+                print("publishArticle.failure: \(error)")
+
+            }
+        }
+    }
+
+
+    func updateSubject(with meetingID: String, subject: String) {
+
+        NetworkManager.shared.updateSubject(meetingID: meetingID, subject: subject) { result in
+
+            switch result {
+
+            case .success(_ ):
+
+                print("Publish Subject Succeeded")
+
+            case .failure(let error):
+
+                print("publishArticle.failure: \(error)")
+
+            }
+        }
+    }
 
     func update(with meeting: Meeting) {
 
-        NetworkManager.shared.updateMeeting(meeting: meeting) { result in
+        NetworkManager.shared.updateMeeting(meetingID: meeting.id, meeting: meeting) { result in
 
             switch result {
 
             case .success:
 
                 print("onTapCreate meeting, success")
-                self.onMeetingUpdated?()
+
+            case .failure(let error):
+
+                print("createMeeting.failure: \(error)")
+            }
+        }
+
+    }
+
+    func updateDetails(meetingID: String) {
+
+//        NetworkManager.shared.updateMeeting(meetingID: meetingID, meeting: self.meetingViewModel.meeting) { result in
+
+            NetworkManager.shared.updateMeeting(meetingID: meetingID, meeting: self.meeting) { result in
+
+            switch result {
+
+            case .success:
+
+                print("onTapCreate meeting, success")
 
             case .failure(let error):
 
@@ -183,34 +282,7 @@ class CreateMeetingViewModel {
 
         return viewModel
     }
-
-//    func onTapCreate() {
-//
-//        if hasUserInMeeting() {
-//            print("has user in meeting...")
-//            create() // MARK: check which function this call is
-//
-//        } else {
-//            print("login...")
-//            UserManager.shared.didLoginBefore { [weak self] result in
-//                // MARK: - put your id into login function
-//                switch result {
-//
-//                case .success(let user):
-//
-//                    print("login success")
-//                    self?.create(with: user) // MARK: check which function this call is
-//
-//                case .failure(let error):
-//
-//                    print("login.failure: \(error)")
-//                }
-//
-//            }
-//        }
-//    }
-
-
+    
     func create(with meeting: inout Meeting) {
         NetworkManager.shared.createMeeting(meeting: &meeting) { result in
 
@@ -228,17 +300,17 @@ class CreateMeetingViewModel {
         }
     }
 
-    func create(with user: SimpleUser? = nil) {
+    func create(with userUID: String? = nil) {
 
-        if let user = user {
-            meeting.owner = user
+        if let userUID = userUID {
+            meeting.ownerAppleID = userUID
         }
 
-        create(with: &meeting) // MARK: check which function this call is
+        create(with: &meeting)
     }
 
     func hasUserInMeeting() -> Bool {
-        return meeting.owner != nil
+        return !meeting.ownerAppleID.isEmpty
     }
 
 }

@@ -8,10 +8,10 @@
 
 import UIKit
 import Firebase
-import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 import IQKeyboardManagerSwift
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -44,6 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = viewController
 
             window?.makeKeyAndVisible()
+        }
+
+        if #available(iOS 13, *) {
+            window?.overrideUserInterfaceStyle = .light
         }
 
     return true

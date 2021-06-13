@@ -24,20 +24,26 @@ class MeetingViewModel {
     }
 
     var ownerAppleID: String {
-        get{
+        get {
             return meeting.ownerAppleID
         }
     }
 
-    var subject: String {
+    var subject: String? {
         get {
-            return meeting.subject ?? ""
+            return meeting.subject
         }
     }
 
-    var numOfParticipants: Int {
+    var location: String? {
         get {
-            return meeting.numOfParticipants ?? 0
+            return meeting.location
+        }
+    }
+
+    var numOfParticipants: Int? {
+        get {
+            return meeting.numOfParticipants
         }
     }
 
@@ -54,28 +60,25 @@ class MeetingViewModel {
         }
     }
 
-    var participants: [String] {
+    var isClosed: Bool {
         get {
-            return meeting.participants ?? []
+
+            return meeting.isClosed
         }
     }
 
-//    var calendarType: String {
-//        get {
-//            switch article.category {
-//            case "IU":
-//                return UIColor.deepPurple
-//            case "Beauty":
-//                return UIColor.indigo
-//            case "SchoolLife":
-//                return UIColor.orange
-//            case "Test":
-//                return UIColor.red
-//            default:
-//                return UIColor.green
-//            }
-//        }
-//    }
+    var singleMeeting: Bool {
+        get {
+
+            return meeting.singleMeeting
+        }
+    }
+
+    var participants: [String]? {
+        get {
+            return meeting.participants
+        }
+    }
 
     var options: [Option]? {
         get {
@@ -83,9 +86,22 @@ class MeetingViewModel {
         }
     }
 
-    var owner: SimpleUser {
+//    var finalOption: Option? {
+//        get {
+//            return meeting.finalOption
+//        }
+//    }
+
+
+    var finalOption: FinalOption? {
         get {
-            return meeting.owner
+            return meeting.finalOption
+        }
+    }
+
+    var numberForSearch: String {
+        get {
+            return meeting.numberForSearch
         }
     }
 

@@ -17,12 +17,16 @@ class NotificationManager {
 
     lazy var db = Firestore.firestore()
 
-    var userUID = UserDefaults.standard.value(forKey: "uid")
+    var userUID = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? ""
+
+    var userName = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue)
+
+    var userImage = UserDefaults.standard.value(forKey: UserDefaults.Keys.image.rawValue) as? String ?? ""
 
     func fetchNotifications(completion: @escaping (Result<[Notification], Error>) -> Void) {
 
         self.db.collection("users")
-            .document(self.userUID as! String)
+            .document(self.userUID)
             .collection("notifications")
             .order(by: "createdTime", descending: false)
             .getDocuments { querySnapshot, error in
@@ -56,11 +60,12 @@ class NotificationManager {
     func createNotification(notification: inout Notification, completion: @escaping (Result<String, Error>) -> Void) {
 
         let document = db.collection("users")
-            .document(userUID as! String)
+            .document(userUID)
             .collection("notifications")
             .document()
             notification.id = document.documentID
             notification.createdTime = Int64(Date().millisecondsSince1970)
+            notification.ownerName = userName as? String
             document.setData(notification.toDict) { error in
 
             if let error = error {
@@ -83,6 +88,8 @@ class NotificationManager {
             .document()
             notification.id = document.documentID
             notification.createdTime = Int64(Date().millisecondsSince1970)
+            notification.ownerName = userName as? String
+            notification.participantID = owenerID
             document.setData(notification.toDict) { error in
 
             if let error = error {
@@ -95,6 +102,31 @@ class NotificationManager {
             }
         }
     }
+
+    func createNotificationforInvite(owenerID: String, notification: inout Notification, completion: @escaping (Result<String, Error>) -> Void) {
+
+        let document = db.collection("users")
+            .document(owenerID)
+            .collection("notifications")
+            .document()
+            notification.id = document.documentID
+            notification.createdTime = Int64(Date().millisecondsSince1970)
+            notification.ownerName = userName as? String
+            notification.participantID = owenerID
+            notification.image = userImage
+            document.setData(notification.toDict) { error in
+
+            if let error = error {
+
+                completion(.failure(error))
+
+            } else {
+
+                completion(.success(document.documentID))
+            }
+        }
+    }
+
 
 //    func createParticipantsNotification(peopleID: [String], event: inout Event, completion: @escaping (Result<String, Error>) -> Void) {
 //
@@ -120,27 +152,13 @@ class NotificationManager {
 //        }
 //    }
 
-    func deleteEvent(notification: Notification, completion: @escaping (Result<String, Error>) -> Void) {
+    func deleteNotification(notification: Notification, completion: @escaping (Result<String, Error>) -> Void) {
 
-//        if !UserManager.shared.isLogin() {
-//            print("who r u?")
-//            return
-//        }
-
-//        if let user = meeting.owner {
-//            if user.id == "5gWVjg7xTHElu9p6Jkl1"
-//                && meeting.category.lowercased() != "test"
-//                && !meeting.category.trimmingCharacters(in: .whitespaces).isEmpty
-//        {
-//                completion(.failure(MasterError.youKnowNothingError("You know nothing!! \(user.id)")))
-//                return
-//            }
-//        }
         let document = db.collection("users")
-            .document(userUID as! String)
+            .document(userUID)
             .collection("notifications")
 
-            document.document(notification.id).delete() { error in
+            document.document(notification.id).delete { error in
 
             if let error = error {
 

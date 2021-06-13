@@ -29,7 +29,7 @@ class OptionViewModel {
         }
     }
 
-    var selectedOptions: [SelectedOption]? {
+    var selectedOptions: [String]? {
         get {
             return option.selectedOptions
         }
