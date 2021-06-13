@@ -159,8 +159,6 @@ class VotingResultViewController: UIViewController {
 
     func checkVoted() {
 
-        votingViewModel.checkIfVoted(meetingID: meetingInfo.id)
-
         if votingViewModel.isVoted {
 
             hasVoted = false
@@ -243,7 +241,7 @@ extension VotingResultViewController: UITableViewDelegate, UITableViewDataSource
 
         let index = indexPath.row
 
-        let filterOptions = votingViewModel.optionViewModels.value[index]
+//        let filterOptions = votingViewModel.optionViewModels.value[index]
 
 //        let voteForYesArray = filterOptions?.filter({ $0 != "" })
 
@@ -263,13 +261,16 @@ extension VotingResultViewController: UITableViewDelegate, UITableViewDataSource
 
                 cell.meetingID = self.meetingInfo.id
 
-            if filterOptions.selectedOptions != nil {
+            if let filterOptions = votingViewModel.optionViewModels.value[index] as? OptionViewModel {
 
                 cell.setupYesCell(model: filterOptions, index: index)
 
             } else {
 
-                cell.setupNoCell(model: filterOptions, index: index)
+                if let filterOptions = votingViewModel.optionViewModels.value[index] as? OptionViewModel {
+
+                    cell.setupNoCell(model: filterOptions, index: index)
+                }
             }
 
             return cell

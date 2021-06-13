@@ -16,6 +16,10 @@ class PastTableViewController: UITableViewController {
 
     var selectedIndex: Int?
 
+    var userUID = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? ""
+
+    var isVoted: Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -68,7 +72,7 @@ class PastTableViewController: UITableViewController {
             return cell
         }
 
-        let cellViewModel = self.viewModel.meetingViewModels.value[indexPath.row]
+        let cellViewModel = self.viewModel.meetingViewModels.value[indexPath.row]        
 
         cellViewModel.onDead = { [weak self] () in
             print("onDead")
@@ -81,52 +85,37 @@ class PastTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        let model = self.viewModel.meetingViewModels.value[indexPath.row].meeting
+
+        guard  let options = model.options as? [Option] else { return }
+
         let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
+
         let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
            guard let voting = votingVC as? VotingViewController else { return }
 
-        voting.meetingInfo = self.viewModel.meetingViewModels.value[indexPath.row].meeting
+//            viewModel.checkIfVoted(options: options)
 
-        navigationController?.pushViewController(voting, animated: true)
+        var votedOptions: [String] = []
 
-    }
+        for i in 0...options.count - 1 {
+
+            votedOptions = options[i].selectedOptions?.filter({ $0 == userUID }) ?? []
+
+        }
+        if !votedOptions.isEmpty {
+
+                voting.isVoted = true
+
+                voting.onEnableView?()
+            }
+
+            voting.meetingInfo = model
+
+            navigationController?.pushViewController(voting, animated: true)
+        }
+
 }
-
-//extension PastTableViewController: MeetingTableCellDelegate {
-//    func deleteBtnPressed(_ sender: MeetingTableViewCell) {
-//        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
-//        viewModel.onTap(withIndex: indexPath.row)
-//
-//    }
-//
-//    func editButtonPressed(_ sender: MeetingTableViewCell) {
-//        let storyboard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
-//        let editVC = storyboard.instantiateViewController(identifier: "CreateFirstPageVC")
-//           guard let edit = editVC as? CreateFirstViewController else { return }
-//
-//        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
-//
-//        edit.meetingInfo = sender.meeting
-//
-//        edit.meetingID = sender.meeting?.id
-//
-//        edit.createMeetingViewModel.meetingViewModel = sender.viewModel!
-//
-//        navigationController?.pushViewController(edit, animated: true)
-//    }
-//
-//    func goButtonPressed(_ sender: MeetingTableViewCell) {
-//        let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
-//        let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
-//           guard let voting = votingVC as? VotingViewController else { return }
-//
-//        guard let indexPath = self.tableView.indexPath(for: sender) else { return }
-//
-//        voting.meetingInfo = sender.meeting
-//
-//        navigationController?.pushViewController(voting, animated: true)
-//    }
-//}
 
 extension PastTableViewController: RefreshDelegate {
     func refresherDidRefresh(_ refresher: Refresher) {

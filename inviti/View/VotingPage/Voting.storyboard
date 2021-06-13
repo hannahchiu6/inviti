@@ -582,6 +582,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="alertMessage" destination="HJJ-kP-1mx" id="LnS-MR-zA6"/>
                         <outlet property="animationView" destination="LIh-Te-9WX" id="m81-CR-2zR"/>
                         <outlet property="returnBtnView" destination="V6l-76-He5" id="gKk-bR-SP8"/>
                     </connections>

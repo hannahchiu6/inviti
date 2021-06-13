@@ -57,6 +57,8 @@ class VotingViewModel {
 
     var scrollToTop: (() -> Void)?
 
+    var onVoted: (() -> Void)?
+
     var multipleOptions: (() -> Void)?
 
     var getSelectedOptionData: (() -> Void)?
@@ -65,13 +67,6 @@ class VotingViewModel {
 
     var onSelectedOptionUpdated: (() -> Void)?
 
-//    func onVotingChanged(_ bool: Bool) {
-//        self.selectedOption.isSelected = bool
-//    }
-//
-//    func onSelectedUserAdded(_ selectedUser: String) {
-//        self.selectedOption.selectedUser = selectedUser
-//    }
     func onselectedOptionChanged(_ selectedOptions: [String]?, index: Int) {
 
         self.options[index].selectedOptions = selectedOptions
@@ -83,8 +78,6 @@ class VotingViewModel {
         var newOptions = [Option]()
 
         if var newOption = options[index] as? Option {
-
-//            if var newSelectedOptions = newOption.selectedOptions {
 
             if ((newOption.selectedOptions?.contains(userUID)) != nil) {
 
@@ -156,22 +149,6 @@ class VotingViewModel {
         }
     }
 
-//    func fetchVotedData(meetingID: String) {
-//        VoteManager.shared.fetchVotedData(meetingID: meetingID) { [weak self] result in
-//
-//            switch result {
-//
-//            case .success(let options):
-//
-//                self?.setOptions(options)
-//
-//            case .failure(let error):
-//
-//                print("fetchData.failure: \(error)")
-//            }
-//        }
-//    }
-
     func getOptionsIDs(optionVMs: [OptionViewModel]) -> [String] {
 
         let newVM = optionViewModels.value
@@ -187,18 +164,18 @@ class VotingViewModel {
 
             switch result {
 
-            case .success(let selectedOptions):
+            case .success(let options):
 
-                if selectedOptions.isEmpty {
+                if options.isEmpty {
 
                     self?.isVoted = false
 
                 } else {
 
                     self?.isVoted = true
-//                    self?.setSelectedOptions(selectedOptions)
-
                 }
+
+                self?.onVoted?()
 
             case .failure(let error):
 

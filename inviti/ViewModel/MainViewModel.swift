@@ -21,6 +21,8 @@ class MainViewModel {
 
     var onDead: (() -> Void)?
 
+    var isVoted: Bool = false
+
     var onMeetingFetched: ((Meeting) -> Void)?
 
     func fetchData() {
@@ -71,6 +73,30 @@ class MainViewModel {
 
                 print("fetchData.failure: \(error)")
             }
+        }
+    }
+    func checkIfVoted(options: [Option]) {
+
+        VoteManager.shared.checkIfOptionVoted(options: options) { [weak self] result in
+
+            switch result {
+
+            case .success(let options):
+
+                if options.isEmpty {
+
+                    self?.isVoted = false
+
+                } else {
+
+                    self?.isVoted = true
+                }
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+
         }
     }
 

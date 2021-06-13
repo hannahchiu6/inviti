@@ -118,7 +118,7 @@
 		86C3FA68264BE24A00480E4F /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA67264BE24A00480E4F /* News.storyboard */; };
 		86C3FA6B264BE25B00480E4F /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA6A264BE25B00480E4F /* Calendar.storyboard */; };
 		86C3FA6E264BE2A700480E4F /* NotificationPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */; };
-		86C9C670265AA23B0074B2B5 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C9C66F265AA23B0074B2B5 /* ViewController+Extension.swift */; };
+		86C9C670265AA23B0074B2B5 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C9C66F265AA23B0074B2B5 /* UIViewController+Extension.swift */; };
 		86D15407266F6E600091AA95 /* ResultClosedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D15406266F6E600091AA95 /* ResultClosedCell.swift */; };
 		86D4F68426582D6E00C00062 /* PaddingableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D4F68326582D6E00C00062 /* PaddingableHelper.swift */; };
 		86D772E5266FBC4C0028158C /* HasVotedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D772E4266FBC4C0028158C /* HasVotedVC.swift */; };
@@ -128,6 +128,7 @@
 		86EE497A265102BD003B0C25 /* CreateFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */; };
 		86EE498026511C9B003B0C25 /* NotiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE497F26511C9B003B0C25 /* NotiViewController.swift */; };
 		86EE498326511D33003B0C25 /* NotiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE498226511D32003B0C25 /* NotiTableViewCell.swift */; };
+		86EEED702675D5BF0063E773 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEED6F2675D5BF0063E773 /* Array+Extension.swift */; };
 		86F203DA264D9E3100A9763A /* Meeting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F203D9264D9E3100A9763A /* Meeting.storyboard */; };
 		86F203DD264E05EC00A9763A /* MeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F203DC264E05EC00A9763A /* MeetingViewController.swift */; };
 		A3090504881DDDF486642645 /* Pods_inviti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE1AD6A8960FEB195B049AE /* Pods_inviti.framework */; };
@@ -267,7 +268,7 @@
 		86C3FA67264BE24A00480E4F /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		86C3FA6A264BE25B00480E4F /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		86C3FA6D264BE2A700480E4F /* NotificationPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotificationPage.storyboard; sourceTree = "<group>"; };
-		86C9C66F265AA23B0074B2B5 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		86C9C66F265AA23B0074B2B5 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		86D15406266F6E600091AA95 /* ResultClosedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultClosedCell.swift; sourceTree = "<group>"; };
 		86D4F68326582D6E00C00062 /* PaddingableHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingableHelper.swift; sourceTree = "<group>"; };
 		86D772E4266FBC4C0028158C /* HasVotedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasVotedVC.swift; sourceTree = "<group>"; };
@@ -277,6 +278,7 @@
 		86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstViewController.swift; sourceTree = "<group>"; };
 		86EE497F26511C9B003B0C25 /* NotiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiViewController.swift; sourceTree = "<group>"; };
 		86EE498226511D32003B0C25 /* NotiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiTableViewCell.swift; sourceTree = "<group>"; };
+		86EEED6F2675D5BF0063E773 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		86F203D9264D9E3100A9763A /* Meeting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Meeting.storyboard; sourceTree = "<group>"; };
 		86F203DC264E05EC00A9763A /* MeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewController.swift; sourceTree = "<group>"; };
 		A41EA7A3E1004FFDF363D424 /* Pods-inviti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inviti.release.xcconfig"; path = "Target Support Files/Pods-inviti/Pods-inviti.release.xcconfig"; sourceTree = "<group>"; };
@@ -388,8 +390,9 @@
 				8640655A264D9910003C756D /* UIStoryboard+Extension.swift */,
 				86504B8F2650095800E42C51 /* UIView+Extension.swift */,
 				8614DE9B2652A56100DC0A9D /* UIButton+Extension.swift */,
-				86C9C66F265AA23B0074B2B5 /* ViewController+Extension.swift */,
+				86C9C66F265AA23B0074B2B5 /* UIViewController+Extension.swift */,
 				86824A41265ABFDC00BD706D /* UILabel+Extension.swift */,
+				86EEED6F2675D5BF0063E773 /* Array+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -862,6 +865,7 @@
 				86D15407266F6E600091AA95 /* ResultClosedCell.swift in Sources */,
 				86824A42265ABFDC00BD706D /* UILabel+Extension.swift in Sources */,
 				861C85D1266E2E7B0015F7D4 /* PrivacyViewController.swift in Sources */,
+				86EEED702675D5BF0063E773 /* Array+Extension.swift in Sources */,
 				8672AB3F266CBEB300FB44B4 /* UpdateNotificationVM.swift in Sources */,
 				86406555264D98D6003C756D /* TabBarController.swift in Sources */,
 				860B5C922652297200171ED3 /* CreateFirstCell.swift in Sources */,
@@ -872,7 +876,7 @@
 				861B402226577AF9004D1763 /* OptionsCell.swift in Sources */,
 				863B083226581C2D007CFBF3 /* ShareSuccessVC.swift in Sources */,
 				869F83FD265531EC00DA1D53 /* Event.swift in Sources */,
-				86C9C670265AA23B0074B2B5 /* ViewController+Extension.swift in Sources */,
+				86C9C670265AA23B0074B2B5 /* UIViewController+Extension.swift in Sources */,
 				86A6620C2669E68400DBB799 /* LoginViewModel.swift in Sources */,
 				8681A64E265E898B007CF61A /* OptionTime.swift in Sources */,
 				868649FC265B74E700E7040F /* CalendarViewModel.swift in Sources */,
