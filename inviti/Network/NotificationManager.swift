@@ -56,6 +56,38 @@ class NotificationManager {
             }
     }
 
+    func addSnapshotNotifications(completion: @escaping (Result<[Notification], Error>) -> Void) {
+
+        self.db.collection("users")
+            .document(self.userUID)
+            .collection("notifications")
+            .order(by: "createdTime", descending: false)
+            .addSnapshotListener { querySnapshot, error in
+
+                if let error = error {
+
+                    completion(.failure(error))
+
+                } else {
+
+                    var notifications = [Notification]()
+
+                    for document in querySnapshot!.documents {
+
+                        do {
+                            if let notification = try document.data(as: Notification.self, decoder: Firestore.Decoder()) {
+                                notifications.append(notification)
+                            }
+                        } catch {
+                            completion(.failure(error))
+                        }
+                    }
+
+                    completion(.success(notifications))
+
+                }
+            }
+    }
 
     func createNotification(notification: inout Notification, completion: @escaping (Result<String, Error>) -> Void) {
 

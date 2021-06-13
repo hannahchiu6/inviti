@@ -19,14 +19,6 @@ struct Notification: Codable {
     var subject: String?
     var image: String?
 
-//    [
-//        "participantVoted",
-//        "eventCreated",
-//        "eventToDeadline",
-//        "invitesAccepted",
-//        "calendarEventAdded"
-//    ]
-
     enum CodingKeys: String, CodingKey {
         case meetingID, eventID, participantID, image
         case type, id, createdTime, ownerName, subject
@@ -63,5 +55,3 @@ enum TypeName: String {
 
     case calendar = "calendarEventAdded"
 }
-
-

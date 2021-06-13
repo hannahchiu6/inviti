@@ -86,7 +86,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     let centerButton = UIButton()
 
-    var trolleyTabBarItem: UITabBarItem!
+    var newsTabBarItem: UITabBarItem!
 
     let viewModel = CreateMeetingViewModel()
 
@@ -106,6 +106,8 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
              }
     }
 
+    var newValue: [NotificationViewModel]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -117,6 +119,27 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
         viewModel.meetingViewModels.bind { [weak self] meetings in
             self?.viewModel.onRefresh()
+        }
+       
+
+        newsTabBarItem = viewControllers?[1].tabBarItem
+
+        newsTabBarItem.badgeColor = UIColor(red: 0.5804, green: 0.3922, blue: 0.2314, alpha: 1.0)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(newsUpdated), name: NSNotification.Name(rawValue: "newsUpdated"), object: nil)
+    }
+
+    @objc func newsUpdated(_ notification: NSNotification) {
+
+        guard let newValue = self.newValue else { return }
+
+        if newValue.isEmpty {
+
+            self.newsTabBarItem.badgeValue = nil
+
+        } else {
+
+            self.newsTabBarItem.badgeValue = String(newValue.count)
         }
 
     }

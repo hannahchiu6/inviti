@@ -40,13 +40,13 @@ class LoginViewController: UIViewController {
 
 //        self.observeAppleIDSessionChanges()
 
-        let testID = "uLkwCQPXM4NrsnFc1mTSmw7GsPu2"
-        //                let testID = "5gWVjg7xTHElu9p6Jkl1"
+//        let testID = "uLkwCQPXM4NrsnFc1mTSmw7GsPu2"
+        let testID = "5gWVjg7xTHElu9p6Jkl1"
 
         //        let testID = "TPGdezeBE0cgztO0Ui1tzsVwqNd2"
 
         UserDefaults.standard.setValue(testID, forKey: UserDefaults.Keys.uid.rawValue)
-        
+
         self.viewModel.checkIfLogInBefore()
 
     }
