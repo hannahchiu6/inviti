@@ -248,7 +248,9 @@ class NetworkManager {
 
     func deleteMeeting(meeting: Meeting, completion: @escaping (Result<String, Error>) -> Void) {
 
-        db.collection("meetings").document(meeting.id).delete { error in
+        db.collection("meetings")
+            .document(meeting.id)
+            .delete { error in
 
             if let error = error {
 
@@ -291,7 +293,7 @@ class NetworkManager {
                 "location": "\(location)",
                 "notes": "\(notes)",
                 "singleMeeting": meeting.singleMeeting,
-                "deadlinTag": meeting.deadlineTag as Any,
+                "deadlineTag": meeting.deadlineTag as Any,
                 "deadlineMeeting": meeting.deadlineMeeting,
                 "hiddenMeeting": meeting.hiddenMeeting,
                 "ownerAppleID": userUID!

@@ -141,7 +141,11 @@ class OptionManager {
 
     func deleteEmptyOption(optionID: String, meetingID: String, completion: @escaping (Result<String, Error>) -> Void) {
 
-        db.collection("meetings").document(meetingID).collection("options").document(optionID).delete { error in
+        db.collection("meetings")
+            .document(meetingID)
+            .collection("options")
+            .document(optionID)
+            .delete { error in
 
             if let error = error {
 
@@ -153,20 +157,7 @@ class OptionManager {
             }
         }
     }
-//        if !UserManager.shared.isLogin() {
-//            print("who r u?")
-//            return
-//        }
 
-//        if let user = meeting.owner {
-//            if user.id == "5gWVjg7xTHElu9p6Jkl1"
-//                && meeting.category.lowercased() != "test"
-//                && !meeting.category.trimmingCharacters(in: .whitespaces).isEmpty
-//        {
-//                completion(.failure(MasterError.youKnowNothingError("You know nothing!! \(user.id)")))
-//                return
-//            }
-//        }
     func fetchVotes(completion: @escaping (Result<[Option], Error>) -> Void) {
         db.collection("options")
 

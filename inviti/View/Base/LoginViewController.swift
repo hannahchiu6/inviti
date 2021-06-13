@@ -22,7 +22,6 @@ class LoginViewController: UIViewController {
         performSegue(withIdentifier: "goToMainSegue", sender: nil)
 
     }
-    //    @IBOutlet weak var signInWithAppleButton: UIButton!
 
     @IBOutlet weak var animationView: UIView!
 
@@ -33,23 +32,22 @@ class LoginViewController: UIViewController {
 
         setUpButton()
 
-//        self.observeAppleIDSessionChanges()
-        
-                let testID = "uLkwCQPXM4NrsnFc1mTSmw7GsPu2"
-//                let testID = "5gWVjg7xTHElu9p6Jkl1"
-
-//        let testID = "TPGdezeBE0cgztO0Ui1tzsVwqNd2"
-
-                UserDefaults.standard.setValue(testID, forKey: UserDefaults.Keys.uid.rawValue)
-
-                self.viewModel.checkIfLogInBefore()
-
-
         viewModel.onGranted = { [weak self] () in
 
             self?.performSegue(withIdentifier: "goToMainSegue", sender: nil)
 
         }
+
+//        self.observeAppleIDSessionChanges()
+
+        let testID = "uLkwCQPXM4NrsnFc1mTSmw7GsPu2"
+        //                let testID = "5gWVjg7xTHElu9p6Jkl1"
+
+        //        let testID = "TPGdezeBE0cgztO0Ui1tzsVwqNd2"
+
+        UserDefaults.standard.setValue(testID, forKey: UserDefaults.Keys.uid.rawValue)
+        
+        self.viewModel.checkIfLogInBefore()
 
     }
 

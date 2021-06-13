@@ -166,24 +166,13 @@ class EventManager {
         }
     }
 
-    func deleteEvent(event: Event, completion: @escaping (Result<String, Error>) -> Void) {
+    func deleteEvent(eventID: String, completion: @escaping (Result<String, Error>) -> Void) {
 
-//        if !UserManager.shared.isLogin() {
-//            print("who r u?")
-//            return
-//        }
-
-//        if let user = meeting.owner {
-//            if user.id == "5gWVjg7xTHElu9p6Jkl1"
-//                && meeting.category.lowercased() != "test"
-//                && !meeting.category.trimmingCharacters(in: .whitespaces).isEmpty
-//        {
-//                completion(.failure(MasterError.youKnowNothingError("You know nothing!! \(user.id)")))
-//                return
-//            }
-//        }
-
-        db.collection("events").document(event.id).delete() { error in
+        db.collection("users")
+            .document(userUID)
+            .collection("events")
+            .document(eventID)
+            .delete { error in
 
             if let error = error {
 
@@ -191,7 +180,8 @@ class EventManager {
                 
             } else {
 
-                completion(.success(event.id))
+                completion(.success(eventID))
+                print("\(eventID) has been deleted!")
             }
         }
     }

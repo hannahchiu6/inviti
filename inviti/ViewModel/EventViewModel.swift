@@ -29,12 +29,6 @@ class EventViewModel {
         }
     }
 
-//    var ownerAppleID: String {
-//        get {
-//            return event.ownerAppleID
-//        }
-//    }
-
     var location: String {
         get {
             return event.location
@@ -54,24 +48,6 @@ class EventViewModel {
     var date: Int {
         get {
             return event.date
-        }
-    }
-
-
-    func onTap() {
-        EventManager.shared.deleteEvent(event: event) { [weak self] result in
-
-            switch result {
-
-            case .success(let eventID):
-
-                print(eventID)
-                self?.onDead?()
-
-            case .failure(let error):
-
-                print("eventDeleted.failure: \(error)")
-            }
         }
     }
 }

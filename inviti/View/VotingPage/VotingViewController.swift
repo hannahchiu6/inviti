@@ -83,7 +83,7 @@ class VotingViewController: BaseViewController {
 
         votingViewModel.fetchOptionData(meetingID: meetingInfo.id)
 
-        votingViewModel.fetchUserData(userID: meetingInfo.ownerAppleID)
+        votingViewModel.fetchUserForHost(userID: meetingInfo.ownerAppleID)
 
 //        checkIfVoted()
 
@@ -95,14 +95,13 @@ class VotingViewController: BaseViewController {
             self?.checkData()
 
 //            self?.votingViewModel.checkIfVoted(meetingID: self?.meetingInfo.id ?? "")
-
-
         }
 
         votingViewModel.userBox.bind { [weak self] user in
 
             self?.tableview.reloadData()
-            self?.setUpView()
+
+            self?.hostNameLabel.text = self?.votingViewModel.userBox.value.name ?? "inviti User"
 
         }
         
@@ -111,8 +110,10 @@ class VotingViewController: BaseViewController {
         self.onEnableView = { [weak self] () in
 
             self?.hasVotedView.isHidden = false
-
         }
+
+        setUpView()
+
 
     }
 
@@ -199,7 +200,7 @@ class VotingViewController: BaseViewController {
         locationLabel.text = meetingInfo.location
         meetingNotes.text = meetingInfo.notes
         eventImageBg.alpha = 0.3
-        hostNameLabel.text = votingViewModel.userBox.value.name
+//        hostNameLabel.text = votingViewModel.user.name
         popupView.shadowView(popupView)
     }
 
