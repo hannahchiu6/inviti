@@ -18,6 +18,8 @@ class CalendarViewModel {
 
     var onEventCreated: (() -> Void)?
 
+    var onDead: (() -> Void)?
+    
     func fetchData() {
         
         EventManager.shared.fetchSubEvents { [weak self] result in
@@ -78,7 +80,8 @@ class CalendarViewModel {
 
     func createSelectedData(in viewModels: [EventViewModel], selectedDate: String) -> [EventViewModel] {
         var newViewModels = [EventViewModel]()
-        newViewModels = viewModels.filter({$0.event.date == Int(selectedDate)})
+        newViewModels = viewModels.filter({ $0.event.date == Int(selectedDate )})
+
         return newViewModels
     }
 
@@ -91,6 +94,7 @@ class CalendarViewModel {
     }
     
     func createMarksData() -> [JKDay] {
+
         let viewModel = eventViewModels.value
         let marksDates = viewModel.map({
             Date.init(millis: $0.event.startTime)
@@ -112,8 +116,23 @@ class CalendarViewModel {
         return JDays
     }
 
-    func onTap(withIndex index: Int) {
-        eventViewModels.value[index].onTap()
-    }
+//    func onTap(withIndex index: Int) {
+//        eventViewModels.value[index].onTap()
+//    }
 
+    func onEmptyTap(_ eventID: String) {
+        EventManager.shared.deleteEvent(eventID: eventID) { [weak self] result in
+
+            switch result {
+
+            case .success( _):
+
+                self?.onDead?()
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
 }

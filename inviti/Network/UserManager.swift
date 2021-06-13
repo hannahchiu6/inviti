@@ -110,7 +110,40 @@ class UserManager {
 //
 //            }
 //        }
-    
+    func fetchHostUser(userID: String, completion: @escaping
+                    (Result<User, Error>) -> Void) {
+        let docRef = db.collection("users")
+            .whereField("id", isEqualTo: userID)
+
+        docRef.getDocuments { querySnapshot, error in
+
+            if let error = error {
+
+                completion(.failure(error))
+
+            } else {
+
+                var users = [User]()
+
+                for document in querySnapshot!.documents {
+
+                    do {
+                        if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
+                            users.append(user)
+                        }
+
+                    } catch {
+
+                        completion(.failure(error))
+                    }
+                }
+                if !users.isEmpty {
+                    completion(.success(users[0]))
+                }
+            }
+        }
+    }
+
 
     func fetchUser(user: User, completion: @escaping
                     (Result<User, Error>) -> Void) {
@@ -138,8 +171,9 @@ class UserManager {
                         completion(.failure(error))
                     }
                 }
-
-                completion(.success(users[0]))
+                if !users.isEmpty {
+                    completion(.success(users[0]))
+                }
             }
         }
     }

@@ -310,6 +310,7 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
 
                     cell.meetingTimeDeselected()
                 }
+            
             }  else {
 
                 cell.bookingButton.isSelected = false

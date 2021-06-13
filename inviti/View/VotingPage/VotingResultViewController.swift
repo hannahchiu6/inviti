@@ -121,7 +121,7 @@ class VotingResultViewController: UIViewController {
 
         votingViewModel.fetchOptionData(meetingID: meetingInfo.id)
 
-        votingViewModel.fetchUserData(userID: meetingInfo.ownerAppleID)
+        votingViewModel.fetchUserForHost(userID: meetingInfo.ownerAppleID)
 
 
         votingViewModel.optionViewModels.bind { [weak self] options in
@@ -137,7 +137,7 @@ class VotingResultViewController: UIViewController {
         votingViewModel.userBox.bind { [weak self] user in
 
             self?.votingViewModel.onRefresh()
-            self?.setUpView()
+            self?.hostNameLabel.text = self?.votingViewModel.userBox.value.name ?? "inviti User"
 
         }
 
@@ -178,8 +178,6 @@ class VotingResultViewController: UIViewController {
         locationLabel.text = meetingInfo.location
         meetingNotes.text = meetingInfo.notes
 
-        hostNameLabel.text = votingViewModel.userBox.value.name
-        
         eventImageBg.alpha = 0.3
 
         popupView.isHidden = true

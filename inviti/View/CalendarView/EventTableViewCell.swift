@@ -21,19 +21,7 @@ class EventTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-//        setupMainView()
-
     }
-//
-//
-//    func setupMainView() {
-//        let borderLine = UIView(frame: CGRect(x: 0, y: mainView.frame.height, width: mainView.frame.width, height: 1))
-//
-//        borderLine.backgroundColor = UIColor(red: 0.9876, green: 0.9373, blue: 0.9294, alpha: 1.0)
-//
-//        mainView.addSubview(borderLine)
-//
-//    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

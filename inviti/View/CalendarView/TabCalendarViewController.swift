@@ -29,6 +29,8 @@ class TabCalendarViewController: UIViewController {
 
     var eventViewModels: [EventViewModel]?
 
+    var eventIDs: [String]?
+
     @IBOutlet weak var calendarTableView: JKCalendarTableView!
 
     override func viewWillAppear(_ animated: Bool) {
@@ -119,12 +121,46 @@ extension TabCalendarViewController: UITableViewDelegate, UITableViewDataSource 
             let eventModel = viewModel.createSelectedData(in: viewModel.eventViewModels.value, selectedDate: theDay)
 
             cell.setup(vm: eventModel[indexPath.row])
+
+            self.eventIDs = eventModel.map({ $0.id })
+
         }
 
         return cell
     }
-}
 
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+
+        let deleteAction: UITableViewRowAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Delete", handler: {(action, indexPath) -> Void in
+
+            guard let eventIDs = self.eventIDs as? [String] else { return }
+
+            self.viewModel.onEmptyTap(eventIDs[indexPath.row])
+
+            self.viewModel.onDead = { [weak self] () in
+
+                self?.viewModel.fetchData()
+
+            }
+        })
+
+        deleteAction.backgroundColor = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1.00)
+
+        // 生成分享按鈕
+//        let shareAction: UITableViewRowAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Share", handler: {(action, indexPath) -> Void in
+
+//            let text: String = self.titleDatas[indexPath.row]
+//            let image: UIImage = UIImage(named: self.imageDatas[indexPath.row])!
+
+//            let activityViewController: UIActivityViewController =  UIActivityViewController(activityItems: [text, image], applicationActivities: nil)
+//            self.present(activityViewController, animated: true, completion: nil)
+//        })
+
+//        shareAction.backgroundColor = UIColor.darkGray
+        return [deleteAction]
+//        return [deleteAction, shareAction]
+    }
+}
 
 extension TabCalendarViewController: JKCalendarDelegate {
 
