@@ -147,7 +147,8 @@ class UserManager {
 
     func fetchUser(user: User, completion: @escaping
                     (Result<User, Error>) -> Void) {
-        let docRef = db.collection("users").whereField("appleID", isEqualTo: userUID)
+        let docRef = db.collection("users")
+            .whereField("id", isEqualTo: userUID)
 
         docRef.getDocuments { querySnapshot, error in
 

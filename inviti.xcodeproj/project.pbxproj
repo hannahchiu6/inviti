@@ -130,6 +130,7 @@
 		86EE498326511D33003B0C25 /* NotiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE498226511D32003B0C25 /* NotiTableViewCell.swift */; };
 		86EEED702675D5BF0063E773 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEED6F2675D5BF0063E773 /* Array+Extension.swift */; };
 		86EEED7626765A150063E773 /* UITabbar + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEED7526765A140063E773 /* UITabbar + Extension.swift */; };
+		86EEED7E26773D820063E773 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEED7D26773D810063E773 /* UIStackView+Extension.swift */; };
 		86F203DA264D9E3100A9763A /* Meeting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F203D9264D9E3100A9763A /* Meeting.storyboard */; };
 		86F203DD264E05EC00A9763A /* MeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F203DC264E05EC00A9763A /* MeetingViewController.swift */; };
 		A3090504881DDDF486642645 /* Pods_inviti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE1AD6A8960FEB195B049AE /* Pods_inviti.framework */; };
@@ -281,6 +282,7 @@
 		86EE498226511D32003B0C25 /* NotiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiTableViewCell.swift; sourceTree = "<group>"; };
 		86EEED6F2675D5BF0063E773 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		86EEED7526765A140063E773 /* UITabbar + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabbar + Extension.swift"; sourceTree = "<group>"; };
+		86EEED7D26773D810063E773 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		86F203D9264D9E3100A9763A /* Meeting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Meeting.storyboard; sourceTree = "<group>"; };
 		86F203DC264E05EC00A9763A /* MeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewController.swift; sourceTree = "<group>"; };
 		A41EA7A3E1004FFDF363D424 /* Pods-inviti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inviti.release.xcconfig"; path = "Target Support Files/Pods-inviti/Pods-inviti.release.xcconfig"; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				86824A41265ABFDC00BD706D /* UILabel+Extension.swift */,
 				86EEED6F2675D5BF0063E773 /* Array+Extension.swift */,
 				86EEED7526765A140063E773 /* UITabbar + Extension.swift */,
+				86EEED7D26773D810063E773 /* UIStackView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -848,6 +851,7 @@
 				8661E04126661E0F00BD23F5 /* ResutlsCollectionViewCell.swift in Sources */,
 				86ECEAA6265FDD7E00465424 /* CreateOptionViewModel.swift in Sources */,
 				8637064F2654EDC100D0A0AB /* EditViewController.swift in Sources */,
+				86EEED7E26773D820063E773 /* UIStackView+Extension.swift in Sources */,
 				869F842A26560C8400DA1D53 /* NetworkManager.swift in Sources */,
 				869F842F265613B000DA1D53 /* MainViewModel.swift in Sources */,
 				8688E3A7266C8E9800D41A6D /* SampleUserManager.swift in Sources */,

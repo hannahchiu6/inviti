@@ -15,6 +15,11 @@ class MainViewModel {
 
     var meeting: Meeting = Meeting(id: "",  numberForSearch: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
 
+    var userViewModels = Box([UserViewModel]())
+
+    var user: User = User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, numberForSearch: "")
+
+
     var refreshView: (() -> Void)?
 
     var scrollToTop: (() -> Void)?
@@ -117,6 +122,24 @@ class MainViewModel {
         }
     }
 
+
+    func fetchParticipantsProfile(userIDs: [String]) {
+
+        NetworkManager.shared.fetchProfileUser(userIDs: userIDs) { [weak self] result in
+
+            switch result {
+
+            case .success(let users):
+
+                self?.setUsers(users)
+
+            case .failure(let error):
+
+                print("fetchData.failure: \(error)")
+            }
+        }
+    }
+
     func onRefresh() {
        
         self.refreshView?()
@@ -164,7 +187,7 @@ class MainViewModel {
 
             case .failure(let error):
 
-                print("createMeeting.failure: \(error)")
+                print("create meetings failure: \(error)")
             }
         }
 
@@ -177,6 +200,7 @@ class MainViewModel {
         let newMeetings = meetings.sorted(by: { $0.createdTime > $1.createdTime })
 
         for meeting in newMeetings {
+
             let viewModel = MeetingViewModel(model: meeting)
             viewModels.append(viewModel)
         }
@@ -187,35 +211,25 @@ class MainViewModel {
         meetingViewModels.value = convertMeetingsToViewModels(from: meetings)
     }
 
+
+    func convertUsersToViewModels(from users: [User]) -> [UserViewModel] {
+        var viewModels = [UserViewModel]()
+
+        for user in users {
+
+            let viewModel = UserViewModel(model: user)
+            viewModels.append(viewModel)
+        }
+        return viewModels
+    }
+
+    func setUsers(_ users: [User]) {
+        userViewModels.value = convertUsersToViewModels(from: users)
+    }
+
     func setHostMeetings(_ meetings: [Meeting]) {
         hostMeetingViewModels.value = convertMeetingsToViewModels(from: meetings)
     }
-//
-//    func onTapCreate() {
-//
-//        if hasUserInMeeting() {
-//            print("has user in meeting...")
-//            create()
-//
-//        } else {
-//            print("login...")
-//            SimpleManager.shared.login() { [weak self] result in
-//                // MARK: - put your id into login function
-//                switch result {
-//
-//                case .success(let user):
-//
-//                    print("login success")
-//                    self?.create(with: user) // MARK: check which function this call is
-//
-//                case .failure(let error):
-//
-//                    print("login.failure: \(error)")
-//                }
-//
-//            }
-//        }
-//    }
 
     var onMeetingCreated: (() -> Void)?
 
