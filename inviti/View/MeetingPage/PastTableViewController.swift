@@ -62,6 +62,8 @@ class PastTableViewController: UITableViewController {
 
         cell.index = indexPath.row
 
+        cell.mainViewModel = viewModel
+
         cell.setupParticipatedCell()
 
         cell.completionHandler = {index in
@@ -72,12 +74,18 @@ class PastTableViewController: UITableViewController {
             return cell
         }
 
-        let cellViewModel = self.viewModel.meetingViewModels.value[indexPath.row]        
+        let cellViewModel = self.viewModel.meetingViewModels.value[indexPath.row]
+        
+//        if let strings = cellViewModel.participants {
+//
+//            cell.setupEveryImages(strings: strings)
+//        }
 
         cellViewModel.onDead = { [weak self] () in
             print("onDead")
             self?.viewModel.fetchParticipatedData()
         }
+
         meetingViewCell.setup(viewModel: cellViewModel)
 
         return meetingViewCell

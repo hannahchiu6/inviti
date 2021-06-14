@@ -19,9 +19,9 @@ class MeetingTableViewCell: UITableViewCell {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var hostImage: UIImageView!
     @IBOutlet weak var participantStackView: UIStackView!
-    @IBOutlet weak var firstParticipantView: UIImageView!
-    @IBOutlet weak var secondParticipantView: UIImageView!
-    @IBOutlet weak var thirdParticipantView: UIImageView!
+    @IBOutlet weak var userView: UIImageView!
+    @IBOutlet weak var userTwoView: UIImageView!
+    @IBOutlet weak var userThreeView: UIImageView!
     @IBOutlet weak var participanCountLabel: UILabel!
     @IBOutlet weak var meetingTimeLabel: UILabel!
     @IBOutlet weak var meetingSubject: UILabel!
@@ -99,15 +99,92 @@ class MeetingTableViewCell: UITableViewCell {
             editIcon.tintColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
         }
 
-        guard let participants = viewModel?.participants else { return }
             meetingSubject.text = viewModel?.subject
             meetingTimeLabel.text = "投票建立時間：\(Date.pointFormatter.string(from: Date.init(millis: viewModel!.createdTime)))"
-        participanCountLabel.text = "和其他 \(String(describing: participants.count)) 位參與者"
 
             guard let url = viewModel?.image else { return }
                 let imageUrl = URL(string: String(url))
             hostImage.kf.setImage(with: imageUrl, placeholder: UIImage(systemName: "moon.circle.fill"))
 
+            guard let users = viewModel?.participants else { return }
+
+            switch users.count {
+            case 0:
+                participanCountLabel.text = "尚未有人參與投票"
+                userView.isHidden = true
+                userTwoView.isHidden = true
+                userThreeView.isHidden = true
+
+            case 1:
+                participanCountLabel.text = "目前有 1 位參與者"
+                userTwoView.isHidden = true
+                userThreeView.isHidden = true
+                userView.isHidden = false
+            case 2:
+                participanCountLabel.text = "目前有 2 位參與者"
+                userThreeView.isHidden = true
+                userView.isHidden = false
+                userTwoView.isHidden = false
+
+            case 3:
+                participanCountLabel.text = "目前有 3 位參與者"
+                userThreeView.isHidden = false
+                userView.isHidden = false
+                userTwoView.isHidden = false
+
+            default: // > 3
+
+                participanCountLabel.text = "和其他 \(String(describing: users.count - 3)) 位參與者"
+                userThreeView.isHidden = false
+                userView.isHidden = false
+                userTwoView.isHidden = false
+            }
+
+    }
+
+
+//    func setupEveryImages(strings: [String]) {
+//
+//        guard let userIDs = strings as? [String] else { return }
+//
+//        mainViewModel.fetchParticipantsProfile(userIDs: userIDs)
+//
+//        let userVMs = mainViewModel.userViewModels.value
+//
+//        let userImages: [String] = userVMs.map({ $0.image ?? "" })
+//
+//            if userImages.count < 4 && !userImages.isEmpty {
+//
+//                switch userImages.count {
+//
+//                case 3:
+//                    self.setupImage(imageURL: userImages[0], view: self.firstParticipantView)
+//                    self.setupImage(imageURL: userImages[1], view: self.secondParticipantView)
+//                    self.setupImage(imageURL: userImages[2], view: self.thirdParticipantView)
+//
+//                case 2:
+//                    self.setupImage(imageURL: userImages[0], view: self.firstParticipantView)
+//                    self.setupImage(imageURL: userImages[1], view: self.secondParticipantView)
+//                    self.thirdParticipantView.image = UIImage(systemName: "person.circle.fill")
+//
+//                case 1:
+//                    self.setupImage(imageURL: userImages[0], view: self.firstParticipantView)
+//                    self.secondParticipantView.image = UIImage(systemName: "person.circle.fill")
+//                    self.thirdParticipantView.image = UIImage(systemName: "person.circle.fill")
+//
+//                default:
+//                    self.firstParticipantView.image = UIImage(systemName: "person.circle.fill")
+//                    self.secondParticipantView.image = UIImage(systemName: "person.circle.fill")
+//                    self.thirdParticipantView.image = UIImage(systemName: "person.circle.fill")
+//                }
+//            }
+//    }
+
+    func setupImage(imageURL: String, view: UIImageView) {
+
+        let userImageUrl = URL(string: imageURL)
+
+        view.kf.setImage(with: userImageUrl, placeholder: UIImage(systemName: "moon.circle.fill"))
     }
 
     func setupParticipatedCell() {
@@ -125,9 +202,9 @@ class MeetingTableViewCell: UITableViewCell {
         bgView.layer.shadowColor = UIColor.lightGray.cgColor
         bgView.layer.masksToBounds = false
 
-        firstParticipantView.layer.cornerRadius = firstParticipantView.layer.frame.width / 2
-        secondParticipantView.layer.cornerRadius = secondParticipantView.layer.frame.width / 2
-        thirdParticipantView.layer.cornerRadius = thirdParticipantView.layer.frame.width / 2
+        userView.layer.cornerRadius = userView.layer.frame.width / 2
+        userTwoView.layer.cornerRadius = userTwoView.layer.frame.width / 2
+        userThreeView.layer.cornerRadius = userThreeView.layer.frame.width / 2
         hostImage.layer.cornerRadius = hostImage.layer.frame.width / 2
 
     }
@@ -138,5 +215,23 @@ class MeetingTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: margins)
         contentView.layer.cornerRadius = 8
 
+    }
+}
+
+extension UIStackView {
+    func insertArrangedSubview(_ view: UIView, belowArrangedSubview subview: UIView) {
+        arrangedSubviews.enumerated().forEach {
+            if $0.1 == subview {
+                insertArrangedSubview(view, at: $0.0 + 1)
+            }
+        }
+    }
+
+    func insertArrangedSubview(_ view: UIView, aboveArrangedSubview subview: UIView) {
+        arrangedSubviews.enumerated().forEach {
+            if $0.1 == subview {
+                insertArrangedSubview(view, at: $0.0)
+            }
+        }
     }
 }

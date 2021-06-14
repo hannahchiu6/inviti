@@ -213,7 +213,7 @@ class NetworkManager {
                                             meeting.options = options
                                             meetings.append(meeting)
                                             completion(.success(meetings))
-
+                            
                                         }
                                     }
                             }
@@ -241,6 +241,46 @@ class NetworkManager {
             } else {
 
                 completion(.success("Success"))
+            }
+        }
+    }
+
+
+    func fetchProfileUser(userIDs: [String], completion: @escaping
+                    (Result<[User], Error>) -> Void) {
+
+        for user in userIDs {
+
+            db.collection("users")
+            .whereField("id", isEqualTo: user)
+            .order(by: "numberForSearch")
+            .getDocuments { querySnapshot, error in
+
+            if let error = error {
+
+                completion(.failure(error))
+
+            } else {
+
+                var users = [User]()
+
+                for document in querySnapshot!.documents {
+
+                    do {
+                        if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
+                            users.append(user)
+                        }
+
+                    } catch {
+
+                        completion(.failure(error))
+                    }
+                }
+
+                    completion(.success(users))
+
+                }
+
             }
         }
     }
