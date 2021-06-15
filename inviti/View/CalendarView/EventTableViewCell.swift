@@ -6,14 +6,18 @@
 //
 
 import UIKit
+import Foundation
 
 class EventTableViewCell: UITableViewCell {
 
+    var viewModel: CalendarViewModel?
+
     @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var startTime: UILabel!
-    @IBOutlet weak var eventNotes: UILabel!
+    @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventSubject: UILabel!
-    @IBOutlet weak var leftBar: UIView!
+    @IBOutlet weak var mainView: UIView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -22,5 +26,15 @@ class EventTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
+    func setup(vm: EventViewModel) {
+
+        startTime.text = vm.event.startTimeToTime()
+
+        eventSubject.text = vm.event.subject
+
+        endTime.text =  vm.event.endTimeToTime()
+
+        eventLocation.text = vm.event.location
+    }
 }

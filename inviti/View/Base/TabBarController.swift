@@ -86,13 +86,17 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     let centerButton = UIButton()
 
-    var trolleyTabBarItem: UITabBarItem!
+    var newsTabBarItem: UITabBarItem!
+
+    let viewModel = CreateMeetingViewModel()
+
+    var userUID = UserDefaults.standard.string(forKey: UserDefaults.Keys.uid.rawValue) ?? ""
 
     var willBorder: Bool = false {
          didSet {
              if (willBorder) {
                  UIView.animate(withDuration: 1) { [weak self] () in
-                    self?.centerButton.layer.borderColor = UIColor.black.cgColor
+                    self?.centerButton.layer.borderColor = UIColor.brown.cgColor
                     self?.centerButton.layer.borderWidth = 3
                  }
              } else {
@@ -100,36 +104,56 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
                  centerButton.layer.borderWidth = 0
                  }
              }
-     }
+    }
+
+    var newValue: [NotificationViewModel]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         viewControllers = tabs.map({ $0.controller() })
+
         settingButton()
 
+        addcoustmeTabBarView()
+
+        viewModel.meetingViewModels.bind { [weak self] meetings in
+            self?.viewModel.onRefresh()
+        }
+       
+
+        newsTabBarItem = viewControllers?[1].tabBarItem
+
+        newsTabBarItem.badgeColor = UIColor(red: 0.5804, green: 0.3922, blue: 0.2314, alpha: 1.0)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(newsUpdated), name: NSNotification.Name(rawValue: "newsUpdated"), object: nil)
+    }
+
+    @objc func newsUpdated(_ notification: NSNotification) {
+
+        guard let newValue = self.newValue else { return }
+
+        if newValue.isEmpty {
+
+            self.newsTabBarItem.badgeValue = nil
+
+        } else {
+
+            self.newsTabBarItem.badgeValue = String(newValue.count)
+        }
 
     }
 
-//    func layoutSubviews() {
-//
-//        let topBorder = UIView()
-//
-//        let borderHeight: CGFloat = 2
-
-//        topBorder.lkBorderWidth = borderHeight
-//        topBorder.lkBorderColor = .green
-//        topBorder.frame = CGRect(x: 0, y: -1, width: view.frame.width, height: borderHeight)
-//
-//        self.tabBar.addSubview(topBorder)
-//    }
+    private func relationshipSetup() {
+        view.layoutIfNeeded()
+        
+    }
 
     public func resetCenterBtn() {
 
         if self.selectedIndex == 2 {
          willBorder = !willBorder
         }
-
     }
 
     func settingButton() {
@@ -137,29 +161,52 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         centerButton.setImage(image, for: .normal)
         centerButton.frame.size = CGSize(width: 60, height: 60)
         centerButton.center = CGPoint(x: tabBar.bounds.midX, y: tabBar.bounds.midY - centerButton.frame.height / 3)
-        centerButton.backgroundColor = UIColor(red: 1, green: 0.3647, blue: 0, alpha: 1.0)
+        centerButton.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
         centerButton.layer.cornerRadius = centerButton.frame.width / 2
 
         centerButton.clipsToBounds = true
         centerButton.adjustsImageWhenHighlighted = false
+
         centerButton.addTarget(self, action: #selector(showH), for: .touchDown)
         centerButton.addTarget(self, action: #selector(showViewController), for: .touchUpInside)
         tabBar.addSubview(centerButton)
     }
 
+    var onMeetingIDGet: ((String) -> Void)?
+
     @objc func showViewController() {
-        centerButton.backgroundColor = UIColor(red: 1, green: 0.3647, blue: 0, alpha: 1.0) /* #ff5d00 */
+
+        centerButton.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00) /* #ff5d00 */
         self.selectedIndex = 2
         centerButton.layer.borderColor = UIColor.black.cgColor
         centerButton.layer.borderWidth = 3
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Create", bundle: nil)
-        storyBoard.instantiateViewController(withIdentifier: "CreateFirstPageVC") as! CreateFirstPageVC
-        resetCenterBtn()
+
     }
 
     @objc func showH() {
-        centerButton.backgroundColor = UIColor.black
+        centerButton.backgroundColor = UIColor.brown
 
+        viewModel.create()
+
+        guard let meetingID = viewModel.meeting.id as? String else { return }
+
+        onMeetingIDGet?(meetingID)
+
+        viewModel.meeting.ownerAppleID = userUID
+
+        viewControllers?.forEach { vc in
+
+            if let navVC = vc as? UINavigationController,
+               let vc = navVC.viewControllers.first as? CreateFirstViewController {
+                vc.meetingID = viewModel.meeting.id
+
+                if let viewModel = viewModel as? CreateMeetingViewModel {
+                    vc.createMeetingViewModel = viewModel }
+
+                vc.isDataEmpty = true
+            }
+        }
+       
     }
 
     // MARK: - UITabBarControllerDelegate
@@ -168,9 +215,9 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         _ tabBarController: UITabBarController,
         shouldSelect viewController: UIViewController
     ) -> Bool {
-//        resetCenterBtn()
+
         guard let navVC = viewController as? UINavigationController,
-              navVC.viewControllers.first is ViewController
+              navVC.viewControllers.first is MeetingViewController
         else { return true }
 
 
@@ -182,4 +229,15 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
         return true
     }
+
+    private func addcoustmeTabBarView() {
+
+        tabBar.layer.shadowColor = UIColor.black.cgColor
+        tabBar.layer.shadowOffset = CGSize(width: 0.0, height: 6.0)
+        tabBar.layer.shadowRadius = 10
+        tabBar.layer.shadowOpacity = 0.2
+        tabBar.layer.masksToBounds = false
+
+    }
+
 }

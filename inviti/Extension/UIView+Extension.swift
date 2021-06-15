@@ -9,7 +9,7 @@ import UIKit
 
 @IBDesignable
 extension UIView {
-    //Border Color
+    // Border Color
     @IBInspectable var lkBorderColor: UIColor? {
         get {
             guard let borderColor = layer.borderColor else {
@@ -23,7 +23,7 @@ extension UIView {
         }
     }
 
-    //Border width
+    // Border width
     @IBInspectable var lkBorderWidth: CGFloat {
         get {
             return layer.borderWidth
@@ -33,7 +33,7 @@ extension UIView {
         }
     }
 
-    //Corner radius
+    // Corner radius
     @IBInspectable var lkCornerRadius: CGFloat {
         get {
             return layer.cornerRadius
@@ -77,8 +77,6 @@ extension UIView {
         objectView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset.bottom).isActive = true
     }
 
-
-
     func shadowView(_ objectView: UIView) {
         objectView.layer.cornerRadius = 5
         objectView.layer.shadowColor = UIColor.black.cgColor
@@ -89,4 +87,27 @@ extension UIView {
 
     }
 
+}
+
+
+public extension UIView {
+    func showAnimation(_ completionBlock: @escaping () -> Void) {
+      isUserInteractionEnabled = false
+        UIView.animate(withDuration: 0.1,
+                       delay: 0,
+                       options: .curveLinear,
+                       animations: { [weak self] in
+                            self?.transform = CGAffineTransform.init(scaleX: 0.95, y: 0.95)
+        }) { done in
+            UIView.animate(withDuration: 0.1,
+                           delay: 0,
+                           options: .curveLinear,
+                           animations: { [weak self] in
+                                self?.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+            }) { [weak self] (_) in
+                self?.isUserInteractionEnabled = true
+                completionBlock()
+            }
+        }
+    }
 }
