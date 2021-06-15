@@ -4,6 +4,8 @@
 
 FILE
 Pods/
+GoogleService-Info.plist
+inviti/GoogleService-Info.plist
 
 ### macOS ###
 # General
