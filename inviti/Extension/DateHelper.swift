@@ -70,6 +70,7 @@ extension Date {
         return formatter
 
     }
+
     static var minFormatter: DateFormatter {
 
         let formatter = DateFormatter()
@@ -79,6 +80,7 @@ extension Date {
         return formatter
 
     }
+    
     static var dateFormatter: DateFormatter {
 
         let formatter = DateFormatter()
@@ -121,7 +123,7 @@ extension Date {
 
 extension Date {
     var intVal: Int? {
-        if let dateTest = Date.coordinate{
+        if let dateTest = Date.coordinate {
              let inteval = Date().timeIntervalSince(dateTest)
              return Int(inteval)
         }
@@ -147,18 +149,9 @@ extension Int {
     var dateVal: Date? {
         // convert Int to Double
         let interval = Double(self)
-        if let dateTest = Date.coordinate{
+        if let dateTest = Date.coordinate {
             return  Date(timeInterval: interval, since: dateTest)
         }
         return nil
     }
-
-//    let d = Date()
-//
-//        print(d)
-//        // date to integer, you need to unwrap the optional
-//        print(d.intVal)
-//
-//        // integer to date
-//        print(d.intVal?.dateVal)
 }

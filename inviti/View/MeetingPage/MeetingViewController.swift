@@ -34,6 +34,7 @@ class MeetingViewController: BaseViewController {
         willPopup = !willPopup
 
     }
+    
     @IBOutlet weak var IntroView: UIView!
     @IBOutlet weak var futureView: UIView!
     @IBOutlet weak var pastView: UIView!
@@ -58,8 +59,6 @@ class MeetingViewController: BaseViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
 
         self.tabBarController?.tabBar.isHidden = false
-
-//        addcoustmeView()
         
         notiViewModel.fetchData()
         
@@ -81,23 +80,13 @@ class MeetingViewController: BaseViewController {
         view.endEditing(false)
     }
 
-
-//    private func addcoustmeView() {
-//
-//        indicatorView.layer.shadowColor = UIColor.black.cgColor
-//        indicatorView.layer.shadowOffset = CGSize(width: 0, height: 6)
-//        indicatorView.layer.shadowRadius = 10
-//        indicatorView.layer.shadowOpacity = 0.2
-//        indicatorView.layer.masksToBounds = false
-//
-//    }
     func refreshTabBar() {
 
         if let items = self.tabBarController?.tabBar.items as NSArray? {
 
             let tabItem = items.object(at: 1) as! UITabBarItem
 
-            guard let number = notiViewModel.notificationViewModels.value.count as? Int else { return }
+            let number = notiViewModel.notificationViewModels.value.count
 
             if number > 0 {
                 tabItem.badgeValue = "\(number)"
@@ -107,14 +96,13 @@ class MeetingViewController: BaseViewController {
         }
     }
 
-
     let viewModel = MainViewModel()
 
     var notiViewModel = UpdateNotificationVM()
 
     private var willPopup = false {
         didSet {
-            if (willPopup) {
+            if willPopup {
                 UIView.animate(withDuration: 1) { [weak self] () in
 
                     self?.addMeetingPopView.isHidden = false

@@ -36,8 +36,6 @@ class InvitesViewController: UIViewController {
 
         setupRefresher()
 
-        
-
     }
 
     func refreshTabBar() {
@@ -104,8 +102,6 @@ extension InvitesViewController: UITableViewDataSource, UITableViewDelegate {
 
                 cell.setupEventCell(model: model)
 
-//                cell.rejectBtnView.addTarget(self, action: #selector(removeFromCalendar), for: UIControl.Event.touchUpInside)
-
             case TypeName.invite.rawValue:
 
                 cell.setupInviteCell(model: model)
@@ -132,8 +128,6 @@ extension InvitesViewController: UITableViewDataSource, UITableViewDelegate {
 
                 self?.viewModel.fetchData()
             }
-
-//            inviteViewCell.setup(viewModel: cellViewModel)
 
             return inviteViewCell
         }

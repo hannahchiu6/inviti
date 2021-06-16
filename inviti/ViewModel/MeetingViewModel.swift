@@ -86,13 +86,6 @@ class MeetingViewModel {
         }
     }
 
-//    var finalOption: Option? {
-//        get {
-//            return meeting.finalOption
-//        }
-//    }
-
-
     var finalOption: FinalOption? {
         get {
             return meeting.finalOption
@@ -121,6 +114,4 @@ class MeetingViewModel {
             }
         }
     }
-
-
 }

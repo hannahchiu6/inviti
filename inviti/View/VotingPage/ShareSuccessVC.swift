@@ -50,15 +50,12 @@ class ShareSuccessVC: BaseViewController {
     }
 
     @IBAction func shareLinkBtn(_ sender: Any) {
-
+        let searchID = viewModel.meeting.numberForSearch
+        
         if let name = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue),
-           let subject = meetingSubject,
-           let searchID = viewModel.meeting.numberForSearch as? String {
+           let subject = meetingSubject {
 
             let message = "您的好友 \(name) 邀請您參加 \(subject)，來 inviti 票選時間吧！打開 APP 輸入活動 ID 即可參與投票 👉🏻 \(searchID)"
-
-               //Set the link to share.
-//               if let link = NSURL(string: "http://yoururl.com") {
 
         let objectsToShare = [message]
 

@@ -43,10 +43,10 @@ class OptionalSettingsCell: UITableViewCell{
     @IBAction func singleToggle(_ sender: UISwitch) {
         if sender.isOn {
 
-            viewModel.meetingSingleChanged(true)
+            viewModel.onMeetingSingleChanged(true)
         } else {
 
-            viewModel.meetingSingleChanged(false)
+            viewModel.onMeetingSingleChanged(false)
         }
     }
 
@@ -82,7 +82,7 @@ class OptionalSettingsCell: UITableViewCell{
 
                 self.dealineFullView.isHidden = false
 
-                self.viewModel.meetingDeadlineChanged(sender.isOn)
+                self.viewModel.onMeetingDeadlineChanged(sender.isOn)
             }
 
         } else {

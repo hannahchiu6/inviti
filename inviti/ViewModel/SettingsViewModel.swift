@@ -13,8 +13,6 @@ class SettingsViewModel {
 
     var userViewModels = Box([UserViewModel]())
 
-//    var userViewModel = Box(UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [], numberForSearch: "")))
-
     var user: User = User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [], numberForSearch: "")
 
     var refreshView: (() -> Void)?
@@ -110,7 +108,7 @@ class SettingsViewModel {
 
             switch result {
 
-            case .success( _):
+            case .success:
 
                 print("Publish Image Succeeded")
 

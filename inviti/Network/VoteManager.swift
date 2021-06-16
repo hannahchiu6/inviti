@@ -9,47 +9,47 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-
 class VoteManager {
 
     static let shared = VoteManager()
 
     lazy var db = Firestore.firestore()
 
-    var userUID = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? ""
+    var userUID = UserDefaults.standard.string(forKey: UserDefaults.Keys.uid.rawValue) ?? ""
     
     func fetchSelectedOptions(optionID: String, meetingID: String, completion: @escaping (Result<[SelectedOption], Error>) -> Void) {
-                db.collection("meetings")
-                    .document(meetingID)
-                    .collection("options")
-                    .document(optionID)
-                    .collection("selectedOptions")
-                    .getDocuments { querySnapshot, error in
 
-                if let error = error {
+        db.collection("meetings")
+            .document(meetingID)
+            .collection("options")
+            .document(optionID)
+            .collection("selectedOptions")
+            .getDocuments { querySnapshot, error in
 
-                    completion(.failure(error))
+            if let error = error {
 
-                } else {
+                completion(.failure(error))
 
-                    var selectedOptions = [SelectedOption]()
-                    for document in querySnapshot!.documents {
+            } else {
 
-                        do {
-                            if let selectedOption = try document.data(as: SelectedOption.self, decoder: Firestore.Decoder()) {
-                                selectedOptions.append(selectedOption)
-                            }
+                var selectedOptions = [SelectedOption]()
+                for document in querySnapshot!.documents {
 
-                        } catch {
-
-                            completion(.failure(error))
-
+                    do {
+                        if let selectedOption = try document.data(as: SelectedOption.self, decoder: Firestore.Decoder()) {
+                            selectedOptions.append(selectedOption)
                         }
-                    }
 
-                    completion(.success(selectedOptions))
-                }
+                    } catch {
+
+                        completion(.failure(error))
+
                     }
+                }
+
+                completion(.success(selectedOptions))
+            }
+            }
     }
 
     func checkIfVoted(meetingID: String, completion: @escaping (Result<[Option], Error>) -> Void) {
@@ -85,7 +85,7 @@ class VoteManager {
                 completion(.success(options))
             }
 
-        }
+                }
     }
 
     // options
@@ -120,7 +120,7 @@ class VoteManager {
                 completion(.success(options))
             }
 
-        }
+                }
     }
 
     func createSelectedOption(selectedOption: inout SelectedOption, meeting: Meeting, option: Option, completion: @escaping (Result<String, Error>) -> Void) {
@@ -133,7 +133,8 @@ class VoteManager {
             .document()
 
         selectedOption.id = document.documentID
-        selectedOption.selectedUser = userUID as? String
+
+        selectedOption.selectedUser = userUID
 
         document.setData(selectedOption.toDict) { error in
 
@@ -157,7 +158,7 @@ class VoteManager {
             .collection("selectedOptions")
             .document()
             selectedOption.id = document.documentID
-            selectedOption.selectedUser = userUID as? String
+            selectedOption.selectedUser = userUID
 
         document.setData(selectedOption.toDict) { error in
 
@@ -179,7 +180,7 @@ class VoteManager {
             .collection("options")
             .document(option.id)
             .collection("selectedOptions")
-            .document(selectedOption.id).delete() { error in
+            .document(selectedOption.id).delete { error in
 
             if let error = error {
 
@@ -196,10 +197,11 @@ class VoteManager {
 
         db.collection("meetings")
             .document(meetingID)
-            .collection("options").document(optionID)
+            .collection("options")
+            .document(optionID)
             .collection("selectedOptions")
             .document(selectedOptionID)
-            .delete() { error in
+            .delete { error in
 
             if let error = error {
 
@@ -209,73 +211,6 @@ class VoteManager {
                 print("\(selectedOptionID) has been deleted!")
                 completion(.success(selectedOptionID))
             }
-        }
+            }
     }
-
-//    // Fetch Options & SelectedOptions
-//    func fetchVotedData(meetingID: String, completion: @escaping (Result<[Option], Error>) -> Void) {
-//
-//            db.collection("meetings")
-//                .document(meetingID)
-//                .collection("options")
-//                .getDocuments { querySnapshot, error in
-//
-//                    if let error = error {
-//
-//                        completion(.failure(error))
-//
-//                    } else {
-//
-//                        var options = [Option]()
-//
-//                        for document in querySnapshot!.documents {
-//
-//                            do {
-//                                if var option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
-//
-//                                self.db.collection("meetings")
-//                                    .document(meetingID)
-//                                    .collection("options")
-//                                    .document("\(option.id)")
-//                                    .collection("selectedOptions")
-//                                    .getDocuments { querySnapshot, error in
-//
-//                                        if let error = error {
-//
-//                                            completion(.failure(error))
-//
-//                                        } else {
-//
-//                                            var selectedOptions = [SelectedOption]()
-//
-//                                            for document in querySnapshot!.documents {
-//
-//                                                do {
-//                                                     if let selectedOption = try document.data(as: SelectedOption.self, decoder: Firestore.Decoder()) {
-//
-//                                                        selectedOptions.append(selectedOption)
-//
-//                                                        }
-//                                                } catch {
-//
-//                                                        completion(.failure(error))
-//                                                }
-//
-//                                        }
-//                                            option.selectedOptions = selectedOptions
-//                                            options.append(option)
-//                                            completion(.success(options))
-//                                    }
-//                                }
-//                            }
-//
-//                            } catch {
-//
-//                                completion(.failure(error))
-//                            }
-//                        }
-//
-//                    }
-//                }
-//    }
 }

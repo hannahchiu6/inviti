@@ -13,7 +13,7 @@ class MainViewModel {
 
     var hostMeetingViewModels = Box([MeetingViewModel]())
 
-    var meeting: Meeting = Meeting(id: "",  numberForSearch: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
+    var meeting: Meeting = Meeting(id: "", numberForSearch: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
 
     var userViewModels = Box([UserViewModel]())
 
@@ -122,24 +122,6 @@ class MainViewModel {
         }
     }
 
-
-//    func fetchParticipantsProfile(userIDs: [String]) {
-//
-//        NetworkManager.shared.fetchProfileUser(userIDs: userIDs) { [weak self] result in
-//
-//            switch result {
-//
-//            case .success(let users):
-//
-//                self?.setUsers(users)
-//
-//            case .failure(let error):
-//
-//                print("fetchData.failure: \(error)")
-//            }
-//        }
-//    }
-
     func onRefresh() {
        
         self.refreshView?()
@@ -161,13 +143,13 @@ class MainViewModel {
 
             switch result {
 
-            case .success( _):
+            case .success:
 
                 self?.onDead?()
 
             case .failure(let error):
 
-                print("deleteMeeting.failure: \(error)")
+                print("delete meeting failure: \(error)")
             }
         }
     }
@@ -192,7 +174,6 @@ class MainViewModel {
         }
 
     }
-
 
     func convertMeetingsToViewModels(from meetings: [Meeting]) -> [MeetingViewModel] {
         var viewModels = [MeetingViewModel]()

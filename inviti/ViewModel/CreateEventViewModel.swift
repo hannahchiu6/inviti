@@ -29,7 +29,7 @@ class CreateEventViewModel {
     func onTimeChanged(_ startTime: Int64, endTime: Int64, option: OptionTime) {
         self.event.startTime = startTime
         self.event.endTime = endTime
-        self.event.date = option.dateToInt()
+        self.event.date = option.makeDateToInt()
     }
 
     var refreshView: (() -> Void)?

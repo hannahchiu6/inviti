@@ -50,7 +50,6 @@ class CloseSuccessVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
     }
 
 }

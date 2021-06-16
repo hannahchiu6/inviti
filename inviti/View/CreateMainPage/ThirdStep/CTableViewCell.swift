@@ -119,7 +119,7 @@ class CTableViewCell: UITableViewCell {
 
     }
 
-    func meetingTimeSelected() {
+    func selectedMeetingTime() {
         bookingMeetingButton.isHidden = false
         self.titleLabel.text = "Book the Time!"
         self.titleLabel.textColor = UIColor.white
@@ -127,7 +127,7 @@ class CTableViewCell: UITableViewCell {
 
     }
 
-    func meetingTimeDeselected() {
+    func deselectedMeetingTime() {
         bookingMeetingButton.isHidden = true
         self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
     }

@@ -79,9 +79,9 @@ class OptionsCell: UITableViewCell {
         deleteXview.isEnabled = true
         optionsStackView.isHidden = false
 
-        yearLabel.text = model.option.optionTime?.dateString()
-        startTimeLabel.text = model.option.startTimeToTime()
-        endTimeLabel.text = model.option.endTimeToTime()
+        yearLabel.text = model.option.optionTime?.makeDateToString()
+        startTimeLabel.text = model.option.makeStartTimeToString()
+        endTimeLabel.text = model.option.makeEndTimeToString()
 
         if index == 0 {
             bottomAlarmIcon.isHidden = false

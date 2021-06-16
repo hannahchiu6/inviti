@@ -85,16 +85,12 @@ class VotingViewController: BaseViewController {
 
         votingViewModel.fetchUserForHost(userID: meetingInfo.ownerAppleID)
 
-//        checkIfVoted()
-
         disableBtnIfVoted()
 
         votingViewModel.optionViewModels.bind { [weak self] options in
 
             self?.tableview.reloadData()
-            self?.checkData()
 
-//            self?.votingViewModel.checkIfVoted(meetingID: self?.meetingInfo.id ?? "")
         }
 
         votingViewModel.userBox.bind { [weak self] user in
@@ -113,8 +109,6 @@ class VotingViewController: BaseViewController {
         }
 
         setUpView()
-
-
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -127,12 +121,6 @@ class VotingViewController: BaseViewController {
 
             vc.isVoted = isVoted
 
-//            disableBtnIfVoted()
-
-//            votingViewModel.onVoted = { [weak self] () in
-//
-//                vc.alertMessage.text = "您已經投票過囉！"
-//            }
         }
     }
 
@@ -146,12 +134,6 @@ class VotingViewController: BaseViewController {
 
 
         }
-    }
-
-    func checkData() {
-
-        guard let optionIDs = votingViewModel.getOptionsIDs(optionVMs: votingViewModel.optionViewModels.value) as? [String] else { return }
-
     }
 
     func disableBtnIfVoted() {
@@ -200,7 +182,6 @@ class VotingViewController: BaseViewController {
         locationLabel.text = meetingInfo.location
         meetingNotes.text = meetingInfo.notes
         eventImageBg.alpha = 0.3
-//        hostNameLabel.text = votingViewModel.user.name
         popupView.shadowView(popupView)
     }
 

@@ -95,7 +95,7 @@ class PastTableViewController: UITableViewController {
 
         let model = self.viewModel.meetingViewModels.value[indexPath.row].meeting
 
-        guard  let options = model.options as? [Option] else { return }
+        guard  let options = model.options else { return }
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
 

@@ -71,7 +71,7 @@ class InvitesTableViewCell: UITableViewCell {
         if let whoSend = model.notification.ownerName,
            let subject = model.notification.subject {
 
-           let time = model.notification.timeToDate()
+           let time = model.notification.makeTimeToDateString()
             
             invitesLabel.text = "\(whoSend) 已於 \(time) 收到您的「\(subject)」投票邀請，並已加入投票。"
         }
@@ -99,8 +99,6 @@ class InvitesTableViewCell: UITableViewCell {
         invitesLabel.text = "\(whoSend) 邀請您參加「\(subject)」活動，您可以直接前往投票，選出適合的時間。"
         }
 
-//        voteBtnView.setTitle("去投票", for: .normal)
-
         ownerImage.isHidden = false
 
         rejectBtnView.isHidden = true
@@ -119,16 +117,13 @@ class InvitesTableViewCell: UITableViewCell {
         if let whoSend = model.ownerName,
            let subject = model.subject {
 
-            let time = model.notification.timeToDate()
+            let time = model.notification.makeTimeToDateString()
 
             invitesLabel.text = "「\(subject)」投票已結束，\(whoSend) 已將最終票選時間加入您的行事曆囉！"
         }
 
         ownerImage.isHidden = false
 
-//        voteBtnView.setTitle("去查看", for: .normal)
-
-//        rejectBtnView.setTitle("先移除", for: .normal)
         rejectBtnView.isHidden = true
 
         voteBtnView.isHidden = true
@@ -140,8 +135,7 @@ class InvitesTableViewCell: UITableViewCell {
 
             ownerImage.kf.setImage(with: imageUrl)
 
-//        UIImage(systemName: "person.circle")
     }
 
-    
+
 }

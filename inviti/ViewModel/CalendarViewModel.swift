@@ -125,7 +125,7 @@ class CalendarViewModel {
 
             switch result {
 
-            case .success( _):
+            case .success:
 
                 self?.onDead?()
 

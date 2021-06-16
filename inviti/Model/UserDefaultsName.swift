@@ -10,6 +10,7 @@ import Foundation
 extension UserDefaults {
 
     enum Keys: String {
+        
         case uid
 
         case displayName

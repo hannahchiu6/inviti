@@ -4,7 +4,6 @@
 //
 //  Created by Hannah.C on 20.05.21.
 //
-//  swiftlint:disable force_unwrapping inclusive_language closure_end_indentation
 
 import Foundation
 import Firebase
@@ -25,8 +24,6 @@ class UpdateNotificationVM {
 
     var voteViewModel = VoteViewModel(model: SelectedOption(isSelected: false, selectedUser: ""))
 
-    var optionViewModel = OptionViewModel(model: Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: []))
-
     var meetingViewModel = MeetingViewModel(model: Meeting(id: "", numberForSearch: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
 
     var meeting: Meeting?
@@ -38,8 +35,6 @@ class UpdateNotificationVM {
     var onFetched: (() -> Void)?
 
     var onUserFetched: (() -> Void)?
-
-    var scrollToTop: (() -> Void)?
 
     var onMeetingFetched: (() -> Void)?
 
@@ -138,9 +133,14 @@ class UpdateNotificationVM {
 
             case .success(let user):
 
-                self?.onImageChanged(user.image ?? "")
+                if let image = user.image,
+                   let name = user.name {
 
-                self?.onNameChanged(user.name)
+                    self?.onImageChanged(image)
+
+                    self?.onNameChanged(name)
+
+                }
 
             case .failure(let error):
 
@@ -184,7 +184,6 @@ class UpdateNotificationVM {
             }
         }
     }
-
 
     func convertUserToViewModel(from user: User) -> UserViewModel {
 
@@ -343,39 +342,16 @@ class UpdateNotificationVM {
     }
 
     func onRefresh() {
-        // maybe do something
+
         self.refreshView?()
     }
 
-    func onScrollToTop() {
-
-        self.scrollToTop?()
-    }
-
-    func createWithEmptyData(with optionID: String, meetingID: String, selectedOption: inout SelectedOption) {
-
-        VoteManager.shared.createEmptySelectedOption(selectedOption: &selectedOption, meetingID: meetingID, optionID: optionID) { result in
+    func onEmptyTap(_ optionID: String, meetingID: String, selectedOptionID: String) {
+        VoteManager.shared.deleteEmptySelectedOption(selectedOptionID: selectedOptionID, optionID: optionID, meetingID: meetingID) { [weak self] result in
 
             switch result {
 
             case .success:
-
-                print("onTapCreate option, success")
-
-
-            case .failure(let error):
-
-                print("createOption.failure: \(error)")
-            }
-        }
-    }
-
-    func onEmptyTap(_ optionID: String, meetingID: String, selectedOptionID: String) {
-        VoteManager.shared.deleteEmptySelectedOption(selectedOptionID: selectedOptionID, optionID: optionID, meetingID: meetingID){ [weak self] result in
-
-            switch result {
-
-            case .success( _):
 
                 self?.onDead?()
 
@@ -385,7 +361,6 @@ class UpdateNotificationVM {
             }
         }
     }
-
 
     func onTimeChanged(_ time: Int64) -> String {
         let newTime = Date.timeFormatter.string(from: Date.init(millis: time))

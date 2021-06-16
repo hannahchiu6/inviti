@@ -51,7 +51,7 @@ class ResutlsCollectionViewCell: UICollectionViewCell {
         }
 
 
-        topWhoVoteYesLabel.text = "\(model?.selectedOptions?.count) 人可以出席"
+        topWhoVoteYesLabel.text = "\(String(describing: model?.selectedOptions?.count)) 人可以出席"
         
 //        viewModel.fetchData(optionID: optionID, meetingID: meetingID)
     }

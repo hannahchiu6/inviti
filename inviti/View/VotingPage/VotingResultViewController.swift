@@ -68,7 +68,7 @@ class VotingResultViewController: UIViewController {
 
             let controller = UIAlertController(title: "您的活動尚未有人投票", message: "確定要結束投票並自訂結果嗎？", preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: "我確定", style: .default) {(_ ) in
+            let okAction = UIAlertAction(title: "我確定", style: .default) { _ in
 
                 self.popupView.isHidden = false
 
@@ -82,7 +82,7 @@ class VotingResultViewController: UIViewController {
 
             controller.addAction(okAction)
 
-            let closeAction = UIAlertAction(title: "再等等", style: .cancel) { (_) in
+            let closeAction = UIAlertAction(title: "再等等", style: .cancel) { _ in
 
                 controller.dismiss(animated: true, completion: nil)
             }
@@ -238,10 +238,6 @@ extension VotingResultViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let index = indexPath.row
-
-//        let filterOptions = votingViewModel.optionViewModels.value[index]
-
-//        let voteForYesArray = filterOptions?.filter({ $0 != "" })
 
         if meetingInfo.isClosed {
             let cell = tableView.dequeueReusableCell(withIdentifier: "resultClosedCell", for: indexPath) as! ResultClosedCell

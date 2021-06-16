@@ -133,7 +133,7 @@ extension TabCalendarViewController: UITableViewDelegate, UITableViewDataSource 
 
         let deleteAction: UITableViewRowAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Delete", handler: {(action, indexPath) -> Void in
 
-            guard let eventIDs = self.eventIDs as? [String] else { return }
+            guard let eventIDs = self.eventIDs else { return }
 
             self.viewModel.onEmptyTap(eventIDs[indexPath.row])
 

@@ -30,6 +30,7 @@ extension UILabel {
         }
 
         get {
+
             guard let spacing = attributedText?.value(
                 forKey: NSAttributedString.Key.kern.rawValue
             ) as? CGFloat else { return 0 }
@@ -50,7 +51,7 @@ extension UILabel {
             attributedString.addAttribute(
                 NSAttributedString.Key.paragraphStyle,
                 value: nsmutable,
-                range: NSMakeRange(0, attributedString.length)
+                range: NSRange(location: 0, length: attributedString.length)
             )
 
             attributedText = attributedString

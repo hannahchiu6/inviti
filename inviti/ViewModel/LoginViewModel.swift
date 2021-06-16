@@ -20,29 +20,18 @@ class LoginViewModel {
         UserManager.shared.fetchUser(user: user) { result in
 
             switch result {
+
             case .success(let user):
 
                 guard user != nil else {
 
                     self.create(with: &self.user)
-                    
+
                     return
                 }
 
                 self.user = user
 
-
-//                switch result {
-//                case .success(let user):
-//                    if user.appleID == uid {
-//
-//                        self.user = user
-//
-//                        return } else {
-//
-//                    self.create(with: &self.user, uid: uid)
-//
-//                    }
             case .failure(let error):
                 print(error)
             }
@@ -77,14 +66,12 @@ class LoginViewModel {
     func setupUserDefault(user: User) {
 
         if let image = user.image,
-           let name = user.name as? String,
-           let email = user.email as? String {
+           let name = user.name,
+           let email = user.email {
 
             UserDefaults.standard.setValue(image, forKey: UserDefaults.Keys.image.rawValue)
 
             UserDefaults.standard.setValue(name, forKey: UserDefaults.Keys.displayName.rawValue)
-
-    //        UserDefaults.standard.setValue(user.id, forKey: UserDefaults.Keys.uid.rawValue)
 
             UserDefaults.standard.setValue(email, forKey: UserDefaults.Keys.email.rawValue)
 

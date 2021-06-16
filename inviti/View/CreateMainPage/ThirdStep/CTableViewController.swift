@@ -88,9 +88,7 @@ class CTableViewController: UIViewController {
             self?.calendarTableView.reloadData()
         }
 
-        if dataIsEmpty {
-
-        } else {
+        if !dataIsEmpty {
 
             selectedOptionViewModel.fetchData(meetingID: meetingID)
 
@@ -177,8 +175,7 @@ extension CTableViewController: JKCalendarDataSource {
 
         var marks: [JKCalendarMark] = []
 
-        let bookingDate = OptionTime(year: selectDay.year, month: selectDay.month, day: selectDay.day)
-
+//        let bookingDate = OptionTime(year: selectDay.year, month: selectDay.month, day: selectDay.day)
 
         let today = JKDay(date: Date())
 
@@ -192,7 +189,6 @@ extension CTableViewController: JKCalendarDataSource {
 
         let optionColor = UIColor(red: 1, green: 0.8353, blue: 0.7882, alpha: 1.0)
 
-
         if selectDay == month {
             marks.append(JKCalendarMark(type: .circle,
                                         day: selectDay,
@@ -200,13 +196,11 @@ extension CTableViewController: JKCalendarDataSource {
         }
 
 
-        for day in selectedOptions {
+        for day in selectedOptions where day == month {
 
-            if day == month {
-                marks.append(JKCalendarMark(type: .hollowCircle,
+            marks.append(JKCalendarMark(type: .hollowCircle,
                                             day: day,
                                             color: optionColor))
-            }
         }
 
             if today == month {
@@ -216,13 +210,12 @@ extension CTableViewController: JKCalendarDataSource {
         }
 
 
-        for i in marksDay {
+        for i in marksDay where i == month {
 
-            if i == month {
             marks.append(JKCalendarMark(type: .dot,
                                         day: i,
                                         color: todayColor))
-            }
+
         }
             return marks
     }
@@ -273,7 +266,7 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
 
         if selectedDays.contains(selectDay) {
 
-            let eventHours = eventViewModels!.map({ Int(Date.hourFormatter.string(from: Date(millis: $0.event.startTime)))})
+            let eventHours = eventViewModels!.map({ Int(Date.hourFormatter.string(from: Date(millis: $0.event.startTime))) })
                 if eventHours.contains(hour) {
 
                     cell.hasEventStatus()
@@ -302,16 +295,16 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
 
                     cell.bookingButton.tag = indexPath.row
 
-                    cell.meetingTimeSelected()
+                    cell.selectedMeetingTime()
 
                 } else {
 
                     cell.bookingButton.isSelected = false
 
-                    cell.meetingTimeDeselected()
+                    cell.deselectedMeetingTime()
                 }
             
-            }  else {
+            } else {
 
                 cell.bookingButton.isSelected = false
 
@@ -325,12 +318,6 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
         self.navigationItem.title = name + "時間"
     }
 
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "CTableViewCell", for: indexPath) as! CTableViewCell
-//
-////        cell.eventView.isHidden = true
-//    }
-
 }
 
 extension CTableViewController {
@@ -341,22 +328,24 @@ extension CTableViewController {
             year: selectDay.year,
             month: selectDay.month,
             day: selectDay.day)
-        
-//        let hour = sender.tag
 
         let updateDate = selectedOptionViewModel.option
 
-        guard let sameDateIndex =
+        guard options.firstIndex( where: { $0.optionTime == bookingDate }) != nil
 
-         options.firstIndex(
-            where: { $0.optionTime == bookingDate }) else {
-            options.append(Option(id: "", startTime: Int64(Int((
-                                                        updateDate.startTime)))
-                                  , endTime: Int64(Int((
-                                                        updateDate.endTime))), optionTime: bookingDate, duration: 60))
-            return }
+        else {
 
-        guard (optionViewModels?.map({ Int(Date.hourFormatter.string(from: Date(millis: $0.option.startTime)))})) != nil
+            options.append(Option(id: "",
+                                  startTime: Int64(Int((updateDate.startTime))),
+                                  endTime: Int64(Int((updateDate.endTime))),
+                                  optionTime: bookingDate, duration: 60))
+
+            return
+
+        }
+
+        guard (optionViewModels?.map({ Int(Date.hourFormatter.string(from: Date(millis: $0.option.startTime))) })) != nil
+
         else { return }
     }
 }

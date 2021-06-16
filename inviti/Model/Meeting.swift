@@ -12,7 +12,6 @@ import FirebaseFirestoreSwift
 struct Meeting: Codable {
     var id: String
     var numberForSearch: String
-//    var owner: SimpleUser
     var ownerAppleID: String
     var createdTime: Int64
     var subject: String?
@@ -27,11 +26,7 @@ struct Meeting: Codable {
     var numOfParticipants: Int?
     var deadlineTag: Int?
     var isClosed: Bool = false
-//    var finalOption: Option?
     var finalOption: FinalOption? // startTime
-//    @Document var id: String?
-    //    let askInfo: AskInfo
-    //    var invitation: [String]?
 
     enum CodingKeys: String, CodingKey {
         case id, subject, notes, createdTime, numberForSearch
@@ -51,17 +46,14 @@ struct Meeting: Codable {
             "subject": subject as Any,
             "image": image as Any,
             "notes": notes as Any,
-//            "invitation": invitation as Any,
             "participants": participants as Any,
             "location": location as Any,
-//            "duration": duration as Any,
             "options": options as Any,
             "singleMeeting": singleMeeting as Any,
             "deadlineMeeting": deadlineMeeting as Any,
             "hiddenMeeting": hiddenMeeting as Any,
             "numOfParticipants": numOfParticipants as Any,
             "deadlineTag": deadlineTag as Any,
-//            "askInfo": askInfo.toDict as Any
             "isClosed": isClosed
 
         ]

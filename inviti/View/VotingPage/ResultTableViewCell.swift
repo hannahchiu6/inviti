@@ -48,11 +48,11 @@ class ResultTableViewCell: UITableViewCell {
 
     func setupVotingCell(model: OptionViewModel, index: Int) {
 
-        let startTime = model.option.startTimeToTime()
+        let startTime = model.option.makeStartTimeToString()
 
-        let endTime = model.option.endTimeToTime()
+        let endTime = model.option.makeEndTimeToString()
 
-        titleLabel.text = model.option.optionTime?.dateString()
+        titleLabel.text = model.option.optionTime?.makeDateToString()
 
         valueLabel.text = "\(startTime) - \(endTime)"
 
@@ -60,11 +60,11 @@ class ResultTableViewCell: UITableViewCell {
 
     func setupNoCell(model: OptionViewModel, index: Int) {
 
-        let startTime = model.option.startTimeToTime()
+        let startTime = model.option.makeStartTimeToString()
 
-        let endTime = model.option.endTimeToTime()
+        let endTime = model.option.makeEndTimeToString()
 
-        titleLabel.text = model.option.optionTime?.dateString()
+        titleLabel.text = model.option.optionTime?.makeDateToString()
 
         valueLabel.text = "\(startTime) - \(endTime)"
 
@@ -81,11 +81,11 @@ class ResultTableViewCell: UITableViewCell {
 
     func setupYesCell(model: OptionViewModel, index: Int) {
         
-        let startTime = model.option.startTimeToTime()
+        let startTime = model.option.makeStartTimeToString()
 
-        let endTime = model.option.endTimeToTime()
+        let endTime = model.option.makeEndTimeToString()
 
-        titleLabel.text = model.option.optionTime?.dateString()
+        titleLabel.text = model.option.optionTime?.makeDateToString()
 
         valueLabel.text = "\(startTime) - \(endTime)"
 

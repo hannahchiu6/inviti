@@ -65,7 +65,7 @@ class ResultsTableViewCell: UITableViewCell {
     }
 
     func setupCell(model: MeetingViewModel) {
-        noOfParticipantsLabel.text = "參與投票人數為 \(model.numOfParticipants) 人"
+        noOfParticipantsLabel.text = "參與投票人數為 \(String(describing: model.numOfParticipants)) 人"
         meetingSubject.text = model.subject
 
         createdTimeLabel.text = "投票建立時間：\(Date.intDateFormatter.string(from: Date.init(millis: model.createdTime)))"

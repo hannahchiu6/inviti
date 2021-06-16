@@ -90,7 +90,6 @@ class AddMeetingViewController: BaseViewController {
 
         }
 
-
     }
 
     @IBOutlet weak var searchResultLabel: UILabel!
@@ -117,6 +116,7 @@ class AddMeetingViewController: BaseViewController {
     }
 
     @IBAction func returnButton(_ sender: UIButton) {
+
         delegate?.returnToMain()
     }
 }
@@ -130,7 +130,6 @@ extension AddMeetingViewController: UITextFieldDelegate {
         if !text.isEmpty {
 
             notificationVM.fetchOneMeeitngData(meetingID: text)
-
         }
     }
 }

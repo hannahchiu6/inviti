@@ -29,11 +29,11 @@ class EventTableViewCell: UITableViewCell {
 
     func setup(vm: EventViewModel) {
 
-        startTime.text = vm.event.startTimeToTime()
+        startTime.text = vm.event.makeStartTimeToTimeString()
 
         eventSubject.text = vm.event.subject
 
-        endTime.text =  vm.event.endTimeToTime()
+        endTime.text =  vm.event.makeEndTimeToTimeString()
 
         eventLocation.text = vm.event.location
     }

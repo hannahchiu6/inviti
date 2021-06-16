@@ -38,7 +38,7 @@ struct Notification: Codable {
         ]
     }
 
-    func timeToDate() -> String {
+    func makeTimeToDateString() -> String {
 
         return  Date.pointFormatter.string(from: Date.init(millis: createdTime))
 

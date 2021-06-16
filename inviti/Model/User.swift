@@ -12,8 +12,8 @@ import FirebaseFirestoreSwift
 struct User: Codable {
 
     var id: String
-    var email: String
-    var name: String
+    var email: String?
+    var name: String?
     var image: String?
     let phone: String?
     let address: String?
@@ -35,7 +35,7 @@ struct User: Codable {
     var toDict: [String: Any] {
         return [
             "id": id,
-            "email": email,
+            "email": email as Any,
             "name": name as Any,
             "events": events as Any,
             "image": image as Any,

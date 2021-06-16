@@ -20,7 +20,7 @@ class UserManager {
 
     lazy var db = Firestore.firestore()
 
-    var userUID = UserDefaults.standard.value(forKey: "uid") as? String ?? ""
+    var userUID = UserDefaults.standard.string(forKey: UserDefaults.Keys.uid.rawValue) ?? ""
 
     var number = Int.random(in: 0...9)
 
@@ -72,7 +72,6 @@ class UserManager {
         }
     }
 
-
     func createNewUser(completion: @escaping (Result<String, Error>) -> Void) {
 
 
@@ -94,22 +93,6 @@ class UserManager {
         }
     }
 
-//        let document = db.collection("users").document()
-//        user.id = document.documentID
-//        user.appleID = self.user.appleID
-//        user.email = self.user.email
-//        document.setData(user.toDict) { error in
-//
-//            if let error = error {
-//
-//                completion(.failure(error))
-//
-//            } else {
-//
-//                completion(.success("Success"))
-//
-//            }
-//        }
     func fetchHostUser(userID: String, completion: @escaping
                     (Result<User, Error>) -> Void) {
         let docRef = db.collection("users")
@@ -144,13 +127,11 @@ class UserManager {
         }
     }
 
+    func fetchUser(user: User, completion: @escaping (Result<User, Error>) -> Void) {
 
-    func fetchUser(user: User, completion: @escaping
-                    (Result<User, Error>) -> Void) {
-        let docRef = db.collection("users")
-            .whereField("id", isEqualTo: userUID)
-
-        docRef.getDocuments { querySnapshot, error in
+        db.collection("users")
+        .whereField("id", isEqualTo: userUID)
+        .getDocuments { querySnapshot, error in
 
             if let error = error {
 
@@ -179,40 +160,36 @@ class UserManager {
         }
     }
 
+    func fetchProfileUser(completion: @escaping (Result<User, Error>) -> Void) {
 
-    func fetchProfileUser(completion: @escaping
-                    (Result<User, Error>) -> Void) {
+        db.collection("users")
+        .document(userUID)
+        .getDocument { document, error in
 
-        let docRef = db.collection("users")
-            .document(userUID)
+            let result = Result {
+              try document?.data(as: User.self)
+            }
 
-            docRef.getDocument { document, error in
+                switch result {
 
-                let result = Result {
-                  try document?.data(as: User.self)
-                }
+                case .success(let user):
+                    if let user = user {
 
-                    switch result {
+                        completion(.success(user))
 
-                    case .success(let user):
-                        if let user = user {
+                    } else {
 
-                            completion(.success(user))
+                        print("User does not exist")
 
-                        } else {
-
-                            print("User does not exist")
-
-                        }
-                    case .failure(let error):
-
-                        print("Error decoding city: \(error)")
-
-                        completion(.failure(error))
                     }
-                }
-    }
+                case .failure(let error):
 
+                    print("Error decoding city: \(error)")
+
+                    completion(.failure(error))
+                }
+        }
+    }
 
     func fetchOneUser(userID: String, completion: @escaping
                     (Result<User, Error>) -> Void) {
@@ -246,8 +223,8 @@ class UserManager {
 
                         }
                 }
-                    }
-            }
+        }
+    }
 
 
     func didLoginBefore (completion: @escaping
@@ -279,45 +256,51 @@ class UserManager {
 
                 completion(.success(users))
             }
-        }
+            }
     }
 
     func uploadImage(selectedImage: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
-            let uuid = UUID().uuidString
+        let uuid = UUID().uuidString
 
-            guard let image = selectedImage.jpegData(compressionQuality: 0.5) else { return }
+        guard let image = selectedImage.jpegData(compressionQuality: 0.5) else { return }
 
-            let storageRef = Storage.storage().reference()
+        let storageRef = Storage.storage().reference()
 
-            let imageRef = storageRef.child("ProfileImages").child("\(uuid).jpg")
+        let imageRef = storageRef.child("ProfileImages").child("\(uuid).jpg")
 
-            imageRef.putData(image, metadata: nil) { metadata, error in
-             if let error = error {
-              completion(.failure(error))
-             }
-             guard let _ = metadata else { return }
+        imageRef.putData(image, metadata: nil) { metadata, error in
 
-             imageRef.downloadURL { url, error in
-                
-              if let url = url {
-               completion(.success(url.absoluteString))
-              } else if let error = error {
-               completion(.failure(error))
-              }
+        if let error = error {
+            completion(.failure(error))
+        }
 
-             }
+        if metadata != nil {
+
+            imageRef.downloadURL { url, error in
+
+            if let url = url {
+
+                completion(.success(url.absoluteString))
+
+            } else if let error = error {
+
+                completion(.failure(error))
+            }
 
             }
 
+        }
+        }
+
     }
 
-    func updateUserImageURL(url: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func updateUserImageURL(url: String?, completion: @escaping (Result<String, Error>) -> Void) {
 
         let docRef =
             db.collection("users")
             .document(userUID)
 
-        if let url = url as? String {
+        if let url = url {
 
             docRef.updateData([
                 "image": "\(url)"
@@ -334,13 +317,14 @@ class UserManager {
             }
         }
     }
+    
     func updateUserDetails(user: User, completion: @escaping (Result<User, Error>) -> Void) {
 
         let docRef = db.collection("users").document(userUID)
 
-        if let name = user.name as? String,
-           let email = user.email as? String,
-            let image = user.image as? String {
+        if let name = user.name,
+           let email = user.email,
+           let image = user.image {
 
             docRef.updateData([
                 "name": "\(name)",
@@ -362,19 +346,20 @@ class UserManager {
         }
     }
 
-
     func updateUserName(name: String) {
         db.collection("users")
             .document(userUID)
             .updateData([name: name]) { err in
 
-            if let err = err {
+                if err != nil {
 
                 print("Failed to update user name")
+
             } else {
+
                 print("User name has been updated!")
             }
-        }
+            }
     }
 
     func updateUserEmail(email: String) {
@@ -382,16 +367,15 @@ class UserManager {
             .document(userUID)
             .updateData([email: email]) { err in
 
-            if let err = err {
+                if err != nil {
                 
                 print("Failed to update user email")
-            } else {
-                print("User email has been updated!")
-            }
-        }
-    }
 
-    func isLogin() -> Bool {
-        return user != nil
+            } else {
+
+                print("User email has been updated!")
+
+            }
+            }
     }
 }

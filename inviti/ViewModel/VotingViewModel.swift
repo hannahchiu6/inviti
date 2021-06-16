@@ -4,14 +4,11 @@
 //
 //  Created by Hannah.C on 20.05.21.
 //
-//  swiftlint:disable force_unwrapping inclusive_language closure_end_indentation
 
 import Foundation
 import Firebase
 
 class VotingViewModel {
-
-//    var voteViewModels = Box([VoteViewModel]())
 
     var optionViewModels = Box([OptionViewModel]())
 
@@ -20,8 +17,6 @@ class VotingViewModel {
     var userBox = Box(UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [], numberForSearch: "")))
 
     var voteViewModel = VoteViewModel(model: SelectedOption(isSelected: false, selectedUser: ""))
-
-//    var optionViewModel = OptionViewModel(model: Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: []))
 
     var meeting: Meeting = Meeting(
         id: "", numberForSearch: "",
@@ -43,11 +38,9 @@ class VotingViewModel {
 
     var options: [Option] = [Option(id: "", startTime: 0, endTime: 0, optionTime: nil, duration: 0, selectedOptions: [])]
 
-//    var selectedOption: SelectedOption = SelectedOption(isSelected: false, selectedUser: "")
-
     var refreshView: (() -> Void)?
 
-    var userUID = UserDefaults.standard.value(forKey: "uid") as? String ?? ""
+    var userUID = UserDefaults.standard.string(forKey: UserDefaults.Keys.uid.rawValue) ?? ""
 
     var onDead: (() -> Void)?
 
@@ -70,27 +63,6 @@ class VotingViewModel {
     func onselectedOptionChanged(_ selectedOptions: [String]?, index: Int) {
 
         self.options[index].selectedOptions = selectedOptions
-    }
-
-    func onVotedTapped(index: Int) -> [Option] {
-
-        var newOptions = [Option]()
-
-        if var newOption = options[index] as? Option {
-
-            if ((newOption.selectedOptions?.contains(userUID)) != nil) {
-
-                newOption.selectedOptions?.filter({ $0 != userUID })
-
-                } else {
-
-                    newOption.selectedOptions?.append(userUID)
-                }
-
-                newOptions.append(newOption)
-            }
-
-        return newOptions
     }
 
     func onMeetingOptionChanged(_ option: FinalOption) {
@@ -209,20 +181,6 @@ class VotingViewModel {
         }
     }
 
-    func whoVoted(selectedOptions: [VoteViewModel]) -> Bool {
-        let results = selectedOptions.filter({ $0.selectedUser == " \(userUID)" })
-
-        if results.isEmpty {
-            // 尚未投票
-            return false
-
-        } else {
-
-            // 已經投票
-            return true
-        }
-    }
-
     func isVoted(_ selectedOptions: [VoteViewModel]) -> Bool {
 
         if selectedOptions.isEmpty {
@@ -329,9 +287,9 @@ class VotingViewModel {
         }
     }
 
-    func updateVotedOption(with meetingID: String, optionIndex: [Int]) {
+    func updateVotedOption(with meetingID: String, optionIndex: [Int]?) {
 
-        if let index = optionIndex as? [Int] {
+        if let index = optionIndex {
 
             for i in index {
 
@@ -366,16 +324,13 @@ class VotingViewModel {
             }
         }
     }
-//    func onTap(with index: Int, option: Option, meeting: Meeting) {
-//        voteViewModels.value[index].onTap(option: option, meeting: meeting)
-//    }
 
     func onEmptyTap(_ optionID: String, meetingID: String, selectedOptionID: String) {
-        VoteManager.shared.deleteEmptySelectedOption(selectedOptionID: selectedOptionID, optionID: optionID, meetingID: meetingID){ [weak self] result in
+        VoteManager.shared.deleteEmptySelectedOption(selectedOptionID: selectedOptionID, optionID: optionID, meetingID: meetingID) { [weak self] result in
 
             switch result {
 
-            case .success( _):
+            case .success:
 
                 self?.onDead?()
 

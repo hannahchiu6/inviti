@@ -17,9 +17,6 @@ extension UIImageView {
         guard let url = URL(string: urlString!) else { return }
 
         self.kf.setImage(with: url, placeholder: placeHolder)
-//        self.kf.setImage(with: ImageResource(downloadURL: url))
-
-//        self.kf.setImage(with: ImageResource(downloadURL: url), placeholder: UIImage(named: "profile_photo"), options: nil, progressBlock: nil, completionHandler: nil)
 
         self.kf.setImage(with: ImageResource(downloadURL: url), placeholder: placeHolder, options: nil, progressBlock: nil, completionHandler: nil)
 

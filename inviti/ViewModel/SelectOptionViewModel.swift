@@ -184,7 +184,7 @@ class SelectOptionViewModel {
 
             switch result {
 
-            case .success( _):
+            case .success:
                 
                 self?.onDead?()
 

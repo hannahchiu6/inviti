@@ -15,7 +15,7 @@ class AddViewModel {
 
     var meetingViewModel: MeetingViewModel?
 
-    var userUID = UserDefaults.standard.value(forKey: "uid") as? String ?? ""
+    var userUID = UserDefaults.standard.string(forKey: UserDefaults.Keys.uid.rawValue) ?? ""
 
     var meeting: Meeting = Meeting(id: "", numberForSearch: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil)
 
@@ -51,12 +51,12 @@ class AddViewModel {
                     "participants": FieldValue.arrayUnion([userUID])
                 ]) { err in
 
-                if let err = err {
+                    if err != nil {
                     print("Failed to update participants")
                 } else {
                     print("Participant ID has been updated!")
                 }
-        }
+                }
 
     }
 
@@ -70,13 +70,13 @@ class AddViewModel {
                     "participants": FieldValue.arrayUnion([text])
                 ]) { err in
 
-                if let err = err {
+                    if err != nil {
                     print("Failed to update participants")
 
                 } else {
                     print("Participant ID has been updated!")
                 }
-        }
+                }
 
     }
 

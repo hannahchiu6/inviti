@@ -14,21 +14,17 @@ class UserViewModel {
         self.user = user
     }
 
-    var name: String {
-        return user.name
-    }
-
     var id: String {
         return user.id
     }
 
-    var email: String {
-        return user.email
+    var name: String? {
+        return user.name
     }
 
-//    var appleID: String {
-//        return user.appleID
-//    }
+    var email: String? {
+        return user.email
+    }
 
     var image: String? {
         return user.image
@@ -57,14 +53,5 @@ class UserViewModel {
     var numberForSearch: String {
         return user.numberForSearch
     }
-
-//    var logInOrNot: Bool {
-//        return user.logInOrNot
-//    }
-//
-//    var currentUserData: Bool {
-//        return user.currentUserData
-//    }
-
 
 }

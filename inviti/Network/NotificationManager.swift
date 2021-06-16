@@ -95,6 +95,7 @@ class NotificationManager {
             .document(userUID)
             .collection("notifications")
             .document()
+
             notification.id = document.documentID
             notification.createdTime = Int64(Date().millisecondsSince1970)
             notification.ownerName = userName as? String
@@ -108,7 +109,7 @@ class NotificationManager {
 
                 completion(.success(document.documentID))
             }
-        }
+            }
     }
 
     
@@ -118,6 +119,7 @@ class NotificationManager {
             .document(owenerID)
             .collection("notifications")
             .document()
+
             notification.id = document.documentID
             notification.createdTime = Int64(Date().millisecondsSince1970)
             notification.ownerName = userName as? String
@@ -132,7 +134,7 @@ class NotificationManager {
 
                 completion(.success(document.documentID))
             }
-        }
+            }
     }
 
     func createNotificationforInvite(owenerID: String, notification: inout Notification, completion: @escaping (Result<String, Error>) -> Void) {
@@ -156,34 +158,9 @@ class NotificationManager {
 
                 completion(.success(document.documentID))
             }
-        }
+            }
     }
-
-
-//    func createParticipantsNotification(peopleID: [String], event: inout Event, completion: @escaping (Result<String, Error>) -> Void) {
-//
-//        for personID in peopleID {
-//
-//            let document = db.collection("users")
-//                .document(personID)
-//                .collection("notifications").document()
-//                notification.id = document.documentID
-//                notification.createdTime = Int64(Date().millisecondsSince1970)
-//
-//            document.setData(event.toDict) { error in
-//
-//                if let error = error {
-//
-//                    completion(.failure(error))
-//
-//                } else {
-//                    completion(.success(document.documentID))
-//                }
-//            }
-//
-//        }
-//    }
-
+    
     func deleteNotification(notification: Notification, completion: @escaping (Result<String, Error>) -> Void) {
 
         let document = db.collection("users")
@@ -200,6 +177,6 @@ class NotificationManager {
 
                 completion(.success(notification.id))
             }
-        }
+            }
     }
 }

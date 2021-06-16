@@ -38,9 +38,9 @@ class ResultClosedCell: UITableViewCell {
 
     func setupCell(option: FinalOption) {
 
-        let startTime = option.startTimeToTime()
+        let startTime = option.makeStartTimeToString()
 
-        let endTime = option.endTimeToTime()
+        let endTime = option.makeEndTimeToTimeString()
 
         let month = String(describing: option.optionTime!.month)
 

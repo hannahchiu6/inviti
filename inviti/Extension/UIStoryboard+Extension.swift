@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 private struct StoryboardCategory {
+
     static let main = "Main"
 
     static let news = "News"

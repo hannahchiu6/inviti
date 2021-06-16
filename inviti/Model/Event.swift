@@ -11,7 +11,7 @@ import Foundation
 
 struct Event: Equatable, Codable {
     static func == (lhs: Event, rhs: Event) -> Bool {
-        return lhs.startTime == rhs.startTime && lhs.endTime  == rhs.endTime
+        return lhs.startTime == rhs.startTime && lhs.endTime == rhs.endTime
     }
 
     var id: String
@@ -61,56 +61,40 @@ struct Event: Equatable, Codable {
 //
 //    }
 
-    func startTimeToTime() -> String {
+    func makeStartTimeToTimeString() -> String {
 
         return  Date.timeFormatter.string(from: Date.init(millis: startTime))
 
     }
 
-    func endTimeToTime() -> String {
+    func makeEndTimeToTimeString() -> String {
 
         return  Date.timeFormatter.string(from: Date.init(millis: endTime))
 
     }
 
-    func startTimeToYear() -> String {
+//    func startTimeToYear() -> String {
+//
+//        return  Date.yearFormatter.string(from: Date.init(millis: startTime))
+//
+//    }
 
-        return  Date.yearFormatter.string(from: Date.init(millis: startTime))
-
-    }
-
-    func endTimeToYear() -> String {
-
-        return  Date.yearFormatter.string(from: Date.init(millis: endTime))
-
-    }
+//    func endTimeToYear() -> String {
+//
+//        return  Date.yearFormatter.string(from: Date.init(millis: endTime))
+//
+//    }
 
 
-    func startTimeToDate() -> String {
+//    func startTimeToDate() -> String {
+//
+//        return  Date.dateFormatter.string(from: Date.init(millis: startTime))
+//
+//    }
 
-        return  Date.dateFormatter.string(from: Date.init(millis: startTime))
-
-    }
-
-    func endTimeToDate() -> String {
-
-        return  Date.dateFormatter.string(from: Date.init(millis: endTime))
-
-    }
-}
-
-struct BookingDate: Equatable {
-
-    let year: Int
-    let month: Int
-    let day: Int
-
-    static func == (lhs: BookingDate, rhs: BookingDate) -> Bool {
-        return lhs.year == rhs.year && lhs.month == rhs.month && lhs.day == rhs.day
-    }
-
-    func dateString() -> String {
-
-        return "\(year) 年 \(month) 月 \(day) 日"
-    }
+//    func endTimeToDate() -> String {
+//
+//        return  Date.dateFormatter.string(from: Date.init(millis: endTime))
+//
+//    }
 }

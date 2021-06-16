@@ -29,7 +29,7 @@ class VotingTableViewCell: UITableViewCell {
 
     var optionID: String?
 
-    var userUID = UserDefaults.standard.array(forKey: "uid") as? String ?? ""
+    var userUID = UserDefaults.standard.string(forKey: UserDefaults.Keys.uid.rawValue) ?? ""
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -60,11 +60,11 @@ class VotingTableViewCell: UITableViewCell {
 
     func setupVotingCell(model: OptionViewModel, index: Int) {
 
-        let startTime = model.option.startTimeToTime()
+        let startTime = model.option.makeStartTimeToString()
         
-        let endTime = model.option.endTimeToTime()
+        let endTime = model.option.makeEndTimeToString()
 
-        titleLabel.text = model.option.optionTime?.dateString()
+        titleLabel.text = model.option.optionTime?.makeDateToString()
         
         valueLabel.text = "\(startTime) - \(endTime)"
 

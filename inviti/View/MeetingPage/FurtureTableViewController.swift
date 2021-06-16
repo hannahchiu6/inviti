@@ -71,6 +71,7 @@ class FurtureTableViewController: UITableViewController {
         cell.completionHandler = { index in
             self.selectedIndex = index
         }
+        
         guard let meetingViewCell = cell as? MeetingTableViewCell else {
             return cell
         }

@@ -72,17 +72,17 @@ class CreateMeetingViewModel {
 
     }
 
-    func meetingDeadlineChanged(_ bool: Bool) {
+    func onMeetingDeadlineChanged(_ bool: Bool) {
 
         self.meeting.deadlineMeeting = bool
     }
 
-    func meetingSingleChanged(_ bool: Bool) {
+    func onMeetingSingleChanged(_ bool: Bool) {
 
         self.meeting.singleMeeting = bool
     }
 
-    func meetingHiddenChanged(_ bool: Bool) {
+    func onMeetingHiddenChanged(_ bool: Bool) {
         self.meeting.hiddenMeeting = bool
     }
 
@@ -176,7 +176,7 @@ class CreateMeetingViewModel {
 
             switch result {
 
-            case .success( _):
+            case .success:
 
                 print("Publish Image Succeeded")
 
@@ -194,7 +194,7 @@ class CreateMeetingViewModel {
 
             switch result {
 
-            case .success(_ ):
+            case .success:
 
                 print("Publish Location Succeeded")
 
@@ -213,7 +213,7 @@ class CreateMeetingViewModel {
 
             switch result {
 
-            case .success(_ ):
+            case .success:
 
                 print("Publish Subject Succeeded")
 
@@ -245,8 +245,6 @@ class CreateMeetingViewModel {
 
     func updateDetails(meetingID: String) {
 
-//        NetworkManager.shared.updateMeeting(meetingID: meetingID, meeting: self.meetingViewModel.meeting) { result in
-
             NetworkManager.shared.updateMeeting(meetingID: meetingID, meeting: self.meeting) { result in
 
             switch result {
@@ -259,7 +257,7 @@ class CreateMeetingViewModel {
 
                 print("createMeeting.failure: \(error)")
             }
-        }
+            }
 
     }
 

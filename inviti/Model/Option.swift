@@ -16,8 +16,6 @@ struct Option: Codable {
     var optionTime: OptionTime?
     var duration: Int
     var selectedOptions: [String]?
-//    var selectedOptions: [SelectedOption]?
-
 
     enum CodingKeys: String, CodingKey {
 
@@ -41,36 +39,36 @@ struct Option: Codable {
         ]
     }
 
-    func startTimeToDate() -> Date {
+//    func startTimeToDate() -> Date {
+//
+//        return Date.init(millis: startTime)
+//    }
 
-        return Date.init(millis: startTime)
-    }
+//    func endTimeToDate() -> Date {
+//
+//        return Date.init(millis: endTime)
+//    }
 
-    func endTimeToDate() -> Date {
-
-        return Date.init(millis: endTime)
-    }
-
-    func startTimeToTime() -> String {
+    func makeStartTimeToString() -> String {
 
         return  Date.timeFormatter.string(from: Date.init(millis: startTime))
 
     }
 
-    func startTimeToHour() -> String {
+//    func startTimeToHour() -> String {
+//
+//        return  Date.hourFormatter.string(from: Date.init(millis: startTime))
+//
+//    }
 
-        return  Date.hourFormatter.string(from: Date.init(millis: startTime))
-
-    }
-
-    func endTimeToHour() -> String {
-
-        return  Date.hourFormatter.string(from: Date.init(millis: endTime))
-
-    }
+//    func endTimeToHour() -> String {
+//
+//        return  Date.hourFormatter.string(from: Date.init(millis: endTime))
+//
+//    }
 
 
-    func endTimeToTime() -> String {
+    func makeEndTimeToString() -> String {
 
         return  Date.timeFormatter.string(from: Date.init(millis: endTime))
 

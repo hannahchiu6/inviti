@@ -25,7 +25,7 @@ class HasVotedVC: BaseViewController {
 
     weak var delegate: HasVotedVCDelegate?
 
-    var userUID = UserDefaults.standard.value(forKey: "uid") as? String ?? ""
+    var userUID = UserDefaults.standard.string(forKey: UserDefaults.Keys.uid.rawValue) ?? ""
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,11 +42,8 @@ class HasVotedVC: BaseViewController {
     }
 
     func changedMessage() {
-//        guard let options = options as? [Option] else { return }
-//
-//        let selectedOptions = options.filter({ (($0.selectedOptions?.contains(userUID)) ?? false)})
-
-        guard let meeting = meeting as? Meeting else { return }
+        
+        guard let meeting = meeting else { return }
         
         if meeting.isClosed {
 

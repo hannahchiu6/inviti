@@ -24,12 +24,12 @@ struct OptionTime: Equatable, Codable {
         ]
     }
 
-    func dateString() -> String {
+    func makeDateToString() -> String {
 
         return "\(year) 年 \(month) 月 \(day) 日"
     }
 
-    func dateInt() -> String {
+    func makeDatetoString() -> String {
 
         if month < 10 {
 
@@ -52,7 +52,7 @@ struct OptionTime: Equatable, Codable {
         }
     }
 
-    func dateToInt() -> Int {
+    func makeDateToInt() -> Int {
 
         if month < 10 {
 
