@@ -100,21 +100,20 @@ class LoginViewModel {
 
     func create(with user: inout User) {
 
-        UserManager.shared.createUser(user: &user,
-                                          completion: { result in
-                                            
-            switch result {
+        UserManager.shared.createUser(user: &user, completion: { result in
 
-            case .success(let message):
+                                        switch result {
 
-                print(message)
-                self.onGranted?()
+                                        case .success(let message):
 
-            case .failure(let error):
+                                            print(message)
+                                            self.onGranted?()
 
-                print(error)
-            }
-        })
+                                        case .failure(let error):
+
+                                            print(error)
+                                        }
+                                      })
     }
 
 }

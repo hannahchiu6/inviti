@@ -27,7 +27,7 @@ struct Meeting: Codable {
     var deadlineTag: Int?
     var isClosed: Bool = false
     var finalOption: FinalOption? // startTime
-
+    
     enum CodingKeys: String, CodingKey {
         case id, subject, notes, createdTime, numberForSearch
         case options, ownerAppleID, isClosed
@@ -35,7 +35,7 @@ struct Meeting: Codable {
         case hiddenMeeting, singleMeeting, image
         case deadlineTag, deadlineMeeting, finalOption
     }
-
+    
     var toDict: [String: Any] {
         return [
             "id": id as Any,
@@ -55,7 +55,7 @@ struct Meeting: Codable {
             "numOfParticipants": numOfParticipants as Any,
             "deadlineTag": deadlineTag as Any,
             "isClosed": isClosed
-
+            
         ]
     }
 }

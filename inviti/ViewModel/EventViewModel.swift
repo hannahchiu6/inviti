@@ -8,27 +8,27 @@
 import UIKit
 
 class EventViewModel {
-
+    
     var event: Event
     
     var onDead: (() -> Void)?
-
+    
     init(model event: Event) {
         self.event = event
     }
-
+    
     var id: String {
         get {
             return event.id
         }
     }
-
+    
     var subject: String {
         get {
             return event.subject
         }
     }
-
+    
     var location: String {
         get {
             return event.location
@@ -39,7 +39,7 @@ class EventViewModel {
             return event.startTime
         }
     }
-
+    
     var endTime: Int64 {
         get {
             return event.endTime

@@ -15,19 +15,19 @@ enum LoginError: Error {
 }
 
 class UserManager {
-
+    
     static let shared = UserManager()
-
+    
     lazy var db = Firestore.firestore()
-
+    
     var userUID = UserDefaults.standard.string(forKey: UserDefaults.Keys.uid.rawValue) ?? ""
-
+    
     var number = Int.random(in: 0...9)
-
+    
     var user = User(id: "", email: "", name: "inviti User", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, numberForSearch: "")
-
+    
     func randomString(of length: Int) -> String {
-
+        
         let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         var results = ""
         for _ in 0 ..< length {
@@ -35,88 +35,88 @@ class UserManager {
         }
         return results
     }
-
+    
     func updateUserData(user: User, completion: @escaping (Result<String, Error>) -> Void) {
         do {
-
+            
             try db.collection("users")
                 .document(userUID)
                 .setData(from: user)
-
+            
             completion(.success("Successfully updated user data!"))
-
+            
         } catch {
             
             completion(.failure(error))
         }
     }
-
+    
     func createUser(user: inout User, completion: @escaping (Result<String, Error>) -> Void) {
-
+        
         let document = db.collection("users").document(userUID)
-
+        
         user.id = userUID
         user.numberForSearch = self.randomString(of: 6)
-
+        
         document.setData(user.toDict) { error in
-
+            
             if let error = error {
-
+                
                 completion(.failure(error))
                 
             } else {
-
+                
                 completion(.success("Success"))
-
+                
             }
         }
     }
-
+    
     func createNewUser(completion: @escaping (Result<String, Error>) -> Void) {
-
-
+        
+        
         let document = db.collection("users").document(userUID)
         user.id = userUID
         user.numberForSearch = self.randomString(of: 6)
-
+        
         document.setData(user.toDict) { error in
-
+            
             if let error = error {
-
+                
                 completion(.failure(error))
-
+                
             } else {
-
+                
                 completion(.success("Success"))
-
+                
             }
         }
     }
-
+    
     func fetchHostUser(userID: String, completion: @escaping
-                    (Result<User, Error>) -> Void) {
+                        (Result<User, Error>) -> Void) {
         let docRef = db.collection("users")
             .whereField("id", isEqualTo: userID)
-
+        
         docRef.getDocuments { querySnapshot, error in
-
+            
             if let error = error {
-
+                
                 completion(.failure(error))
-
+                
             } else {
-
+                
                 var users = [User]()
-
+                
                 for document in querySnapshot!.documents {
-
+                    
                     do {
                         if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
                             users.append(user)
                         }
-
+                        
                     } catch {
-
+                        
                         completion(.failure(error))
                     }
                 }
@@ -126,256 +126,256 @@ class UserManager {
             }
         }
     }
-
+    
     func fetchUser(user: User, completion: @escaping (Result<User, Error>) -> Void) {
-
+        
         db.collection("users")
-        .whereField("id", isEqualTo: userUID)
-        .getDocuments { querySnapshot, error in
-
-            if let error = error {
-
-                completion(.failure(error))
-
-            } else {
-
-                var users = [User]()
-
-                for document in querySnapshot!.documents {
-
-                    do {
-                        if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
-                            users.append(user)
-                        }
-
-                    } catch {
-
-                        completion(.failure(error))
-                    }
-                }
-                if !users.isEmpty {
-                    completion(.success(users[0]))
-                }
-            }
-        }
-    }
-
-    func fetchProfileUser(completion: @escaping (Result<User, Error>) -> Void) {
-
-        db.collection("users")
-        .document(userUID)
-        .getDocument { document, error in
-
-            let result = Result {
-              try document?.data(as: User.self)
-            }
-
-                switch result {
-
-                case .success(let user):
-                    if let user = user {
-
-                        completion(.success(user))
-
-                    } else {
-
-                        print("User does not exist")
-
-                    }
-                case .failure(let error):
-
-                    print("Error decoding city: \(error)")
-
-                    completion(.failure(error))
-                }
-        }
-    }
-
-    func fetchOneUser(userID: String, completion: @escaping
-                    (Result<User, Error>) -> Void) {
-       db.collection("users")
-        .whereField("numberForSearch", isEqualTo: userID)
-        .getDocuments { querySnapshot, error in
-
+            .whereField("id", isEqualTo: userUID)
+            .getDocuments { querySnapshot, error in
+                
                 if let error = error {
-
+                    
                     completion(.failure(error))
-
+                    
                 } else {
-
+                    
                     var users = [User]()
-
+                    
                     for document in querySnapshot!.documents {
-
+                        
                         do {
                             if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
                                 users.append(user)
                             }
-
+                            
                         } catch {
-
+                            
                             completion(.failure(error))
-
                         }
                     }
-                        if !users.isEmpty {
-                            completion(.success(users[0]))
-
-                        }
+                    if !users.isEmpty {
+                        completion(.success(users[0]))
+                    }
                 }
-        }
+            }
     }
-
-
+    
+    func fetchProfileUser(completion: @escaping (Result<User, Error>) -> Void) {
+        
+        db.collection("users")
+            .document(userUID)
+            .getDocument { document, error in
+                
+                let result = Result {
+                    try document?.data(as: User.self)
+                }
+                
+                switch result {
+                
+                case .success(let user):
+                    if let user = user {
+                        
+                        completion(.success(user))
+                        
+                    } else {
+                        
+                        print("User does not exist")
+                        
+                    }
+                case .failure(let error):
+                    
+                    print("Error decoding city: \(error)")
+                    
+                    completion(.failure(error))
+                }
+            }
+    }
+    
+    func fetchOneUser(userID: String, completion: @escaping
+                        (Result<User, Error>) -> Void) {
+        db.collection("users")
+            .whereField("numberForSearch", isEqualTo: userID)
+            .getDocuments { querySnapshot, error in
+                
+                if let error = error {
+                    
+                    completion(.failure(error))
+                    
+                } else {
+                    
+                    var users = [User]()
+                    
+                    for document in querySnapshot!.documents {
+                        
+                        do {
+                            if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
+                                users.append(user)
+                            }
+                            
+                        } catch {
+                            
+                            completion(.failure(error))
+                            
+                        }
+                    }
+                    if !users.isEmpty {
+                        completion(.success(users[0]))
+                        
+                    }
+                }
+            }
+    }
+    
+    
     func didLoginBefore (completion: @escaping
-                    (Result<[User], Error>) -> Void) {
-       db.collection("users")
+                            (Result<[User], Error>) -> Void) {
+        db.collection("users")
             .whereField("id", isEqualTo: userUID)
             .getDocuments { querySnapshot, error in
-
-            if let error = error {
-
-                completion(.failure(error))
-
-            } else {
-
-                var users = [User]()
-
-                for document in querySnapshot!.documents {
-
-                    do {
-                        if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
-                            users.append(user)
+                
+                if let error = error {
+                    
+                    completion(.failure(error))
+                    
+                } else {
+                    
+                    var users = [User]()
+                    
+                    for document in querySnapshot!.documents {
+                        
+                        do {
+                            if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
+                                users.append(user)
+                            }
+                            
+                        } catch {
+                            
+                            completion(.failure(error))
                         }
-
-                    } catch {
-
-                        completion(.failure(error))
                     }
+                    
+                    completion(.success(users))
                 }
-
-                completion(.success(users))
-            }
             }
     }
-
+    
     func uploadImage(selectedImage: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
         let uuid = UUID().uuidString
-
+        
         guard let image = selectedImage.jpegData(compressionQuality: 0.5) else { return }
-
+        
         let storageRef = Storage.storage().reference()
-
+        
         let imageRef = storageRef.child("ProfileImages").child("\(uuid).jpg")
-
+        
         imageRef.putData(image, metadata: nil) { metadata, error in
-
-        if let error = error {
-            completion(.failure(error))
-        }
-
-        if metadata != nil {
-
-            imageRef.downloadURL { url, error in
-
-            if let url = url {
-
-                completion(.success(url.absoluteString))
-
-            } else if let error = error {
-
+            
+            if let error = error {
                 completion(.failure(error))
             }
-
+            
+            if metadata != nil {
+                
+                imageRef.downloadURL { url, error in
+                    
+                    if let url = url {
+                        
+                        completion(.success(url.absoluteString))
+                        
+                    } else if let error = error {
+                        
+                        completion(.failure(error))
+                    }
+                    
+                }
+                
             }
-
         }
-        }
-
+        
     }
-
+    
     func updateUserImageURL(url: String?, completion: @escaping (Result<String, Error>) -> Void) {
-
+        
         let docRef =
             db.collection("users")
             .document(userUID)
-
+        
         if let url = url {
-
+            
             docRef.updateData([
                 "image": "\(url)"
             ]) { err in
                 if let err = err {
-
+                    
                     completion(.failure(err))
-
+                    
                 } else {
-
+                    
                     completion(.success(url))
-
+                    
                 }
             }
         }
     }
     
     func updateUserDetails(user: User, completion: @escaping (Result<User, Error>) -> Void) {
-
+        
         let docRef = db.collection("users").document(userUID)
-
+        
         if let name = user.name,
            let email = user.email,
            let image = user.image {
-
+            
             docRef.updateData([
                 "name": "\(name)",
                 "email": "\(email)",
                 "image": "\(image)"
-
+                
             ]) { err in
-
+                
                 if let err = err {
-
+                    
                     completion(.failure(err))
-
+                    
                 } else {
-
+                    
                     completion(.success(user))
-
+                    
                 }
             }
         }
     }
-
+    
     func updateUserName(name: String) {
         db.collection("users")
             .document(userUID)
             .updateData([name: name]) { err in
-
+                
                 if err != nil {
-
-                print("Failed to update user name")
-
-            } else {
-
-                print("User name has been updated!")
-            }
+                    
+                    print("Failed to update user name")
+                    
+                } else {
+                    
+                    print("User name has been updated!")
+                }
             }
     }
-
+    
     func updateUserEmail(email: String) {
         db.collection("users")
             .document(userUID)
             .updateData([email: email]) { err in
-
-                if err != nil {
                 
-                print("Failed to update user email")
-
-            } else {
-
-                print("User email has been updated!")
-
-            }
+                if err != nil {
+                    
+                    print("Failed to update user email")
+                    
+                } else {
+                    
+                    print("User email has been updated!")
+                    
+                }
             }
     }
 }

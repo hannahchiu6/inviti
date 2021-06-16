@@ -23,9 +23,9 @@ class IntroduceViewController: UIViewController {
     }
 
     func setupImage() {
-    let url = "https://firebasestorage.googleapis.com/v0/b/inviti-4f671.appspot.com/o/invitiImage%2Finviti-hp-image.jpg?alt=media&token=9237708e-f045-49f5-aede-429cab173981"
+        let url = "https://firebasestorage.googleapis.com/v0/b/inviti-4f671.appspot.com/o/invitiImage%2Finviti-hp-image.jpg?alt=media&token=9237708e-f045-49f5-aede-429cab173981"
 
-    let imageUrl = URL(string: String(url))
+        let imageUrl = URL(string: String(url))
 
         exampleImage.kf.setImage(with: imageUrl)
 

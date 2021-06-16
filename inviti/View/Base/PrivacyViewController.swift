@@ -8,17 +8,17 @@
 import UIKit
 
 class PrivacyViewController: UIViewController, UITableViewDelegate {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
-
+        
     }
-
+    
     @IBOutlet weak var tableView: UITableView!
-
+    
     @IBAction func returnToMain(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-
+    
 }

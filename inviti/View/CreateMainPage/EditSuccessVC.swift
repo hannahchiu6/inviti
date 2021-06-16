@@ -12,16 +12,16 @@ protocol EditSuccessVCDelegate: AnyObject {
 }
 
 class EditSuccessVC: BaseViewController {
-
+    
     weak var delegate: EditSuccessVCDelegate?
-
+    
     @IBAction func backToMain(_ sender: Any) {
-
+        
         delegate?.didTapReturnButton()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
 }

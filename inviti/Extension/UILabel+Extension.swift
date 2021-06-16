@@ -10,37 +10,37 @@ import UIKit
 
 @IBDesignable
 extension UILabel {
-
+    
     @IBInspectable var characterSpacing: CGFloat {
-
+        
         set {
-
+            
             if let labelText = text, labelText.isEmpty == false {
-
+                
                 let attributedString = NSMutableAttributedString(attributedString: attributedText!)
-
+                
                 attributedString.addAttribute(
                     NSAttributedString.Key.kern,
                     value: newValue,
                     range: NSRange(location: 0, length: attributedString.length - 1)
                 )
-
+                
                 attributedText = attributedString
             }
         }
-
+        
         get {
-
+            
             guard let spacing = attributedText?.value(
                 forKey: NSAttributedString.Key.kern.rawValue
             ) as? CGFloat else { return 0 }
             return spacing
         }
-
+        
     }
-
+    
     func setTextSpacingBy(value: Double, linespacing: CGFloat) {
-
+        
         if let textString = self.text {
             let attributedString = NSMutableAttributedString(string: textString)
             attributedString.addAttribute(NSAttributedString.Key.kern,
@@ -53,7 +53,7 @@ extension UILabel {
                 value: nsmutable,
                 range: NSRange(location: 0, length: attributedString.length)
             )
-
+            
             attributedText = attributedString
         }
     }
@@ -61,5 +61,5 @@ extension UILabel {
         self.text = text
         setTextSpacingBy(value: value, linespacing: linespacing)
     }
-
+    
 }

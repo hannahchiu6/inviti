@@ -16,9 +16,9 @@ struct Option: Codable {
     var optionTime: OptionTime?
     var duration: Int
     var selectedOptions: [String]?
-
+    
     enum CodingKeys: String, CodingKey {
-
+        
         case selectedOptions
         case id
         case optionTime
@@ -26,7 +26,7 @@ struct Option: Codable {
         case startTime
         case endTime
     }
-
+    
     var toDict: [String: Any] {
         return [
             "id": id as Any,
@@ -35,42 +35,42 @@ struct Option: Codable {
             "duration": duration,
             "optionTime": optionTime?.toDict as Any,
             "selectedOptions": selectedOptions as Any
-
+            
         ]
     }
-
-//    func startTimeToDate() -> Date {
-//
-//        return Date.init(millis: startTime)
-//    }
-
-//    func endTimeToDate() -> Date {
-//
-//        return Date.init(millis: endTime)
-//    }
-
+    
+    //    func startTimeToDate() -> Date {
+    //
+    //        return Date.init(millis: startTime)
+    //    }
+    
+    //    func endTimeToDate() -> Date {
+    //
+    //        return Date.init(millis: endTime)
+    //    }
+    
     func makeStartTimeToString() -> String {
-
+        
         return  Date.timeFormatter.string(from: Date.init(millis: startTime))
-
+        
     }
-
-//    func startTimeToHour() -> String {
-//
-//        return  Date.hourFormatter.string(from: Date.init(millis: startTime))
-//
-//    }
-
-//    func endTimeToHour() -> String {
-//
-//        return  Date.hourFormatter.string(from: Date.init(millis: endTime))
-//
-//    }
-
-
+    
+    //    func startTimeToHour() -> String {
+    //
+    //        return  Date.hourFormatter.string(from: Date.init(millis: startTime))
+    //
+    //    }
+    
+    //    func endTimeToHour() -> String {
+    //
+    //        return  Date.hourFormatter.string(from: Date.init(millis: endTime))
+    //
+    //    }
+    
+    
     func makeEndTimeToString() -> String {
-
+        
         return  Date.timeFormatter.string(from: Date.init(millis: endTime))
-
+        
     }
 }

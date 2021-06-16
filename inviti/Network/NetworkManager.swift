@@ -76,29 +76,29 @@ class NetworkManager {
             .document(meetingID)
             .getDocument { document, error in
 
-        let result = Result {
-          try document?.data(as: Meeting.self)
-        }
-
-            switch result {
-
-            case .success(let meeting):
-                if let meeting = meeting {
-
-                    completion(.success(meeting))
-
-                } else {
-
-                    print("Document does not exist")
-
+                let result = Result {
+                    try document?.data(as: Meeting.self)
                 }
-            case .failure(let error):
 
-                print("Error decoding city: \(error)")
+                switch result {
 
-                completion(.failure(error))
+                case .success(let meeting):
+                    if let meeting = meeting {
+
+                        completion(.success(meeting))
+
+                    } else {
+
+                        print("Document does not exist")
+
+                    }
+                case .failure(let error):
+
+                    print("Error decoding city: \(error)")
+
+                    completion(.failure(error))
+                }
             }
-        }
     }
 
     func fetchSearchResult(meetingID: String, completion: @escaping (Result<Meeting, Error>) -> Void) {
@@ -133,12 +133,12 @@ class NetworkManager {
                         completion(.success(meetings[0]))
                     }
                 }
-        }
+            }
     }
 
     func fetchHostedMeetings(completion: @escaping (Result<[Meeting], Error>) -> Void) {
 
-            db.collection("meetings")
+        db.collection("meetings")
             .whereField("ownerAppleID", isEqualTo: userUID)
             .getDocuments { querySnapshot, error in
 
@@ -213,7 +213,7 @@ class NetworkManager {
                                             meeting.options = options
                                             meetings.append(meeting)
                                             completion(.success(meetings))
-                            
+
                                         }
                                     }
                             }
@@ -222,8 +222,8 @@ class NetworkManager {
                             completion(.failure(error))
                         }
                     }
+                }
             }
-        }
     }
 
     func createMeeting(meeting: inout Meeting, completion: @escaping (Result<String, Error>) -> Void) {
@@ -247,41 +247,41 @@ class NetworkManager {
 
 
     func fetchProfileUser(userIDs: [String], completion: @escaping
-                    (Result<[User], Error>) -> Void) {
+                            (Result<[User], Error>) -> Void) {
 
         for user in userIDs {
 
             db.collection("users")
-            .whereField("id", isEqualTo: user)
-            .order(by: "numberForSearch")
-            .getDocuments { querySnapshot, error in
+                .whereField("id", isEqualTo: user)
+                .order(by: "numberForSearch")
+                .getDocuments { querySnapshot, error in
 
-            if let error = error {
-
-                completion(.failure(error))
-
-            } else {
-
-                var users = [User]()
-
-                for document in querySnapshot!.documents {
-
-                    do {
-                        if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
-                            users.append(user)
-                        }
-
-                    } catch {
+                    if let error = error {
 
                         completion(.failure(error))
+
+                    } else {
+
+                        var users = [User]()
+
+                        for document in querySnapshot!.documents {
+
+                            do {
+                                if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
+                                    users.append(user)
+                                }
+
+                            } catch {
+
+                                completion(.failure(error))
+                            }
+                        }
+
+                        completion(.success(users))
+
                     }
-                }
-
-                    completion(.success(users))
 
                 }
-
-            }
         }
     }
 
@@ -292,15 +292,15 @@ class NetworkManager {
             .document(meeting.id)
             .delete { error in
 
-            if let error = error {
+                if let error = error {
 
-                completion(.failure(error))
-                
-            } else {
+                    completion(.failure(error))
 
-                completion(.success(meeting.id))
+                } else {
+
+                    completion(.success(meeting.id))
+                }
             }
-        }
     }
 
     func deleteOneMeeting(meetingID: String, completion: @escaping (Result<String, Error>) -> Void) {
@@ -309,15 +309,15 @@ class NetworkManager {
             .document(meetingID)
             .delete { error in
 
-            if let error = error {
+                if let error = error {
 
-                completion(.failure(error))
+                    completion(.failure(error))
 
-            } else {
+                } else {
 
-                completion(.success(meetingID))
+                    completion(.success(meetingID))
+                }
             }
-        }
     }
 
     func updateMeeting(meetingID: String, meeting: Meeting, completion: @escaping (Result<Meeting, Error>) -> Void) {
@@ -432,22 +432,22 @@ class NetworkManager {
 
         let docRef = db.collection("meetings").document(meetingID)
 
-            docRef.updateData([
+        docRef.updateData([
 
-                "isClosed": true,
-                "finalOption": finalOption.toDict
+            "isClosed": true,
+            "finalOption": finalOption.toDict
 
-            ]) { err in
-                if err != nil {
+        ]) { err in
+            if err != nil {
 
-                    print("Error in updating time capsule status")
+                print("Error in updating time capsule status")
 
-                } else {
+            } else {
 
-                    print("Successfully updated time capsule status!")
+                print("Successfully updated time capsule status!")
 
-                }
             }
+        }
     }
 
     func uploadImage(selectedImage: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
@@ -459,76 +459,76 @@ class NetworkManager {
 
         let imageRef = storageRef.child("MeetingImages").child("\(uuid).jpg")
 
-            imageRef.putData(image, metadata: nil) { metadata, error in
-        if let error = error {
-            completion(.failure(error))
-         }
-        if metadata != nil {
-            imageRef.downloadURL { url, error in
-        if let url = url {
-            completion(.success(url.absoluteString))
-        } else if let error = error {
-            completion(.failure(error))
-        }
+        imageRef.putData(image, metadata: nil) { metadata, error in
+            if let error = error {
+                completion(.failure(error))
+            }
+            if metadata != nil {
+                imageRef.downloadURL { url, error in
+                    if let url = url {
+                        completion(.success(url.absoluteString))
+                    } else if let error = error {
+                        completion(.failure(error))
+                    }
+                }
             }
         }
-            }
     }
 
     // Fetch Meetings & Options
     func fetchMeetingsPackage(completion: @escaping (Result<[Meeting], Error>) -> Void) {
-       db.collection("meetings")
-        .getDocuments { querySnapshot, error in
+        db.collection("meetings")
+            .getDocuments { querySnapshot, error in
 
-         if let error = error {
-
-            completion(.failure(error))
-
-         } else {
-
-            var meeitngs = [Meeting]()
-
-            for document in querySnapshot!.documents {
-
-                do {
-                    if var meeting = try document.data(as: Meeting.self, decoder: Firestore.Decoder()) {
-                        self.db.collection("meetings")
-                            .document("\(meeting.id)")
-                            .collection("options")
-                            .getDocuments { querySnapshot, error in
-
-                                if let error = error {
-
-                                    completion(.failure(error))
-
-                                } else {
-
-                                    var options = [Option]()
-
-                                    for document in querySnapshot!.documents {
-
-                                        do {
-                                            if let option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
-                                                options.append(option)
-                                            }
-                                        } catch {
-                                            completion(.failure(error))
-                                        }
-                                    }
-
-                                    meeting.options = options
-                                    meeitngs.append(meeting)
-                                    completion(.success(meeitngs))
-
-                                }
-                            }
-                    }
-                } catch {
+                if let error = error {
 
                     completion(.failure(error))
+
+                } else {
+
+                    var meeitngs = [Meeting]()
+
+                    for document in querySnapshot!.documents {
+
+                        do {
+                            if var meeting = try document.data(as: Meeting.self, decoder: Firestore.Decoder()) {
+                                self.db.collection("meetings")
+                                    .document("\(meeting.id)")
+                                    .collection("options")
+                                    .getDocuments { querySnapshot, error in
+
+                                        if let error = error {
+
+                                            completion(.failure(error))
+
+                                        } else {
+
+                                            var options = [Option]()
+
+                                            for document in querySnapshot!.documents {
+
+                                                do {
+                                                    if let option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
+                                                        options.append(option)
+                                                    }
+                                                } catch {
+                                                    completion(.failure(error))
+                                                }
+                                            }
+
+                                            meeting.options = options
+                                            meeitngs.append(meeting)
+                                            completion(.success(meeitngs))
+
+                                        }
+                                    }
+                            }
+                        } catch {
+
+                            completion(.failure(error))
+                        }
+                    }
                 }
             }
-          }
-        }
     }
 }

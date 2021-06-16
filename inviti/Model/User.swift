@@ -10,7 +10,7 @@ import Firebase
 import FirebaseFirestoreSwift
 
 struct User: Codable {
-
+    
     var id: String
     var email: String?
     var name: String?
@@ -23,15 +23,15 @@ struct User: Codable {
     var events: [Event]?
     var notification: [Notification]?
     var numberForSearch: String
-
-
+    
+    
     enum CodingKeys: String, CodingKey {
         case id, email, name
         case image, phone, address, numOfMeetings
         case isCalendarSynced, calendarType
         case events, notification, numberForSearch
     }
-
+    
     var toDict: [String: Any] {
         return [
             "id": id,
@@ -46,7 +46,7 @@ struct User: Codable {
             "isCalendarSynced": isCalendarSynced,
             "notification": notification as Any,
             "numberForSearch": numberForSearch
-
+            
         ]
     }
 }

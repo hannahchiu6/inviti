@@ -8,15 +8,15 @@
 import UIKit
 
 class VoteSuccessVC: BaseViewController {
-
+    
     @IBAction func returnMain(_ sender: UIButton) {
-       
+        
         popBack(sender)
-
+        
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
 }
