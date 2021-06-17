@@ -11,25 +11,10 @@ import Firebase
 class CreateMeetingViewModel {
     
     var meetingViewModels = Box([MeetingViewModel]())
-    
-    //    var meetingViewModel = MeetingViewModel(model: Meeting(
-    //        id: "", numberForSearch: "",
-    //        ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? "",
-    //        createdTime: 0,
-    //        subject: "",
-    //        location: "",
-    //        notes: "",
-    //        image: "https://500px.com/static/media/editors8@1x.126c6fb9.png",
-    //        singleMeeting: false,
-    //        hiddenMeeting: false,
-    //        deadlineMeeting: false,
-    //        participants: [],
-    //        numOfParticipants: 0,
-    //        deadlineTag: 0
-    //    ))
-    
+
     var meeting: Meeting = Meeting(
-        id: "", numberForSearch: "",
+        id: "",
+        numberForSearch: "",
         ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? "",
         createdTime: 0,
         subject: "",
@@ -51,7 +36,7 @@ class CreateMeetingViewModel {
     }
     
     func onSubjectChanged(text subject: String) {
-        //        self.meetingViewModel.meeting.subject = subject
+        
         self.meeting.subject = subject
         self.onSubjectAdded?(subject)
     }

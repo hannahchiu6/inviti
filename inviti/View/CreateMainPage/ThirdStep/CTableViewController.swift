@@ -107,12 +107,12 @@ class CTableViewController: UIViewController {
         if data.isEmpty {
             
             self.confirmBtn.isEnabled = false
-            self.confirmBtn.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+            self.confirmBtn.backgroundColor = UIColor.midGray
             
         } else {
             
             self.confirmBtn.isEnabled = true
-            self.confirmBtn.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+            self.confirmBtn.backgroundColor = UIColor.mainOrange
         }
     }
     
@@ -128,7 +128,8 @@ class CTableViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "backToFirstSegue" {
-            let vc = segue.destination as! CreateFirstViewController
+            
+            guard let vc = segue.destination as? CreateFirstViewController else { return }
             self.delegate = vc
         }
     }
@@ -172,51 +173,39 @@ extension CTableViewController: JKCalendarDelegate {
 extension CTableViewController: JKCalendarDataSource {
     
     func calendar(_ calendar: JKCalendar, marksWith month: JKMonth) -> [JKCalendarMark]? {
-        
+
         var marks: [JKCalendarMark] = []
-        
-        //        let bookingDate = OptionTime(year: selectDay.year, month: selectDay.month, day: selectDay.day)
-        
+
         let today = JKDay(date: Date())
-        
+
         let marksDay = viewModel.createMarksData()
-        
+
         let selectedOptions = selectedOptionViewModel.markOptionsDay(in: selectedOptionViewModel.optionViewModels.value)
-        
+
         let markColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
-        
-        let todayColor = UIColor(red: 0.78, green: 0.49, blue: 0.35, alpha: 1.00)
-        
+        let todayColor = UIColor(red: 0.9765, green: 0.3608, blue: 0.251, alpha: 1.0)
         let optionColor = UIColor(red: 1, green: 0.8353, blue: 0.7882, alpha: 1.0)
-        
+
         if selectDay == month {
-            marks.append(JKCalendarMark(type: .circle,
-                                        day: selectDay,
-                                        color: markColor))
+            marks.append(JKCalendarMark(type: .circle, day: selectDay, color: markColor))
         }
-        
-        
+
         for day in selectedOptions where day == month {
-            
-            marks.append(JKCalendarMark(type: .hollowCircle,
-                                        day: day,
-                                        color: optionColor))
+
+            marks.append(JKCalendarMark(type: .hollowCircle, day: day, color: optionColor))
         }
-        
+
         if today == month {
-            marks.append(JKCalendarMark(type: .circle,
-                                        day: today,
-                                        color: optionColor))
+            marks.append(JKCalendarMark(type: .circle, day: today, color: optionColor))
         }
-        
-        
+
+
         for i in marksDay where i == month {
-            
-            marks.append(JKCalendarMark(type: .dot,
-                                        day: i,
-                                        color: todayColor))
-            
+
+            marks.append(JKCalendarMark(type: .dot, day: i, color: todayColor))
+
         }
+
         return marks
     }
 }
@@ -233,25 +222,27 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CTableViewCell", for: indexPath) as! CTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CTableViewCell", for: indexPath)
+
+        guard let ctCell = cell as? CTableViewCell else { return cell }
         
-        cell.setup(index: indexPath.row)
+        ctCell.setup(index: indexPath.row)
         
-        cell.meetingID = meetingID
+        ctCell.meetingID = meetingID
         
-        cell.selectDay = selectDay.date
+        ctCell.selectDay = selectDay.date
         
-        cell.createOptionViewModel.option = selectedOptionViewModel.option
+        ctCell.createOptionViewModel.option = selectedOptionViewModel.option
         
-        cell.selectedOptionViewModel = self.selectedOptionViewModel
+        ctCell.selectedOptionViewModel = self.selectedOptionViewModel
         
         if selectDay.date < Date() {
             
-            cell.bookingButton.isHidden = true
+            ctCell.bookingButton.isHidden = true
             
         } else {
             
-            cell.bookingButton.isHidden = false
+            ctCell.bookingButton.isHidden = false
             
         }
         
@@ -269,18 +260,18 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
             let eventHours = eventViewModels!.map({ Int(Date.hourFormatter.string(from: Date(millis: $0.event.startTime))) })
             if eventHours.contains(hour) {
                 
-                cell.hasEventStatus()
+                ctCell.hasEventStatus()
                 
             } else {
                 
-                cell.setupEmptyStatus()
+                ctCell.setupEmptyStatus()
             }
         }
         
         let selectedOptionDays = selectedOptionViewModel.createDateData(in: selectedOptionViewModel.optionViewModels.value )
         
-        cell.bookingButton.setImage(UIImage(systemName: "minus"), for: .selected)
-        cell.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        ctCell.bookingButton.setImage(UIImage(systemName: "minus"), for: .selected)
+        ctCell.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
         
         if selectedOptionDays.contains(bookingDate) {
             
@@ -291,33 +282,30 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
             
             if optionHours.contains(hour) {
                 
-                cell.bookingButton.isSelected = true
+                ctCell.bookingButton.isSelected = true
                 
-                cell.bookingButton.tag = indexPath.row
+                ctCell.bookingButton.tag = indexPath.row
                 
-                cell.selectedMeetingTime()
+                ctCell.selectedMeetingTime()
                 
             } else {
                 
-                cell.bookingButton.isSelected = false
+                ctCell.bookingButton.isSelected = false
                 
-                cell.deselectedMeetingTime()
+                ctCell.deselectedMeetingTime()
             }
             
         } else {
             
-            cell.bookingButton.isSelected = false
-            
+            ctCell.bookingButton.isSelected = false
         }
-        return cell
-        
+        return ctCell
     }
     
     private func setupItemTitle(name: String) {
         
         self.navigationItem.title = name + "時間"
     }
-    
 }
 
 extension CTableViewController {
@@ -335,10 +323,7 @@ extension CTableViewController {
         
         else {
             
-            options.append(Option(id: "",
-                                  startTime: Int64(Int((updateDate.startTime))),
-                                  endTime: Int64(Int((updateDate.endTime))),
-                                  optionTime: bookingDate, duration: 60))
+            options.append(Option(id: "", startTime: Int64(Int((updateDate.startTime))), endTime: Int64(Int((updateDate.endTime))), optionTime: bookingDate, duration: 60))
             
             return
             

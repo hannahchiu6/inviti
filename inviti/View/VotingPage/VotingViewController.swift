@@ -114,12 +114,14 @@ class VotingViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "hasVotedSegue" {
-            let vc = segue.destination as! HasVotedVC
-            vc.delegate = self
+
+            let controller = segue.destination as? HasVotedVC
+
+            controller?.delegate = self
             
-            vc.meeting = meetingInfo
+            controller?.meeting = meetingInfo
             
-            vc.isVoted = isVoted
+            controller?.isVoted = isVoted
             
         }
     }
@@ -161,13 +163,13 @@ class VotingViewController: BaseViewController {
             
             confirmVoteBtnView.isEnabled = true
             
-            confirmVoteBtnView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+            confirmVoteBtnView.backgroundColor = UIColor.mainOrange
             
         } else {
             
             confirmVoteBtnView.isEnabled = false
             
-            confirmVoteBtnView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+            confirmVoteBtnView.backgroundColor = UIColor.lightGray
             
         }
         
@@ -208,35 +210,41 @@ extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "votingTableViewCell", for: indexPath) as! VotingTableViewCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "votingTableViewCell", for: indexPath)
+
+        guard let votingCell = cell as? VotingTableViewCell else { return cell }
+
         let index = indexPath.row
         
         let theOptionVM = votingViewModel.optionViewModels.value[index]
         
-        cell.delegate = self
+        votingCell.delegate = self
         
-        cell.votingViewModel = self.votingViewModel
+        votingCell.votingViewModel = self.votingViewModel
         
-        cell.setupVotingCell(model: theOptionVM, index: index)
+        votingCell.setupVotingCell(model: theOptionVM, index: index)
         
-        cell.meetingID = self.meetingInfo.id
+        votingCell.meetingID = self.meetingInfo.id
         
-        cell.optionID = theOptionVM.id
+        votingCell.optionID = theOptionVM.id
         
-        return cell
+        return votingCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRow(at: indexPath) as! VotingTableViewCell
+        let cell = tableView.cellForRow(at: indexPath)
+
+        guard let votingCell = cell as? VotingTableViewCell else { return }
         
-        cell.votedYesCell()
+        votingCell.votedYesCell()
         
         self.enableButton(userSelected: true)
         
         let index = indexPath.row
+
         if !selectedIndex.contains(index) {
+            
             selectedIndex.append(indexPath.row)
         }
         
@@ -247,7 +255,7 @@ extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.cellForRow(at: indexPath) as? VotingTableViewCell
         
-        cell.votedNoCell()
+        cell?.votedNoCell()
         
         self.enableButton(userSelected: false)
         

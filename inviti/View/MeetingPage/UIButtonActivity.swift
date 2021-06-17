@@ -10,7 +10,7 @@ import UIKit
 
 class UIButtonActivity: UIButton {
     
-    @IBInspectable var indicatorColor: UIColor = .lightGray
+    @IBInspectable var indicatorColor: UIColor = UIColor.systemGray
     
     private var buttonLabel: String?
     

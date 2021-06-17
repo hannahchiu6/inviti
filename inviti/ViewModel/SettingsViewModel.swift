@@ -162,8 +162,7 @@ class SettingsViewModel {
     
     func create(with user: inout User) {
         
-        UserManager.shared.createUser(user: &user,
-                                      completion: { result in
+        UserManager.shared.createUser(user: &user, completion: { result in
                                         
                                         switch result {
                                         

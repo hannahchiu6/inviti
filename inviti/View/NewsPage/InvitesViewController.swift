@@ -42,7 +42,7 @@ class InvitesViewController: UIViewController {
         
         if let items = self.tabBarController?.tabBar.items as NSArray? {
             
-            let tabItem = items.object(at: 1) as! UITabBarItem
+            guard let tabItem = items.object(at: 1) as? UITabBarItem else { return }
             
             let number = viewModel.notificationViewModels.value.count
             
@@ -82,13 +82,15 @@ extension InvitesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "invitesTableViewCell", for: indexPath) as! InvitesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "invitesTableViewCell", for: indexPath)
+
+        guard let inviteCell = cell as? InvitesTableViewCell else { return cell }
         
-        cell.deleteBtnView.tag = indexPath.row
+        inviteCell.deleteBtnView.tag = indexPath.row
         
         if viewModel.notificationViewModels.value.isEmpty {
             
-            cell.setupEmptyCell()
+            inviteCell.setupEmptyCell()
             
         } else {
             
@@ -100,23 +102,23 @@ extension InvitesViewController: UITableViewDataSource, UITableViewDelegate {
             
             case TypeName.calendar.rawValue:
                 
-                cell.setupEventCell(model: model)
+                inviteCell.setupEventCell(model: model)
                 
             case TypeName.invite.rawValue:
                 
-                cell.setupInviteCell(model: model)
+                inviteCell.setupInviteCell(model: model)
                 
-                cell.voteBtnView.addTarget(self, action: #selector(goToVote), for: UIControl.Event.touchUpInside)
+                inviteCell.voteBtnView.addTarget(self, action: #selector(goToVote), for: UIControl.Event.touchUpInside)
                 
-                cell.voteBtnView.tag = index
+                inviteCell.voteBtnView.tag = index
                 
             default:
                 
-                cell.setupVoteCell(model: model)
+                inviteCell.setupVoteCell(model: model)
                 
             }
             
-            cell.viewModel = viewModel
+            inviteCell.viewModel = viewModel
             
             guard let inviteViewCell = cell as? InvitesTableViewCell else {
                 

@@ -77,7 +77,7 @@ class UpdateProfileVC: UIViewController {
         bgView.layer.shadowOpacity = 0.3
         bgView.layer.shadowOffset = CGSize(width: 0, height: 0)
         bgView.layer.shadowRadius = 3
-        bgView.layer.shadowColor = UIColor.lightGray.cgColor
+        bgView.layer.shadowColor = UIColor.lightGray?.cgColor
         bgView.layer.masksToBounds = false
     }
     
@@ -107,13 +107,14 @@ extension UpdateProfileVC: UITextFieldDelegate {
         
         let oldEmail = viewModel.user.email
         
-        let colorNew = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
-        
-        nameTextField.attributedPlaceholder =
-            NSAttributedString(string: "\(String(describing: oldName))", attributes: [NSAttributedString.Key.foregroundColor: colorNew])
-        
-        emailTextField.attributedPlaceholder =
-            NSAttributedString(string: "\(String(describing: oldEmail))", attributes: [NSAttributedString.Key.foregroundColor: colorNew])
+        if let colorNew = UIColor.lightGray {
+
+            nameTextField.attributedPlaceholder =
+                NSAttributedString(string: "\(String(describing: oldName))", attributes: [NSAttributedString.Key.foregroundColor: colorNew])
+
+            emailTextField.attributedPlaceholder =
+                NSAttributedString(string: "\(String(describing: oldEmail))", attributes: [NSAttributedString.Key.foregroundColor: colorNew])
+        }
         
     }
     
@@ -138,19 +139,13 @@ extension UpdateProfileVC: UIImagePickerControllerDelegate, UINavigationControll
             
             imageBtnView.setTitle(" 上傳成功！", for: .normal)
             
-            imageBtnView.setTitleColor(UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00), for: .normal)
+            imageBtnView.setTitleColor(UIColor.mainOrange, for: .normal)
             
-            imageBtnView.tintColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+            imageBtnView.tintColor = UIColor.mainOrange
             
             imageBtnView.backgroundColor = UIColor.clear
             
-            imageBackground.backgroundColor = UIColor(red: 1, green: 0.8353, blue: 0.7882, alpha: 1.0)
-            
-            //            imageBtnView.backgroundColor = UIColor(red: 1, green: 0.8353, blue: 0.7882, alpha: 1.0)
-            
-            //            imageBtnView.lkBorderColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
-            //
-            //            imageBtnView.lkBorderWidth = 2
+            imageBackground.backgroundColor = UIColor.mainOrange
         }
         
         self.dismiss(animated: true, completion: nil)

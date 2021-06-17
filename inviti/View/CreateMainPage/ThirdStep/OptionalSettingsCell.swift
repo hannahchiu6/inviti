@@ -149,7 +149,7 @@ class OptionalSettingsCell: UITableViewCell {
         
         placeholder.frame = CGRect(x: 6, y: 6, width: 250, height: 36)
         placeholder.text = ""
-        placeholder.textColor = UIColor(red: 0.9922, green: 0.9098, blue: 0.8784, alpha: 1.0) 
+        placeholder.textColor = UIColor.lightGray
         placeholder.backgroundColor?.withAlphaComponent(0)
         placeholder.font = UIFont(name: "PingFang TC", size: 17)
         textView.addSubview(placeholder)

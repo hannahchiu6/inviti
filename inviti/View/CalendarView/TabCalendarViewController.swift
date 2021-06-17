@@ -10,13 +10,14 @@ import JKCalendar
 import Firebase
 import FirebaseFirestoreSwift
 import EasyRefresher
+import SwiftHEXColors
 
 
 class TabCalendarViewController: UIViewController {
     
-    let lightGrayColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+    let lightGrayColor = UIColor.lightGray
     
-    let lightColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0)
+    let lightColor = UIColor.lightOrange
     
     var selectDay: JKDay = JKDay(date: Date()) {
         didSet {
@@ -48,6 +49,8 @@ class TabCalendarViewController: UIViewController {
         calendarTableView.backgroundColor = lightColor
         
         calendarTableView.calendar.focusWeek = selectDay.weekOfMonth - 1
+
+        setupRefresher()
         
         viewModel.eventViewModels.bind { [weak self] events in
             
@@ -67,8 +70,6 @@ class TabCalendarViewController: UIViewController {
         
         let nib = UINib(nibName: "EventTableViewCell", bundle: nil)
         calendarTableView.register(nib, forCellReuseIdentifier: "eventTableViewCell")
-        
-        setupRefresher() 
     }
     
     
@@ -110,8 +111,10 @@ extension TabCalendarViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "eventTableViewCell", for: indexPath) as! EventTableViewCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventTableViewCell", for: indexPath)
+
+        guard let eventCell = cell as? EventTableViewCell else { return cell }
+
         let theDay = Date.intDateFormatter.string(from: self.selectDay.date)
         
         let selectedDays = viewModel.createTimeData(in: viewModel.eventViewModels.value)
@@ -120,7 +123,7 @@ extension TabCalendarViewController: UITableViewDelegate, UITableViewDataSource 
             
             let eventModel = viewModel.createSelectedData(in: viewModel.eventViewModels.value, selectedDate: theDay)
             
-            cell.setup(vm: eventModel[indexPath.row])
+            eventCell.setup(vm: eventModel[indexPath.row])
             
             self.eventIDs = eventModel.map({ $0.id })
             
@@ -141,7 +144,7 @@ extension TabCalendarViewController: UITableViewDelegate, UITableViewDataSource 
             }
         }
         
-        contextItem.backgroundColor = UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1.00)
+        contextItem.backgroundColor = UIColor.lightGray
         
         let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
         
@@ -173,6 +176,7 @@ extension TabCalendarViewController: JKCalendarDelegate {
     }
     
     func viewOfFooter(in calendar: JKCalendar) -> UIView? {
+        
         let view = UIView()
         let line = UIView(frame: CGRect(x: 8, y: 9, width: calendar.frame.width - 16, height: 1))
         line.backgroundColor = lightGrayColor
@@ -184,41 +188,32 @@ extension TabCalendarViewController: JKCalendarDelegate {
 extension TabCalendarViewController: JKCalendarDataSource {
     
     func calendar(_ calendar: JKCalendar, marksWith month: JKMonth) -> [JKCalendarMark]? {
-        
-        let markColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
-        
-        let todayColor = UIColor(red: 0.78, green: 0.49, blue: 0.35, alpha: 1.00)
-        
-        let optionColor = UIColor(red: 1, green: 0.8353, blue: 0.7882, alpha: 1.0)
-        
-        
         var marks: [JKCalendarMark] = []
-        
+
         let today = JKDay(date: Date())
-        
+
         let marksDay = viewModel.createMarksData()
-        
-        if selectDay == month {
-            marks.append(JKCalendarMark(type: .circle,
-                                        day: selectDay,
-                                        color: markColor))
-        }
-        
-        if today == month {
-            marks.append(JKCalendarMark(type: .circle,
-                                        day: today,
-                                        color: optionColor))
-        }
-        
-        
-        for i in marksDay where i == month {
-            
-            marks.append(JKCalendarMark(type: .dot,
-                                        day: i,
-                                        color: todayColor))
-            
-        }
-        return marks
+
+        let markColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+        let todayColor = UIColor(red: 0.9765, green: 0.3608, blue: 0.251, alpha: 1.0)
+        let optionColor = UIColor(red: 1, green: 0.8353, blue: 0.7882, alpha: 1.0)
+
+            if selectDay == month {
+                marks.append(JKCalendarMark(type: .circle, day: selectDay, color: markColor))
+            }
+
+            if today == month {
+                marks.append(JKCalendarMark(type: .circle, day: today, color: optionColor))
+            }
+
+
+            for i in marksDay where i == month {
+
+                marks.append(JKCalendarMark(type: .dot, day: i, color: todayColor))
+
+            }
+
+            return marks
     }
 }
 

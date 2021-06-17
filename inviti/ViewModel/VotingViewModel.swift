@@ -19,7 +19,8 @@ class VotingViewModel {
     var voteViewModel = VoteViewModel(model: SelectedOption(isSelected: false, selectedUser: ""))
     
     var meeting: Meeting = Meeting(
-        id: "", numberForSearch: "",
+        id: "",
+        numberForSearch: "",
         ownerAppleID: UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as? String ?? "",
         createdTime: 0,
         subject: "",
@@ -47,10 +48,6 @@ class VotingViewModel {
     var user: User = User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [], numberForSearch: "")
     
     var isVoted: Bool = false
-    
-    var scrollToTop: (() -> Void)?
-    
-    var onVoted: (() -> Void)?
     
     var multipleOptions: (() -> Void)?
     
@@ -165,8 +162,6 @@ class VotingViewModel {
                     self?.isVoted = true
                 }
                 
-                self?.onVoted?()
-                
             case .failure(let error):
                 
                 print("fetchData.failure: \(error)")
@@ -246,12 +241,7 @@ class VotingViewModel {
     func onMultipleOptions() {
         self.multipleOptions?()
     }
-    
-    func onScrollToTop() {
-        
-        self.scrollToTop?()
-    }
-    
+
     func create(with meeting: Meeting, option: Option, selectedOption: inout SelectedOption) {
         
         VoteManager.shared.createSelectedOption(selectedOption: &selectedOption, meeting: meeting, option: option) { result in

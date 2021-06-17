@@ -4,7 +4,6 @@
 //
 //  Created by Hannah.C on 20.05.21.
 //
-//  swiftlint:disable force_unwrapping inclusive_language closure_end_indentation
 
 import Foundation
 import Firebase
@@ -329,6 +328,7 @@ class NetworkManager {
            let notes = meeting.notes {
 
             docRef.updateData([
+                
                 "subject": "\(subject)",
                 "location": "\(location)",
                 "notes": "\(notes)",
@@ -361,10 +361,7 @@ class NetworkManager {
 
         if let subject = subject {
 
-            docRef.updateData([
-                "subject": "\(subject)"
-
-            ]) { err in
+            docRef.updateData([ "subject": "\(subject)" ]) { err in
 
                 if let err = err {
                     completion(.failure(err))
@@ -384,11 +381,7 @@ class NetworkManager {
 
         if let location = location {
 
-            docRef.updateData([
-
-                "location": "\(location)"
-
-            ]) { err in
+            docRef.updateData(["location": "\(location)"]) { err in
 
                 if let err = err {
 
@@ -410,9 +403,7 @@ class NetworkManager {
 
         if let url = meeting.image {
 
-            docRef.updateData([
-                "image": "\(url)"
-            ]) { err in
+            docRef.updateData(["image": "\(url)"]) { err in
 
                 if let err = err {
 
@@ -432,12 +423,8 @@ class NetworkManager {
 
         let docRef = db.collection("meetings").document(meetingID)
 
-        docRef.updateData([
-
-            "isClosed": true,
-            "finalOption": finalOption.toDict
-
-        ]) { err in
+        docRef.updateData(["isClosed": true, "finalOption": finalOption.toDict]) { err in
+            
             if err != nil {
 
                 print("Error in updating time capsule status")

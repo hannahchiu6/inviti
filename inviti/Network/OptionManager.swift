@@ -96,26 +96,21 @@ class OptionManager {
     }
     
     func updateVotedOption(option: Option, meetingID: String, completion: @escaping (Result<Option, Error>) -> Void) {
-        
-        let docRef =
-            db.collection("meetings")
-            .document(meetingID)
-            .collection("options")
-            .document(option.id)
-        
-        docRef.updateData([
-            "selectedOptions": FieldValue.arrayUnion([userUID])
-            
-        ]) { err in
-            
+
+        db.collection("meetings")
+        .document(meetingID)
+        .collection("options")
+        .document(option.id)
+        .updateData(["selectedOptions": FieldValue.arrayUnion([userUID])]) { err in
+
             if let err = err {
-                
+
                 completion(.failure(err))
-                
+
             } else {
-                
+
                 completion(.success(option))
-                
+
             }
         }
     }

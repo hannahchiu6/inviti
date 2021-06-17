@@ -124,7 +124,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         newsTabBarItem = viewControllers?[1].tabBarItem
         
-        newsTabBarItem.badgeColor = UIColor(red: 0.5804, green: 0.3922, blue: 0.2314, alpha: 1.0)
+        newsTabBarItem.badgeColor = UIColor.lightBrown
         
         NotificationCenter.default.addObserver(self, selector: #selector(newsUpdated), name: NSNotification.Name(rawValue: "newsUpdated"), object: nil)
     }
@@ -176,7 +176,8 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     @objc func showViewController() {
         
-        centerButton.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00) /* #ff5d00 */
+        centerButton.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+
         self.selectedIndex = 2
         centerButton.layer.borderColor = UIColor.black.cgColor
         centerButton.layer.borderWidth = 3

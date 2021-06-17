@@ -1,63 +1,73 @@
-////
-////  ColorHelper.swift
-////  inviti
-////
-////  Created by Hannah.C on 20.05.21.
-////
-//import UIKit
-//import  SwiftHEXColors
 //
-//private enum Color: String {
+//  ColorHelper.swift
+//  inviti
 //
-//    case deepPurple = "#673ab7"
+//  Created by Hannah.C on 20.05.21.
 //
-//    case indigo = "#3f51b5"
-//
-//    case orange = "#ff9800"
-//
-//    case red = "#f44336"
-//
-//    case green = "#4caf50"
-//
-//}
-//
-//extension UIColor {
-//
-//    static let deepPurple = color(.deepPurple)
-//
-//    static let indigo = color(.indigo)
-//
-//    static let orange = color(.orange)
-//
-//    static let red = color(.red)
-//
-//    static let green = color(.green)
-//
-//    private static func color(_ color: Color) -> UIColor {
-//
-//        return UIColor.hexStringToUIColor(hex: color.rawValue)
-//    }
-//
-//    static func hexStringToUIColor(hex: String) -> UIColor {
-//
-//        var colorString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-//
-//        if colorString.hasPrefix("#") {
-//            colorString.remove(at: colorString.startIndex)
-//        }
-//
-//        if (colorString.count) != 6 {
-//            return UIColor.gray
-//        }
-//
-//        var rgbValue: UInt32 = 0
-//        Scanner(string: colorString).scanHexInt32(&rgbValue)
-//
-//        return UIColor(
-//            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-//            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-//            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-//            alpha: CGFloat(1.0)
-//        )
-//    }
-// }
+
+import UIKit
+import SwiftHEXColors
+
+private enum INColor: String {
+
+    case mainOrange = "#FF5C26"
+
+    case darkGray = "#7D736F"
+
+    case lightOrange = "#FDE8E0"
+
+    case lightBrown = "#7D695B"
+
+    case darkBrown = "#564448"
+
+    case lightGray = "#ededed"
+
+    case midGray = "bfbfbf"
+
+}
+
+extension UIColor {
+
+    static let mainOrange = INColor(.mainOrange)
+
+    static let darkGray = INColor(.darkGray)
+
+    static let lightOrange = INColor(.lightOrange)
+
+    static let lightBrown = INColor(.lightBrown)
+
+    static let darkBrown = INColor(.darkBrown)
+
+    static let lightGray = INColor(.lightGray)
+
+    static let midGray = INColor(.midGray)
+
+    private static func INColor(_ color: INColor) -> UIColor? {
+
+        return UIColor(named: color.rawValue)
+
+    }
+
+    static func hexStringToUIColor(hex: String) -> UIColor {
+
+        var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if cString.hasPrefix("#") {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if (cString.count) != 6 {
+            return UIColor.gray
+        }
+
+        var rgbValue: UInt64 = 0
+           Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+}

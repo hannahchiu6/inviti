@@ -29,10 +29,11 @@ extension NotiViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NotiTableViewCell", for: indexPath) as! NotiTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NotiTableViewCell", for: indexPath)
+
+        guard let notiCell = cell as? NotiTableViewCell else { return cell }
         
-        return cell
+        return notiCell
     }
-    
     
 }

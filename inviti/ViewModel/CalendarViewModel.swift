@@ -80,7 +80,7 @@ class CalendarViewModel {
     
     func createSelectedData(in viewModels: [EventViewModel], selectedDate: String) -> [EventViewModel] {
         var newViewModels = [EventViewModel]()
-        newViewModels = viewModels.filter({ $0.event.date == Int(selectedDate )})
+        newViewModels = viewModels.filter({ $0.event.date == Int(selectedDate) })
         
         return newViewModels
     }
@@ -115,10 +115,6 @@ class CalendarViewModel {
         })
         return JDays
     }
-    
-    //    func onTap(withIndex index: Int) {
-    //        eventViewModels.value[index].onTap()
-    //    }
     
     func onEmptyTap(_ eventID: String) {
         EventManager.shared.deleteEvent(eventID: eventID) { [weak self] result in

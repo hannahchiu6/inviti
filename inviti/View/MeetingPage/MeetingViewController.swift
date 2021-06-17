@@ -84,13 +84,16 @@ class MeetingViewController: BaseViewController {
         
         if let items = self.tabBarController?.tabBar.items as NSArray? {
             
-            let tabItem = items.object(at: 1) as! UITabBarItem
+            guard let tabItem = items.object(at: 1) as? UITabBarItem else { return }
             
             let number = notiViewModel.notificationViewModels.value.count
             
             if number > 0 {
+
                 tabItem.badgeValue = "\(number)"
+
             } else {
+                
                 tabItem.badgeValue = nil
             }
         }
@@ -118,8 +121,10 @@ class MeetingViewController: BaseViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
         if segue.identifier == "addMeetingSegue" {
-            let controller = segue.destination as! AddMeetingViewController
+
+            guard let controller = segue.destination as? AddMeetingViewController else { return }
             
             controller.delegate = self
             

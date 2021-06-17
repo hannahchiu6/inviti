@@ -26,8 +26,6 @@ class VotingResultViewController: UIViewController {
     
     var notificationVM = UpdateNotificationVM()
     
-    let ownerAppleID: String = UserDefaults.standard.value(forKey: UserDefaults.Keys.uid.rawValue) as! String
-    
     var meetingDataHandler: ( (Meeting) -> Void)?
     
     @IBOutlet weak var tableview: UITableView!
@@ -96,15 +94,15 @@ class VotingResultViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addToCalendarSegue" {
-            let controller = segue.destination as! CloseSuccessVC
+            let controller = segue.destination as? CloseSuccessVC
             
-            controller.participants = meetingInfo.participants ?? []
+            controller?.participants = meetingInfo.participants ?? []
             
-            controller.viewModel = eventViewModel
+            controller?.viewModel = eventViewModel
             
-            controller.eventSubject = meetingInfo.subject
+            controller?.eventSubject = meetingInfo.subject
             
-            controller.notificationVM = notificationVM
+            controller?.notificationVM = notificationVM
             
         }
     }
@@ -216,7 +214,7 @@ class VotingResultViewController: UIViewController {
             } else {
                 
                 self.confirmBtnView.isEnabled = false
-                self.confirmBtnView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+                self.confirmBtnView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
                 
             }
         }
@@ -240,37 +238,42 @@ extension VotingResultViewController: UITableViewDelegate, UITableViewDataSource
         let index = indexPath.row
         
         if meetingInfo.isClosed {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "resultClosedCell", for: indexPath) as! ResultClosedCell
-            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "resultClosedCell", for: indexPath)
+
+            guard let closeCell = cell as? ResultClosedCell else { return cell }
+
             guard let option = meetingInfo.finalOption else { return cell }
-            cell.setupCell(option: option)
+
+            closeCell.setupCell(option: option)
             
             return cell
             
         } else {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "resultTableViewCell", for: indexPath) as! ResultTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "resultTableViewCell", for: indexPath)
+
+            guard let resultCell = cell as? ResultTableViewCell else { return cell }
             
-            cell.votingViewModel = self.votingViewModel
+            resultCell.votingViewModel = self.votingViewModel
             
-            cell.meetingID = self.meetingInfo.id
+            resultCell.meetingID = self.meetingInfo.id
             
-            if let filterOptions = votingViewModel.optionViewModels.value[index] as? OptionViewModel {
+            let filterOptions = votingViewModel.optionViewModels.value[index]
                 
                 if let selectedOptions = filterOptions.selectedOptions {
                     
                     if selectedOptions.isEmpty {
                         
-                        cell.setupNoCell(model: filterOptions, index: index)
+                        resultCell.setupNoCell(model: filterOptions, index: index)
                         
                     } else {
                         
-                        cell.setupYesCell(model: filterOptions, index: index)
+                        resultCell.setupYesCell(model: filterOptions, index: index)
                     }
                 }
                 
-                return cell
-            }
+            return cell
+
         }
     }
     

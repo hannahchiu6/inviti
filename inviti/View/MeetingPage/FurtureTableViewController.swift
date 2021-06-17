@@ -58,17 +58,19 @@ class FurtureTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MeetingTableViewCell.self), for: indexPath) as! MeetingTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MeetingTableViewCell.self), for: indexPath)
+
+        guard let meetingCell = cell as? MeetingTableViewCell else { return cell }
+
+        meetingCell.editIcon.tag = indexPath.row
         
-        cell.editIcon.tag = indexPath.row
+        meetingCell.delegate = self
         
-        cell.delegate = self
+        meetingCell.index = indexPath.row
         
-        cell.index = indexPath.row
+        meetingCell.mainViewModel = viewModel
         
-        cell.mainViewModel = viewModel
-        
-        cell.completionHandler = { index in
+        meetingCell.completionHandler = { index in
             self.selectedIndex = index
         }
         

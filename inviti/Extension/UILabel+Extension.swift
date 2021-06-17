@@ -43,9 +43,7 @@ extension UILabel {
         
         if let textString = self.text {
             let attributedString = NSMutableAttributedString(string: textString)
-            attributedString.addAttribute(NSAttributedString.Key.kern,
-                                          value: value,
-                                          range: NSRange(location: 0, length: attributedString.length - 1))
+            attributedString.addAttribute(NSAttributedString.Key.kern, value: value, range: NSRange(location: 0, length: attributedString.length - 1))
             let nsmutable = NSMutableParagraphStyle()
             nsmutable.lineSpacing = linespacing
             attributedString.addAttribute(

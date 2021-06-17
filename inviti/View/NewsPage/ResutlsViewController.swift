@@ -71,35 +71,24 @@ extension ResutlsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ResultsTableViewCell", for: indexPath) as! ResultsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ResultsTableViewCell", for: indexPath)
+
+        guard let resultCell = cell as? ResultsTableViewCell else { return cell }
         
-        cell.collectionView.delegate = self
-        cell.collectionView.dataSource = self
+        resultCell.collectionView.delegate = self
+
+        resultCell.collectionView.dataSource = self
         
-        cell.viewModel.meetingViewModels = viewModel.meetingViewModels
+        resultCell.viewModel.meetingViewModels = viewModel.meetingViewModels
+
+        resultCell.meetingID = viewModel.meetingViewModels.value[indexPath.row].id // 06.17 新加的
+
+        resultCell.collectionView.reloadData()
         
-        let meetingID = viewModel.meetingViewModels.value[indexPath.row].id
+        resultCell.collectionView.tag = indexPath.row
         
-        print("Print MeetingID: \(meetingID)")
-        //
-        //        cell.meetingID = meetingID
-        
-        //        viewModel.fetchOptionData(meetingID: viewModel.meetingViewModels.value[indexPath.row].id)
-        
-        //        cell.viewModel.optionViewModels = viewModel.optionViewModels
-        
-        //        viewModel.fetchOptionData(meetingID: "DKccrRChRF6mm5FahzZX")
-        
-        //         viewModel.fetchOptionData(meetingID: meetingID)
-        cell.collectionView.reloadData()
-        
-        cell.collectionView.tag = indexPath.row
-        
-        cell.setupCell(model: viewModel.meetingViewModels.value[indexPath.row])
-        
-        //        print("\n\nPrint viewModel.optionViewModels.value")
-        //        print(viewModel.optionViewModels.value)
-        
+        resultCell.setupCell(model: viewModel.meetingViewModels.value[indexPath.row])
+
         return cell
     }
     
@@ -120,9 +109,11 @@ extension ResutlsViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: "ResutlsCollectionViewCell"), for: indexPath) as! ResutlsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: "ResutlsCollectionViewCell"), for: indexPath)
+
+        guard let resultCell = cell as? ResutlsCollectionViewCell else { return cell }
         
-        cell.setupCell(model: viewModel.meetingViewModels.value[collectionView.tag].options?[0])
+        resultCell.setupCell(model: viewModel.meetingViewModels.value[collectionView.tag].options?[0])
         
         return cell
     }

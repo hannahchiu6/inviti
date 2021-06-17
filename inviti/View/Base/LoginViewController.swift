@@ -36,9 +36,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setUpAnimation() 
-        
+
+        setUpAnimation()
+
         setUpButton()
         
         viewModel.onGranted = { [weak self] () in
@@ -46,9 +46,6 @@ class LoginViewController: UIViewController {
             self?.performSegue(withIdentifier: "goToMainSegue", sender: nil)
             
         }
-        
-        //        self.observeAppleIDSessionChanges()
-        
     }
     
     @IBOutlet weak var policyLabel: UILabel!
@@ -182,9 +179,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             }
             
             // Initialize a Firebase credential.
-            let credential = OAuthProvider.credential(withProviderID: "apple.com",
-                                                      idToken: idTokenString,
-                                                      rawNonce: nonce)
+            let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
             // Sign in with Firebase.
             Auth.auth().signIn(with: credential) { authResult, error in
                 
@@ -192,13 +187,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                     
                     print("Sign In Error: ", error!.localizedDescription)
                     
-                    let alertController = UIAlertController(title: "Sign In Error",
-                                                            message: error!.localizedDescription,
-                                                            preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Sign In Error", message: error!.localizedDescription, preferredStyle: .alert)
                     
-                    let okayAction = UIAlertAction(title: "OK",
-                                                   style: .cancel,
-                                                   handler: nil)
+                    let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                     
                     alertController.addAction(okayAction)
                     self.present(alertController, animated: true, completion: nil)

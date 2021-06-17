@@ -90,7 +90,7 @@ class MeetingTableViewCell: UITableViewCell {
             
             voteIcon.isEnabled = false
             
-            editIcon.tintColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
+            editIcon.tintColor = UIColor.gray
             
         } else {
             
@@ -158,10 +158,10 @@ class MeetingTableViewCell: UITableViewCell {
     
     func setUpView() {
         
-        bgView.layer.shadowOpacity = 0.4
+        bgView.layer.shadowOpacity = 0.1
         bgView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        bgView.layer.shadowRadius = 3
-        bgView.layer.shadowColor = UIColor.lightGray.cgColor
+        bgView.layer.shadowRadius = 6
+        bgView.layer.shadowColor = UIColor.black.cgColor
         bgView.layer.masksToBounds = false
         
         userView.layer.cornerRadius = userView.layer.frame.width / 2

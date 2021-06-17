@@ -14,30 +14,21 @@ import IQKeyboardManagerSwift
 class CreateFirstViewController: UIViewController {
     
     var meetingInfo: Meeting!
-    
     var optionID: String = ""
-    
     var meetingID: String?
-    
     var isDataEmpty: Bool = false
-    
     var meetingDataHandler: ((Meeting) -> Void)?
-    
     var isSwitchOn: Bool = false
-    
+    var createMeetingViewModel = CreateMeetingViewModel()
+    var selectOptionViewModel = SelectOptionViewModel()
+
     var meetingSubject: String? {
         
         didSet {
             meetingSubject = createMeetingViewModel.meeting.subject
         }
     }
-    
-    var createMeetingViewModel = CreateMeetingViewModel()
-    
-    var selectOptionViewModel = SelectOptionViewModel()
-    
-    @IBOutlet weak var showButtonView: UIButton!
-    
+
     @IBAction func deleteMeeting(_ sender: UIButton) {
         
         if isDataEmpty {
@@ -75,11 +66,12 @@ class CreateFirstViewController: UIViewController {
     }
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var inviteBtnView: UIButton!
-    
+    @IBOutlet weak var confrimButtonView: UIView!
+    @IBOutlet weak var calendarIconView: UIButton!
     @IBOutlet weak var successView: UIView!
-    
+    @IBOutlet weak var showButtonView: UIButton!
+
     @IBAction func confrim(_ sender: Any) {
         
         // if true 代表是新增一個空的 meeting
@@ -97,13 +89,8 @@ class CreateFirstViewController: UIViewController {
                 
             }
     }
-    
-    @IBOutlet weak var confrimButtonView: UIView!
-    
-    @IBOutlet weak var calendarIconView: UIButton!
-    
+
     @IBAction func invitePeopleButton(_ sender: Any) {
-        
         performSegue(withIdentifier: "addPeopleSegue", sender: nil)
     }
     
@@ -120,11 +107,9 @@ class CreateFirstViewController: UIViewController {
         if selectOptionViewModel.optionViewModels.value.isEmpty {
             
         } else {
-            
             self.isDataEmpty = false
             
         }
-        
         tableView.reloadData()
     }
     
@@ -159,23 +144,23 @@ class CreateFirstViewController: UIViewController {
         
         if segue.identifier == "shareSegue" {
             
-            let controller = segue.destination as! ShareSuccessVC
+            let controller = segue.destination as? ShareSuccessVC
             
-            controller.meetingID = meetingID
+            controller?.meetingID = meetingID
             
-            controller.viewModel = createMeetingViewModel
+            controller?.viewModel = createMeetingViewModel
             
         } else if segue.identifier == "addPeopleSegue" {
             
-            let controller = segue.destination as! AddPeopleViewController
+            let controller = segue.destination as? AddPeopleViewController
             
-            controller.meetingID = meetingID
+            controller?.meetingID = meetingID
             
         } else if segue.identifier == "editSuccessSegue" {
             
-            let controller = segue.destination as! EditSuccessVC
+            let controller = segue.destination as? EditSuccessVC
             
-            controller.delegate = self
+            controller?.delegate = self
             
         }
     }
@@ -195,7 +180,7 @@ class CreateFirstViewController: UIViewController {
                 } else {
                     enableShareBtn()
                     self.showButtonView.isEnabled = false
-                    self.showButtonView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+                    self.showButtonView.backgroundColor = UIColor(red: 0.90, green: 0.90, blue: 0.90, alpha: 1.00)
                 }
             }
         } else {
@@ -209,16 +194,16 @@ class CreateFirstViewController: UIViewController {
         if meetingInfo != nil || createMeetingViewModel.meeting.subject != nil {
             
             self.inviteBtnView.isEnabled = true
-            self.inviteBtnView.tintColor = UIColor.darkGray
+            self.inviteBtnView.tintColor = UIColor.systemGray
             
         } else {
             
             self.inviteBtnView.isEnabled = false
-            self.inviteBtnView.tintColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
+            self.inviteBtnView.tintColor = UIColor.gray
             
         }
-        
     }
+
     // option date
     func isDataGet() {
         
@@ -259,9 +244,7 @@ class CreateFirstViewController: UIViewController {
         }
         
         createMeetingViewModel.updateDetails(meetingID: meetingID ?? "")
-        
         second.selectedOptionViewModel = selectOptionViewModel
-        
         second.meetingID = meetingID ?? ""
         
         navigationController?.pushViewController(second, animated: true)
@@ -288,7 +271,7 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        3
+        return 3
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -305,89 +288,84 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
         switch indexPath.section {
         
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFirstTableViewCell", for: indexPath) as! CreateFirstCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFirstTableViewCell", for: indexPath)
+
+            guard let createCell = cell as? CreateFirstCell else { return cell }
             
             if createMeetingViewModel.meetingViewModels.value.isEmpty {
-                
-                cell.createViewModel = createMeetingViewModel
+                createCell.createViewModel = createMeetingViewModel
                 
             } else {
                 
                 let model = createMeetingViewModel.meetingViewModels.value[indexPath.row]
-                
-                cell.viewModel = model
-                
-                cell.createViewModel = createMeetingViewModel
-                
-                cell.setup(viewModel: model)
+                createCell.viewModel = model
+                createCell.createViewModel = createMeetingViewModel
+                createCell.setup(viewModel: model)
                 
             }
             
             return cell
             
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "OptionalSettingsCell", for: indexPath) as! OptionalSettingsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "OptionalSettingsCell", for: indexPath)
+
+            guard let optionCell = cell as? OptionalSettingsCell else { return cell }
             
-            cell.delegate = self
+            optionCell.delegate = self
             
             if createMeetingViewModel.meetingViewModels.value.isEmpty {
                 
-                cell.viewModel = self.createMeetingViewModel
-                
-                cell.addSubtract.value = Double(createMeetingViewModel.meeting.deadlineTag ?? 0)
-                
-                cell.observation = cell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { stepper, change in
+                optionCell.viewModel = self.createMeetingViewModel
+                optionCell.addSubtract.value = Double(createMeetingViewModel.meeting.deadlineTag ?? 0)
+                optionCell.observation = optionCell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { stepper, change in
                     if change.newValue! == 0.0 {
                         if change.newValue! > change.oldValue! {
-                            cell.addSubtract.value = 1
+                            optionCell.addSubtract.value = 1
                         } else {
-                            cell.addSubtract.value = -1
+                            optionCell.addSubtract.value = -1
                         }
                     }
-                    self.createMeetingViewModel.meeting.deadlineTag = Int(cell.addSubtract.value)
+                    self.createMeetingViewModel.meeting.deadlineTag = Int(optionCell.addSubtract.value)
                 })
-                return cell
+                return optionCell
                 
             } else {
                 
                 let data = createMeetingViewModel.meetingViewModels.value[indexPath.row]
                 
-                cell.setCell(model: data)
-                
-                cell.viewModel = createMeetingViewModel
-                cell.addSubtract.value = Double(data.meeting.deadlineTag ?? 0)
-                cell.observation = cell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { stepper, change in
+                optionCell.setCell(model: data)
+                optionCell.viewModel = createMeetingViewModel
+                optionCell.addSubtract.value = Double(data.meeting.deadlineTag ?? 0)
+                optionCell.observation = optionCell.observe(\.addSubtract.value, options: [.old, .new], changeHandler: { stepper, change in
                     if change.newValue! == 0.0 {
                         if change.newValue! > change.oldValue! {
-                            cell.addSubtract.value = 1
+                            optionCell.addSubtract.value = 1
                         } else {
-                            cell.addSubtract.value = -1
+                            optionCell.addSubtract.value = -1
                         }
                     }
-                    self.createMeetingViewModel.meetingViewModels.value[indexPath.row].meeting.deadlineTag = Int(cell.addSubtract.value)
+                    self.createMeetingViewModel.meetingViewModels.value[indexPath.row].meeting.deadlineTag = Int(optionCell.addSubtract.value)
                 })
-                return cell
+                return optionCell
                 
             }
             
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "OptionsCell", for: indexPath) as! OptionsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "OptionsCell", for: indexPath)
+
+            guard let optionCell = cell as? OptionsCell else { return cell }
             
-            cell.deleteXview.tag = indexPath.row
-            
-            cell.delegate = self
-            
-            cell.selectedOptionViewModel = self.selectOptionViewModel
-            
-            cell.meetingInfo = self.meetingInfo
+            optionCell.deleteXview.tag = indexPath.row
+            optionCell.delegate = self
+            optionCell.selectedOptionViewModel = self.selectOptionViewModel
+            optionCell.meetingInfo = self.meetingInfo
             
             if selectOptionViewModel.optionViewModels.value.isEmpty {
-                
-                cell.setupEmptyDataCell()
+                optionCell.setupEmptyDataCell()
                 
             } else {
                 
-                cell.setupCell(model: selectOptionViewModel.optionViewModels.value[indexPath.row], index: indexPath.row)
+                optionCell.setupCell(model: selectOptionViewModel.optionViewModels.value[indexPath.row], index: indexPath.row)
                 
                 let cellViewModel = self.selectOptionViewModel.optionViewModels.value[indexPath.row]
                 
@@ -397,7 +375,7 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
                 }
             }
             
-            return cell
+            return optionCell
         }
     }
 }

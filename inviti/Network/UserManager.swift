@@ -302,9 +302,8 @@ class UserManager {
         
         if let url = url {
             
-            docRef.updateData([
-                "image": "\(url)"
-            ]) { err in
+            docRef.updateData(["image": "\(url)"]) { err in
+
                 if let err = err {
                     
                     completion(.failure(err))
@@ -326,12 +325,7 @@ class UserManager {
            let email = user.email,
            let image = user.image {
             
-            docRef.updateData([
-                "name": "\(name)",
-                "email": "\(email)",
-                "image": "\(image)"
-                
-            ]) { err in
+            docRef.updateData(["name": "\(name)", "email": "\(email)", "image": "\(image)"]) { err in
                 
                 if let err = err {
                     

@@ -56,25 +56,21 @@ class PastTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MeetingTableViewCell.self), for: indexPath) as! MeetingTableViewCell
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MeetingTableViewCell.self), for: indexPath)
         
-        //        cell.delegate = self
+        guard let meetingCell = cell as? MeetingTableViewCell else { return cell }
         
-        cell.index = indexPath.row
+        meetingCell.index = indexPath.row
         
-        cell.mainViewModel = viewModel
+        meetingCell.mainViewModel = viewModel
         
-        cell.setupParticipatedCell()
+        meetingCell.setupParticipatedCell()
         
-        cell.completionHandler = {index in
+        meetingCell.completionHandler = {index in
             self.selectedIndex = index
         }
-        
-        guard let meetingViewCell = cell as? MeetingTableViewCell else {
-            
-            return cell
-        }
-        
+
         let cellViewModel = self.viewModel.meetingViewModels.value[indexPath.row]
         
         cellViewModel.onDead = { [weak self] () in
@@ -82,9 +78,9 @@ class PastTableViewController: UITableViewController {
             self?.viewModel.fetchParticipatedData()
         }
         
-        meetingViewCell.setup(viewModel: cellViewModel)
+        meetingCell.setup(viewModel: cellViewModel)
         
-        return meetingViewCell
+        return meetingCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -96,9 +92,9 @@ class PastTableViewController: UITableViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Voting", bundle: nil)
         
         let votingVC = storyboard.instantiateViewController(identifier: "VotingVC")
-        guard let voting = votingVC as? VotingViewController else { return }
         
-        //            viewModel.checkIfVoted(options: options)
+        guard let voting = votingVC as? VotingViewController else { return }
+
         
         var votedOptions: [String] = []
         
