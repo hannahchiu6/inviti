@@ -77,7 +77,7 @@ class UpdateProfileVC: UIViewController {
         bgView.layer.shadowOpacity = 0.3
         bgView.layer.shadowOffset = CGSize(width: 0, height: 0)
         bgView.layer.shadowRadius = 3
-        bgView.layer.shadowColor = UIColor.lightGray?.cgColor
+        bgView.layer.shadowColor = UIColor.lightGray.cgColor
         bgView.layer.masksToBounds = false
     }
     
@@ -107,15 +107,13 @@ extension UpdateProfileVC: UITextFieldDelegate {
         
         let oldEmail = viewModel.user.email
         
-        if let colorNew = UIColor.lightGray {
+        let colorNew = UIColor.lightGray
 
-            nameTextField.attributedPlaceholder =
-                NSAttributedString(string: "\(String(describing: oldName))", attributes: [NSAttributedString.Key.foregroundColor: colorNew])
+        nameTextField.attributedPlaceholder =
+            NSAttributedString(string: "\(String(describing: oldName))", attributes: [NSAttributedString.Key.foregroundColor: colorNew])
 
-            emailTextField.attributedPlaceholder =
-                NSAttributedString(string: "\(String(describing: oldEmail))", attributes: [NSAttributedString.Key.foregroundColor: colorNew])
-        }
-        
+        emailTextField.attributedPlaceholder =
+            NSAttributedString(string: "\(String(describing: oldEmail))", attributes: [NSAttributedString.Key.foregroundColor: colorNew])
     }
     
 }

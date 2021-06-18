@@ -29,19 +29,19 @@ class OptionManager {
                     completion(.failure(error))
                     
                 } else {
-                    
+
                     var options = [Option]()
+
                     for document in querySnapshot!.documents {
-                        
+
                         do {
                             if let option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
                                 options.append(option)
                             }
-                            
+
                         } catch {
-                            
+
                             completion(.failure(error))
-                            
                         }
                     }
                     
@@ -49,8 +49,7 @@ class OptionManager {
                 }
             }
     }
-    
-    
+
     func createOption(option: inout Option, meeting: Meeting, completion: @escaping (Result<String, Error>) -> Void) {
         
         let document = db.collection("meetings")
@@ -153,79 +152,4 @@ class OptionManager {
                 }
             }
     }
-    
-    func fetchVotes(completion: @escaping (Result<[Option], Error>) -> Void) {
-        
-        db.collection("options")
-            .getDocuments { querySnapshot, error in
-                
-                if let error = error {
-                    
-                    completion(.failure(error))
-                    
-                } else {
-                    
-                    var options = [Option]()
-                    
-                    for document in querySnapshot!.documents {
-                        
-                        do {
-                            
-                            if let option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
-                                
-                                self.db.collection("options")
-                                    .document("\(option.id)")
-                                    .collection("")
-                                    .order(by: "startTime", descending: false)
-                                    .getDocuments { querySnapshot, error in
-                                        
-                                        if let error = error {
-                                            
-                                            completion(.failure(error))
-                                            
-                                        } else {
-                                            
-                                            var selectedOptions = [SelectedOption]()
-                                            
-                                            for document in querySnapshot!.documents {
-                                                
-                                                do {
-                                                    
-                                                    if let selectedOption = try document.data(as: SelectedOption.self, decoder: Firestore.Decoder()) {
-                                                        
-                                                        selectedOptions.append(selectedOption)
-                                                        
-                                                    }
-                                                    
-                                                } catch {
-                                                    
-                                                    completion(.failure(error))
-                                                    
-                                                }
-                                                
-                                            }
-                                            
-                                            options.append(option)
-                                            completion(.success(options))
-                                            
-                                        }
-                                        
-                                    }
-                                
-                            }
-                            
-                        } catch {
-                            
-                            completion(.failure(error))
-                            
-                        }
-                        
-                    }
-                    
-                }
-                
-            }
-        
-    }
-    
 }

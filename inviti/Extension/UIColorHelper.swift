@@ -20,7 +20,7 @@ private enum INColor: String {
 
     case darkBrown = "#564448"
 
-    case lightGray = "#ededed"
+//    case lightGray = "#ededed"
 
     case midGray = "bfbfbf"
 
@@ -38,7 +38,7 @@ extension UIColor {
 
     static let darkBrown = INColor(.darkBrown)
 
-    static let lightGray = INColor(.lightGray)
+//    static let lightGray = INColor(.lightGray)
 
     static let midGray = INColor(.midGray)
 
@@ -54,10 +54,6 @@ extension UIColor {
 
         if cString.hasPrefix("#") {
             cString.remove(at: cString.startIndex)
-        }
-
-        if (cString.count) != 6 {
-            return UIColor.gray
         }
 
         var rgbValue: UInt64 = 0

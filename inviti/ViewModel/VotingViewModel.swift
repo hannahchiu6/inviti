@@ -188,23 +188,6 @@ class VotingViewModel {
         }
     }
     
-    func fetchMeetingPackage() {
-        
-        NetworkManager.shared.fetchMeetingsPackage { [weak self] result in
-            
-            switch result {
-            
-            case .success(let meetings):
-                
-                self?.setMeetings(meetings)
-                
-            case .failure(let error):
-                
-                print("fetchData.failure: \(error)")
-            }
-        }
-    }
-    
     func convertOptionsToViewModels(from options: [Option]) -> [OptionViewModel] {
         
         var viewModels = [OptionViewModel]()
@@ -396,4 +379,5 @@ class VotingViewModel {
     func setUser(_ user: User) {
         userBox.value = convertUserToViewModel(from: user)
     }
+
 }

@@ -24,7 +24,7 @@ class ResultTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         selectedBackgroundView = UIView()
-        selectedBackgroundView?.backgroundColor = UIColor.midGray
+        selectedBackgroundView?.backgroundColor = UIColor(red: 1, green: 0.8353, blue: 0.7882, alpha: 1.0)
         backgroundView = UIView()
         backgroundView?.backgroundColor = UIColor.white
         
@@ -70,12 +70,11 @@ class ResultTableViewCell: UITableViewCell {
         
         self.voteCountLabel.text = "0"
         
-        self.voteCountLabel.textColor = UIColor.gray
+        self.voteCountLabel.textColor = UIColor.lightGray
         
         self.checkCircle.isHidden = true
         
         self.emptyCircle.isHidden = false
-        
         
     }
     
@@ -93,7 +92,7 @@ class ResultTableViewCell: UITableViewCell {
         
         if index == 0 {
             
-            let redColor = UIColor.mainOrange
+            let redColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
             
             voteCountLabel.text = String(describing: count)
             
@@ -117,7 +116,7 @@ class ResultTableViewCell: UITableViewCell {
             
             self.checkCircle.isHidden = false
             
-            self.checkCircle.tintColor = UIColor.gray
+            self.checkCircle.tintColor = UIColor.lightGray
             
         }
         

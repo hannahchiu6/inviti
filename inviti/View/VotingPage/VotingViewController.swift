@@ -163,13 +163,14 @@ class VotingViewController: BaseViewController {
             
             confirmVoteBtnView.isEnabled = true
             
-            confirmVoteBtnView.backgroundColor = UIColor.mainOrange
+            confirmVoteBtnView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+
             
         } else {
             
             confirmVoteBtnView.isEnabled = false
             
-            confirmVoteBtnView.backgroundColor = UIColor.lightGray
+            confirmVoteBtnView.backgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
             
         }
         
@@ -247,8 +248,6 @@ extension VotingViewController: UITableViewDelegate, UITableViewDataSource {
             
             selectedIndex.append(indexPath.row)
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

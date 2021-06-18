@@ -50,9 +50,6 @@
 		865A00EE265428FF0061A0E4 /* FurtureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A00ED265428FF0061A0E4 /* FurtureTableViewController.swift */; };
 		865A00F22654297A0061A0E4 /* PastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A00F12654297A0061A0E4 /* PastTableViewController.swift */; };
 		8661E0352666187A00BD23F5 /* InvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661E0342666187A00BD23F5 /* InvitesViewController.swift */; };
-		8661E03D26661DDF00BD23F5 /* ResutlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661E03C26661DDF00BD23F5 /* ResutlsViewController.swift */; };
-		8661E04126661E0F00BD23F5 /* ResutlsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661E04026661E0F00BD23F5 /* ResutlsCollectionViewCell.swift */; };
-		8661E04426661E1F00BD23F5 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661E04326661E1F00BD23F5 /* ResultsTableViewCell.swift */; };
 		8664422326600CFD00CE0CFA /* VoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664422226600CFD00CE0CFA /* VoteViewModel.swift */; };
 		8665BE55265B6A2200408685 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665BE54265B6A2200408685 /* EventManager.swift */; };
 		866813E02667389D00659495 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866813DF2667389D00659495 /* ResultTableViewCell.swift */; };
@@ -116,8 +113,6 @@
 		86EBFA75266D3098008E6955 /* AddPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBFA74266D3098008E6955 /* AddPeopleViewController.swift */; };
 		86ECEAA6265FDD7E00465424 /* CreateOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ECEAA5265FDD7E00465424 /* CreateOptionViewModel.swift */; };
 		86EE497A265102BD003B0C25 /* CreateFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */; };
-		86EE498026511C9B003B0C25 /* NotiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE497F26511C9B003B0C25 /* NotiViewController.swift */; };
-		86EE498326511D33003B0C25 /* NotiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE498226511D32003B0C25 /* NotiTableViewCell.swift */; };
 		86EEED702675D5BF0063E773 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEED6F2675D5BF0063E773 /* Array+Extension.swift */; };
 		86EEED7E26773D820063E773 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEED7D26773D810063E773 /* UIStackView+Extension.swift */; };
 		86F203DA264D9E3100A9763A /* Meeting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F203D9264D9E3100A9763A /* Meeting.storyboard */; };
@@ -186,9 +181,6 @@
 		865A00ED265428FF0061A0E4 /* FurtureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurtureTableViewController.swift; sourceTree = "<group>"; };
 		865A00F12654297A0061A0E4 /* PastTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastTableViewController.swift; sourceTree = "<group>"; };
 		8661E0342666187A00BD23F5 /* InvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesViewController.swift; sourceTree = "<group>"; };
-		8661E03C26661DDF00BD23F5 /* ResutlsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResutlsViewController.swift; sourceTree = "<group>"; };
-		8661E04026661E0F00BD23F5 /* ResutlsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResutlsCollectionViewCell.swift; sourceTree = "<group>"; };
-		8661E04326661E1F00BD23F5 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		8664422226600CFD00CE0CFA /* VoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewModel.swift; sourceTree = "<group>"; };
 		8665BE54265B6A2200408685 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		866813DF2667389D00659495 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
@@ -254,8 +246,6 @@
 		86EBFA74266D3098008E6955 /* AddPeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPeopleViewController.swift; sourceTree = "<group>"; };
 		86ECEAA5265FDD7E00465424 /* CreateOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOptionViewModel.swift; sourceTree = "<group>"; };
 		86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstViewController.swift; sourceTree = "<group>"; };
-		86EE497F26511C9B003B0C25 /* NotiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiViewController.swift; sourceTree = "<group>"; };
-		86EE498226511D32003B0C25 /* NotiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiTableViewCell.swift; sourceTree = "<group>"; };
 		86EEED6F2675D5BF0063E773 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		86EEED7D26773D810063E773 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		86F203D9264D9E3100A9763A /* Meeting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Meeting.storyboard; sourceTree = "<group>"; };
@@ -391,9 +381,6 @@
 			isa = PBXGroup;
 			children = (
 				86C3FA67264BE24A00480E4F /* News.storyboard */,
-				8661E03C26661DDF00BD23F5 /* ResutlsViewController.swift */,
-				8661E04326661E1F00BD23F5 /* ResultsTableViewCell.swift */,
-				8661E04026661E0F00BD23F5 /* ResutlsCollectionViewCell.swift */,
 				8661E0342666187A00BD23F5 /* InvitesViewController.swift */,
 				86102765266CA68C008DEFD0 /* InvitesTableViewCell.swift */,
 				86102766266CA68C008DEFD0 /* InvitesTableViewCell.xib */,
@@ -501,8 +488,6 @@
 				86392C57264FA46C003F7EBC /* MeetingTableViewCell.swift */,
 				86392C58264FA46C003F7EBC /* MeetingTableViewCell.xib */,
 				8653117E264FC39700CFB4F7 /* UIButtonActivity.swift */,
-				86EE497F26511C9B003B0C25 /* NotiViewController.swift */,
-				86EE498226511D32003B0C25 /* NotiTableViewCell.swift */,
 				86103145267320E900BEC58B /* IntroduceViewController.swift */,
 			);
 			path = MeetingPage;
@@ -750,7 +735,6 @@
 				8672AB44266CC2A200FB44B4 /* Notification.swift in Sources */,
 				869F8434265613DD00DA1D53 /* MeetingViewModel.swift in Sources */,
 				8632C7702668E6A5004D5D3A /* LoginViewController.swift in Sources */,
-				86EE498326511D33003B0C25 /* NotiTableViewCell.swift in Sources */,
 				860A036C265BB2AD00067F23 /* CTableViewCell.swift in Sources */,
 				86997225265B687E00A2020A /* EventViewModel.swift in Sources */,
 				86392C59264FA46C003F7EBC /* MeetingTableViewCell.swift in Sources */,
@@ -782,13 +766,11 @@
 				861885EE264E31FD0048D9AA /* UITableView+Extension.swift in Sources */,
 				8610312426726B6200BEC58B /* FinalOption.swift in Sources */,
 				861F661D264D38EA00A54C00 /* SettingsTableViewCell.swift in Sources */,
-				8661E04426661E1F00BD23F5 /* ResultsTableViewCell.swift in Sources */,
 				86B12B46264A8584006EE7FE /* AppDelegate.swift in Sources */,
 				86103146267320E900BEC58B /* IntroduceViewController.swift in Sources */,
 				8688E39D266C815300D41A6D /* UserEventViewModel.swift in Sources */,
 				869F844726561D6200DA1D53 /* Box.swift in Sources */,
 				8671778526692B6200F96535 /* StoryboardName.swift in Sources */,
-				8661E04126661E0F00BD23F5 /* ResutlsCollectionViewCell.swift in Sources */,
 				86ECEAA6265FDD7E00465424 /* CreateOptionViewModel.swift in Sources */,
 				86EEED7E26773D820063E773 /* UIStackView+Extension.swift in Sources */,
 				869F842A26560C8400DA1D53 /* NetworkManager.swift in Sources */,
@@ -805,7 +787,6 @@
 				861B402526577B66004D1763 /* OptionalSettingsCell.swift in Sources */,
 				86717782266927F800F96535 /* UserViewModel.swift in Sources */,
 				86B12B48264A8584006EE7FE /* SceneDelegate.swift in Sources */,
-				8661E03D26661DDF00BD23F5 /* ResutlsViewController.swift in Sources */,
 				868DA03F26652E7600E53722 /* OptionViewModel.swift in Sources */,
 				861A626C2667AD420002EFD9 /* CreateEventViewModel.swift in Sources */,
 				86D15407266F6E600091AA95 /* ResultClosedCell.swift in Sources */,
@@ -834,7 +815,6 @@
 				86B1497C267098A700ED40E1 /* UpdateProfileVC.swift in Sources */,
 				86AABACE266A8314006D6D06 /* JGProgressHUDHelper.swift in Sources */,
 				8665BE55265B6A2200408685 /* EventManager.swift in Sources */,
-				86EE498026511C9B003B0C25 /* NotiViewController.swift in Sources */,
 				86F203DD264E05EC00A9763A /* MeetingViewController.swift in Sources */,
 				86AABADC266BBB29006D6D06 /* AddViewModel.swift in Sources */,
 				868B1D4E266777B9004CFDF1 /* VotingResultViewController.swift in Sources */,

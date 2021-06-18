@@ -173,43 +173,6 @@ class CreateMeetingViewModel {
         }
     }
     
-    func updateLocation(with meetingID: String, location: String) {
-        
-        NetworkManager.shared.updateLocation(meetingID: meetingID, location: location) { result in
-            
-            switch result {
-            
-            case .success:
-                
-                print("Publish Location Succeeded")
-                
-            case .failure(let error):
-                
-                print("publishArticle.failure: \(error)")
-                
-            }
-        }
-    }
-    
-    
-    func updateSubject(with meetingID: String, subject: String) {
-        
-        NetworkManager.shared.updateSubject(meetingID: meetingID, subject: subject) { result in
-            
-            switch result {
-            
-            case .success:
-                
-                print("Publish Subject Succeeded")
-                
-            case .failure(let error):
-                
-                print("publishArticle.failure: \(error)")
-                
-            }
-        }
-    }
-    
     func update(with meeting: Meeting) {
         
         NetworkManager.shared.updateMeeting(meetingID: meeting.id, meeting: meeting) { result in

@@ -49,17 +49,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="wBw-U5-8of">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="k2u-mn-zOU">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xIF-qu-R1b">
-                                <rect key="frame" x="316" y="4" width="78" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="1" green="0.36470588240000001" blue="0.0" alpha="0.99999989889999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <state key="normal" image="NotificationBell"/>
-                            </button>
-                            <color key="tintColor" red="1" green="0.36470588240000001" blue="0.0" alpha="0.99999989889999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="wBw-U5-8of"/>
                     <connections>
                         <outlet property="calendarTableView" destination="gab-oN-SkN" id="Geq-W9-a7f"/>
                     </connections>
@@ -68,91 +58,8 @@
             </objects>
             <point key="canvasLocation" x="1955.072463768116" y="116.51785714285714"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="0h1-t3-osH">
-            <objects>
-                <viewController id="AI6-q8-wuo" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8Yf-ik-OJU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t7M-iG-T1x" customClass="JKCalendarTableView" customModule="JKCalendar">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="AI6-q8-wuo" id="Zmw-Un-am0"/>
-                                    <outlet property="delegate" destination="AI6-q8-wuo" id="4ht-hm-xRC"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="cSs-jo-4W6"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="cSs-jo-4W6" firstAttribute="trailing" secondItem="t7M-iG-T1x" secondAttribute="trailing" id="Bcb-2c-MaS"/>
-                            <constraint firstItem="t7M-iG-T1x" firstAttribute="leading" secondItem="cSs-jo-4W6" secondAttribute="leading" id="QDS-OQ-j1j"/>
-                            <constraint firstItem="t7M-iG-T1x" firstAttribute="top" secondItem="cSs-jo-4W6" secondAttribute="top" id="nO9-xc-3IR"/>
-                            <constraint firstItem="t7M-iG-T1x" firstAttribute="bottom" secondItem="cSs-jo-4W6" secondAttribute="bottom" id="nsq-Ho-nBL"/>
-                            <constraint firstItem="t7M-iG-T1x" firstAttribute="leading" secondItem="cSs-jo-4W6" secondAttribute="leading" id="sPF-St-deQ"/>
-                            <constraint firstItem="t7M-iG-T1x" firstAttribute="trailing" secondItem="cSs-jo-4W6" secondAttribute="trailing" id="wSu-Ch-GFn"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="VEi-Vh-HaU">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="1r8-8q-srG">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sAG-xk-Z3T">
-                                <rect key="frame" x="316" y="4" width="78" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="1" green="0.36470588240000001" blue="0.0" alpha="0.99999989889999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <state key="normal" image="NotificationBell"/>
-                            </button>
-                            <color key="tintColor" red="1" green="0.36470588240000001" blue="0.0" alpha="0.99999989889999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AOw-Wy-2TP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2865.217391304348" y="843.08035714285711"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Fsd-Jd-HWF">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qv2-ac-pZy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="calendar" catalog="system" selectedImage="calendar" id="09e-ok-7QD"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kR0-Cx-UUi">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.9951923077" green="0.9903846154" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <color key="tintColor" red="1" green="0.36470588240000001" blue="0.0" alpha="0.99999989889999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gVj-Za-y27" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1044.9275362318842" y="116.51785714285714"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="TMn-gg-pIs">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jik-A9-Cdb" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PQv-ty-cwI">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="AI6-q8-wuo" kind="relationship" relationship="rootViewController" id="UOn-v6-u2g"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vQT-yq-qTp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1953.6231884057972" y="842.41071428571422"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="NotificationBell" width="24" height="24"/>
-        <image name="calendar" catalog="system" width="128" height="106"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -30,7 +30,7 @@ class ResultClosedCell: UITableViewCell {
         timeGrayView.layer.shadowOpacity = 0.4
         timeGrayView.layer.shadowOffset = CGSize(width: 0, height: 0)
         timeGrayView.layer.shadowRadius = 3
-        timeGrayView.layer.shadowColor = UIColor.lightGray?.cgColor
+        timeGrayView.layer.shadowColor = UIColor.lightGray.cgColor
         timeGrayView.layer.masksToBounds = false
         
     }

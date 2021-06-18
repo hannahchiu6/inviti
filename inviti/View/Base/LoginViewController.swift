@@ -13,7 +13,7 @@ import AuthenticationServices
 
 class LoginViewController: UIViewController {
     
-    fileprivate var currentNonce: String?
+    private var currentNonce: String?
     
     let viewModel = LoginViewModel()
     
@@ -116,8 +116,7 @@ class LoginViewController: UIViewController {
     
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
-        let charset: Array<Character> =
-            Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        let charset: Array<Character> = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
         var result = ""
         
         var remainingLength = length
