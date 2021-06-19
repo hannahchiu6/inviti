@@ -16,8 +16,6 @@ class SelectOptionViewModel {
     
     var option: Option = Option(id: "", startTime: 0, endTime: 0, optionTime: OptionTime(year: 2021, month: 5, day: 5), duration: 60, selectedOptions: [])
     
-    //    let selectedViewModels = Box([EventViewModel]())
-    
     var refreshView: (() -> Void)?
     
     var onDead: (() -> Void)?
@@ -60,7 +58,6 @@ class SelectOptionViewModel {
         let newHour = time * 3600000
         let newDate = date.millisecondsSince1970
         self.option.startTime = Int64(newHour) + newDate
-        
         
     }
     
@@ -194,11 +191,6 @@ class SelectOptionViewModel {
             }
         }
     }
-    
-    //    func onEmptyTap(with optionID: String, meetingID: String) {
-    //
-    //    }
-    
     
     func convertOptionsToViewModels(from options: [Option]) -> [OptionViewModel] {
         

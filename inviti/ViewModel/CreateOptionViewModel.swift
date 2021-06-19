@@ -9,18 +9,15 @@ import Foundation
 import Firebase
 
 class CreateOptionViewModel {
-    
+
     let optionViewModel = SelectOptionViewModel()
     
     var option: Option = Option(id: "", startTime: 0, endTime: 0, optionTime: OptionTime(year: 2021, month: 5, day: 5), duration: 60)
-    
-    
+
     func onStartTimeChanged(_ time: Int, date: Date) {
         let newHour = time * 3600000
         let newDate = date.millisecondsSince1970
         self.option.startTime = Int64(newHour) + newDate
-        
-        
     }
     
     func onEndTimeChanged(_ time: Int, date: Date) {
@@ -73,17 +70,4 @@ class CreateOptionViewModel {
             }
         }
     }
-    
-    //    func create(with user: SimpleUser? = nil) {
-    //
-    //        if let user = user {
-    //            option.owner = user
-    //        }
-    
-    //        create(with: &meeting) // MARK: check which function this call is
-    //    }
-    
-    //    func hasUserInMeeting() -> Bool {
-    //        return meeting.owner != nil
-    //    }
 }

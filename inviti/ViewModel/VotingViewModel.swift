@@ -234,6 +234,7 @@ class VotingViewModel {
             case .success:
                 
                 print("onTapCreate option, success")
+
                 self.onSelectedOptionCreated?()
                 
             case .failure(let error):
@@ -248,6 +249,7 @@ class VotingViewModel {
         for option in options {
             VoteManager.shared.createSelectedOption(selectedOption: &selectedOption, meeting: meeting, option: option) { result in
                 switch result {
+                
                 case .success:
                     print("onTapCreate option, success")
                     self.onSelectedOptionCreated?()

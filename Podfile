@@ -12,7 +12,6 @@ target 'inviti' do
   pod 'JGProgressHUD'
   pod 'lottie-ios'
 
-
   # Pods for Firebase
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
@@ -22,4 +21,12 @@ target 'inviti' do
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Analytics'
 
+  target 'invitiTests' do
+
+   inherit! :search_paths
+
+
+  end
+
 end
+

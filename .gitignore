@@ -6,6 +6,8 @@ FILE
 Pods/
 GoogleService-Info.plist
 inviti/GoogleService-Info.plist
+inviti.entitlements
+invitiRelease.entitlements
 
 ### macOS ###
 # General
