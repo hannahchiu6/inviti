@@ -22,8 +22,6 @@ class OptionalSettingsCell: UITableViewCell {
     
     var viewModel = CreateMeetingViewModel()
     
-    //    var viewModel: MeetingViewModel?
-    
     var imagePicker = UIImagePickerController()
     
     var deadlineTag: Int = 0
@@ -33,8 +31,6 @@ class OptionalSettingsCell: UITableViewCell {
     var observation: NSKeyValueObservation?
     
     @IBOutlet weak var singleView: UISwitch!
-    
-    //    @IBOutlet weak var hiddenView: UISwitch!
     
     @IBOutlet weak var deadlineView: UISwitch!
     
@@ -59,14 +55,6 @@ class OptionalSettingsCell: UITableViewCell {
         showUploadMenu()
         
     }
-    //    @IBAction func hiddenToggle(_ sender: UISwitch) {
-    //        if sender.isOn {
-    //
-    //            viewModel.meetingHiddenChanged(true)
-    //        } else {
-    //            viewModel.meetingSingleChanged(false)
-    //        }
-    //    }
     
     @IBOutlet weak var textView: UITextView!
     
@@ -131,7 +119,6 @@ class OptionalSettingsCell: UITableViewCell {
     func setCell(model: MeetingViewModel) {
         textView.text = model.meeting.notes
         singleView.isOn = model.meeting.singleMeeting
-        //        hiddenView.isOn = model.meeting.hiddenMeeting
         deadlineView.isOn = model.meeting.deadlineMeeting
         deadlineTag = model.meeting.deadlineTag ?? 0
         

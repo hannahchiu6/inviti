@@ -18,8 +18,6 @@ class VotingResultViewController: UIViewController {
     
     var isSelected: Bool = false
     
-    var hasVoted: Bool = false
-    
     let eventViewModel = CreateEventViewModel()
     
     let votingViewModel = VotingViewModel()
@@ -53,7 +51,7 @@ class VotingResultViewController: UIViewController {
     
     @IBAction func sendMeeting(_ sender: Any) {
         
-        if hasVoted {
+        if votingViewModel.isVoted {
             UIView.animate(withDuration: 1) {
                 self.popupView.isHidden = false
                 self.popupView.transform = .identity
@@ -62,34 +60,23 @@ class VotingResultViewController: UIViewController {
                 
                 self.votingViewModel.updateCloseStatus(with: self.meetingInfo.id)
             }
+
         } else {
-            
-            let controller = UIAlertController(title: "您的活動尚未有人投票", message: "確定要結束投票並自訂結果嗎？", preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "我確定", style: .default) { _ in
-                
+
+            present(
+
+                .confirmationAlert(title: "您的活動尚未有人投票", message: "確定要結束投票並自訂結果嗎？") { } confirmHandler: {
+
                 self.popupView.isHidden = false
-                
+
                 self.popupView.transform = .identity
-                
+
                 self.eventViewModel.create()
-                
+
                 self.votingViewModel.updateCloseStatus(with: self.meetingInfo.id)
-                
-            }
-            
-            controller.addAction(okAction)
-            
-            let closeAction = UIAlertAction(title: "再等等", style: .cancel) { _ in
-                
-                controller.dismiss(animated: true, completion: nil)
-            }
-            
-            controller.addAction(closeAction)
-            
-            present(controller, animated: true, completion: nil)
+
+                    }, animated: true, completion: nil)
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -126,12 +113,7 @@ class VotingResultViewController: UIViewController {
             self?.votingViewModel.onRefresh()
             
         }
-        
-        votingViewModel.meetingViewModels.bind { [weak self] meetings in
-            self?.checkVoted()
-            
-        }
-        
+
         votingViewModel.userBox.bind { [weak self] user in
             
             self?.votingViewModel.onRefresh()
@@ -142,7 +124,6 @@ class VotingResultViewController: UIViewController {
         votingViewModel.refreshView = { [weak self] () in
             DispatchQueue.main.async {
                 self?.tableview.reloadData()
-                
             }
         }
         
@@ -151,27 +132,14 @@ class VotingResultViewController: UIViewController {
         enableButton()
         
         setUpView()
-        
-        checkVoted()
     }
-    
-    func checkVoted() {
-        
-        if votingViewModel.isVoted {
-            
-            hasVoted = false
-            
-        } else {
-            
-            hasVoted = true
-        }
-    }
-    
+
     func setUpView() {
         
         guard let url = meetingInfo.image else { return }
         let imageUrl = URL(string: String(url))
         eventImageBg.kf.setImage(with: imageUrl)
+        
         meetingSubject.text = meetingInfo.subject
         locationLabel.text = meetingInfo.location
         meetingNotes.text = meetingInfo.notes

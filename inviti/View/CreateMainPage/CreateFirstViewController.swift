@@ -17,60 +17,48 @@ class CreateFirstViewController: UIViewController {
     var optionID: String = ""
     var meetingID: String?
     var isDataEmpty: Bool = false
-    var meetingDataHandler: ((Meeting) -> Void)?
     var isSwitchOn: Bool = false
+    var meetingDataHandler: ((Meeting) -> Void)?
     var createMeetingViewModel = CreateMeetingViewModel()
     var selectOptionViewModel = SelectOptionViewModel()
-
     var meetingSubject: String? {
-        
+
         didSet {
+
             meetingSubject = createMeetingViewModel.meeting.subject
         }
     }
 
-    @IBAction func deleteMeeting(_ sender: UIButton) {
-        
-        if isDataEmpty {
-            
-            let controller = UIAlertController(title: "確定要刪除此投票活動？", message: "按下確認後就救不回來了喔！", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "趕緊刪除", style: .default) { _ in
-                self.createMeetingViewModel.onTap(withIndex: sender.tag)
-                
-                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let meetingVC = storyboard.instantiateViewController(identifier: "TabBarVC")
-                guard let vc = meetingVC as? TabBarViewController else { return }
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            
-            controller.addAction(okAction)
-            
-            let cancelAction = UIAlertAction(title: "純回首頁", style: .cancel) { _ in
-                
-                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let meetingVC = storyboard.instantiateViewController(identifier: "TabBarVC")
-                guard let vc = meetingVC as? TabBarViewController else { return }
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            
-            controller.addAction(cancelAction)
-            
-            present(controller, animated: true, completion: nil)
-            
-        } else {
-            
-            self.navigationController?.popViewController(animated: true)
-        }
-    }
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var inviteBtnView: UIButton!
     @IBOutlet weak var confrimButtonView: UIView!
     @IBOutlet weak var calendarIconView: UIButton!
     @IBOutlet weak var successView: UIView!
     @IBOutlet weak var showButtonView: UIButton!
+    @IBAction func deleteMeeting(_ sender: UIButton) {
+        
+        if isDataEmpty {
+
+           self.present(
+
+            .confirmationAlert(title: "確定要刪除此投票活動？",
+                               message: "按下確認後就救不回來了喔！",
+                               cancelHandler: {
+
+                                    self.returnToMain() },
+
+                               confirmHandler: {
+
+                                    self.createMeetingViewModel.onTap(withIndex: sender.tag)
+                                    self.returnToMain()}),
+            animated: true,
+            completion: nil)
+
+       } else {
+
+           self.navigationController?.popViewController(animated: true)
+       }
+    }
 
     @IBAction func confrim(_ sender: Any) {
         
@@ -101,15 +89,13 @@ class CreateFirstViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         createMeetingViewModel.fetchOneMeeitngData(meetingID: meetingID ?? "")
-        
+
         selectOptionViewModel.fetchData(meetingID: meetingID ?? "" )
         
-        if selectOptionViewModel.optionViewModels.value.isEmpty {
-            
-        } else {
+        if !selectOptionViewModel.optionViewModels.value.isEmpty {
             self.isDataEmpty = false
-            
         }
+
         tableView.reloadData()
     }
     
@@ -118,12 +104,12 @@ class CreateFirstViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        self.successView.isHidden = true
-        
         tableView.tableHeaderView = nil
         tableView.tableFooterView = nil
-        
+
+        successView.isHidden = true
+        showButtonView.isEnabled = false
+
         selectOptionViewModel.optionViewModels.bind { [weak self] options in
             self?.tableView.reloadData()
             self?.enableButton()
@@ -136,8 +122,6 @@ class CreateFirstViewController: UIViewController {
         isDataGet()
         
         enableShareBtn()
-        
-        showButtonView.isEnabled = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -172,35 +156,45 @@ class CreateFirstViewController: UIViewController {
                let cellTwo = createMeetingViewModel.meeting.location {
                 
                 if !cellOne.isEmpty && !cellTwo.isEmpty && selectOptionViewModel.optionViewModels.value.isEmpty != true {
-                    
-                    enableShareBtn()
-                    self.showButtonView.isEnabled = true
-                    self.showButtonView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+
+                    displayButton(isEnabled: true, color: UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00))
                     
                 } else {
-                    enableShareBtn()
-                    self.showButtonView.isEnabled = false
-                    self.showButtonView.backgroundColor = UIColor(red: 0.90, green: 0.90, blue: 0.90, alpha: 1.00)
+
+                    displayButton(isEnabled: false, color: UIColor(red: 0.90, green: 0.90, blue: 0.90, alpha: 1.00))
                 }
             }
         } else {
-            enableShareBtn()
-            self.showButtonView.isEnabled = true
-            self.showButtonView.backgroundColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+
+            displayButton(isEnabled: true, color: UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00))
         }
     }
-    
+
+    func displayButton(isEnabled: Bool, color: UIColor) {
+        self.enableShareBtn()
+        self.showButtonView.isEnabled = isEnabled
+        self.showButtonView.backgroundColor = color
+    }
+
+    func returnToMain() {
+
+         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+         let meetingVC = storyboard.instantiateViewController(identifier: "TabBarVC")
+         guard let vc = meetingVC as? TabBarViewController else { return }
+
+         self.navigationController?.pushViewController(vc, animated: true)
+    }
+
     func enableShareBtn() {
         if meetingInfo != nil || createMeetingViewModel.meeting.subject != nil {
             
             self.inviteBtnView.isEnabled = true
             self.inviteBtnView.tintColor = UIColor.systemGray
-            
+
         } else {
             
             self.inviteBtnView.isEnabled = false
             self.inviteBtnView.tintColor = UIColor.gray
-            
         }
     }
 
@@ -213,7 +207,7 @@ class CreateFirstViewController: UIViewController {
             
             isDataEmpty = true
             enableShareBtn()
-            
+
         } else {
             
             isDataEmpty = false
@@ -239,7 +233,6 @@ class CreateFirstViewController: UIViewController {
         if meetingInfo != nil {
             
             second.meetingID = meetingID ?? ""
-            
             second.selectedOptionViewModel = selectOptionViewModel
         }
         
@@ -327,6 +320,7 @@ extension CreateFirstViewController: UITableViewDelegate, UITableViewDataSource 
                     }
                     self.createMeetingViewModel.meeting.deadlineTag = Int(optionCell.addSubtract.value)
                 })
+
                 return optionCell
                 
             } else {
@@ -389,7 +383,9 @@ extension CreateFirstViewController: CTableViewDelegate {
 }
 
 extension CreateFirstViewController: SecondCellDelegate {
+
     func goToSecondPage() {
+
         nextPage()
     }
     
@@ -406,13 +402,13 @@ extension CreateFirstViewController: SecondCellDelegate {
             let theOptionID = newVMs[index].id
             
             selectOptionViewModel.onEmptyTap(theOptionID, meetingID: meetingID ?? "")
-            
             selectOptionViewModel.fetchData(meetingID: meetingID ?? "")
         }
     }
 }
 
 extension CreateFirstViewController: EditSuccessVCDelegate {
+
     func didTapReturnButton() {
         
         dismiss(animated: false, completion: nil)
@@ -422,6 +418,7 @@ extension CreateFirstViewController: EditSuccessVCDelegate {
 }
 
 extension CreateFirstViewController: OptionalSettingsCellDelegate {
+
     func dismissView() {
         dismiss(animated: true, completion: nil)
     }
@@ -433,5 +430,4 @@ extension CreateFirstViewController: OptionalSettingsCellDelegate {
     func didTapImagePicker(imagePicker: UIImagePickerController) {
         present(imagePicker, animated: true)
     }
-    
 }
