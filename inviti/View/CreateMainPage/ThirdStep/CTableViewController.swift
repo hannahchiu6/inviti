@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CTableViewController.swift
 //  inviti
 //
 //  Created by Hannah.C on 24.05.21.
@@ -42,8 +42,6 @@ class CTableViewController: UIViewController {
     
     @IBOutlet weak var calendarTableView: JKCalendarTableView!
     
-    //    var hasOptionData = true
-    
     var onUpdate: ((_ meetingID: String) -> Void)?
     
     
@@ -78,7 +76,6 @@ class CTableViewController: UIViewController {
         selectedOptionViewModel.refreshView = { [weak self] () in
             DispatchQueue.main.async {
                 self?.calendarTableView.reloadData()
-                //                self!.calendarTableView.calendar.reloadData()
             }
         }
         
@@ -151,8 +148,6 @@ extension CTableViewController: JKCalendarDelegate {
         eventViewModels = viewModel.createSelectedData(in: viewModel.eventViewModels.value, selectedDate: theDay)
         
         calendar.reloadData()
-        
-        //        calendarTableView.reloadData()
     }
     
     func heightOfFooterView(in claendar: JKCalendar) -> CGFloat {
@@ -304,7 +299,7 @@ extension CTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     private func setupItemTitle(name: String) {
         
-        self.navigationItem.title = name + "時間"
+        self.navigationItem.title = name + "time".localized
     }
 }
 

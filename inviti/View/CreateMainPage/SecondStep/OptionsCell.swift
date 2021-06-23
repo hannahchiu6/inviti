@@ -53,11 +53,7 @@ class OptionsCell: UITableViewCell {
     }
     
     @IBOutlet weak var timePickerViewTop: UIStackView!
-    
-    //    @IBAction func goNextPageIcon(_ sender: Any) {
-    //        delegate?.goToSecondPage()
-    //    }
-    
+  
     weak var delegate: SecondCellDelegate?
     
     override func awakeFromNib() {

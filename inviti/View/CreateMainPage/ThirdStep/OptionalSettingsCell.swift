@@ -85,7 +85,7 @@ class OptionalSettingsCell: UITableViewCell {
     @IBAction func stepperAction(_ sender: UIStepper) {
         
         let count = Int(sender.value)
-        self.deadlineLabel.text = "投票的天數為 \(count) 天"
+        self.deadlineLabel.text = "voting-days".localized + "  \(count) " + "day".localized
         viewModel.onDeadlineTagChanged(count)
     }
     
@@ -125,7 +125,7 @@ class OptionalSettingsCell: UITableViewCell {
         if deadlineTag != 0 {
             dealineFullView.isHidden = false
             
-            self.deadlineLabel.text = "投票的天數為 \(deadlineTag) 天"
+            self.deadlineLabel.text = "voting-days".localized + " \(deadlineTag) " + "day".localized
         } else {
             dealineFullView.isHidden = true
         }

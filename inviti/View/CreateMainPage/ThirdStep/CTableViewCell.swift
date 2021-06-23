@@ -32,7 +32,6 @@ class CTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         bookingMeetingButton.isHidden = true
-        //        bookingButton.isHidden = true
         eventView.isHidden = true
         self.bookingButton.setImage(UIImage(systemName: "plus"), for: .normal)
         
@@ -95,7 +94,6 @@ class CTableViewCell: UITableViewCell {
     }
     
     func setup(index: Int) {
-        //        bookingMeetingButton.isHidden = true
         bookingButton.tag = index
         
         if index < 10 {

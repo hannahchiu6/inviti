@@ -41,8 +41,8 @@ class CreateFirstViewController: UIViewController {
 
            self.present(
 
-            .confirmationAlert(title: "確定要刪除此投票活動？",
-                               message: "按下確認後就救不回來了喔！",
+            .confirmationAlert(title: "b01".localized,
+                               message: "b02".localized,
                                cancelHandler: {
 
                                     self.returnToMain() },
@@ -218,7 +218,7 @@ class CreateFirstViewController: UIViewController {
         if meetingInfo != nil {
             
             inviteBtnView.isHidden = false
-            showButtonView.setTitle("更新活動內容", for: .normal)
+            showButtonView.setTitle("b03".localized, for: .normal)
             self.navigationController?.isNavigationBarHidden = true
             
             isDataEmpty = !isDataEmpty
@@ -395,7 +395,7 @@ extension CreateFirstViewController: SecondCellDelegate {
         
         if newVMs.count < 3 {
             
-            INProgressHUD.showFailure(text: "投票選項至少兩個")
+            INProgressHUD.showFailure(text: "b04".localized)
             
         } else {
             

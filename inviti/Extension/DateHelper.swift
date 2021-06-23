@@ -110,15 +110,6 @@ extension Date {
         return formatter
         
     }
-    
-    //    // 將時間戳轉換成 TimeInterval
-    //    let timeInterval = TimeInterval(timestamp)
-    //    // 初始化一個 Date
-    //    let date = Date(timeIntervalSince1970: timeInterval)
-    //    // 實例化一個 DateFormatter
-    //    let dateFormatter = DateFormatter()
-    //    // 設定日期格式
-    //    dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
 }
 
 extension Date {

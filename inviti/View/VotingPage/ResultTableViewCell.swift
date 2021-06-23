@@ -121,5 +121,5 @@ class ResultTableViewCell: UITableViewCell {
         }
         
     }
-    
+
 }

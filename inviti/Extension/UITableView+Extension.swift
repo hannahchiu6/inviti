@@ -35,8 +35,6 @@ extension UITableViewHeaderFooterView {
 }
 
 
-// UICollectionView regist
-
 extension UICollectionView {
     func do_registerCellWithNib(identifier: String, bundle: Bundle?) {
         let nib = UINib(nibName: identifier, bundle: bundle)

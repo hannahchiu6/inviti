@@ -100,7 +100,7 @@ class MeetingTableViewCell: UITableViewCell {
         }
         
         meetingSubject.text = viewModel?.subject
-        meetingTimeLabel.text = "投票建立時間：\(Date.pointFormatter.string(from: Date.init(millis: viewModel!.createdTime)))"
+        meetingTimeLabel.text = "created-time".localized + "\(Date.pointFormatter.string(from: Date.init(millis: viewModel!.createdTime)))"
         
         guard let url = viewModel?.image else { return }
         let imageUrl = URL(string: String(url))
@@ -110,31 +110,31 @@ class MeetingTableViewCell: UITableViewCell {
         
         switch users.count {
         case 0:
-            participanCountLabel.text = "尚未有人參與投票"
+            participanCountLabel.text = "nobody-vote-yet".localized
             userView.isHidden = true
             userTwoView.isHidden = true
             userThreeView.isHidden = true
             
         case 1:
-            participanCountLabel.text = "目前有 1 位參與者"
+            participanCountLabel.text = "one-participant-voted".localized
             userTwoView.isHidden = true
             userThreeView.isHidden = true
             userView.isHidden = false
         case 2:
-            participanCountLabel.text = "目前有 2 位參與者"
+            participanCountLabel.text = "two-participant-voted".localized
             userThreeView.isHidden = true
             userView.isHidden = false
             userTwoView.isHidden = false
             
         case 3:
-            participanCountLabel.text = "目前有 3 位參與者"
+            participanCountLabel.text = "three-participant-voted".localized
             userThreeView.isHidden = false
             userView.isHidden = false
             userTwoView.isHidden = false
             
         default: // > 3
             
-            participanCountLabel.text = "和其他 \(String(describing: users.count - 3)) 位參與者"
+            participanCountLabel.text = "and-other".localized + " \(String(describing: users.count - 3)) " + "participants".localized
             userThreeView.isHidden = false
             userView.isHidden = false
             userTwoView.isHidden = false

@@ -1,0 +1,24 @@
+
+/* Class = "UITextField"; placeholder = "請輸入您的 email"; ObjectID = "5iR-06-cd3"; */
+//"5iR-06-cd3.placeholder" = "enter-email";
+
+/* Class = "UIButton"; normalTitle = "上 傳 照 片"; ObjectID = "Kb5-W8-bE2"; */
+"Kb5-W8-bE2.normalTitle" = "Upload your photo";
+
+/* Class = "UILabel"; text = " "; ObjectID = "Lwg-NA-Tzr"; */
+"Lwg-NA-Tzr.text" = " ";
+
+/* Class = "UILabel"; text = "inviti User"; ObjectID = "bJ4-4H-MUC"; */
+"bJ4-4H-MUC.text" = "inviti User";
+
+/* Class = "UILabel"; text = "修改個人資料"; ObjectID = "c9K-V5-jnw"; */
+"c9K-V5-jnw.text" = "Account settings";
+
+/* Class = "UITextField"; placeholder = "請輸入您的名字"; ObjectID = "j6m-gp-JuU"; */
+//"j6m-gp-JuU.placeholder" = "enter-name";
+
+/* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "lQ8-jS-vtL"; */
+"lQ8-jS-vtL.normalTitle" = "Logout";
+
+/* Class = "UIButton"; normalTitle = "確 定 送 出"; ObjectID = "qtU-D1-jUD"; */
+"qtU-D1-jUD.normalTitle" = "Confirm";

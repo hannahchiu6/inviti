@@ -26,7 +26,7 @@ struct OptionTime: Equatable, Codable {
     
     func makeDateToString() -> String {
         
-        return "\(year) 年 \(month) 月 \(day) 日"
+        return "\(year)" + "year-for-option".localized + "\(month)".localized + "\(day)" + "day-for-option".localized
     }
     
     func makeDatetoString() -> String {

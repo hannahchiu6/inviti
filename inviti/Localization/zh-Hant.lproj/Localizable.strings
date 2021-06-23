@@ -1,0 +1,88 @@
+/* 
+  Localizable.strings
+  inviti
+  
+  Created by Hannah.C on 22.06.21.
+  
+*/
+
+"alert_confrim" = "確認";
+"alert_cancel" = "刪除";
+"no-one-vote" = "您的活動尚未有人投票";
+"sure-to-close-first" = "確定要結束投票並自訂結果嗎？";
+"voting-end" = "投票活動已結束囉！";
+"have-voted" = "您已經投票過囉！";
+"have-deleted" = "Oops，投票活動已經被刪除了。";
+"uploaded-success" = "上傳成功！";
+"year-for-option" = "年";
+"day-for-option" = "日";
+"email-placeholder" = "請輸入您的信箱";
+"name-placeholder" = "請輸入您的名字";
+
+
+// ShareSuccessVC
+"your-friend" = "您的好友 ";
+"invite-you" = " 邀請您參加「";
+"come-and-vote" = "」，來 inviti 票選時間吧！打開 APP 輸入活動 ID 即可參與投票";
+"invite-sent" = "發送邀請成功";
+"try-later" = "請稍後再試";
+
+
+// InvitesTableViewCell
+"a01" = "「";
+"a02" = "」投票已結束，";
+"a03" = " 已將最終票選時間加入您的行事曆囉！";
+"a04" = " 邀請您參加「";
+"a05" = "」活動，您可以直接前往投票，選出適合的時間。";
+"a06" = "已於 ";
+"a07" = "收到您的「";
+"a08" = "」投票邀請，並已加入投票。";
+"a09" = "您尚未有活動的邀請或通知。";
+"a10" = "發起投票活動";
+
+
+// AddMeetingViewController
+"no-result" = "查無此活動，請重新輸入。";
+
+
+// MeetingTableViewCell
+"created-time" = "投票建立時間：";
+"nobody-vote-yet" = "尚未有人參與投票";
+"one-participant-voted" = "目前有 1 位參與者";
+"two-participant-voted" = "目前有 2 位參與者";
+"three-participant-voted" = "目前有 3 位參與者";
+"and-other" = "和其他";
+"participants" = "位參與者";
+
+
+// CreateFirstViewController
+"b01" = "確定要刪除此投票活動？";
+"b02" = "按下確認後就救不回來了喔！";
+"b03" = "更新活動內容";
+"b04" = "投票選項至少兩個";
+
+
+// CTableViewController
+"time" = "時間";
+
+
+// OptionalSettingsCell
+"day" = "天";
+"voting-days" = "投票的天數為";
+
+
+// ResultClosedCell
+"day-for-calendar" = " 日";
+"1" = "1 月";
+"2" = "2 月";
+"3" = "3 月";
+"4" = "4 月";
+"5" = "5 月";
+"6" = "6 月";
+"7" = "7 月";
+"8" = "8 月";
+"9" = "9 月";
+"10" = "10 月";
+"11" = "11 月";
+"12" = "12 月";
+

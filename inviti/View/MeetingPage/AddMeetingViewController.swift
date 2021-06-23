@@ -82,7 +82,7 @@ class AddMeetingViewController: BaseViewController {
                         
                         self?.goVoteBtnView.isHidden = true
                         
-                        self?.searchResultLabel.text = "查無此活動，請重新輸入。"
+                        self?.searchResultLabel.text = "no-result".localized
                         
                     }
                 }

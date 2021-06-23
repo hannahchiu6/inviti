@@ -47,15 +47,15 @@ class HasVotedVC: BaseViewController {
         
         if meeting.isClosed {
             
-            alertMessage.text = "投票活動已結束囉！"
+            alertMessage.text = "voting-end".localized
             
         } else if isVoted {
             
-            alertMessage.text = "您已經投票過囉！"
+            alertMessage.text = "have-voted".localized
             
         } else {
             
-            alertMessage.text = "Oops，投票活動已經被刪除了。"
+            alertMessage.text = "have-deleted".localized
         }
     }
     

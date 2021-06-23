@@ -65,7 +65,7 @@ class VotingResultViewController: UIViewController {
 
             present(
 
-                .confirmationAlert(title: "您的活動尚未有人投票", message: "確定要結束投票並自訂結果嗎？") { } confirmHandler: {
+                .confirmationAlert(title: "no-one-vote".localized, message: "sure-to-close-first".localized) { } confirmHandler: {
 
                 self.popupView.isHidden = false
 

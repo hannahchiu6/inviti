@@ -1,0 +1,96 @@
+
+/* Class = "UIButton"; normalTitle = "搜 尋 好 友"; ObjectID = "10f-Eb-HDs"; */
+"10f-Eb-HDs.normalTitle" = "Search friend's id";
+
+/* Class = "UILabel"; text = "分享出去開始投票表決吧！"; ObjectID = "1li-de-TX3"; */
+"1li-de-TX3.text" = "Share with friends！";
+
+/* Class = "UIButton"; normalTitle = "送出邀請"; ObjectID = "2Jr-V8-C1v"; */
+"2Jr-V8-C1v.normalTitle" = "inviti sent";
+
+/* Class = "UILabel"; text = "12:00"; ObjectID = "2WN-Vn-W0L"; */
+"2WN-Vn-W0L.text" = "12:00";
+
+/* Class = "UITextField"; placeholder = "輸入邀請碼"; ObjectID = "5Qp-u9-6dp"; */
+"5Qp-u9-6dp.placeholder" = "Enter inviti's code";
+
+/* Class = "UITextField"; placeholder = "Enter title"; ObjectID = "7tb-sX-8hs"; */
+"7tb-sX-8hs.placeholder" = "Enter title";
+
+/* Class = "UIButton"; normalTitle = "回 首 頁"; ObjectID = "8uc-dI-cg0"; */
+"8uc-dI-cg0.normalTitle" = "Return to main page";
+
+/* Class = "UIButton"; normalTitle = "回 首 頁"; ObjectID = "BCG-4S-Y55"; */
+"BCG-4S-Y55.normalTitle" = "Return to main page";
+
+/* Class = "UIButton"; normalTitle = "確 認"; ObjectID = "IBg-sw-Ql6"; */
+"IBg-sw-Ql6.normalTitle" = "Confirm";
+
+/* Class = "UILabel"; text = "Option added!"; ObjectID = "Qsn-1h-hUH"; */
+"Qsn-1h-hUH.text" = "Option added!";
+
+/* Class = "UIButton"; normalTitle = "分 享 邀 請 碼"; ObjectID = "T3V-Q9-CT4"; */
+"T3V-Q9-CT4.normalTitle" = "Share inviti's code";
+
+/* Class = "UILabel"; text = "從相簿挑選一張適合活動的照片吧！"; ObjectID = "UVb-34-On5"; */
+"UVb-34-On5.text" = "Select an event photo from your album";
+
+/* Class = "UILabel"; text = "投票修改成功！"; ObjectID = "WYd-C0-jaK"; */
+"WYd-C0-jaK.text" = "Edit successfully！";
+
+/* Class = "UITextField"; placeholder = "Add location"; ObjectID = "YDX-6B-hRf"; */
+"YDX-6B-hRf.placeholder" = "Add location";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "cZK-AD-Dhb"; */
+"cZK-AD-Dhb.text" = "-";
+
+/* Class = "UILabel"; text = "11:00"; ObjectID = "dBb-a2-SIF"; */
+"dBb-a2-SIF.text" = "11:00";
+
+/* Class = "UILabel"; text = "Busy"; ObjectID = "dNe-yg-wDb"; */
+"dNe-yg-wDb.text" = "Busy";
+
+/* Class = "UILabel"; text = "限制投票時間 ( 天 )"; ObjectID = "eqN-AE-ld7"; */
+"eqN-AE-ld7.text" = "Set deadline (day)";
+
+/* Class = "UILabel"; text = "10:00"; ObjectID = "fTA-oW-v4v"; */
+"fTA-oW-v4v.text" = "10:00";
+
+/* Class = "UILabel"; text = "您的 inviti 新增成功！"; ObjectID = "flk-6I-377"; */
+"flk-6I-377.text" = "inviti created!";
+
+/* Class = "UILabel"; text = "限制每一位參與者只能投一票"; ObjectID = "h4S-j1-cI4"; */
+"h4S-j1-cI4.text" = "Limit participants to a single vote";
+
+/* Class = "UILabel"; text = "單一選項"; ObjectID = "j2a-Yu-6FT"; */
+"j2a-Yu-6FT.text" = "Single vote";
+
+/* Class = "UILabel"; text = "其他設定"; ObjectID = "kc0-qe-04d"; */
+"kc0-qe-04d.text" = "Other settings";
+
+/* Class = "UILabel"; text = "上傳成功！"; ObjectID = "l2U-yz-Fei"; */
+"l2U-yz-Fei.text" = "Uploaded successfully！";
+
+/* Class = "UILabel"; text = "2021. 08. 13"; ObjectID = "nTW-sK-2JB"; */
+"nTW-sK-2JB.text" = "2021. 08. 13";
+
+/* Class = "UILabel"; text = "設定投票時間"; ObjectID = "nyk-yQ-mMn"; */
+"nyk-yQ-mMn.text" = "Set the deadline";
+
+/* Class = "UILabel"; text = "上傳活動相片"; ObjectID = "pPA-EA-RSP"; */
+"pPA-EA-RSP.text" = "Upload the event photo";
+
+/* Class = "UILabel"; text = "搜尋或分享"; ObjectID = "qJy-FP-cnU"; */
+"qJy-FP-cnU.text" = "Search & Share";
+
+/* Class = "UIButton"; normalTitle = "分享連結"; ObjectID = "tZY-mS-hTW"; */
+"tZY-mS-hTW.normalTitle" = "Share your inviti";
+
+/* Class = "UILabel"; text = "請在下方欄位搜尋好友 ID，或是直接分享邀請碼：）"; ObjectID = "ujg-gE-zco"; */
+"ujg-gE-zco.text" = "Please search friend's ID of share inviti's code directly";
+
+/* Class = "UIButton"; normalTitle = "Select time"; ObjectID = "vJJ-9s-Hk3"; */
+"vJJ-9s-Hk3.normalTitle" = "Select time";
+
+/* Class = "UILabel"; text = "投票的天數為 1 天"; ObjectID = "w0C-Q8-7Zp"; */
+"w0C-Q8-7Zp.text" = "Vote day 1 day";

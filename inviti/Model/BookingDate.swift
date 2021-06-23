@@ -17,8 +17,8 @@ struct BookingDate: Equatable {
         return lhs.year == rhs.year && lhs.month == rhs.month && lhs.day == rhs.day
     }
     
-    func dateString() -> String {
-        
-        return "\(year) 年 \(month) 月 \(day) 日"
-    }
+//    func dateString() -> String {
+//
+//        return "\(year) 年 \(month) 月 \(day) 日"
+//    }
 }

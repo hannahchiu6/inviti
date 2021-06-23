@@ -41,9 +41,6 @@ class BaseViewController: UIViewController {
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-        //        navigationController?.navigationBar.backIndicatorImage = UIImage.asset(.Icons_24px_Back02)
-        //
-        //        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage.asset(.Icons_24px_Back02)
     }
     
     override func viewWillAppear(_ animated: Bool) {

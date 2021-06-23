@@ -24,7 +24,6 @@ class SettingsTableViewCell: UITableViewCell {
     }
     
     @IBOutlet weak var titleLabel: UILabel!
-    //    @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var cellBackgroundView: UIView!
     @IBOutlet weak var nextImage: UIImageView!
     
@@ -34,20 +33,4 @@ class SettingsTableViewCell: UITableViewCell {
         nextImage.image = UIImage(systemName: "chevron.down")
         
     }
-    
-    //    func setupOriginalCell(user: User, index: Int) {
-    //        switch index {
-    //        case 0:
-    //            titleLabel.text = titles[index]
-    //            valueLabel.text = user.name
-    //        case 1:
-    //            titleLabel.text = titles[index]
-    //            valueLabel.text = user.email
-    //        default:
-    //            titleLabel.text = titles[index]
-    //           
-    //        }
-    //
-    //    }
-    
 }

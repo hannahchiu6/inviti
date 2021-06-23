@@ -25,23 +25,9 @@ class ShareSuccessVC: BaseViewController {
             self?.meetingSubject = subject
         }
     }
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(true)
-    //
-    //        createMeetingViewModel.fetchOneMeeitngData(meetingID: meetingID)
-    //
-    //        meetingSubject = createMeetingViewModel.meetingViewModels.value[0].subject
-    //
-    //    }
-    
     
     @IBAction func returnMain(_ sender: UIButton) {
-        
-        //        let storyboard: UIStoryboard = UIStoryboard(name: "Meeting", bundle: nil)
-        //        let meetingVC = storyboard.instantiateViewController(identifier: "MeetingVC")
-        //        guard let vc = meetingVC as? MeetingViewController else { return }
-        //        self.navigationController?.pushViewController(vc, animated: true)
-        
+
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let meetingVC = storyboard.instantiateViewController(identifier: "TabBarVC")
         guard let vc = meetingVC as? TabBarViewController else { return }
@@ -55,7 +41,7 @@ class ShareSuccessVC: BaseViewController {
         if let name = UserDefaults.standard.value(forKey: UserDefaults.Keys.displayName.rawValue),
            let subject = meetingSubject {
             
-            let message = "您的好友 \(name) 邀請您參加 \(subject)，來 inviti 票選時間吧！打開 APP 輸入活動 ID 即可參與投票 👉🏻 \(searchID)"
+            let message = "your-friend".localized + " \(name) " + "invite-you".localized + " \(subject) " + "come-and-vote".localized + " 👉🏻 \(searchID)"
             
             let objectsToShare = [message]
             
@@ -65,12 +51,12 @@ class ShareSuccessVC: BaseViewController {
                 
                 if completed {
                     
-                    INProgressHUD.showSuccess(text: "發送邀請成功")
+                    INProgressHUD.showSuccess(text: "invite-sent")
                     return
                     
                 } else {
                     
-                    INProgressHUD.showFailure(text: "請稍後再試")
+                    INProgressHUD.showFailure(text: "try-later")
                 }
             }
             

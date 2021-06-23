@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "您收到一則投票活動的通知。"; ObjectID = "FsC-sg-SGe"; */
+"FsC-sg-SGe.text" = "您收到一則投票活動的通知。";
+
+/* Class = "UIButton"; normalTitle = "去投票"; ObjectID = "Rb8-vS-T5l"; */
+"Rb8-vS-T5l.normalTitle" = "去投票";
+
+/* Class = "UIButton"; normalTitle = "先不要"; ObjectID = "dWn-ai-lMT"; */
+"dWn-ai-lMT.normalTitle" = "先不要";

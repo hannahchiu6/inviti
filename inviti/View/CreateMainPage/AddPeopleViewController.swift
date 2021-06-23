@@ -105,7 +105,7 @@ class AddPeopleViewController: UIViewController {
                     
                 } else {
                     
-                    self?.resultPersonName.text = "查無此人，請重新輸入。"
+                    self?.resultPersonName.text = "no-result".localized
                     
                     self?.sendInviteView.isHidden = true
                 }
@@ -133,15 +133,14 @@ class AddPeopleViewController: UIViewController {
                 let ac = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
                 
                 ac.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-                    
-                    
+
                     if completed {
                         
-                        INProgressHUD.showSuccess(text: "發送邀請成功")
+                        INProgressHUD.showSuccess(text: "invite-sent")
                         
                     } else {
                         
-                        INProgressHUD.showFailure(text: "請稍後再試")
+                        INProgressHUD.showFailure(text: "try-later")
                     }
                 }
                 

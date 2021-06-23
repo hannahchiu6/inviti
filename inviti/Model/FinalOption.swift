@@ -28,35 +28,12 @@ struct FinalOption: Codable {
             
         ]
     }
-    
-    //    func startTimeToDate() -> Date {
-    //
-    //        return Date.init(millis: startTime)
-    //    }
-    
-    //    func endTimeToDate() -> Date {
-    //
-    //        return Date.init(millis: endTime)
-    //    }
-    
+ 
     func makeStartTimeToString() -> String {
         
         return  Date.timeFormatter.string(from: Date.init(millis: startTime))
         
     }
-    
-    //    func startTimeToHour() -> String {
-    //
-    //        return  Date.hourFormatter.string(from: Date.init(millis: startTime))
-    //
-    //    }
-    
-    //    func endTimeToHour() -> String {
-    //
-    //        return  Date.hourFormatter.string(from: Date.init(millis: endTime))
-    //
-    //    }
-    
     
     func makeEndTimeToTimeString() -> String {
         

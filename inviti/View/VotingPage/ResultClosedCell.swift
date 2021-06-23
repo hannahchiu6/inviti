@@ -47,7 +47,7 @@ class ResultClosedCell: UITableViewCell {
         
         yearLabel.text = String(describing: option.optionTime!.year)
         
-        dateLabel.text = "\(month) 月 \(day) 日"
+        dateLabel.text = "\(month)".localized + "\(day)" + "day-for-calendar".localized
         
         timeLabel.text = "\(startTime) - \(endTime)"
         

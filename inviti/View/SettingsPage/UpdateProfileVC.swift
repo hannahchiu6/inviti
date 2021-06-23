@@ -88,13 +88,13 @@ extension UpdateProfileVC: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         guard let emailText = emailTextField.text else { return }
-        
+
         if !emailText.isEmpty {
             viewModel.onEmailChanged(text: emailText)
         }
         
         guard let nameText = nameTextField.text else { return }
-        
+
         if !nameText.isEmpty {
             viewModel.onNameChanged(text: nameText)
             
@@ -102,20 +102,20 @@ extension UpdateProfileVC: UITextFieldDelegate {
     }
     
     func placeHolderText() {
-        
-        let oldName = viewModel.user.name
-        
-        let oldEmail = viewModel.user.email
-        
-        let colorNew = UIColor.lightGray
 
-        nameTextField.attributedPlaceholder =
-            NSAttributedString(string: "\(String(describing: oldName))", attributes: [NSAttributedString.Key.foregroundColor: colorNew])
+        if !viewModel.userViewModels.value.isEmpty {
 
-        emailTextField.attributedPlaceholder =
-            NSAttributedString(string: "\(String(describing: oldEmail))", attributes: [NSAttributedString.Key.foregroundColor: colorNew])
+            let user = viewModel.userViewModels.value[0]
+
+            if let oldName = user.name,
+               let oldEmail = user.email {
+
+                nameTextField.placeholder = oldName
+                emailTextField.placeholder = oldEmail
+            }
+
+        }
     }
-    
 }
 
 extension UpdateProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -135,15 +135,15 @@ extension UpdateProfileVC: UIImagePickerControllerDelegate, UINavigationControll
             
             imageBtnView.setImage(UIImage(systemName: "checkmark"), for: .normal)
             
-            imageBtnView.setTitle(" 上傳成功！", for: .normal)
+            imageBtnView.setTitle("uploaded-success".localized, for: .normal)
             
-            imageBtnView.setTitleColor(UIColor.mainOrange, for: .normal)
-            
-            imageBtnView.tintColor = UIColor.mainOrange
-            
+            imageBtnView.setTitleColor(UIColor.white, for: .normal)
+
+            imageBtnView.tintColor = UIColor(red: 1.00, green: 0.30, blue: 0.26, alpha: 1.00)
+
             imageBtnView.backgroundColor = UIColor.clear
-            
-            imageBackground.backgroundColor = UIColor.mainOrange
+
+            imageBackground.backgroundColor = UIColor(red: 1, green: 0.8353, blue: 0.7882, alpha: 1.0)
         }
         
         self.dismiss(animated: true, completion: nil)
@@ -157,7 +157,7 @@ extension UpdateProfileVC: UIImagePickerControllerDelegate, UINavigationControll
             self.openAlbum()
         }
         
-        let cancleAction = UIAlertAction(title: "Cancle", style: .cancel)
+        let cancleAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         controller.addAction(libraryAction)
         controller.addAction(cancleAction)

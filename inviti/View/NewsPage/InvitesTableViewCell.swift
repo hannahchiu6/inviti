@@ -56,9 +56,9 @@ class InvitesTableViewCell: UITableViewCell {
     
     func setupEmptyCell() {
         
-        invitesLabel.text = "\n" + "您尚未有活動的邀請或通知。"
+        invitesLabel.text = "\n" + "a09".localized
         
-        voteBtnView.setTitle("發起投票活動", for: .normal)
+        voteBtnView.setTitle("a10".localized, for: .normal)
         
         rejectBtnView.isHidden = true
         
@@ -73,7 +73,7 @@ class InvitesTableViewCell: UITableViewCell {
             
             let time = model.notification.makeTimeToDateString()
             
-            invitesLabel.text = "\(whoSend) 已於 \(time) 收到您的「\(subject)」投票邀請，並已加入投票。"
+            invitesLabel.text = "\(whoSend)" + "a06".localized + "\(time)" + "a07".localized + "\(subject)" + "a08".localized
         }
         
         voteBtnView.isHidden = true
@@ -96,7 +96,7 @@ class InvitesTableViewCell: UITableViewCell {
         if let whoSend = model.notification.ownerName,
            let subject = model.notification.subject {
             
-            invitesLabel.text = "\(whoSend) 邀請您參加「\(subject)」活動，您可以直接前往投票，選出適合的時間。"
+            invitesLabel.text = "\(whoSend)" + "a04".localized + "\(subject)" + "a05".localized
         }
         
         ownerImage.isHidden = false
@@ -117,9 +117,7 @@ class InvitesTableViewCell: UITableViewCell {
         if let whoSend = model.ownerName,
            let subject = model.subject {
             
-            //            _ = model.notification.makeTimeToDateString()
-            
-            invitesLabel.text = "「\(subject)」投票已結束，\(whoSend) 已將最終票選時間加入您的行事曆囉！"
+            invitesLabel.text = "a01".localized  + "\(subject)" + "a02".localized + "\(whoSend)" + "a03".localized
         }
         
         ownerImage.isHidden = false

@@ -55,16 +55,15 @@ class SettingsViewModel {
     
     
     func updateUserProfile() {
-        
-        
+
         UserManager.shared.updateUserDetails(user: user) { result in
             switch result {
             
             case .success(let user):
                 
                 self.setupUserDefault(user: user)
-                
-                print("Publish Image Succeeded")
+
+                print("Update user info Succeeded")
                 
             case .failure(let error):
                 

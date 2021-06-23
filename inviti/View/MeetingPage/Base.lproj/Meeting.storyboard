@@ -40,13 +40,13 @@
                                 <rect key="frame" x="0.0" y="100" width="414" height="75"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="EYZ-yB-pSh">
-                                        <rect key="frame" x="149.5" y="17" width="115" height="36"/>
+                                        <rect key="frame" x="160.5" y="17" width="93" height="36"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kV6-l5-EOg" customClass="UIButtonActivity" customModule="inviti" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="45" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="34" height="36"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="45" id="J4o-wV-gr0"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="J4o-wV-gr0"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="17"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -64,10 +64,10 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayh-kF-MHr" customClass="UIButtonActivity" customModule="inviti" customModuleProvider="target">
-                                                <rect key="frame" x="70" y="0.0" width="45" height="36"/>
+                                                <rect key="frame" x="59" y="0.0" width="34" height="36"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="45" id="3x8-4z-HCR"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="3x8-4z-HCR"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="17"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -87,7 +87,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fm-kN-DRv">
-                                        <rect key="frame" x="147" y="57" width="50" height="6"/>
+                                        <rect key="frame" x="152.5" y="57" width="50" height="6"/>
                                         <color key="backgroundColor" red="0.99698060749999995" green="0.29971152540000001" blue="0.25877732040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="VA4-2U-S7q"/>
