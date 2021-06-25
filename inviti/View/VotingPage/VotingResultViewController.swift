@@ -52,6 +52,7 @@ class VotingResultViewController: UIViewController {
     @IBAction func sendMeeting(_ sender: Any) {
         
         if votingViewModel.isVoted {
+
             UIView.animate(withDuration: 1) {
                 self.popupView.isHidden = false
                 self.popupView.transform = .identity

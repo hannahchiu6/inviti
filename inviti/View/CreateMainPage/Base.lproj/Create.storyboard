@@ -1293,34 +1293,28 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H6H-rU-GSp">
                                         <rect key="frame" x="57" y="273" width="300" height="350"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0B5-WM-YPS">
-                                                <rect key="frame" x="70" y="80" width="160" height="124"/>
-                                                <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kKz-DJ-XMC">
-                                                        <rect key="frame" x="40" y="0.5" width="80" height="79"/>
-                                                        <color key="tintColor" red="0.99698060749999995" green="0.29971152540000001" blue="0.25877732040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="80" id="ALH-Ss-28V"/>
-                                                            <constraint firstAttribute="height" constant="80" id="osE-ZS-CxT"/>
-                                                            <constraint firstAttribute="width" secondItem="kKz-DJ-XMC" secondAttribute="height" multiplier="1:1" id="rhY-Xy-xZr"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投票修改成功！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYd-C0-jaK">
-                                                        <rect key="frame" x="0.0" y="96" width="160" height="28"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="160" id="Lpx-Ly-Nkb"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="20"/>
-                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="characterSpacing">
-                                                                <real key="value" value="1"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kKz-DJ-XMC">
+                                                <rect key="frame" x="110" y="65.5" width="80" height="79"/>
+                                                <color key="tintColor" red="0.99698060749999995" green="0.29971152540000001" blue="0.25877732040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="kKz-DJ-XMC" secondAttribute="height" multiplier="1:1" id="ah5-OJ-0Ep"/>
+                                                    <constraint firstAttribute="height" constant="80" id="osE-ZS-CxT"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投票修改成功！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYd-C0-jaK">
+                                                <rect key="frame" x="70" y="161" width="160" height="28"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="160" id="Lpx-Ly-Nkb"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="20"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="characterSpacing">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCG-4S-Y55">
                                                 <rect key="frame" x="24" y="255" width="252" height="45"/>
                                                 <color key="backgroundColor" red="0.99691563839999997" green="0.2054972947" blue="0.20386651159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1344,12 +1338,14 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="350" id="10I-Ne-zVv"/>
+                                            <constraint firstItem="WYd-C0-jaK" firstAttribute="centerX" secondItem="H6H-rU-GSp" secondAttribute="centerX" id="ApY-Ad-ihA"/>
                                             <constraint firstAttribute="trailing" secondItem="BCG-4S-Y55" secondAttribute="trailing" constant="24" id="FlN-WU-rm9"/>
-                                            <constraint firstItem="0B5-WM-YPS" firstAttribute="centerX" secondItem="H6H-rU-GSp" secondAttribute="centerX" id="Mnc-HP-0JZ"/>
+                                            <constraint firstItem="kKz-DJ-XMC" firstAttribute="top" secondItem="H6H-rU-GSp" secondAttribute="top" constant="65" id="LiS-5Q-Q3q"/>
                                             <constraint firstItem="BCG-4S-Y55" firstAttribute="leading" secondItem="H6H-rU-GSp" secondAttribute="leading" constant="24" id="Sm7-bk-sXF"/>
-                                            <constraint firstItem="0B5-WM-YPS" firstAttribute="top" secondItem="H6H-rU-GSp" secondAttribute="top" constant="80" id="UDc-IL-DnS"/>
                                             <constraint firstAttribute="bottom" secondItem="BCG-4S-Y55" secondAttribute="bottom" constant="50" id="Vfa-CK-Tk3"/>
                                             <constraint firstAttribute="width" constant="300" id="Wao-Ic-pcN"/>
+                                            <constraint firstItem="kKz-DJ-XMC" firstAttribute="centerX" secondItem="H6H-rU-GSp" secondAttribute="centerX" id="iC9-lG-qvD"/>
+                                            <constraint firstItem="WYd-C0-jaK" firstAttribute="top" secondItem="kKz-DJ-XMC" secondAttribute="bottom" constant="16" id="kli-Ta-a0t"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="lkBorderWidth">

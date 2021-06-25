@@ -53,6 +53,8 @@ class AddMeetingViewController: BaseViewController {
         guard let text = searchField.text else { return }
         
         searchStackView.isHidden = false
+
+        self.goVoteBtnView.isHidden = true
         
         if !text.isEmpty {
             
@@ -77,17 +79,14 @@ class AddMeetingViewController: BaseViewController {
                         guard let subject = model[0].subject else { return }
                         
                         self?.searchResultLabel.text = subject
-                        
-                    } else {
-                        
-                        self?.goVoteBtnView.isHidden = true
-                        
-                        self?.searchResultLabel.text = "no-result".localized
+
+                        self?.goVoteBtnView.isHidden = false
                         
                     }
+
                 }
             }
-            
+            self.searchResultLabel.text = "no-result".localized
         }
         
     }
@@ -130,6 +129,7 @@ extension AddMeetingViewController: UITextFieldDelegate {
         if !text.isEmpty {
             
             notificationVM.fetchOneMeeitngData(meetingID: text)
+
         }
     }
 }

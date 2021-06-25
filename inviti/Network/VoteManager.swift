@@ -52,41 +52,41 @@ class VoteManager {
             }
     }
     
-    func checkIfVoted(meetingID: String, completion: @escaping (Result<[Option], Error>) -> Void) {
-        
-        db.collection("meetings")
-            .document(meetingID)
-            .collection("options")
-            .whereField("selectedOptions", arrayContains: userUID)
-            .getDocuments { querySnapshot, error in
-                
-                if let error = error {
-                    
-                    completion(.failure(error))
-                    
-                } else {
-                    
-                    var options = [Option]()
-                    
-                    for document in querySnapshot!.documents {
-                        
-                        do {
-                            if let option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
-                                options.append(option)
-                            }
-                            
-                        } catch {
-                            
-                            completion(.failure(error))
-                            
-                        }
-                    }
-                    
-                    completion(.success(options))
-                }
-                
-            }
-    }
+//    func checkIfAnyVoted(meetingID: String, completion: @escaping (Result<[Option], Error>) -> Void) {
+//        
+//        db.collection("meetings")
+//            .document(meetingID)
+//            .collection("options")
+//            .whereField("selectedOptions", arrayContains: userUID)
+//            .getDocuments { querySnapshot, error in
+//                
+//                if let error = error {
+//                    
+//                    completion(.failure(error))
+//                    
+//                } else {
+//                    
+//                    var options = [Option]()
+//                    
+//                    for document in querySnapshot!.documents {
+//                        
+//                        do {
+//                            if let option = try document.data(as: Option.self, decoder: Firestore.Decoder()) {
+//                                options.append(option)
+//                            }
+//                            
+//                        } catch {
+//                            
+//                            completion(.failure(error))
+//                            
+//                        }
+//                    }
+//                    
+//                    completion(.success(options))
+//                }
+//                
+//            }
+//    }
     
     // options
     func checkIfOptionVoted(options: [Option], completion: @escaping (Result<[Option], Error>) -> Void) {

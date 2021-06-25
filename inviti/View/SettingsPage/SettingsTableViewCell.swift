@@ -10,12 +10,17 @@ import UIKit
 class SettingsTableViewCell: UITableViewCell {
     
     var viewModel = SettingsViewModel()
+
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var cellBackgroundView: UIView!
+    @IBOutlet weak var nextImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.selectionStyle = .none
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
@@ -23,11 +28,7 @@ class SettingsTableViewCell: UITableViewCell {
         
     }
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var cellBackgroundView: UIView!
-    @IBOutlet weak var nextImage: UIImageView!
-    
-    
+
     func setupEditCell(user: User, index: Int) {
         
         nextImage.image = UIImage(systemName: "chevron.down")

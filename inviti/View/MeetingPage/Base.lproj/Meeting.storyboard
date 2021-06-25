@@ -408,7 +408,7 @@ inviti 體驗更好喔！</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請在下方欄位搜尋您的投票活動邀請碼，即可前往投票喔！" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uT-Gs-w3Q">
-                                                <rect key="frame" x="32" y="92" width="236" height="39.5"/>
+                                                <rect key="frame" x="30" y="92" width="240" height="39.5"/>
                                                 <fontDescription key="fontDescription" name="PingFangTC-Light" family="PingFang TC" pointSize="14"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -438,7 +438,7 @@ inviti 體驗更好喔！</string>
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="輸入邀請碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7wr-SY-xPi">
-                                                <rect key="frame" x="32" y="216" width="236" height="45"/>
+                                                <rect key="frame" x="24" y="216" width="252" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="002-Ny-Ggm"/>
                                                 </constraints>
@@ -466,19 +466,19 @@ inviti 體驗更好喔！</string>
                                             <constraint firstItem="ndI-tG-Jhy" firstAttribute="top" secondItem="7wr-SY-xPi" secondAttribute="bottom" constant="24" id="0Zk-Wa-rzH"/>
                                             <constraint firstItem="ndI-tG-Jhy" firstAttribute="leading" secondItem="wZq-Uf-8VS" secondAttribute="leading" constant="24" id="25N-6z-5Ih"/>
                                             <constraint firstItem="VCC-Xw-p5P" firstAttribute="leading" secondItem="wZq-Uf-8VS" secondAttribute="leading" constant="24" id="2y1-mI-Fi8"/>
-                                            <constraint firstItem="7wr-SY-xPi" firstAttribute="leading" secondItem="wZq-Uf-8VS" secondAttribute="leading" constant="32" id="4Qd-JH-qL0"/>
+                                            <constraint firstItem="3uT-Gs-w3Q" firstAttribute="leading" secondItem="wZq-Uf-8VS" secondAttribute="leading" constant="30" id="4pJ-PF-pIi"/>
+                                            <constraint firstItem="7wr-SY-xPi" firstAttribute="trailing" secondItem="ndI-tG-Jhy" secondAttribute="trailing" id="Elp-Ah-biZ"/>
                                             <constraint firstItem="VCC-Xw-p5P" firstAttribute="top" secondItem="wZq-Uf-8VS" secondAttribute="top" constant="24" id="FRt-9C-vSf"/>
                                             <constraint firstItem="LvJ-Hg-5lJ" firstAttribute="leading" secondItem="wZq-Uf-8VS" secondAttribute="leading" id="GAD-84-zhb"/>
                                             <constraint firstAttribute="width" constant="300" id="L5W-Q9-hma"/>
                                             <constraint firstItem="LvJ-Hg-5lJ" firstAttribute="top" secondItem="wZq-Uf-8VS" secondAttribute="top" constant="55" id="Rmm-NO-2Dx"/>
-                                            <constraint firstAttribute="trailing" secondItem="3uT-Gs-w3Q" secondAttribute="trailing" constant="32" id="U71-Mt-zju"/>
-                                            <constraint firstAttribute="trailing" secondItem="7wr-SY-xPi" secondAttribute="trailing" constant="32" id="U7b-BM-TdR"/>
+                                            <constraint firstItem="7wr-SY-xPi" firstAttribute="leading" secondItem="ndI-tG-Jhy" secondAttribute="leading" id="UuH-B7-Y1T"/>
                                             <constraint firstAttribute="width" secondItem="wZq-Uf-8VS" secondAttribute="height" multiplier="150:181" id="Wis-dk-aTj"/>
                                             <constraint firstAttribute="trailing" secondItem="ndI-tG-Jhy" secondAttribute="trailing" constant="24" id="dtU-DU-mbg"/>
                                             <constraint firstItem="3uT-Gs-w3Q" firstAttribute="top" secondItem="LvJ-Hg-5lJ" secondAttribute="bottom" constant="12" id="fIT-y8-zZT"/>
                                             <constraint firstAttribute="bottom" secondItem="ndI-tG-Jhy" secondAttribute="bottom" constant="32" id="oGm-Jb-pYv"/>
                                             <constraint firstAttribute="trailing" secondItem="LvJ-Hg-5lJ" secondAttribute="trailing" id="swV-AD-260"/>
-                                            <constraint firstItem="3uT-Gs-w3Q" firstAttribute="leading" secondItem="wZq-Uf-8VS" secondAttribute="leading" constant="32" id="vO2-AF-hQL"/>
+                                            <constraint firstAttribute="trailing" secondItem="3uT-Gs-w3Q" secondAttribute="trailing" constant="30" id="w55-Hx-Lso"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="lkBorderWidth">
@@ -527,14 +527,11 @@ inviti 體驗更好喔！</string>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="wZq-Uf-8VS" firstAttribute="centerX" secondItem="gVO-YT-QCg" secondAttribute="centerX" id="9hF-3H-Uk2"/>
                                     <constraint firstItem="2sG-LZ-nmP" firstAttribute="trailing" secondItem="ndI-tG-Jhy" secondAttribute="trailing" id="BEZ-SY-wxa"/>
                                     <constraint firstItem="2sG-LZ-nmP" firstAttribute="leading" secondItem="ndI-tG-Jhy" secondAttribute="leading" id="CRm-XJ-HIx"/>
                                     <constraint firstItem="7wr-SY-xPi" firstAttribute="top" secondItem="2sG-LZ-nmP" secondAttribute="bottom" constant="24" id="Pwh-Mi-ojb"/>
-                                    <constraint firstAttribute="trailing" secondItem="3uT-Gs-w3Q" secondAttribute="trailing" constant="89" id="e6Y-qg-Won"/>
-                                    <constraint firstItem="3uT-Gs-w3Q" firstAttribute="leading" secondItem="gVO-YT-QCg" secondAttribute="leading" constant="89" id="eNu-2L-UNK"/>
-                                    <constraint firstItem="3uT-Gs-w3Q" firstAttribute="top" secondItem="LvJ-Hg-5lJ" secondAttribute="bottom" constant="12" id="fCm-QP-cpo"/>
                                     <constraint firstItem="wZq-Uf-8VS" firstAttribute="centerY" secondItem="gVO-YT-QCg" secondAttribute="centerY" id="nYi-l2-dlE"/>
+                                    <constraint firstItem="wZq-Uf-8VS" firstAttribute="centerX" secondItem="gVO-YT-QCg" secondAttribute="centerX" id="scd-SY-ZRO"/>
                                 </constraints>
                             </view>
                         </subviews>

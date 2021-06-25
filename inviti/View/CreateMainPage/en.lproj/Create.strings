@@ -36,7 +36,7 @@
 "UVb-34-On5.text" = "Select an event photo from your album";
 
 /* Class = "UILabel"; text = "投票修改成功！"; ObjectID = "WYd-C0-jaK"; */
-"WYd-C0-jaK.text" = "Edit successfully！";
+"WYd-C0-jaK.text" = "Saved！";
 
 /* Class = "UITextField"; placeholder = "Add location"; ObjectID = "YDX-6B-hRf"; */
 "YDX-6B-hRf.placeholder" = "Add location";
@@ -81,13 +81,13 @@
 "pPA-EA-RSP.text" = "Upload the event photo";
 
 /* Class = "UILabel"; text = "搜尋或分享"; ObjectID = "qJy-FP-cnU"; */
-"qJy-FP-cnU.text" = "Search & Share";
+"qJy-FP-cnU.text" = "Search for Friends";
 
 /* Class = "UIButton"; normalTitle = "分享連結"; ObjectID = "tZY-mS-hTW"; */
-"tZY-mS-hTW.normalTitle" = "Share your inviti";
+"tZY-mS-hTW.normalTitle" = "Share by Message";
 
 /* Class = "UILabel"; text = "請在下方欄位搜尋好友 ID，或是直接分享邀請碼：）"; ObjectID = "ujg-gE-zco"; */
-"ujg-gE-zco.text" = "Please search friend's ID of share inviti's code directly";
+"ujg-gE-zco.text" = "Please search friend's ID of share inviti's code directly.";
 
 /* Class = "UIButton"; normalTitle = "Select time"; ObjectID = "vJJ-9s-Hk3"; */
 "vJJ-9s-Hk3.normalTitle" = "Select time";

@@ -1,6 +1,6 @@
 
 /* Class = "UILabel"; text = "請在下方欄位搜尋您的投票活動邀請碼，即可前往投票喔！"; ObjectID = "3uT-Gs-w3Q"; */
-"3uT-Gs-w3Q.text" = "Search for the inviti's code and you'll be able to vote !";
+"3uT-Gs-w3Q.text" = "Search for the inviti's code and you'll be able to vote!";
 
 /* Class = "UILabel"; text = "更新個人資訊，\ninviti 體驗更好喔！"; ObjectID = "6ri-uy-JL2"; */
 "6ri-uy-JL2.text" = "Update your profile to enjoy better experience";
@@ -12,7 +12,7 @@
 "EPQ-lR-XWg.text" = "If you have inviti's code,\n click here";
 
 /* Class = "UILabel"; text = "邀 請 碼 搜 尋"; ObjectID = "LvJ-Hg-5lJ"; */
-"LvJ-Hg-5lJ.text" = "inviti's code Search";
+"LvJ-Hg-5lJ.text" = "Search for inviti";
 
 /* Class = "UILabel"; text = "點擊此處開始建立\n自己的 inviti 吧！"; ObjectID = "QWc-9m-AJz"; */
 "QWc-9m-AJz.text" = "Get started for your first inviti";
@@ -30,7 +30,7 @@
 "kV6-l5-EOg.normalTitle" = "Host";
 
 /* Class = "UIButton"; normalTitle = "搜 尋 inviti"; ObjectID = "ndI-tG-Jhy"; */
-"ndI-tG-Jhy.normalTitle" = "inviti's code Search";
+"ndI-tG-Jhy.normalTitle" = "Search";
 
 /* Class = "UIButton"; normalTitle = "回 首 頁"; ObjectID = "srP-RZ-ikl"; */
 "srP-RZ-ikl.normalTitle" = "Retuen to main page";

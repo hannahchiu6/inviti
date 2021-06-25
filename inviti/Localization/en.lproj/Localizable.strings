@@ -67,7 +67,7 @@
 
 // OptionalSettingsCell
 "day" = "day(s)";
-"voting-days" = "Voting closes after: ";
+"voting-days" = "Voting closes in ";
 
 
 // ResultClosedCell

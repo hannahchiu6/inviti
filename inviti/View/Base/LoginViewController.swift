@@ -18,16 +18,16 @@ class LoginViewController: UIViewController {
     let viewModel = LoginViewModel()
     
     @IBAction func skip(_ sender: Any) {
-        
-        let testID = "uLkwCQPXM4NrsnFc1mTSmw7GsPu2"
-        //        let testID = "5gWVjg7xTHElu9p6Jkl1"
-        
+
+
+//         let testID = "uLkwCQPXM4NrsnFc1mTSmw7GsPu2"
+                        let testID = "5gWVjg7xTHElu9p6Jkl1"
+
         //        let testID = "TPGdezeBE0cgztO0Ui1tzsVwqNd2"
-        
-        UserDefaults.standard.setValue(testID, forKey: UserDefaults.Keys.uid.rawValue)
-        
-        self.viewModel.checkIfLogInBefore()
-        
+
+                        UserDefaults.standard.setValue(testID, forKey: UserDefaults.Keys.uid.rawValue)
+
+                        self.viewModel.checkIfLogInBefore()
         performSegue(withIdentifier: "goToMainSegue", sender: nil)
         
     }
@@ -58,15 +58,11 @@ class LoginViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapSignInWithAppleButton), for: UIControl.Event.touchUpInside)
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        
-        //        button.frame = self.signInWithAppleButton.bounds
-        //
-        //        self.signInWithAppleButton.addSubview(button)
-        
+
         view.addSubview(button)
         
         NSLayoutConstraint.activate([
-            //            button.topAnchor.constraint(equalTo: animationView.bottomAnchor, constant: 160),
+
             button.topAnchor.constraint(equalTo: policyLabel.topAnchor, constant: -65),
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.heightAnchor.constraint(equalToConstant: 45),

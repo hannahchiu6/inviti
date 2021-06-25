@@ -126,18 +126,6 @@ class VotingViewController: BaseViewController {
         }
     }
     
-    func checkIfVoted() {
-        
-        if isVoted {
-            
-            hasVotedView.isHidden = false
-            
-        } else {
-            
-            
-        }
-    }
-    
     func disableBtnIfVoted() {
         
         if meetingInfo.isClosed || isVoted {

@@ -118,8 +118,9 @@
 		86EEED702675D5BF0063E773 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEED6F2675D5BF0063E773 /* Array+Extension.swift */; };
 		86EEED7E26773D820063E773 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEED7D26773D810063E773 /* UIStackView+Extension.swift */; };
 		86F203DD264E05EC00A9763A /* MeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F203DC264E05EC00A9763A /* MeetingViewController.swift */; };
-		A3090504881DDDF486642645 /* Pods_inviti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE1AD6A8960FEB195B049AE /* Pods_inviti.framework */; };
-		F63E8FC4D55723E0CEAE6757 /* Pods_invitiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CBB2B9EAB097035EF8C6362 /* Pods_invitiTests.framework */; };
+		86F920AF26845FEA00FDD335 /* BundleEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F920AE26845FEA00FDD335 /* BundleEx.swift */; };
+		A170A6CE150EBB86F97173E4 /* Pods_invitiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC9C810384C2AC6CCEB881F /* Pods_invitiTests.framework */; };
+		AC145820F16FBA7A9C5750E4 /* Pods_inviti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A1134405F8868A81E7733E /* Pods_inviti.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +147,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		46A9A3D659ED0E155AC7AE3F /* Pods-invitiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-invitiTests.release.xcconfig"; path = "Target Support Files/Pods-invitiTests/Pods-invitiTests.release.xcconfig"; sourceTree = "<group>"; };
+		4CFD4C63D3CB6CB241E83024 /* Pods-inviti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inviti.release.xcconfig"; path = "Target Support Files/Pods-inviti/Pods-inviti.release.xcconfig"; sourceTree = "<group>"; };
+		67BBD9AFBB49373345ED5765 /* Pods-inviti.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inviti.debug.xcconfig"; path = "Target Support Files/Pods-inviti/Pods-inviti.debug.xcconfig"; sourceTree = "<group>"; };
+		848B0F64AF8FEF4482130E16 /* Pods-invitiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-invitiTests.debug.xcconfig"; path = "Target Support Files/Pods-invitiTests/Pods-invitiTests.debug.xcconfig"; sourceTree = "<group>"; };
 		860A035D265BA31100067F23 /* CalendarNibCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarNibCell.xib; sourceTree = "<group>"; };
 		860A0364265BA7D900067F23 /* CTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTableViewController.swift; sourceTree = "<group>"; };
 		860A036B265BB2AD00067F23 /* CTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTableViewCell.swift; sourceTree = "<group>"; };
@@ -213,6 +218,7 @@
 		8666D3C02682EA9D00A83CF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InvitesTableViewCell.strings; sourceTree = "<group>"; };
 		8666D3C526831DE800A83CF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Settings.strings; sourceTree = "<group>"; };
 		8666D3C626831DEA00A83CF7 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Settings.strings"; sourceTree = "<group>"; };
+		8666D3CF26832C3000A83CF7 /* inviti.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = inviti.entitlements; sourceTree = "<group>"; };
 		866813DF2667389D00659495 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		866C974526563BF000687386 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		866C974B26563CD900687386 /* UIColorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHelper.swift; sourceTree = "<group>"; };
@@ -287,12 +293,9 @@
 		86EEED6F2675D5BF0063E773 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		86EEED7D26773D810063E773 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		86F203DC264E05EC00A9763A /* MeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewController.swift; sourceTree = "<group>"; };
-		8CBB2B9EAB097035EF8C6362 /* Pods_invitiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_invitiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A41EA7A3E1004FFDF363D424 /* Pods-inviti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inviti.release.xcconfig"; path = "Target Support Files/Pods-inviti/Pods-inviti.release.xcconfig"; sourceTree = "<group>"; };
-		A54D6AE94826CFBFCA3348CD /* Pods-invitiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-invitiTests.debug.xcconfig"; path = "Target Support Files/Pods-invitiTests/Pods-invitiTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AB126D6A8D6BBD563B778221 /* Pods-invitiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-invitiTests.release.xcconfig"; path = "Target Support Files/Pods-invitiTests/Pods-invitiTests.release.xcconfig"; sourceTree = "<group>"; };
-		E5BBABC6525C243DBE8B8AC6 /* Pods-inviti.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inviti.debug.xcconfig"; path = "Target Support Files/Pods-inviti/Pods-inviti.debug.xcconfig"; sourceTree = "<group>"; };
-		FDE1AD6A8960FEB195B049AE /* Pods_inviti.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_inviti.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86F920AE26845FEA00FDD335 /* BundleEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleEx.swift; sourceTree = "<group>"; };
+		A9A1134405F8868A81E7733E /* Pods_inviti.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_inviti.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABC9C810384C2AC6CCEB881F /* Pods_invitiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_invitiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,7 +303,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F63E8FC4D55723E0CEAE6757 /* Pods_invitiTests.framework in Frameworks */,
+				A170A6CE150EBB86F97173E4 /* Pods_invitiTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +311,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3090504881DDDF486642645 /* Pods_inviti.framework in Frameworks */,
+				AC145820F16FBA7A9C5750E4 /* Pods_inviti.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,10 +321,10 @@
 		1C94417FB07E2A206AEFB117 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E5BBABC6525C243DBE8B8AC6 /* Pods-inviti.debug.xcconfig */,
-				A41EA7A3E1004FFDF363D424 /* Pods-inviti.release.xcconfig */,
-				A54D6AE94826CFBFCA3348CD /* Pods-invitiTests.debug.xcconfig */,
-				AB126D6A8D6BBD563B778221 /* Pods-invitiTests.release.xcconfig */,
+				67BBD9AFBB49373345ED5765 /* Pods-inviti.debug.xcconfig */,
+				4CFD4C63D3CB6CB241E83024 /* Pods-inviti.release.xcconfig */,
+				848B0F64AF8FEF4482130E16 /* Pods-invitiTests.debug.xcconfig */,
+				46A9A3D659ED0E155AC7AE3F /* Pods-invitiTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 			children = (
 				86B1526326822F990087B1EF /* Localization */,
 				861031412672F92C00BEC58B /* invitiRelease.entitlements */,
+				8666D3CF26832C3000A83CF7 /* inviti.entitlements */,
 				869F842D2656139800DA1D53 /* Util */,
 				869F842426560C4D00DA1D53 /* Network */,
 				86406559264D9901003C756D /* Extension */,
@@ -533,6 +537,7 @@
 			isa = PBXGroup;
 			children = (
 				86B1526E268231810087B1EF /* Localizable.strings */,
+				86F920AE26845FEA00FDD335 /* BundleEx.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -621,10 +626,10 @@
 		F5362E2D7C7ED93E2FF7A606 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FDE1AD6A8960FEB195B049AE /* Pods_inviti.framework */,
 				8610312C2672EE9100BEC58B /* UserNotifications.framework */,
 				8610312E2672EE9100BEC58B /* UserNotificationsUI.framework */,
-				8CBB2B9EAB097035EF8C6362 /* Pods_invitiTests.framework */,
+				A9A1134405F8868A81E7733E /* Pods_inviti.framework */,
+				ABC9C810384C2AC6CCEB881F /* Pods_invitiTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -636,11 +641,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8698135C267DB0C6000BB820 /* Build configuration list for PBXNativeTarget "invitiTests" */;
 			buildPhases = (
-				101A8D24D0D8EAB4317F1099 /* [CP] Check Pods Manifest.lock */,
+				952D0D2B57707AA358FE974E /* [CP] Check Pods Manifest.lock */,
 				8698134F267DB0C6000BB820 /* Sources */,
 				86981350267DB0C6000BB820 /* Frameworks */,
 				86981351267DB0C6000BB820 /* Resources */,
-				AAAD9382CF510003DD844E39 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -656,14 +660,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86B12B56264A8587006EE7FE /* Build configuration list for PBXNativeTarget "inviti" */;
 			buildPhases = (
-				DECF54FA61C7AC1D89E439BC /* [CP] Check Pods Manifest.lock */,
+				A43031A411F7E5E055A49772 /* [CP] Check Pods Manifest.lock */,
 				86EDAB55264B93E800491D58 /* ShellScript */,
 				86B12B3E264A8584006EE7FE /* Sources */,
 				86B12B3F264A8584006EE7FE /* Frameworks */,
 				86B12B40264A8584006EE7FE /* Resources */,
-				1CFAE37BF67E578749D5C242 /* [CP] Embed Pods Frameworks */,
 				862A82092670FBCD005A5AF6 /* ShellScript */,
 				8610313D2672EE9200BEC58B /* Embed App Extensions */,
+				D6450CC8AC52A7DBDBF08E1B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -752,45 +756,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		101A8D24D0D8EAB4317F1099 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-invitiTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1CFAE37BF67E578749D5C242 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-inviti/Pods-inviti-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-inviti/Pods-inviti-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-inviti/Pods-inviti-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		862A82092670FBCD005A5AF6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -827,24 +792,29 @@
 			shellPath = /bin/sh;
 			shellScript = "PATH=/opt/homebrew/bin:$PATH\nif [ -f ~/moonland.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ~/moonland.yml\n  fi\nfi\n";
 		};
-		AAAD9382CF510003DD844E39 /* [CP] Embed Pods Frameworks */ = {
+		952D0D2B57707AA358FE974E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-invitiTests/Pods-invitiTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-invitiTests/Pods-invitiTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-invitiTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-invitiTests/Pods-invitiTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DECF54FA61C7AC1D89E439BC /* [CP] Check Pods Manifest.lock */ = {
+		A43031A411F7E5E055A49772 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -864,6 +834,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6450CC8AC52A7DBDBF08E1B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-inviti/Pods-inviti-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-inviti/Pods-inviti-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-inviti/Pods-inviti-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -954,6 +941,7 @@
 				863B083226581C2D007CFBF3 /* ShareSuccessVC.swift in Sources */,
 				869F83FD265531EC00DA1D53 /* Event.swift in Sources */,
 				86C9C670265AA23B0074B2B5 /* UIViewController+Extension.swift in Sources */,
+				86F920AF26845FEA00FDD335 /* BundleEx.swift in Sources */,
 				86A6620C2669E68400DBB799 /* LoginViewModel.swift in Sources */,
 				8681A64E265E898B007CF61A /* OptionTime.swift in Sources */,
 				868649FC265B74E700E7040F /* CalendarViewModel.swift in Sources */,
@@ -1115,7 +1103,7 @@
 /* Begin XCBuildConfiguration section */
 		8698135A267DB0C6000BB820 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A54D6AE94826CFBFCA3348CD /* Pods-invitiTests.debug.xcconfig */;
+			baseConfigurationReference = 848B0F64AF8FEF4482130E16 /* Pods-invitiTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1137,7 +1125,7 @@
 		};
 		8698135B267DB0C6000BB820 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB126D6A8D6BBD563B778221 /* Pods-invitiTests.release.xcconfig */;
+			baseConfigurationReference = 46A9A3D659ED0E155AC7AE3F /* Pods-invitiTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1277,7 +1265,7 @@
 		};
 		86B12B57264A8587006EE7FE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5BBABC6525C243DBE8B8AC6 /* Pods-inviti.debug.xcconfig */;
+			baseConfigurationReference = 67BBD9AFBB49373345ED5765 /* Pods-inviti.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1292,7 +1280,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.1.2;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = moonland.inviti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1303,7 +1291,7 @@
 		};
 		86B12B58264A8587006EE7FE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A41EA7A3E1004FFDF363D424 /* Pods-inviti.release.xcconfig */;
+			baseConfigurationReference = 4CFD4C63D3CB6CB241E83024 /* Pods-inviti.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1317,7 +1305,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.1.2;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = moonland.inviti;
 				PRODUCT_NAME = "$(TARGET_NAME)";

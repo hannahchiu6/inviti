@@ -216,9 +216,7 @@
                                             <constraint firstItem="hR6-mw-KM1" firstAttribute="leading" secondItem="hbp-RX-Whv" secondAttribute="leading" constant="24" id="CbZ-TN-qfo"/>
                                             <constraint firstAttribute="bottom" secondItem="hR6-mw-KM1" secondAttribute="bottom" constant="24" id="FfS-PY-VyN"/>
                                             <constraint firstItem="yrG-fF-dmx" firstAttribute="leading" secondItem="hbp-RX-Whv" secondAttribute="leading" id="KaN-Np-eO8"/>
-                                            <constraint firstItem="yrG-fF-dmx" firstAttribute="top" secondItem="hbp-RX-Whv" secondAttribute="top" id="V77-Gq-OC9"/>
                                             <constraint firstItem="yrG-fF-dmx" firstAttribute="top" secondItem="hbp-RX-Whv" secondAttribute="top" id="g98-84-mUJ"/>
-                                            <constraint firstAttribute="bottom" secondItem="yrG-fF-dmx" secondAttribute="bottom" id="nwA-Ei-2uO"/>
                                             <constraint firstAttribute="bottom" secondItem="yrG-fF-dmx" secondAttribute="bottom" id="rUg-fI-7Yp"/>
                                             <constraint firstItem="qdM-DU-EhR" firstAttribute="leading" secondItem="hbp-RX-Whv" secondAttribute="leading" constant="24" id="t5r-HG-K1i"/>
                                             <constraint firstItem="hR6-mw-KM1" firstAttribute="top" secondItem="hbp-RX-Whv" secondAttribute="top" constant="85" id="vTx-ut-hjz"/>
@@ -419,25 +417,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nRe-Nd-A5n">
                                 <rect key="frame" x="57" y="189" width="300" height="350"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="LLc-n9-32M">
-                                        <rect key="frame" x="75" y="75" width="150" height="124"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fU8-kq-IIS">
-                                                <rect key="frame" x="35" y="0.5" width="80" height="79"/>
-                                                <color key="tintColor" red="0.99698072670000004" green="0.30764731760000003" blue="0.25877618790000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="fU8-kq-IIS" secondAttribute="height" multiplier="1:1" id="Izf-rW-O77"/>
-                                                    <constraint firstAttribute="height" constant="80" id="U2m-TV-avD"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投 票 成 功！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhF-GP-cfC">
-                                                <rect key="frame" x="15" y="96" width="120" height="28"/>
-                                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="20"/>
-                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fU8-kq-IIS">
+                                        <rect key="frame" x="110" y="65.5" width="80" height="79"/>
+                                        <color key="tintColor" red="0.99698072670000004" green="0.30764731760000003" blue="0.25877618790000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="fU8-kq-IIS" secondAttribute="height" multiplier="1:1" id="Izf-rW-O77"/>
+                                            <constraint firstAttribute="height" constant="80" id="U2m-TV-avD"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投 票 成 功！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhF-GP-cfC">
+                                        <rect key="frame" x="0.0" y="161" width="300" height="28"/>
+                                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="20"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5va-UQ-P3I">
                                         <rect key="frame" x="24" y="260" width="252" height="45"/>
                                         <color key="backgroundColor" red="0.99698072670000004" green="0.30764731760000003" blue="0.25877618790000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -460,14 +453,16 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="LLc-n9-32M" firstAttribute="leading" secondItem="nRe-Nd-A5n" secondAttribute="leading" constant="75" id="8mf-9e-1Wy"/>
+                                    <constraint firstAttribute="trailing" secondItem="MhF-GP-cfC" secondAttribute="trailing" id="2vM-aH-rv7"/>
+                                    <constraint firstItem="fU8-kq-IIS" firstAttribute="top" secondItem="nRe-Nd-A5n" secondAttribute="top" constant="65" id="9Zt-ct-wvh"/>
                                     <constraint firstItem="5va-UQ-P3I" firstAttribute="leading" secondItem="nRe-Nd-A5n" secondAttribute="leading" constant="24" id="HOb-kQ-uXf"/>
                                     <constraint firstAttribute="width" constant="300" id="Hul-Eq-hdu"/>
-                                    <constraint firstItem="LLc-n9-32M" firstAttribute="top" secondItem="nRe-Nd-A5n" secondAttribute="top" constant="75" id="O1c-tl-XMV"/>
+                                    <constraint firstAttribute="width" secondItem="nRe-Nd-A5n" secondAttribute="height" multiplier="6:7" id="Uie-br-8D9"/>
+                                    <constraint firstItem="MhF-GP-cfC" firstAttribute="top" secondItem="fU8-kq-IIS" secondAttribute="bottom" constant="16" id="VlJ-j1-hGN"/>
                                     <constraint firstAttribute="trailing" secondItem="5va-UQ-P3I" secondAttribute="trailing" constant="24" id="adB-Sb-OV5"/>
+                                    <constraint firstItem="MhF-GP-cfC" firstAttribute="leading" secondItem="nRe-Nd-A5n" secondAttribute="leading" id="ovl-jX-hbz"/>
+                                    <constraint firstItem="fU8-kq-IIS" firstAttribute="centerX" secondItem="MhF-GP-cfC" secondAttribute="centerX" id="vF4-wp-HMR"/>
                                     <constraint firstAttribute="bottom" secondItem="5va-UQ-P3I" secondAttribute="bottom" constant="45" id="xOc-hn-F2s"/>
-                                    <constraint firstAttribute="height" constant="350" id="xuV-Vr-MxB"/>
-                                    <constraint firstAttribute="trailing" secondItem="LLc-n9-32M" secondAttribute="trailing" constant="75" id="ySa-3E-f5M"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="lkBorderWidth">
@@ -485,8 +480,8 @@
                         <viewLayoutGuide key="safeArea" id="lVs-yk-dRr"/>
                         <color key="backgroundColor" red="0.37710404666987329" green="0.35861855418605598" blue="0.35861855418605598" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="LLc-n9-32M" firstAttribute="centerX" secondItem="lVs-yk-dRr" secondAttribute="centerX" id="oYp-m2-N5q"/>
                             <constraint firstItem="nRe-Nd-A5n" firstAttribute="top" secondItem="lVs-yk-dRr" secondAttribute="top" constant="145" id="tTO-vb-HkT"/>
+                            <constraint firstItem="nRe-Nd-A5n" firstAttribute="centerX" secondItem="mnM-q2-B8B" secondAttribute="centerX" id="v0b-OH-1Bp"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -725,13 +720,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZX-Pd-TLs" userLabel="Upper">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="355"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="345"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_photo" translatesAutoresizingMaskIntoConstraints="NO" id="LUP-le-OHH">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="355"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="345"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="345" id="6iq-2O-dNI"/>
+                                                </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBl-rM-jI2">
-                                                <rect key="frame" x="24" y="85" width="366" height="246"/>
+                                                <rect key="frame" x="24" y="85" width="366" height="236"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="2021 Marketing &amp; PM Meeting " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oou-oD-lLE">
                                                         <rect key="frame" x="16" y="16" width="334" height="31"/>
@@ -819,7 +817,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZn-k3-Shi">
-                                                        <rect key="frame" x="126" y="202" width="114" height="28"/>
+                                                        <rect key="frame" x="126" y="192" width="114" height="28"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lCZ-I0-ICO">
                                                                 <rect key="frame" x="8" y="6" width="15" height="15"/>
@@ -911,7 +909,6 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="nU0-b4-94X" firstAttribute="leading" secondItem="RZX-Pd-TLs" secondAttribute="leading" constant="24" id="06Y-fa-Ff4"/>
-                                            <constraint firstAttribute="width" secondItem="RZX-Pd-TLs" secondAttribute="height" multiplier="414:355" id="9qc-pd-vs9"/>
                                             <constraint firstItem="LUP-le-OHH" firstAttribute="leading" secondItem="RZX-Pd-TLs" secondAttribute="leading" id="Dpy-zT-XON"/>
                                             <constraint firstAttribute="bottom" secondItem="LUP-le-OHH" secondAttribute="bottom" id="RVU-Hm-Fdk"/>
                                             <constraint firstAttribute="trailing" secondItem="uBl-rM-jI2" secondAttribute="trailing" constant="24" id="Scc-Ie-aSc"/>
@@ -924,7 +921,7 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FmQ-kW-HfK">
-                                        <rect key="frame" x="0.0" y="355" width="414" height="411"/>
+                                        <rect key="frame" x="0.0" y="345" width="414" height="421"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="resultTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="resultTableViewCell" id="zNW-ag-sO6" userLabel="resultTableViewCell" customClass="ResultTableViewCell" customModule="inviti" customModuleProvider="target">

@@ -128,6 +128,20 @@ class VotingViewModel {
                 
                 self?.setOptions(options)
                 self?.options = options
+
+                if !options.isEmpty {
+
+                    guard let selectedOptions = options[0].selectedOptions else { return }
+
+                    if selectedOptions.isEmpty {
+
+                        self?.isVoted = false
+
+                    } else {
+
+                        self?.isVoted = true
+                    }
+                }
                 
             case .failure(let error):
                 
@@ -145,48 +159,48 @@ class VotingViewModel {
         return optionIDs
     }
     
-    func checkIfVoted(meetingID: String) {
-        
-        VoteManager.shared.checkIfVoted(meetingID: meetingID) { [weak self] result in
-            
-            switch result {
-            
-            case .success(let options):
-                
-                if options.isEmpty {
-                    
-                    self?.isVoted = false
-                    
-                } else {
-                    
-                    self?.isVoted = true
-                }
-                
-            case .failure(let error):
-                
-                print("fetchData.failure: \(error)")
-            }
-            
-        }
-    }
+//    func checkIfAnyVoted(meetingID: String) {
+//
+//        VoteManager.shared.checkIfVoted(meetingID: meetingID) { [weak self] result in
+//
+//            switch result {
+//
+//            case .success(let options):
+//
+//                if options.isEmpty {
+//
+//                    self?.isVoted = true
+//
+//                } else {
+//
+//                    self?.isVoted = false
+//                }
+//
+//            case .failure(let error):
+//
+//                print("fetchData.failure: \(error)")
+//            }
+//
+//        }
+//    }
     
     func checkSingleVote(meeting: Meeting) {
         if meeting.singleMeeting {
             self.onMultipleOptions()
         }
     }
-    
-    func isVoted(_ selectedOptions: [VoteViewModel]) -> Bool {
-        
-        if selectedOptions.isEmpty {
-            
-            return true
-            
-        } else {
-            
-            return false
-        }
-    }
+
+//    func isVoted(_ selectedOptions: [VoteViewModel]) -> Bool {
+//
+//        if selectedOptions.isEmpty {
+//
+//            return true
+//
+//        } else {
+//
+//            return false
+//        }
+//    }
     
     func convertOptionsToViewModels(from options: [Option]) -> [OptionViewModel] {
         

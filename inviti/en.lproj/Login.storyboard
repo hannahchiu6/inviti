@@ -72,17 +72,17 @@
                                     <action selector="skip:" destination="FF6-Qz-wpE" eventType="touchUpInside" id="fiO-gG-dmm"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By tapping Sign in with Apple, you agree to our Terms and Privacy Policy." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnD-uw-EEo">
-                                <rect key="frame" x="70" y="754" width="274" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="By tapping Sign in with Apple, you agree to our Terms and Privacy Policy." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnD-uw-EEo">
+                                <rect key="frame" x="50" y="754" width="314" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="rT4-zu-NAR"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="45" id="rT4-zu-NAR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="el2-on-j6C">
-                                <rect key="frame" x="70" y="802" width="64" height="15"/>
+                                <rect key="frame" x="50" y="802" width="64" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="INI-7w-eOV"/>
                                 </constraints>
@@ -109,12 +109,12 @@
                             <constraint firstItem="Uh4-vp-MgF" firstAttribute="top" secondItem="xC1-ir-NtU" secondAttribute="bottom" constant="24" id="HWT-8o-xL4"/>
                             <constraint firstItem="NPr-7N-Aah" firstAttribute="bottom" secondItem="el2-on-j6C" secondAttribute="bottom" constant="45" id="JZO-ce-gHC"/>
                             <constraint firstItem="el2-on-j6C" firstAttribute="leading" secondItem="nnD-uw-EEo" secondAttribute="leading" id="LQk-V2-kre"/>
-                            <constraint firstItem="NPr-7N-Aah" firstAttribute="trailing" secondItem="nnD-uw-EEo" secondAttribute="trailing" constant="70" id="MQD-fQ-OyP"/>
+                            <constraint firstItem="NPr-7N-Aah" firstAttribute="trailing" secondItem="nnD-uw-EEo" secondAttribute="trailing" constant="50" id="MQD-fQ-OyP"/>
                             <constraint firstItem="ZL9-e5-bQf" firstAttribute="top" secondItem="QjD-cn-hhy" secondAttribute="top" constant="45" id="Q4t-eh-Nod"/>
                             <constraint firstItem="Uh4-vp-MgF" firstAttribute="centerX" secondItem="QjD-cn-hhy" secondAttribute="centerX" id="WRi-dh-USA"/>
                             <constraint firstItem="eTa-wB-Dc1" firstAttribute="centerX" secondItem="QjD-cn-hhy" secondAttribute="centerX" id="Wsf-S2-PXk"/>
                             <constraint firstItem="NPr-7N-Aah" firstAttribute="trailing" secondItem="ZL9-e5-bQf" secondAttribute="trailing" constant="24" id="awC-QC-6Xm"/>
-                            <constraint firstItem="nnD-uw-EEo" firstAttribute="leading" secondItem="NPr-7N-Aah" secondAttribute="leading" constant="70" id="mxf-nX-q1h"/>
+                            <constraint firstItem="nnD-uw-EEo" firstAttribute="leading" secondItem="NPr-7N-Aah" secondAttribute="leading" constant="50" id="mxf-nX-q1h"/>
                             <constraint firstItem="el2-on-j6C" firstAttribute="top" secondItem="nnD-uw-EEo" secondAttribute="bottom" constant="12" id="ra0-g8-vqD"/>
                             <constraint firstItem="xC1-ir-NtU" firstAttribute="leading" secondItem="NPr-7N-Aah" secondAttribute="leading" constant="36" id="x5p-YL-RAN"/>
                         </constraints>

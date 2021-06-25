@@ -12,7 +12,7 @@
 "FgD-nN-te4.text" = "2021";
 
 /* Class = "UILabel"; text = "Oops，此活動已被刪除\n或投票已結束囉～\n"; ObjectID = "HJJ-kP-1mx"; */
-"HJJ-kP-1mx.text" = "Oops，inviti has been removed or closed～\n";
+"HJJ-kP-1mx.text" = "Oops，inviti has been removed or closed...\n";
 
 /* Class = "UILabel"; text = "投 票 成 功！"; ObjectID = "MhF-GP-cfC"; */
 "MhF-GP-cfC.text" = "Voting successfully！";
@@ -27,7 +27,7 @@
 "Oou-oD-lLE.text" = "2021 Marketing & PM Meeting ";
 
 /* Class = "UILabel"; text = "活動時間已新增到您的行事曆"; ObjectID = "PPc-nM-4zs"; */
-"PPc-nM-4zs.text" = "Event has been added into your calendar";
+"PPc-nM-4zs.text" = "Event Created!";
 
 /* Class = "UILabel"; text = "Host by"; ObjectID = "RoT-7s-Z26"; */
 "RoT-7s-Z26.text" = "Host by";
@@ -36,7 +36,7 @@
 "SOk-WJ-Ck6.text" = "Moon Chiu";
 
 /* Class = "UILabel"; text = "分享票選結果給好友吧！"; ObjectID = "U8j-9q-XVc"; */
-"U8j-9q-XVc.text" = "Share the result with invitee！";
+"U8j-9q-XVc.text" = "Share the result with invitees!";
 
 /* Class = "UILabel"; text = "您可以前往首頁的行事曆查看：）"; ObjectID = "UN0-0K-y4v"; */
 "UN0-0K-y4v.text" = "You can check in your calendar：）";
