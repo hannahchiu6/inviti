@@ -1,0 +1,90 @@
+
+/* Class = "UIButton"; normalTitle = "前 往 行 事 曆 查 看"; ObjectID = "1oD-UV-cZA"; */
+"1oD-UV-cZA.normalTitle" = "Go to Calendar";
+
+/* Class = "UIButton"; normalTitle = "回 首 頁"; ObjectID = "5va-UQ-P3I"; */
+"5va-UQ-P3I.normalTitle" = "Return";
+
+/* Class = "UIButton"; normalTitle = "加 到 好 友 行 事 曆"; ObjectID = "AxX-WI-KKU"; */
+"AxX-WI-KKU.normalTitle" = "Add to invitee's calendar";
+
+/* Class = "UILabel"; text = "2021"; ObjectID = "FgD-nN-te4"; */
+"FgD-nN-te4.text" = "2021";
+
+/* Class = "UILabel"; text = "Oops，此活動已被刪除\n或投票已結束囉～\n"; ObjectID = "HJJ-kP-1mx"; */
+"HJJ-kP-1mx.text" = "Oops，inviti has been removed or closed...\n";
+
+/* Class = "UILabel"; text = "投 票 成 功！"; ObjectID = "MhF-GP-cfC"; */
+"MhF-GP-cfC.text" = "Voting successfully！";
+
+/* Class = "UILabel"; text = "08:30 - 10:00"; ObjectID = "Mp3-6P-WqV"; */
+"Mp3-6P-WqV.text" = "08:30 - 10:00";
+
+/* Class = "UILabel"; text = "Google Meet"; ObjectID = "NDJ-k3-NE3"; */
+"NDJ-k3-NE3.text" = "Google Meet";
+
+/* Class = "UILabel"; text = "2021 Marketing & PM Meeting "; ObjectID = "Oou-oD-lLE"; */
+"Oou-oD-lLE.text" = "2021 Marketing & PM Meeting ";
+
+/* Class = "UILabel"; text = "活動時間已新增到您的行事曆"; ObjectID = "PPc-nM-4zs"; */
+"PPc-nM-4zs.text" = "Event Created!";
+
+/* Class = "UILabel"; text = "Host by"; ObjectID = "RoT-7s-Z26"; */
+"RoT-7s-Z26.text" = "Host by";
+
+/* Class = "UILabel"; text = "Moon Chiu"; ObjectID = "SOk-WJ-Ck6"; */
+"SOk-WJ-Ck6.text" = "Moon Chiu";
+
+/* Class = "UILabel"; text = "分享票選結果給好友吧！"; ObjectID = "U8j-9q-XVc"; */
+"U8j-9q-XVc.text" = "Share the result with invitees!";
+
+/* Class = "UILabel"; text = "您可以前往首頁的行事曆查看：）"; ObjectID = "UN0-0K-y4v"; */
+"UN0-0K-y4v.text" = "You can check in your calendar：）";
+
+/* Class = "UIButton"; normalTitle = "回 首 頁"; ObjectID = "V6l-76-He5"; */
+"V6l-76-He5.normalTitle" = "Return to main page";
+
+/* Class = "UILabel"; text = "Host by"; ObjectID = "VMp-2b-hTI"; */
+"VMp-2b-hTI.text" = "Host by";
+
+/* Class = "UIButton"; normalTitle = "選 擇 投 票 結 果"; ObjectID = "Zjd-Vy-HxE"; */
+"Zjd-Vy-HxE.normalTitle" = "Close inviti";
+
+/* Class = "UIButton"; normalTitle = "確 認 送 出"; ObjectID = "aZs-mG-hFV"; */
+"aZs-mG-hFV.normalTitle" = "Confrim";
+
+/* Class = "UILabel"; text = "Google Meet"; ObjectID = "cOc-fy-mDM"; */
+"cOc-fy-mDM.text" = "Google Meet";
+
+/* Class = "UILabel"; text = "PaddingableHelper This is notes. PaddingableHelper This is notes"; ObjectID = "ezs-8n-jxv"; */
+"ezs-8n-jxv.text" = "PaddingableHelper This is notes. PaddingableHelper This is notes";
+
+/* Class = "UILabel"; text = "October 13, Friday"; ObjectID = "g9a-4o-zUZ"; */
+"g9a-4o-zUZ.text" = "October 13, Friday";
+
+/* Class = "UILabel"; text = "October 13, Friday"; ObjectID = "hPm-4s-CZx"; */
+"hPm-4s-CZx.text" = "October 13, Friday";
+
+/* Class = "UILabel"; text = "Moon Chiu"; ObjectID = "lS6-Ne-1Rj"; */
+"lS6-Ne-1Rj.text" = "Moon Chiu";
+
+/* Class = "UILabel"; text = "投票結果已出爐"; ObjectID = "lpw-qw-sxg"; */
+"lpw-qw-sxg.text" = "Here's the result";
+
+/* Class = "UILabel"; text = "23"; ObjectID = "p3P-cu-D5r"; */
+"p3P-cu-D5r.text" = "23";
+
+/* Class = "UILabel"; text = "08:30 - 10:00"; ObjectID = "pgA-4R-X9i"; */
+"pgA-4R-X9i.text" = "08:30 - 10:00";
+
+/* Class = "UILabel"; text = "October 13"; ObjectID = "sx1-ID-7Yc"; */
+"sx1-ID-7Yc.text" = "October 13";
+
+/* Class = "UILabel"; text = "PaddingableHelper This is notes. PaddingableHelper This is notes"; ObjectID = "ujZ-NF-1sZ"; */
+"ujZ-NF-1sZ.text" = "PaddingableHelper This is notes. PaddingableHelper This is notes";
+
+/* Class = "UILabel"; text = "2021 Marketing & PM Meeting "; ObjectID = "vwL-SJ-LHE"; */
+"vwL-SJ-LHE.text" = "2021 Marketing & PM Meeting ";
+
+/* Class = "UILabel"; text = "08:30 - 10:00"; ObjectID = "xdS-Xi-aAN"; */
+"xdS-Xi-aAN.text" = "08:30 - 10:00";

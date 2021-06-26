@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "請在下方欄位搜尋您的投票活動邀請碼，即可前往投票喔！"; ObjectID = "3uT-Gs-w3Q"; */
+"3uT-Gs-w3Q.text" = "請在下方欄位搜尋您的投票活動邀請碼，即可前往投票喔！";
+
+/* Class = "UILabel"; text = "更新個人資訊，\ninviti 體驗更好喔！"; ObjectID = "6ri-uy-JL2"; */
+"6ri-uy-JL2.text" = "更新個人資訊，\ninviti 體驗更好喔！";
+
+/* Class = "UITextField"; placeholder = "輸入邀請碼"; ObjectID = "7wr-SY-xPi"; */
+"7wr-SY-xPi.placeholder" = "輸入邀請碼";
+
+/* Class = "UILabel"; text = "若您有獲得好友的活動\n邀請碼，點擊此處搜尋。"; ObjectID = "EPQ-lR-XWg"; */
+"EPQ-lR-XWg.text" = "若您有獲得好友的活動\n邀請碼，點擊此處搜尋。";
+
+/* Class = "UILabel"; text = "邀 請 碼 搜 尋"; ObjectID = "LvJ-Hg-5lJ"; */
+"LvJ-Hg-5lJ.text" = "邀 請 碼 搜 尋";
+
+/* Class = "UILabel"; text = "點擊此處開始建立\n自己的 inviti 吧！"; ObjectID = "QWc-9m-AJz"; */
+"QWc-9m-AJz.text" = "點擊此處開始建立\n自己的 inviti 吧！";
+
+/* Class = "UIButton"; normalTitle = "參加"; ObjectID = "ayh-kF-MHr"; */
+"ayh-kF-MHr.normalTitle" = "參加";
+
+/* Class = "UIButton"; normalTitle = "關閉說明"; ObjectID = "ioj-kt-DWE"; */
+"ioj-kt-DWE.normalTitle" = "關閉說明";
+
+/* Class = "UIButton"; normalTitle = "前往投票"; ObjectID = "k8o-lW-SpH"; */
+"k8o-lW-SpH.normalTitle" = "前往投票";
+
+/* Class = "UIButton"; normalTitle = "主揪"; ObjectID = "kV6-l5-EOg"; */
+"kV6-l5-EOg.normalTitle" = "主揪";
+
+/* Class = "UIButton"; normalTitle = "搜 尋 inviti"; ObjectID = "ndI-tG-Jhy"; */
+"ndI-tG-Jhy.normalTitle" = "搜 尋 inviti";
+
+/* Class = "UIButton"; normalTitle = "回 首 頁"; ObjectID = "srP-RZ-ikl"; */
+"srP-RZ-ikl.normalTitle" = "回 首 頁";
+
+/* Class = "UILabel"; text = "Oops，此活動已被刪除\n或投票已結束囉～\n"; ObjectID = "xS2-6S-CYS"; */
+"xS2-6S-CYS.text" = "Oops，此活動已被刪除\n或投票已結束囉～\n";

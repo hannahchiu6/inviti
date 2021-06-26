@@ -1,0 +1,88 @@
+/* 
+  Localizable.strings
+  inviti
+  
+  Created by Hannah.C on 22.06.21.
+  
+*/
+
+"alert_confrim" = "Confrim";
+"alert_cancel" = "Cancel";
+"no-one-vote" = "Your inviti has no participants";
+"sure-to-close-first" = "Are you sure to close the inviti?";
+"voting-end" = "The inviti has been closed";
+"have-voted" = "You have voted";
+"have-deleted" = "Oops - the inviti has been removed";
+"uploaded-success" = "Upload success!";
+"year-for-option" = ". ";
+"day-for-option" = "";
+"email-placeholder" = "Enter your email here";
+"name-placeholder" = "Enter your name here";
+
+// ShareSuccessVC
+"your-friend" = "You friend ";
+"invite-you" = " invites you to participate in ";
+"come-and-vote" = "! Open the inviti and search for the invite code:";
+"invite-sent" = "Invite sent";
+"try-later" = "Try later";
+
+
+// InvitesTableViewCell
+"a01" = "";
+"a02" = " has been closed.";
+"a03" = " has added into your calendar.";
+"a04" = " invites you to participate in ";
+"a05" = ". Go to check your availability!";
+"a06" = " has received your inviti on ";
+"a07" = " and participated in ";
+"a08" = ".";
+"a09" = "You have received an inviti notification.";
+"a10" = "Get started";
+
+
+// AddMeetingViewController
+"no-result" = "No result.";
+
+
+// MeetingTableViewCell
+"created-time" = "Created time：";
+"nobody-vote-yet" = "No participants yet";
+"one-participant-voted" = "1 person";
+"two-participant-voted" = "2 people";
+"three-participant-voted" = "3 people";
+"and-other" = "and";
+"participants" = "other people";
+
+
+// CreateFirstViewController
+"b01" = "Are you sure to close the inviti?";
+"b02" = "Once you confirmed, you won't be able to revert it.";
+"b03" = "Update";
+"b04" = "Add at least two options";
+
+
+// CTableViewController
+"time" = "Time";
+
+
+// OptionalSettingsCell
+"day" = "day(s)";
+"voting-days" = "Voting closes in ";
+
+
+// ResultClosedCell
+"day-for-calendar" = "";
+"1" = "Jan. ";
+"2" = "Feb. ";
+"3" = "Mar. ";
+"4" = "Apr. ";
+"5" = "May. ";
+"6" = "Jun. ";
+"7" = "Jul. ";
+"8" = "Aug. ";
+"9" = "Sept. ";
+"10" = "Oct. ";
+"11" = "Nov. ";
+"12" = "Dec. ";
+
+
