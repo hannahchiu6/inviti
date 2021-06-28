@@ -3,7 +3,7 @@
  
 # inviti - a group meeting scheduling tool
 
-[<img src="https://github.com/hannahchiu6/inviti/blob/main/images/Download_on_the_App_Store_Badge_US-UK_blk_092917-ai.png?raw=true" align="right" width = "120px"/>](https://apps.apple.com/tw/app/apple-store/id1571625123)[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://GitHub.com/Naereen/StrapDown.js/releases/)   [![swift-version](https://img.shields.io/badge/swift-5-brightgreen.svg)](https://github.com/apple/swift)   [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)   ![badge](https://img.shields.io/badge/Support%20languages%20-en%20%7C%20zh-orange)
+[<img src="https://github.com/hannahchiu6/inviti/blob/main/images/Download_on_the_App_Store_Badge_US-UK_blk_092917-ai.png?raw=true" align="right" width = "120px"/>](https://apps.apple.com/tw/app/apple-store/id1571625123)![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)   [![swift-version](https://img.shields.io/badge/swift-5-brightgreen.svg)](https://github.com/apple/swift)   [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/hannahchiu6/inviti/blob/main/LICENSE/)   ![badge](https://img.shields.io/badge/Support%20languages%20-en%20%7C%20zh-orange)
 
  
 　
