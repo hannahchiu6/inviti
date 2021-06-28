@@ -27,14 +27,14 @@ extension UIViewController {
 
        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-       let confirmAction = UIAlertAction(title: (NSLocalizedString("alert_confrim" , comment: "Alert confirm.") as String), style: .destructive) { action in
+       let confirmAction = UIAlertAction(title: (NSLocalizedString("alert_confrim", comment: "Alert confirm.") as String), style: .destructive) { action in
             confirmHandler()
 
        }
 
        alertController.addAction(confirmAction)
 
-       let cancelAction = UIAlertAction(title: (NSLocalizedString("alert_cancel" , comment: "Alert cancel.") as String), style: .cancel) { action in
+       let cancelAction = UIAlertAction(title: (NSLocalizedString("alert_cancel", comment: "Alert cancel.") as String), style: .cancel) { action in
             cancelHandler()
        }
 
