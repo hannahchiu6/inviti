@@ -30,13 +30,13 @@
 ## How it works?
 - Login / Sign-in  
 　   
-    Simply sign in with your Apple ID to speed up the activation process
-     
+	Simply sign in with your Apple ID to speed up the activation process
+	 
 - Homepage
 　
-    - An overview of hosted and engaged meetings
-    - Modify, delete, vote or close an inviti by clicking on the icons in the cell
-    - Search for your inviti's code if you have one by clicking on the top-​left " + "
+	- An overview of hosted and engaged meetings
+	- Modify, delete, vote or close an inviti by clicking on the icons in the cell
+	- Search for your inviti's code if you have one by clicking on the top-​left " + "
 
  
 　
@@ -47,13 +47,14 @@
 
 - Make an inviti
  
-    - Enter the subject, location and notes
-    - Upload an image and participants will see this when they access your inviti
-    - Toggle "Single Vote" on to limit it to one vote per person 
-    - Select several possible time and date options directly in a detailed calendar    
-    - Invite the participants by searching their ID or directly from your device with designed message
+	- Enter the subject, location and notes
+	- Upload an image and participants will see this when they access your inviti
+	- Toggle "Single Vote" on to limit it to one vote per person 
+	- Select several possible time and date options directly in a detailed calendar	
+	- Invite the participants by searching their ID or directly from your device with designed message
 
-     👉🏻 You'll need to select at least 2 time options to proceed to the next step<br>
+	 👉🏻 You'll need to select at least 2 time options to proceed to the next step<br>
+
    👉🏻 The calendar view contains the exiting events, so it prevents the upcoming ones from overlapping or doubling
  
 　
@@ -66,10 +67,11 @@
 **Let's vote - click on any of those engaged invitis on your list!**
 
 - Voting page
- 
-    - If the inviti is still available, you'll be able to vote  while clicking on the inviti as the screenshots on the left side
-    - Otherwise, a pop-up window will display the status of the inviti on the screen (see the screenshots on the right side below)
-    
+
+	- If the inviti is still available, you'll be able to vote  while clicking on the inviti as the screenshots on the left side
+	- Otherwise, a pop-up window will display the status of the inviti on the screen (see the screenshots on the right side below)
+	
+
  
 　
  　
@@ -80,7 +82,9 @@
  　 　<br><br>
 **Pick the winner - tap on the inviti in hosted view. This will bring you to close inviti's page.**
 
-- Close page    
+
+- Close page	
+
  
   - The table provide a built-in ranking feature, and can rank largest to smallest intelligently which allows you to quickly find the best time
   - Save the final date/ time to your inviti's calendar
@@ -97,8 +101,9 @@
  　
 - Other Pages
     
-    - Calendar view: remove the event from the calendar by swiping left 
-    - Notification page: any inviti activities that may related to you
+
+	- Calendar view: remove the event from the calendar by swiping left 
+	- Notification page: any inviti activities that may related to you
   - Settings page:  update your name, email address and profile photo here
 　
  　
