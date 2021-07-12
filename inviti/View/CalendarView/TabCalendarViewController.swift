@@ -14,11 +14,7 @@ import SwiftHEXColors
 
 
 class TabCalendarViewController: UIViewController {
-    
-    let lightGrayColor = UIColor.lightGray
-    
-    let lightColor = UIColor.lightOrange
-    
+
     var selectDay: JKDay = JKDay(date: Date()) {
         didSet {
             self.calendarTableView.reloadData()
@@ -46,7 +42,7 @@ class TabCalendarViewController: UIViewController {
         calendarTableView.calendar.delegate = self
         calendarTableView.calendar.dataSource = self
         
-        calendarTableView.backgroundColor = lightColor
+        calendarTableView.backgroundColor = UIColor.systemGray5
         
         calendarTableView.calendar.focusWeek = selectDay.weekOfMonth - 1
 
@@ -179,7 +175,7 @@ extension TabCalendarViewController: JKCalendarDelegate {
         
         let view = UIView()
         let line = UIView(frame: CGRect(x: 8, y: 9, width: calendar.frame.width - 16, height: 1))
-        line.backgroundColor = lightGrayColor
+        line.backgroundColor = UIColor.systemGray5
         view.addSubview(line)
         return view
     }

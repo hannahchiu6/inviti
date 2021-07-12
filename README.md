@@ -54,6 +54,7 @@
 	- Invite the participants by searching their ID or directly from your device with designed message
 
 	 👉🏻 You'll need to select at least 2 time options to proceed to the next step<br>
+
    👉🏻 The calendar view contains the exiting events, so it prevents the upcoming ones from overlapping or doubling
  
 　
@@ -66,10 +67,11 @@
 **Let's vote - click on any of those engaged invitis on your list!**
 
 - Voting page
- 
+
 	- If the inviti is still available, you'll be able to vote  while clicking on the inviti as the screenshots on the left side
 	- Otherwise, a pop-up window will display the status of the inviti on the screen (see the screenshots on the right side below)
 	
+
  
 　
  　
@@ -80,7 +82,9 @@
  　 　<br><br>
 **Pick the winner - tap on the inviti in hosted view. This will bring you to close inviti's page.**
 
+
 - Close page	
+
  
   - The table provide a built-in ranking feature, and can rank largest to smallest intelligently which allows you to quickly find the best time
   - Save the final date/ time to your inviti's calendar
@@ -97,6 +101,7 @@
  　
 - Other Pages
     
+
 	- Calendar view: remove the event from the calendar by swiping left 
 	- Notification page: any inviti activities that may related to you
   - Settings page:  update your name, email address and profile photo here

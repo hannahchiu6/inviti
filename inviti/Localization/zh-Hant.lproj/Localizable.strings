@@ -7,14 +7,14 @@
 */
 
 "alert_confrim" = "確認";
-"alert_cancel" = "刪除";
+"alert_cancel" = "取消";
 "no-one-vote" = "您的活動尚未有人投票";
 "sure-to-close-first" = "確定要結束投票並自訂結果嗎？";
 "voting-end" = "投票活動已結束囉！";
 "have-voted" = "您已經投票過囉！";
 "have-deleted" = "Oops，投票活動已經被刪除了。";
 "uploaded-success" = "上傳成功！";
-"year-for-option" = "年";
+"year-for-option" = "年 ";
 "day-for-option" = "日";
 "email-placeholder" = "請輸入您的信箱";
 "name-placeholder" = "請輸入您的名字";
@@ -72,17 +72,17 @@
 
 
 // ResultClosedCell
-"day-for-calendar" = " 日";
-"1" = "1 月";
-"2" = "2 月";
-"3" = "3 月";
-"4" = "4 月";
-"5" = "5 月";
-"6" = "6 月";
-"7" = "7 月";
-"8" = "8 月";
-"9" = "9 月";
-"10" = "10 月";
-"11" = "11 月";
-"12" = "12 月";
+"day-for-calendar" = "日";
+"1" = "1月 ";
+"2" = "2月 ";
+"3" = "3月 ";
+"4" = "4月 ";
+"5" = "5月 ";
+"6" = "6月 ";
+"7" = "7月 ";
+"8" = "8月 ";
+"9" = "9月 ";
+"10" = "10月 ";
+"11" = "11月 ";
+"12" = "12月 ";
 

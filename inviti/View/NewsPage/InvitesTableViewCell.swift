@@ -51,6 +51,15 @@ class InvitesTableViewCell: UITableViewCell {
     func setUpBasicView() {
         
         ownerImage.layer.cornerRadius = ownerImage.bounds.width / 2
+
+       self.layer.backgroundColor = UIColor.white.cgColor
+
+       self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.systemGray5.cgColor
+       self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+       self.layer.shadowOpacity = 1.0
+       self.layer.shadowRadius = 0.0
+
         
     }
     
@@ -62,7 +71,7 @@ class InvitesTableViewCell: UITableViewCell {
         
         rejectBtnView.isHidden = true
         
-        ownerImage.isHidden = true
+        ownerImage.isHidden = false
         
         deleteBtnView.isHidden = true
     }
@@ -87,6 +96,8 @@ class InvitesTableViewCell: UITableViewCell {
         let imageUrl = URL(string: String(url))
         
         ownerImage.kf.setImage(with: imageUrl)
+
+        deleteBtnView.isHidden = false
     }
     
     
@@ -110,6 +121,8 @@ class InvitesTableViewCell: UITableViewCell {
         let imageUrl = URL(string: String(url))
         
         ownerImage.kf.setImage(with: imageUrl)
+
+        deleteBtnView.isHidden = false
     }
     
     
@@ -125,6 +138,8 @@ class InvitesTableViewCell: UITableViewCell {
         rejectBtnView.isHidden = true
         
         voteBtnView.isHidden = true
+
+        deleteBtnView.isHidden = false
         
         
         guard let url = model.notification.image else { return }

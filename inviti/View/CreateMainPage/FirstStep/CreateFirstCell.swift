@@ -47,11 +47,29 @@ class CreateFirstCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        subjectTextField.delegate = self
+        locationTextField.delegate = self
         
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
+}
+
+extension CreateFirstCell: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        let currentText = textField.text ?? ""
+
+        guard let stringRange = Range(range, in: currentText) else { return false }
+
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+
+        return updatedText.count <= 16
+    }
+
 }

@@ -43,9 +43,7 @@ class CreateFirstViewController: UIViewController {
 
             .confirmationAlert(title: "b01".localized,
                                message: "b02".localized,
-                               cancelHandler: {
-
-                                    self.returnToMain() },
+                               cancelHandler: {},
 
                                confirmHandler: {
 
@@ -133,6 +131,8 @@ class CreateFirstViewController: UIViewController {
             controller?.meetingID = meetingID
             
             controller?.viewModel = createMeetingViewModel
+            
+            controller?.meetingSubject = meetingSubject
             
         } else if segue.identifier == "addPeopleSegue" {
             

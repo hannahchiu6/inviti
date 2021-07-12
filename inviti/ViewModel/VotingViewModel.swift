@@ -1,5 +1,5 @@
 //
-//  VotingViewModel .swift
+//  VotingViewModel.swift
 //  inviti
 //
 //  Created by Hannah.C on 20.05.21.
@@ -15,8 +15,6 @@ class VotingViewModel {
     var meetingViewModels = Box([MeetingViewModel]())
     
     var userBox = Box(UserViewModel(model: User(id: "", email: "", name: "", image: "", phone: "", address: "", calendarType: "", numOfMeetings: 0, events: [], notification: [], numberForSearch: "")))
-    
-    var voteViewModel = VoteViewModel(model: SelectedOption(isSelected: false, selectedUser: ""))
     
     var meeting: Meeting = Meeting(
         id: "",
@@ -158,31 +156,7 @@ class VotingViewModel {
         
         return optionIDs
     }
-    
-//    func checkIfAnyVoted(meetingID: String) {
-//
-//        VoteManager.shared.checkIfVoted(meetingID: meetingID) { [weak self] result in
-//
-//            switch result {
-//
-//            case .success(let options):
-//
-//                if options.isEmpty {
-//
-//                    self?.isVoted = true
-//
-//                } else {
-//
-//                    self?.isVoted = false
-//                }
-//
-//            case .failure(let error):
-//
-//                print("fetchData.failure: \(error)")
-//            }
-//
-//        }
-//    }
+
     
     func checkSingleVote(meeting: Meeting) {
         if meeting.singleMeeting {
@@ -190,17 +164,6 @@ class VotingViewModel {
         }
     }
 
-//    func isVoted(_ selectedOptions: [VoteViewModel]) -> Bool {
-//
-//        if selectedOptions.isEmpty {
-//
-//            return true
-//
-//        } else {
-//
-//            return false
-//        }
-//    }
     
     func convertOptionsToViewModels(from options: [Option]) -> [OptionViewModel] {
         
@@ -239,42 +202,6 @@ class VotingViewModel {
         self.multipleOptions?()
     }
 
-    func create(with meeting: Meeting, option: Option, selectedOption: inout SelectedOption) {
-        
-        VoteManager.shared.createSelectedOption(selectedOption: &selectedOption, meeting: meeting, option: option) { result in
-            
-            switch result {
-            
-            case .success:
-                
-                print("onTapCreate option, success")
-
-                self.onSelectedOptionCreated?()
-                
-            case .failure(let error):
-                
-                print("createOption.failure: \(error)")
-            }
-        }
-    }
-    
-    func createVotedData(with options: [Option], meeting: Meeting, selectedOption: inout SelectedOption) {
-        
-        for option in options {
-            VoteManager.shared.createSelectedOption(selectedOption: &selectedOption, meeting: meeting, option: option) { result in
-                switch result {
-                
-                case .success:
-                    print("onTapCreate option, success")
-                    self.onSelectedOptionCreated?()
-                    
-                case .failure(let error):
-                    
-                    print("createOption.failure: \(error)")
-                }
-            }
-        }
-    }
     
     func updateVotedOption(with meetingID: String, optionIndex: [Int]?) {
         
@@ -295,21 +222,6 @@ class VotingViewModel {
                         print("createOption.failure: \(error)")
                     }
                 }
-            }
-        }
-    }
-    
-    func createWithEmptyData(with optionID: String, meetingID: String, selectedOption: inout SelectedOption) {
-        
-        VoteManager.shared.createEmptySelectedOption(selectedOption: &selectedOption, meetingID: meetingID, optionID: optionID) { result in
-            switch result {
-            case .success:
-                print("onTapCreate option, success")
-                self.onSelectedOptionCreated?()
-                
-            case .failure(let error):
-                
-                print("createOption.failure: \(error)")
             }
         }
     }
