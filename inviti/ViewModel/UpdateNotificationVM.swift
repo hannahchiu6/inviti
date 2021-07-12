@@ -22,8 +22,6 @@ class UpdateNotificationVM {
     
     var notification: Notification = Notification(id: "", meetingID: "", eventID: "", participantID: "", createdTime: 0, type: "")
     
-    var voteViewModel = VoteViewModel(model: SelectedOption(isSelected: false, selectedUser: ""))
-    
     var meetingViewModel = MeetingViewModel(model: Meeting(id: "", numberForSearch: "", ownerAppleID: "", createdTime: 0, subject: nil, location: nil, notes: nil, image: nil, singleMeeting: false, hiddenMeeting: false, deadlineMeeting: false, participants: nil, numOfParticipants: nil, deadlineTag: nil))
     
     var meeting: Meeting?

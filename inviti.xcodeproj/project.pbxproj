@@ -44,7 +44,6 @@
 		865A00EE265428FF0061A0E4 /* FurtureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A00ED265428FF0061A0E4 /* FurtureTableViewController.swift */; };
 		865A00F22654297A0061A0E4 /* PastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A00F12654297A0061A0E4 /* PastTableViewController.swift */; };
 		8661E0352666187A00BD23F5 /* InvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661E0342666187A00BD23F5 /* InvitesViewController.swift */; };
-		8664422326600CFD00CE0CFA /* VoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664422226600CFD00CE0CFA /* VoteViewModel.swift */; };
 		8665BE55265B6A2200408685 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665BE54265B6A2200408685 /* EventManager.swift */; };
 		8666D3592682534700A83CF7 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8666D35B2682534700A83CF7 /* News.storyboard */; };
 		8666D3642682535900A83CF7 /* InvitesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8666D3662682535900A83CF7 /* InvitesTableViewCell.xib */; };
@@ -75,13 +74,11 @@
 		8688E39D266C815300D41A6D /* UserEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8688E39C266C815300D41A6D /* UserEventViewModel.swift */; };
 		868B1D4E266777B9004CFDF1 /* VotingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868B1D4D266777B8004CFDF1 /* VotingResultViewController.swift */; };
 		868DA03F26652E7600E53722 /* OptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868DA03E26652E7600E53722 /* OptionViewModel.swift */; };
-		8694B6E7266532D500B9A489 /* VoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8694B6E6266532D500B9A489 /* VoteManager.swift */; };
 		86981356267DB0C6000BB820 /* invitiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86981355267DB0C6000BB820 /* invitiTests.swift */; };
 		86997225265B687E00A2020A /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86997224265B687D00A2020A /* EventViewModel.swift */; };
 		8699BB302667BBEB00D71254 /* CloseSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8699BB2F2667BBEA00D71254 /* CloseSuccessVC.swift */; };
 		869F83F426551ACC00DA1D53 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F83F326551ACC00DA1D53 /* User.swift */; };
 		869F83FD265531EC00DA1D53 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F83FC265531EC00DA1D53 /* Event.swift */; };
-		869F8405265534A800DA1D53 /* SelectedOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F8404265534A800DA1D53 /* SelectedOption.swift */; };
 		869F840A2655357A00DA1D53 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F84092655357A00DA1D53 /* Meeting.swift */; };
 		869F840E2655363B00DA1D53 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F840D2655363B00DA1D53 /* Option.swift */; };
 		869F841D265547DF00DA1D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869F841C265547DF00DA1D53 /* GoogleService-Info.plist */; };
@@ -112,6 +109,7 @@
 		86D4F68426582D6E00C00062 /* PaddingableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D4F68326582D6E00C00062 /* PaddingableHelper.swift */; };
 		86D772E5266FBC4C0028158C /* HasVotedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D772E4266FBC4C0028158C /* HasVotedVC.swift */; };
 		86D772E8266FBCB10028158C /* 49976-sdss.json in Resources */ = {isa = PBXBuildFile; fileRef = 86D772E7266FBCB10028158C /* 49976-sdss.json */; };
+		86E6FC26269BF44300F74636 /* VoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E6FC25269BF44300F74636 /* VoteManager.swift */; };
 		86EBFA75266D3098008E6955 /* AddPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBFA74266D3098008E6955 /* AddPeopleViewController.swift */; };
 		86ECEAA6265FDD7E00465424 /* CreateOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ECEAA5265FDD7E00465424 /* CreateOptionViewModel.swift */; };
 		86EE497A265102BD003B0C25 /* CreateFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */; };
@@ -191,7 +189,6 @@
 		865A00ED265428FF0061A0E4 /* FurtureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurtureTableViewController.swift; sourceTree = "<group>"; };
 		865A00F12654297A0061A0E4 /* PastTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastTableViewController.swift; sourceTree = "<group>"; };
 		8661E0342666187A00BD23F5 /* InvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesViewController.swift; sourceTree = "<group>"; };
-		8664422226600CFD00CE0CFA /* VoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewModel.swift; sourceTree = "<group>"; };
 		8665BE54265B6A2200408685 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		8666D35A2682534700A83CF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/News.storyboard; sourceTree = "<group>"; };
 		8666D35F2682534A00A83CF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/News.strings; sourceTree = "<group>"; };
@@ -239,7 +236,6 @@
 		8688E39C266C815300D41A6D /* UserEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEventViewModel.swift; sourceTree = "<group>"; };
 		868B1D4D266777B8004CFDF1 /* VotingResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingResultViewController.swift; sourceTree = "<group>"; };
 		868DA03E26652E7600E53722 /* OptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionViewModel.swift; sourceTree = "<group>"; };
-		8694B6E6266532D500B9A489 /* VoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteManager.swift; sourceTree = "<group>"; };
 		86981353267DB0C6000BB820 /* invitiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = invitiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86981355267DB0C6000BB820 /* invitiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = invitiTests.swift; sourceTree = "<group>"; };
 		86981357267DB0C6000BB820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -247,7 +243,6 @@
 		8699BB2F2667BBEA00D71254 /* CloseSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseSuccessVC.swift; sourceTree = "<group>"; };
 		869F83F326551ACC00DA1D53 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		869F83FC265531EC00DA1D53 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		869F8404265534A800DA1D53 /* SelectedOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedOption.swift; sourceTree = "<group>"; };
 		869F84092655357A00DA1D53 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 		869F840D2655363B00DA1D53 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		869F841C265547DF00DA1D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -287,6 +282,7 @@
 		86D4F68326582D6E00C00062 /* PaddingableHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingableHelper.swift; sourceTree = "<group>"; };
 		86D772E4266FBC4C0028158C /* HasVotedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasVotedVC.swift; sourceTree = "<group>"; };
 		86D772E7266FBCB10028158C /* 49976-sdss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "49976-sdss.json"; sourceTree = "<group>"; };
+		86E6FC25269BF44300F74636 /* VoteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteManager.swift; sourceTree = "<group>"; };
 		86EBFA74266D3098008E6955 /* AddPeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPeopleViewController.swift; sourceTree = "<group>"; };
 		86ECEAA5265FDD7E00465424 /* CreateOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOptionViewModel.swift; sourceTree = "<group>"; };
 		86EE4979265102BD003B0C25 /* CreateFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFirstViewController.swift; sourceTree = "<group>"; };
@@ -472,7 +468,7 @@
 			children = (
 				869F842926560C8400DA1D53 /* NetworkManager.swift */,
 				8681A651265E8D48007CF61A /* OptionManager.swift */,
-				8694B6E6266532D500B9A489 /* VoteManager.swift */,
+				86E6FC25269BF44300F74636 /* VoteManager.swift */,
 				8665BE54265B6A2200408685 /* EventManager.swift */,
 				8672AB4B266CC4C700FB44B4 /* NotificationManager.swift */,
 				869F842526560C6900DA1D53 /* UserManager.swift */,
@@ -588,7 +584,6 @@
 				8680F09C26653D2C004B46D6 /* VotingViewModel.swift */,
 				8672AB3E266CBEB300FB44B4 /* UpdateNotificationVM.swift */,
 				8672AB47266CC3F300FB44B4 /* NotificationViewModel.swift */,
-				8664422226600CFD00CE0CFA /* VoteViewModel.swift */,
 				868DA03E26652E7600E53722 /* OptionViewModel.swift */,
 				8681A642265E87D4007CF61A /* SelectOptionViewModel.swift */,
 				869F842E265613B000DA1D53 /* MainViewModel.swift */,
@@ -610,7 +605,6 @@
 			children = (
 				869F840D2655363B00DA1D53 /* Option.swift */,
 				8610312326726B6200BEC58B /* FinalOption.swift */,
-				869F8404265534A800DA1D53 /* SelectedOption.swift */,
 				869F83FC265531EC00DA1D53 /* Event.swift */,
 				869F84092655357A00DA1D53 /* Meeting.swift */,
 				869F83F326551ACC00DA1D53 /* User.swift */,
@@ -917,6 +911,7 @@
 				8661E0352666187A00BD23F5 /* InvitesViewController.swift in Sources */,
 				86D4F68426582D6E00C00062 /* PaddingableHelper.swift in Sources */,
 				863706502654EDC100D0A0AB /* VotingTableViewCell.swift in Sources */,
+				86E6FC26269BF44300F74636 /* VoteManager.swift in Sources */,
 				8640655B264D9910003C756D /* UIStoryboard+Extension.swift in Sources */,
 				865A00E42653A9AA0061A0E4 /* VotingViewController.swift in Sources */,
 				869F840E2655363B00DA1D53 /* Option.swift in Sources */,
@@ -933,8 +928,6 @@
 				8672AB3F266CBEB300FB44B4 /* UpdateNotificationVM.swift in Sources */,
 				86406555264D98D6003C756D /* TabBarController.swift in Sources */,
 				860B5C922652297200171ED3 /* CreateFirstCell.swift in Sources */,
-				8694B6E7266532D500B9A489 /* VoteManager.swift in Sources */,
-				869F8405265534A800DA1D53 /* SelectedOption.swift in Sources */,
 				860B3BB32669E0DE008D5267 /* UserDefaultsName.swift in Sources */,
 				865A00EE265428FF0061A0E4 /* FurtureTableViewController.swift in Sources */,
 				861B402226577AF9004D1763 /* OptionsCell.swift in Sources */,
@@ -945,7 +938,6 @@
 				86A6620C2669E68400DBB799 /* LoginViewModel.swift in Sources */,
 				8681A64E265E898B007CF61A /* OptionTime.swift in Sources */,
 				868649FC265B74E700E7040F /* CalendarViewModel.swift in Sources */,
-				8664422326600CFD00CE0CFA /* VoteViewModel.swift in Sources */,
 				865A00E52653A9AA0061A0E4 /* EditTableViewCell.swift in Sources */,
 				866813E02667389D00659495 /* ResultTableViewCell.swift in Sources */,
 				8653117F264FC39700CFB4F7 /* UIButtonActivity.swift in Sources */,
@@ -1272,7 +1264,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = inviti/inviti.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5VVRV23ZK6;
 				INFOPLIST_FILE = inviti/Info.plist;
@@ -1280,7 +1272,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
+				MARKETING_VERSION = 0.1.3;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = moonland.inviti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1298,14 +1290,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = inviti/invitiRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5VVRV23ZK6;
 				INFOPLIST_FILE = inviti/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
+				MARKETING_VERSION = 0.1.3;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = moonland.inviti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
