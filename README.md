@@ -156,7 +156,7 @@ v.0.1.2 - Jun. 25. 2021 - Mobile app localisation<br>
 　
  　　
 ## Contact
-Hao Rung, Chiu / hannah_chiu@hotmail.com 
+Hao Rung, Chiu / moowen666@gmail.com 
  
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/Naereen/ama)  ![Made with love in Taiwan](https://madewithlove.now.sh/tw?heart=true)
 
